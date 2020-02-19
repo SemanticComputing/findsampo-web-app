@@ -1,5 +1,5 @@
 import { runSelectQuery } from './SparqlApi'
-import { runNetworkQuery } from './NetworkApi'
+// import { runNetworkQuery } from './NetworkApi'
 import { prefixes } from './findsampo/SparqlQueriesPrefixes'
 import {
   countQuery,
@@ -7,14 +7,9 @@ import {
   instanceQuery
 } from './SparqlQueriesGeneral'
 import {
-  manuscriptPropertiesFacetResults,
-  manuscriptPropertiesInstancePage,
-  productionPlacesQuery,
-  lastKnownLocationsQuery,
-  migrationsQuery,
-  networkLinksQuery,
-  networkNodesQuery
-} from './sampo/SparqlQueriesPerspective1'
+  findsPropertiesInstancePage,
+  findsPropertiesFacetResults
+} from './findsampo/SparqlQueriesFinds'
 import { workProperties } from './sampo/SparqlQueriesPerspective2'
 import { eventProperties, eventPlacesQuery } from './sampo/SparqlQueriesPerspective3'
 import {
@@ -25,7 +20,7 @@ import {
   allPlacesQuery
 } from './sampo/SparqlQueriesPlaces'
 import { facetConfigs, endpoint } from './findsampo/FacetConfigs'
-import { mapCount, mapPlaces } from './Mappers'
+import { mapCount /* mapPlaces */ } from './Mappers'
 import { makeObjectList } from './SparqlObjectMapper'
 import { generateConstraintsBlock } from './Filters'
 
@@ -68,33 +63,15 @@ export const getAllResults = ({
 }) => {
   let q = ''
   let filterTarget = ''
-  let mapper = makeObjectList
+  const mapper = makeObjectList
   switch (resultClass) {
     case 'placesAll':
       q = allPlacesQuery
       filterTarget = 'id'
       break
-    case 'placesMsProduced':
-      q = productionPlacesQuery
-      filterTarget = 'manuscripts'
-      mapper = mapPlaces
-      break
-    case 'lastKnownLocations':
-      q = lastKnownLocationsQuery
-      filterTarget = 'manuscripts'
-      mapper = mapPlaces
-      break
-    case 'placesMsMigrations':
-      q = migrationsQuery
-      filterTarget = 'manuscript__id'
-      break
     case 'placesEvents':
       q = eventPlacesQuery
       filterTarget = 'event'
-      break
-    case 'manuscriptsNetwork':
-      q = networkLinksQuery
-      filterTarget = 'source'
       break
   }
   if (constraints == null) {
@@ -108,15 +85,15 @@ export const getAllResults = ({
       facetID: null
     }))
   }
-  if (resultClass === 'manuscriptsNetwork') {
-    // console.log(prefixes + q)
-    return runNetworkQuery({
-      endpoint,
-      prefixes,
-      links: q,
-      nodes: networkNodesQuery
-    })
-  }
+  // if (resultClass === 'manuscriptsNetwork') {
+  //   // console.log(prefixes + q)
+  //   return runNetworkQuery({
+  //     endpoint,
+  //     prefixes,
+  //     links: q,
+  //     nodes: networkNodesQuery
+  //   })
+  // }
   // console.log(prefixes + q)
   return runSelectQuery({
     query: prefixes + q,
@@ -201,7 +178,7 @@ const getPaginatedData = ({
   let resultSetProperties
   switch (resultClass) {
     case 'finds':
-      resultSetProperties = manuscriptPropertiesFacetResults
+      resultSetProperties = findsPropertiesFacetResults
       break
     case 'perspective2':
       resultSetProperties = workProperties
@@ -231,9 +208,9 @@ export const getByURI = ({
 }) => {
   let q
   switch (resultClass) {
-    case 'perspective1':
+    case 'finds':
       q = instanceQuery
-      q = q.replace('<PROPERTIES>', manuscriptPropertiesInstancePage)
+      q = q.replace('<PROPERTIES>', findsPropertiesInstancePage)
       q = q.replace('<RELATED_INSTANCES>', '')
       break
     case 'perspective2':

@@ -49,7 +49,7 @@ class InstanceHomePage extends React.Component {
 
   fetchData = () => {
     let uri = ''
-    const base = 'http://ldf.fi/mmm'
+    const base = 'http://ldf.fi/sualt-fha-finds'
     const locationArr = this.props.routeProps.location.pathname.split('/')
     let localID = locationArr.pop()
     this.props.tabs.map(tab => {
@@ -59,8 +59,8 @@ class InstanceHomePage extends React.Component {
     })
     this.setState({ localID: localID })
     switch (this.props.resultClass) {
-      case 'perspective1':
-        uri = `${base}/manifestation_singleton/${localID}`
+      case 'finds':
+        uri = `${base}/${localID}`
         break
       case 'perspective2':
         uri = `${base}/work/${localID}`

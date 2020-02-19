@@ -44,7 +44,7 @@ export const INITIAL_STATE = {
   fetching: false,
   fetchingResultCount: false,
   facetedSearchHeaderExpanded: false,
-  instancePageHeaderExpanded: true,
+  instancePageHeaderExpanded: false,
   properties: [
     {
       id: 'uri',
@@ -59,6 +59,24 @@ export const INITIAL_STATE = {
       id: 'prefLabel',
       valueType: 'object',
       makeLink: true,
+      externalLink: false,
+      sortValues: true,
+      numberedList: false,
+      minWidth: 250
+    },
+    {
+      id: 'type',
+      valueType: 'string',
+      makeLink: false,
+      externalLink: false,
+      sortValues: true,
+      numberedList: false,
+      minWidth: 250
+    },
+    {
+      id: 'period',
+      valueType: 'string',
+      makeLink: false,
       externalLink: false,
       sortValues: true,
       numberedList: false,
