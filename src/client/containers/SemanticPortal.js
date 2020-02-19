@@ -21,12 +21,12 @@ import Message from '../components/main_layout/Message'
 import Main from '../components/main_layout/Main'
 import Footer from '../components/main_layout/Footer'
 import FacetBar from '../components/facet_bar/FacetBar'
-import Perspective1 from '../components/perspectives/sampo/Perspective1'
-import Perspective2 from '../components/perspectives/sampo/Perspective2'
-import Perspective3 from '../components/perspectives/sampo/Perspective3'
+import Finds from '../components/perspectives/findsampo/Finds'
+import Perspective2 from '../components/perspectives/findsampo/Perspective2'
+import Perspective3 from '../components/perspectives/findsampo/Perspective3'
 import All from '../components/perspectives/mmm/All'
-import { perspectiveConfig } from '../configs/sampo/PerspectiveConfig'
-import { perspectiveConfigOnlyInfoPages } from '../configs/sampo/PerspectiveConfigOnlyInfoPages'
+import { perspectiveConfig } from '../configs/findsampo/PerspectiveConfig'
+import { perspectiveConfigOnlyInfoPages } from '../configs/findsampo/PerspectiveConfigOnlyInfoPages'
 import { rootUrl } from '../configs/sampo/GeneralConfig'
 import {
   fetchResultCount,
@@ -189,13 +189,13 @@ const SemanticPortal = props => {
   const renderPerspective = (perspective, routeProps) => {
     let perspectiveElement = null
     switch (perspective.id) {
-      case 'perspective1':
+      case 'finds':
         perspectiveElement =
-          <Perspective1
-            perspective1={props.perspective1}
+          <Finds
+            finds={props[perspective.id]}
             places={props.places}
             leafletMapLayers={props.leafletMapLayers}
-            facetData={props.perspective1Facets}
+            facetData={props[`${perspective.id}Facets`]}
             fetchPaginatedResults={props.fetchPaginatedResults}
             fetchResults={props.fetchResults}
             fetchGeoJSONLayers={props.fetchGeoJSONLayers}
@@ -467,9 +467,9 @@ const SemanticPortal = props => {
 
 const mapStateToProps = state => {
   return {
-    perspective1: state.perspective1,
-    perspective1Facets: state.perspective1Facets,
-    perspective1FacetsConstrainSelf: state.perspective1FacetsConstrainSelf,
+    finds: state.finds,
+    findsFacets: state.findsFacets,
+    findsFacetsConstrainSelf: state.findsFacetsConstrainSelf,
     perspective2: state.perspective2,
     perspective2Facets: state.perspective2Facets,
     perspective3: state.perspective3,
@@ -508,9 +508,9 @@ SemanticPortal.propTypes = {
   theme: PropTypes.object.isRequired,
   options: PropTypes.object.isRequired,
   error: PropTypes.object.isRequired,
-  perspective1: PropTypes.object.isRequired,
-  perspective1Facets: PropTypes.object.isRequired,
-  perspective1FacetsConstrainSelf: PropTypes.object.isRequired,
+  finds: PropTypes.object.isRequired,
+  findsFacets: PropTypes.object.isRequired,
+  findsFacetsConstrainSelf: PropTypes.object.isRequired,
   perspective2: PropTypes.object.isRequired,
   perspective2Facets: PropTypes.object.isRequired,
   perspective3: PropTypes.object.isRequired,

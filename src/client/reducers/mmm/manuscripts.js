@@ -284,7 +284,7 @@ export const INITIAL_STATE = {
 const resultClasses = new Set([
   'manuscripts',
   'manuscriptsNetwork'
-]);
+])
 
 const manuscripts = (state = INITIAL_STATE, action) => {
   if (resultClasses.has(action.resultClass)) {

@@ -11,9 +11,9 @@ import {
 } from 'rxjs/operators'
 import { combineEpics, ofType } from 'redux-observable'
 import intl from 'react-intl-universal'
-import localeEN from '../translations/sampo/localeEN'
-import localeFI from '../translations/sampo/localeFI'
-import localeSV from '../translations/sampo/localeSV'
+import localeEN from '../translations/findsampo/localeEN'
+import localeFI from '../translations/findsampo/localeFI'
+import localeSV from '../translations/findsampo/localeSV'
 import { stateToUrl, handleAxiosError } from '../helpers/helpers'
 import querystring from 'querystring'
 import {
@@ -48,7 +48,7 @@ import {
   publishedPort,
   documentFinderAPIUrl,
   backendErrorText
-} from '../configs/sampo/GeneralConfig'
+} from '../configs/findsampo/GeneralConfig'
 
 // set port if running on localhost with NODE_ENV = 'production'
 const port = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
