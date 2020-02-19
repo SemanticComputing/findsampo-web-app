@@ -213,7 +213,7 @@ const getPaginatedData = ({
       resultSetProperties = ''
   }
   q = q.replace('<RESULT_SET_PROPERTIES>', resultSetProperties)
-  console.log(prefixes + q)
+  // console.log(prefixes + q)
   return runSelectQuery({
     query: prefixes + q,
     endpoint,

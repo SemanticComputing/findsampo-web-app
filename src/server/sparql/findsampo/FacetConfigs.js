@@ -17,14 +17,16 @@ export const facetConfigs = {
       facetValueFilter: '',
       predicate: ':type',
       labelPath: ':type',
-      type: 'list'
+      type: 'list',
+      literal: true
     },
     period: {
       id: 'period',
       facetValueFilter: '',
       predicate: ':period',
       labelPath: ':period',
-      type: 'list'
+      type: 'list',
+      literal: true
     }
   }
 }
