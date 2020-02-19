@@ -84,21 +84,12 @@ export const getAllResults = ({
       filterTarget = 'manuscripts'
       mapper = mapPlaces
       break
-    case 'placesActors':
-      q = placesActorsQuery
-      filterTarget = 'actor__id'
-      mapper = mapPlaces
-      break
     case 'placesMsMigrations':
       q = migrationsQuery
       filterTarget = 'manuscript__id'
       break
     case 'placesEvents':
       q = eventPlacesQuery
-      filterTarget = 'event'
-      break
-    case 'eventsByTimePeriod':
-      q = generateEventsByPeriodQuery({ startYear: 1600, endYear: 1620, periodLength: 10 })
       filterTarget = 'event'
       break
     case 'manuscriptsNetwork':
@@ -222,7 +213,7 @@ const getPaginatedData = ({
       resultSetProperties = ''
   }
   q = q.replace('<RESULT_SET_PROPERTIES>', resultSetProperties)
-  // console.log(prefixes + q);
+  console.log(prefixes + q)
   return runSelectQuery({
     query: prefixes + q,
     endpoint,
