@@ -24,7 +24,7 @@ import {
   actorsAt,
   allPlacesQuery
 } from './sampo/SparqlQueriesPlaces'
-import { facetConfigs, endpoint } from './findsampo/FacetConfigsFindsampo'
+import { facetConfigs, endpoint } from './findsampo/FacetConfigs'
 import { mapCount, mapPlaces } from './Mappers'
 import { makeObjectList } from './SparqlObjectMapper'
 import { generateConstraintsBlock } from './Filters'

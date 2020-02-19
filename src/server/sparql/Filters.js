@@ -1,4 +1,4 @@
-import { facetConfigs } from './sampo/FacetConfigsSampo'
+import { facetConfigs } from './findsampo/FacetConfigs'
 
 export const hasPreviousSelections = (constraints, facetID) => {
   let hasPreviousSelections = false
