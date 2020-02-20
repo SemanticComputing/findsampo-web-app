@@ -296,6 +296,30 @@ class LeafletMap extends React.Component {
     leafletOverlay.clearLayers()
   }
 
+  initHeatLayer = latLngs => {
+    const heatLayer = L.heatLayer(latLngs, {
+      radius: 15,
+      minOpacity: 1.0,
+      blur: 25,
+      maxZoom: 13,
+      // Google maps gradient settings is used as default
+      gradient: {
+        0: '#66ff00',
+        0.1: '#66ff00',
+        0.2: '#93ff00',
+        0.3: '#c1ff00',
+        0.4: '#eeff00',
+        0.5: '#f4e300',
+        0.6: '#f9c600',
+        0.7: '#ffaa00',
+        0.8: '#ff7100',
+        0.9: '#ff3900',
+        1: '#ff0000'
+      }
+    })
+    return heatLayer
+  }
+
   addDrawButtons = () => {
     this.drawnItems = new L.FeatureGroup()
     this.leafletMap.addLayer(this.drawnItems)

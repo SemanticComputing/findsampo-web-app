@@ -32,134 +32,8 @@ export const INITIAL_STATE = {
       textFilter: null,
       priority: 1
     },
-    author: {
-      id: 'author',
-      // predicate: defined in backend
-      distinctValueCount: 0,
-      values: [],
-      flatValues: [],
-      sortBy: 'instanceCount',
-      sortDirection: 'desc',
-      sortButton: true,
-      spatialFilterButton: false,
-      isFetching: false,
-      searchField: true,
-      containerClass: 'ten',
-      filterType: 'uriFilter',
-      uriFilter: null,
-      priority: 4
-    },
-    work: {
-      id: 'work',
-      // predicate: defined in backend
-      distinctValueCount: 0,
-      values: [],
-      flatValues: [],
-      sortBy: null,
-      sortDirection: null,
-      sortButton: false,
-      spatialFilterButton: false,
-      isFetching: false,
-      searchField: false,
-      containerClass: 'one',
-      filterType: 'textFilter',
-      textFilter: null,
-      priority: 2
-    },
-    productionPlace: {
-      id: 'productionPlace',
-      // predicate: defined in backend
-      distinctValueCount: 0,
-      values: [],
-      flatValues: [],
-      sortBy: 'prefLabel',
-      sortDirection: 'asc',
-      sortButton: false,
-      spatialFilterButton: true,
-      spatialFilterTab: 'production_places',
-      isFetching: false,
-      searchField: true,
-      containerClass: 'ten',
-      filterType: 'uriFilter',
-      uriFilter: null,
-      spatialFilter: null,
-      type: 'hierarchical',
-      priority: 5
-    },
-    productionTimespan: {
-      id: 'productionTimespan',
-      // predicate: defined in backend
-      distinctValueCount: 0,
-      values: [],
-      flatValues: [],
-      sortBy: null,
-      sortDirection: null,
-      sortButton: false,
-      spatialFilterButton: false,
-      isFetching: false,
-      searchField: false,
-      containerClass: 'three',
-      filterType: 'timespanFilter',
-      min: null,
-      max: null,
-      timespanFilter: null,
-      type: 'timespan',
-      priority: 8
-    },
-    note: {
-      id: 'note',
-      // predicate: defined in backend
-      distinctValueCount: 0,
-      values: [],
-      flatValues: [],
-      sortBy: null,
-      sortDirection: null,
-      sortButton: false,
-      spatialFilterButton: false,
-      isFetching: false,
-      searchField: false,
-      containerClass: 'one',
-      filterType: 'textFilter',
-      textFilter: null,
-      priority: 3
-    },
-    language: {
-      id: 'language',
-      // predicate: defined in backend
-      distinctValueCount: 0,
-      values: [],
-      flatValues: [],
-      sortBy: 'instanceCount',
-      sortDirection: 'desc',
-      sortButton: true,
-      spatialFilterButton: false,
-      isFetching: false,
-      searchField: true,
-      containerClass: 'ten',
-      filterType: 'uriFilter',
-      uriFilter: null,
-      priority: 5
-    },
-    // event only as a result table column
-    owner: {
-      id: 'owner',
-      // predicate: defined in backend
-      distinctValueCount: 0,
-      values: [],
-      flatValues: [],
-      sortBy: 'instanceCount',
-      sortDirection: 'desc',
-      sortButton: true,
-      spatialFilterButton: false,
-      isFetching: false,
-      searchField: true,
-      containerClass: 'ten',
-      filterType: 'uriFilter',
-      uriFilter: null,
-      priority: 3
-    },
-    collection: {
-      id: 'collection',
+    type: {
+      id: 'type',
       // predicate: defined in backend
       distinctValueCount: 0,
       values: [],
@@ -174,46 +48,25 @@ export const INITIAL_STATE = {
       containerClass: 'ten',
       filterType: 'uriFilter',
       uriFilter: null,
-      priority: 7
+      priority: 2
     },
-    transferOfCustodyPlace: {
-      id: 'transferOfCustodyPlace',
+    subCategory: {
+      id: 'subCategory',
       // predicate: defined in backend
       distinctValueCount: 0,
       values: [],
       flatValues: [],
-      sortBy: 'prefLabel',
-      sortDirection: 'asc',
-      sortButton: false,
+      sortBy: 'instanceCount',
+      sortDirection: 'desc',
+      sortButton: true,
       spatialFilterButton: false,
+      chartButton: false,
       isFetching: false,
       searchField: true,
       containerClass: 'ten',
       filterType: 'uriFilter',
       uriFilter: null,
-      spatialFilter: null,
-      type: 'hierarchical',
-      priority: 6
-    },
-    transferOfCustodyTimespan: {
-      id: 'transferOfCustodyTimespan',
-      // predicate: defined in backend
-      distinctValueCount: 0,
-      values: [],
-      flatValues: [],
-      sortBy: null,
-      sortDirection: null,
-      sortButton: false,
-      spatialFilterButton: false,
-      isFetching: false,
-      searchField: false,
-      containerClass: 'three',
-      filterType: 'timespanFilter',
-      min: null,
-      max: null,
-      timespanFilter: null,
-      type: 'timespan',
-      priority: 9
+      priority: 3
     },
     material: {
       id: 'material',
@@ -225,139 +78,55 @@ export const INITIAL_STATE = {
       sortDirection: 'desc',
       sortButton: true,
       spatialFilterButton: false,
+      chartButton: false,
       isFetching: false,
       searchField: true,
       containerClass: 'ten',
       filterType: 'uriFilter',
       uriFilter: null,
-      priority: 20
+      priority: 4
     },
-    height: {
-      id: 'height',
-      // predicate: defined in backend
-      sortButton: false,
-      spatialFilterButton: false,
-      isFetching: false,
-      containerClass: 'five',
-      type: 'integer',
-      filterType: 'integerFilterRange',
-      integerFilter: null,
-      unit: 'mm',
-      priority: 11
-    },
-    width: {
-      id: 'width',
-      // predicate: defined in backend
-      sortButton: false,
-      spatialFilterButton: false,
-      isFetching: false,
-      containerClass: 'five',
-      type: 'integer',
-      filterType: 'integerFilterRange',
-      integerFilter: null,
-      unit: 'mm',
-      priority: 12
-    },
-    folios: {
-      id: 'folios',
-      // predicate: defined in backend
-      sortButton: false,
-      spatialFilterButton: false,
-      isFetching: false,
-      containerClass: 'five',
-      type: 'integer',
-      filterType: 'integerFilterRange',
-      integerFilter: null,
-      unit: '',
-      priority: 13
-    },
-    lines: {
-      id: 'lines',
-      // predicate: defined in backend
-      sortButton: false,
-      spatialFilterButton: false,
-      isFetching: false,
-      containerClass: 'five',
-      type: 'integer',
-      filterType: 'integerFilterRange',
-      integerFilter: null,
-      unit: '',
-      priority: 14
-    },
-    columns: {
-      id: 'columns',
-      // predicate: defined in backend
-      sortButton: false,
-      spatialFilterButton: false,
-      isFetching: false,
-      containerClass: 'five',
-      type: 'integer',
-      filterType: 'integerFilterRange',
-      integerFilter: null,
-      unit: '',
-      priority: 15
-    },
-    miniatures: {
-      id: 'miniatures',
-      // predicate: defined in backend
-      sortButton: false,
-      spatialFilterButton: false,
-      isFetching: false,
-      containerClass: 'five',
-      type: 'integer',
-      filterType: 'integerFilterRange',
-      integerFilter: null,
-      unit: '',
-      priority: 16
-    },
-    decoratedInitials: {
-      id: 'decoratedInitials',
-      // predicate: defined in backend
-      sortButton: false,
-      spatialFilterButton: false,
-      isFetching: false,
-      containerClass: 'five',
-      type: 'integer',
-      filterType: 'integerFilterRange',
-      integerFilter: null,
-      unit: '',
-      priority: 17
-    },
-    historiatedInitials: {
-      id: 'historiatedInitials',
-      // predicate: defined in backend
-      sortButton: false,
-      spatialFilterButton: false,
-      isFetching: false,
-      containerClass: 'five',
-      type: 'integer',
-      filterType: 'integerFilterRange',
-      integerFilter: null,
-      unit: '',
-      priority: 18
-    },
-    source: {
-      id: 'source',
+    period: {
+      id: 'period',
       // predicate: defined in backend
       distinctValueCount: 0,
       values: [],
       flatValues: [],
       sortBy: 'instanceCount',
       sortDirection: 'desc',
-      sortButton: false,
+      sortButton: true,
       spatialFilterButton: false,
+      chartButton: false,
       isFetching: false,
-      searchField: false,
-      containerClass: 'three',
+      searchField: true,
+      containerClass: 'ten',
       filterType: 'uriFilter',
       uriFilter: null,
-      priority: 21
+      priority: 5
+    },
+    municipality: {
+      id: 'municipality',
+      // predicate: defined in backend
+      distinctValueCount: 0,
+      values: [],
+      flatValues: [],
+      sortBy: 'instanceCount',
+      sortDirection: 'desc',
+      sortButton: true,
+      spatialFilterButton: false,
+      chartButton: false,
+      isFetching: false,
+      searchField: true,
+      containerClass: 'ten',
+      filterType: 'uriFilter',
+      uriFilter: null,
+      priority: 6
     }
   }
 }
 
 const manuscriptsFacets = (state = INITIAL_STATE, action) => {
-  if (action.facetClass === 'manuscripts') {
+  if (action.facetClass === 'finds') {
     switch (action.type) {
       case FETCH_FACET_CONSTRAIN_SELF:
         return fetchFacet(state, action)
