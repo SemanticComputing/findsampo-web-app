@@ -219,7 +219,7 @@ export const getByURI = ({
       q = q.replace('<RELATED_INSTANCES>', '')
       break
   }
-  console.log(q)
+  // console.log(q)
   if (constraints == null) {
     q = q.replace('<FILTER>', '# no filters')
   } else {
