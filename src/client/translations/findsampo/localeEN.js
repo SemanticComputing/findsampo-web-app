@@ -149,19 +149,37 @@ export default {
           description: 'Uniform Resource Identifier'
         },
         prefLabel: {
-          label: 'Label',
+          label: 'Name',
           description: 'A short label describing the find.'
         },
         type: {
           label: 'Type',
           description: `
-            Type of the find.
+            Type.
+          `
+        },
+        subCategory: {
+          label: 'Sub category',
+          description: `
+            Sub category.
+          `
+        },
+        material: {
+          label: 'Material',
+          description: `
+            Material.
           `
         },
         period: {
           label: 'Time period',
           description: `
             Time period.
+          `
+        },
+        municipality: {
+          label: 'Municipality',
+          description: `
+            Municipality.
           `
         }
       }

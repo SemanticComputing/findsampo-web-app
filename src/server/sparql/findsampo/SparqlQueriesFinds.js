@@ -14,7 +14,19 @@ export const findsPropertiesInstancePage =
     }
     UNION
     {
+      ?id :sub_category ?subCategory .
+    }
+    UNION
+    {
+      ?id :material ?material .
+    }
+    UNION
+    {
       ?id :period ?period .
+    }
+    UNION
+    {
+      ?id :municipality ?municipality .
     }
 `
 
@@ -30,7 +42,19 @@ export const findsPropertiesFacetResults =
     }
     UNION
     {
+      ?id :sub_category ?subCategory .
+    }
+    UNION
+    {
+      ?id :material ?material .
+    }
+    UNION
+    {
       ?id :period ?period .
+    }
+    UNION
+    {
+      ?id :municipality ?municipality .
     }
   `
 

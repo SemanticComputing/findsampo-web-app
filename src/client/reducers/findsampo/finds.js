@@ -38,7 +38,7 @@ export const INITIAL_STATE = {
   instanceSparqlQuery: null,
   resultCount: 0,
   page: -1,
-  pagesize: 10,
+  pagesize: 15,
   sortBy: null,
   sortDirection: null,
   fetching: false,
@@ -74,7 +74,34 @@ export const INITIAL_STATE = {
       minWidth: 250
     },
     {
+      id: 'subCategory',
+      valueType: 'string',
+      makeLink: false,
+      externalLink: false,
+      sortValues: true,
+      numberedList: false,
+      minWidth: 250
+    },
+    {
+      id: 'material',
+      valueType: 'string',
+      makeLink: false,
+      externalLink: false,
+      sortValues: true,
+      numberedList: false,
+      minWidth: 250
+    },
+    {
       id: 'period',
+      valueType: 'string',
+      makeLink: false,
+      externalLink: false,
+      sortValues: true,
+      numberedList: false,
+      minWidth: 250
+    },
+    {
+      id: 'municipality',
       valueType: 'string',
       makeLink: false,
       externalLink: false,

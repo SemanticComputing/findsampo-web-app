@@ -20,11 +20,35 @@ export const facetConfigs = {
       type: 'list',
       literal: true
     },
+    subCategory: {
+      id: 'subCategory',
+      facetValueFilter: '',
+      predicate: ':sub_category',
+      labelPath: ':sub_category',
+      type: 'list',
+      literal: true
+    },
+    material: {
+      id: 'material',
+      facetValueFilter: '',
+      predicate: ':material',
+      labelPath: ':material',
+      type: 'list',
+      literal: true
+    },
     period: {
       id: 'period',
       facetValueFilter: '',
       predicate: ':period',
       labelPath: ':period',
+      type: 'list',
+      literal: true
+    },
+    municipality: {
+      id: 'municipality',
+      facetValueFilter: '',
+      predicate: ':municipality',
+      labelPath: ':municipality',
       type: 'list',
       literal: true
     }
