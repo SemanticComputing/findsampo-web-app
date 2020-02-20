@@ -8,17 +8,11 @@ import {
 } from './SparqlQueriesGeneral'
 import {
   findsPropertiesInstancePage,
-  findsPropertiesFacetResults
+  findsPropertiesFacetResults,
+  findsPlacesQuery
 } from './findsampo/SparqlQueriesFinds'
 import { workProperties } from './sampo/SparqlQueriesPerspective2'
-import { eventProperties, eventPlacesQuery } from './sampo/SparqlQueriesPerspective3'
-import {
-  placePropertiesInfoWindow,
-  manuscriptsProducedAt,
-  lastKnownLocationsAt,
-  actorsAt,
-  allPlacesQuery
-} from './sampo/SparqlQueriesPlaces'
+import { eventProperties } from './sampo/SparqlQueriesPerspective3'
 import { facetConfigs, endpoint } from './findsampo/FacetConfigs'
 import { mapCount /* mapPlaces */ } from './Mappers'
 import { makeObjectList } from './SparqlObjectMapper'
@@ -65,13 +59,9 @@ export const getAllResults = ({
   let filterTarget = ''
   const mapper = makeObjectList
   switch (resultClass) {
-    case 'placesAll':
-      q = allPlacesQuery
+    case 'findsPlaces':
+      q = findsPlacesQuery
       filterTarget = 'id'
-      break
-    case 'placesEvents':
-      q = eventPlacesQuery
-      filterTarget = 'event'
       break
   }
   if (constraints == null) {
@@ -223,32 +213,13 @@ export const getByURI = ({
       q = q.replace('<PROPERTIES>', eventProperties)
       q = q.replace('<RELATED_INSTANCES>', '')
       break
-    case 'placesAll':
+    case 'findsPlaces':
       q = instanceQuery
-      q = q.replace('<PROPERTIES>', placePropertiesInfoWindow)
-      q = q.replace('<RELATED_INSTANCES>', '')
-      break
-    case 'placesActors':
-      q = instanceQuery
-      q = q.replace('<PROPERTIES>', placePropertiesInfoWindow)
-      q = q.replace('<RELATED_INSTANCES>', actorsAt)
-      break
-    case 'placesMsProduced':
-      q = instanceQuery
-      q = q.replace('<PROPERTIES>', placePropertiesInfoWindow)
-      q = q.replace('<RELATED_INSTANCES>', manuscriptsProducedAt)
-      break
-    case 'lastKnownLocations':
-      q = instanceQuery
-      q = q.replace('<PROPERTIES>', placePropertiesInfoWindow)
-      q = q.replace('<RELATED_INSTANCES>', lastKnownLocationsAt)
-      break
-    case 'placesEvents':
-      q = instanceQuery
-      q = q.replace('<PROPERTIES>', placePropertiesInfoWindow)
+      q = q.replace('<PROPERTIES>', findsPropertiesInstancePage)
       q = q.replace('<RELATED_INSTANCES>', '')
       break
   }
+  console.log(q)
   if (constraints == null) {
     q = q.replace('<FILTER>', '# no filters')
   } else {

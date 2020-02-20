@@ -6,7 +6,7 @@ import Typography from '@material-ui/core/Typography'
 import { makeStyles } from '@material-ui/core/styles'
 import MainCard from './MainCard'
 // import MainCardMMM from './MainCardMMM'
-import bannerImage from '../../img/mmm-banner.jpg'
+import bannerImage from '../../img/findsampo_banner_huge.jpg'
 
 const useStyles = makeStyles(theme => ({
   root: {

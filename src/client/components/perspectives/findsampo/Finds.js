@@ -4,8 +4,8 @@ import { Route, Redirect } from 'react-router-dom'
 import PerspectiveTabs from '../../main_layout/PerspectiveTabs'
 import ResultTable from '../../facet_results/ResultTable'
 import LeafletMap from '../../facet_results/LeafletMap'
-import Deck from '../../facet_results/Deck'
-import Network from '../../facet_results/Network'
+// import Deck from '../../facet_results/Deck'
+// import Network from '../../facet_results/Network'
 import Export from '../../facet_results/Export'
 
 const Finds = props => {
@@ -37,74 +37,24 @@ const Finds = props => {
           />}
       />
       <Route
-        path={`${rootUrl}/${perspective.id}/faceted-search/production_places`}
+        path={`${rootUrl}/${perspective.id}/faceted-search/map`}
         render={() =>
           <LeafletMap
             results={props.places.results}
             layers={props.leafletMapLayers}
             pageType='facetResults'
             facetUpdateID={props.facetData.facetUpdateID}
-            facet={props.facetData.facets.productionPlace}
-            facetID='productionPlace'
-            resultClass='placesMsProduced'
-            facetClass='perspective1'
+            resultClass='findsPlaces'
+            facetClass='finds'
             mapMode='cluster'
             instance={props.places.instance}
             fetchResults={props.fetchResults}
             fetchGeoJSONLayers={props.fetchGeoJSONLayers}
             fetchByURI={props.fetchByURI}
             fetching={props.places.fetching}
-            showInstanceCountInClusters
+            showInstanceCountInClusters={false}
             updateFacetOption={props.updateFacetOption}
             showExternalLayers
-          />}
-      />
-      <Route
-        path={`${rootUrl}/${perspective.id}/faceted-search/last_known_locations`}
-        render={() =>
-          <LeafletMap
-            results={props.places.results}
-            pageType='facetResults'
-            facetUpdateID={props.facetData.facetUpdateID}
-            facet={props.facetData.facets.lastKnownLocation}
-            facetID='lastKnownLocation'
-            resultClass='lastKnownLocations'
-            facetClass='perspective1'
-            mapMode='cluster'
-            instance={props.places.instance}
-            fetchResults={props.fetchResults}
-            fetchGeoJSONLayers={props.fetchGeoJSONLayers}
-            fetchByURI={props.fetchByURI}
-            fetching={props.places.fetching}
-            showInstanceCountInClusters
-            updateFacetOption={props.updateFacetOption}
-          />}
-      />
-      <Route
-        path={`${rootUrl}/${perspective.id}/faceted-search/statistics`}
-        render={() =>
-          <Network
-            results={props.perspective1.results}
-            fetchResults={props.fetchResults}
-            resultClass='perspective1Network'
-            facetClass='perspective1'
-          />}
-      />
-      <Route
-        path={`${rootUrl}/${perspective.id}/faceted-search/migrations`}
-        render={() =>
-          <Deck
-            results={props.places.results}
-            facetUpdateID={props.facetData.facetUpdateID}
-            resultClass='placesMsMigrations'
-            facetClass='perspective1'
-            mapMode='cluster'
-            instance={props.places.instance}
-            fetchResults={props.fetchResults}
-            fetchByURI={props.fetchByURI}
-            fetching={props.places.fetching}
-            showInstanceCountInClusters
-            updateFacetOption={props.updateFacetOption}
           />}
       />
       <Route

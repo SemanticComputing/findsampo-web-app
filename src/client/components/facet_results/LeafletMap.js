@@ -157,7 +157,7 @@ class LeafletMap extends React.Component {
     // create map
     this.leafletMap = L.map('map', {
       center: [60.09, 24.53],
-      zoom: 13,
+      zoom: 3,
       zoomControl: false,
       zoominfoControl: true,
       layers: [

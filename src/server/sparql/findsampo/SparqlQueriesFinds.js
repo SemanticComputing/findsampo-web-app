@@ -33,3 +33,12 @@ export const findsPropertiesFacetResults =
       ?id :period ?period .
     }
   `
+
+export const findsPlacesQuery = `
+  SELECT ?id ?lat ?long
+  WHERE {
+    <FILTER>
+    ?id wgs84:lat ?lat ;
+        wgs84:long ?long .
+  }
+`

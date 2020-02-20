@@ -1,8 +1,8 @@
 export default {
   languageLabel: 'English',
   appTitle: {
-    short: 'sampo',
-    long: 'FindSampo Semantic Portal',
+    short: 'findsampo',
+    long: 'FindSampo',
     subheading: `
 
     `
