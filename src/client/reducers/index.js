@@ -12,7 +12,7 @@ import perspective3Facets from './sampo/perspective3Facets'
 import places from './findsampo/places'
 import leafletMapLayers from './findsampo/leafletMapLayers'
 import animation from './mmm/animation'
-import clientSideFacetedSearch from './mmm/clientSideFacetedSearch'
+import clientSideFacetedSearch from './sampo/clientSideFacetedSearch'
 
 const reducer = combineReducers({
   finds,
