@@ -47,6 +47,7 @@ const Finds = props => {
             resultClass='findsPlaces'
             facetClass='finds'
             mapMode='cluster'
+            showMapModeControl
             instance={props.places.instance}
             fetchResults={props.fetchResults}
             fetchGeoJSONLayers={props.fetchGeoJSONLayers}
