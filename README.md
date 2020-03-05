@@ -1,5 +1,6 @@
 # FindSampo Semantic Portal 
 
+Based on https://github.com/SemanticComputing/sampo-web-app
 
 ## Requirements
 

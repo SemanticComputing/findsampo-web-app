@@ -242,7 +242,6 @@ const generateUriFilter = ({
   let s = ''
   const addChildren = facetConfigs[facetClass][facetID].type === 'hierarchical'
   const literal = facetConfigs[facetClass][facetID].literal
-  // TODO: handle literal case
   const valuesStr = literal ? `"${values.join('" "')}"` : `<${values.join('> <')}></$>`
   if (addChildren) {
     s = `
