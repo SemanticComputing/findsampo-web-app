@@ -53,7 +53,8 @@ export const getAllResults = ({
   resultClass,
   facetClass,
   constraints,
-  resultFormat
+  resultFormat,
+  groupBy
 }) => {
   let q = ''
   let filterTarget = ''
