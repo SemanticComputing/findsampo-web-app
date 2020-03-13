@@ -26,6 +26,11 @@ export const perspectiveConfig = [
         icon: <AddLocationIcon />
       },
       {
+        id: 'heatmap',
+        value: 2,
+        icon: <AddLocationIcon />
+      },
+      {
         id: 'export',
         value: 3,
         icon: <CloudDownloadIcon />

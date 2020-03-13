@@ -4,9 +4,11 @@ import { Route, Redirect } from 'react-router-dom'
 import PerspectiveTabs from '../../main_layout/PerspectiveTabs'
 import ResultTable from '../../facet_results/ResultTable'
 import LeafletMap from '../../facet_results/LeafletMap'
-// import Deck from '../../facet_results/Deck'
+import Deck from '../../facet_results/Deck'
 // import Network from '../../facet_results/Network'
 import Export from '../../facet_results/Export'
+import MigrationsMapLegend from '../mmm/MigrationsMapLegend'
+import { MAPBOX_ACCESS_TOKEN } from '../../../configs/sampo/GeneralConfig'
 
 const Finds = props => {
   const { rootUrl, perspective } = props
@@ -47,7 +49,7 @@ const Finds = props => {
             resultClass='findsPlaces'
             facetClass='finds'
             mapMode='cluster'
-            showMapModeControl
+            showMapModeControl={false}
             instance={props.places.instance}
             fetchResults={props.fetchResults}
             fetchGeoJSONLayers={props.fetchGeoJSONLayers}
@@ -56,6 +58,21 @@ const Finds = props => {
             showInstanceCountInClusters={false}
             updateFacetOption={props.updateFacetOption}
             showExternalLayers
+          />}
+      />
+      <Route
+        path={`${rootUrl}/${perspective.id}/faceted-search/heatmap`}
+        render={() =>
+          <Deck
+            results={props.places.results}
+            facetUpdateID={props.facetData.facetUpdateID}
+            resultClass='findsPlaces'
+            facetClass='finds'
+            fetchResults={props.fetchResults}
+            fetching={props.places.fetching}
+            legendComponent={<MigrationsMapLegend />}
+            layerType='heatmapLayer'
+            mapBoxAccessToken={MAPBOX_ACCESS_TOKEN}
           />}
       />
       <Route

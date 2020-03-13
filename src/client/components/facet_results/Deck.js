@@ -139,10 +139,10 @@ class Deck extends React.Component {
     return new HeatmapLayer({
       id: 'heatmapLayer',
       data: heatmapData,
-      radiusPixels: 40,
-      threshold: 0.025,
-      getPosition: d => [+d.long, +d.lat],
-      getWeight: d => +d.instanceCount
+      // radiusPixels: 40,
+      // threshold: 0.025,
+      getPosition: d => [+d.long, +d.lat]
+      // getWeight: d => +d.instanceCount
     })
   }
 
