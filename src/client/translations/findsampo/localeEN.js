@@ -31,6 +31,7 @@ export default {
   tabs: {
     table: 'table',
     map: 'map',
+    heatmap: 'heatmap',
     production_places: 'production places',
     last_known_locations: 'last known locations',
     migrations: 'migrations',
