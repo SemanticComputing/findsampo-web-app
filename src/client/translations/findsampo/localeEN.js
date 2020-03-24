@@ -17,7 +17,7 @@ export default {
     info: {
       info: 'Info',
       blog: 'Project blog',
-      blogUrl: 'https://seco.cs.aalto.fi',
+      blogUrl: 'https://blogs.helsinki.fi/sualt-project',
       aboutThePortal: 'About the Portal'
     },
     searchBarPlaceHolder: 'Search all content',

@@ -246,7 +246,7 @@ class TopBar extends React.Component {
             </div>
             <a
               className={classes.secoLogo}
-              href='https://seco.cs.aalto.fi/projects/mmm'
+              href='https://seco.cs.aalto.fi/projects/sualt'
               target='_blank'
               rel='noopener noreferrer'
             >
