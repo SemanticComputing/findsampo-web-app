@@ -4,13 +4,13 @@ export default {
     short: 'FindSampo',
     long: 'FindSampo',
     subheading: `
-
+      
     `
   },
   appDescription: `
     
   `,
-  selectPerspective: 'Select a perspective to search and browse the data:',
+  selectPerspective: '',
   mainPageImageLicence: '',
   topBar: {
     feedback: 'feedback',
