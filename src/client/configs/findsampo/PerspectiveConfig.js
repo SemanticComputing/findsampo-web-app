@@ -11,7 +11,7 @@ import eventsImage from '../../img/events-452x262.jpg'
 export const perspectiveConfig = [
   {
     id: 'finds',
-    frontPageImage: manuscriptsImage,
+    // frontPageImage: manuscriptsImage,
     perspectiveDescHeight: 160,
     defaultActiveFacets: new Set(['prefLabel', 'type']),
     tabs: [
@@ -52,7 +52,7 @@ export const perspectiveConfig = [
   },
   {
     id: 'perspective2',
-    frontPageImage: worksImage,
+    // frontPageImage: worksImage,
     perspectiveDescHeight: 160,
     defaultActiveFacets: new Set(['prefLabel']),
     tabs: [
@@ -82,7 +82,7 @@ export const perspectiveConfig = [
   },
   {
     id: 'perspective3',
-    frontPageImage: eventsImage,
+    // frontPageImage: eventsImage,
     perspectiveDescHeight: 160,
     defaultActiveFacets: new Set(['prefLabel']),
     tabs: [

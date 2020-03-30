@@ -1,7 +1,7 @@
 export default {
   languageLabel: 'English',
   appTitle: {
-    short: 'findsampo',
+    short: 'FindSampo',
     long: 'FindSampo',
     subheading: `
 
@@ -11,7 +11,7 @@ export default {
     
   `,
   selectPerspective: 'Select a perspective to search and browse the data:',
-  mainPageImageLicence: 'Images used under license from Shutterstock.com',
+  mainPageImageLicence: '',
   topBar: {
     feedback: 'feedback',
     info: {
