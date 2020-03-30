@@ -3,13 +3,14 @@ import Paper from '@material-ui/core/Paper'
 import PropTypes from 'prop-types'
 import Grid from '@material-ui/core/Grid'
 import { withStyles } from '@material-ui/core/styles'
-import aaltoLogo from '../../img/findsampo/Aalto_SCI_EN_13_BLACK_2_cropped.png'
-import hyLogo from '../../img/findsampo/university-of-helsinki-logo-transparent-black.png'
-import heldigLogo from '../../img/findsampo/heldig-logo-transparent-black.png'
-import fhaLogo from '../../img/findsampo/fha_logo_en.jpg'
+import aaltoLogo from '../../img/findsampo/logo_aalto-compressor.png'
+import hyLogo from '../../img/findsampo/logo_helsinki-compressor.png'
+import heldigLogo from '../../img/findsampo/logo_heldig-compressor.png'
+import fhaLogo from '../../img/findsampo/logo_fha-compressor.png'
 
 const styles = theme => ({
   root: {
+    backgroundColor: theme.palette.primary.main,
     position: 'absolute',
     [theme.breakpoints.down('sm')]: {
       display: 'none'

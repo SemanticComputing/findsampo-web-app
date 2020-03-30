@@ -18,7 +18,8 @@ const useStyles = makeStyles(theme => ({
     }
   },
   banner: {
-    background: `linear-gradient( rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.45) ), url(${bannerImage})`,
+    // background: `linear-gradient( rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.35) ), url(${bannerImage})`,
+    background: `radial-gradient(ellipse at center, rgba(194,194,194,0.1) 15%, rgb(191, 191, 191) 100%), url(${bannerImage})`,
     backgroundRepeat: 'no-repeat',
     backgroundSize: 'cover',
     backgroundPosition: 'center',
