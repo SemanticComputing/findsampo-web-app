@@ -46,6 +46,7 @@ export default {
   exportToYasgui: 'open the result table query in yasgui sparql editor',
   openInLinkedDataBrowser: 'open in linked data browser',
   leafletMap: {
+    findPopUpHeading: 'Archaeological find',
     externalLayers: {
       arkeologiset_kohteet_alue: 'Register of Archaeological Sites, areas',
       arkeologiset_kohteet_piste: 'Register of Archaeological Sites, points'
@@ -154,7 +155,7 @@ export default {
           description: 'Uniform Resource Identifier'
         },
         prefLabel: {
-          label: 'Name',
+          label: 'Find name',
           description: 'A short label describing the find.'
         },
         type: {

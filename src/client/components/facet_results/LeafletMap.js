@@ -123,7 +123,7 @@ class LeafletMap extends React.Component {
     // check if instance have changed
     if ((this.props.instance !== null) && prevProps.instance !== this.props.instance) {
       this.markers[this.props.instance.id]
-        .bindPopup(this.createPopUpContent(this.props.instance), {
+        .bindPopup(this.createPopUpContentFindSampo(this.props.instance), {
           maxHeight: 300,
           maxWidth: 400,
           minWidth: 400
@@ -597,6 +597,43 @@ class LeafletMap extends React.Component {
       popUpTemplate += '<p>Events:</p>'
       popUpTemplate += this.createInstanceListing(result.events)
     }
+    // console.log(popUpTemplate)
+    return popUpTemplate
+  }
+
+  createPopUpContentFindSampo = data => {
+    let popUpTemplate = ''
+    console.log(data)
+    popUpTemplate += `<h2>${intl.get('leafletMap.findPopUpHeading')}</h2>`
+    if (has(data, 'prefLabel')) {
+      popUpTemplate += `
+        <p><b>${intl.get('perspectives.finds.properties.prefLabel.label')}</b>: ${data.prefLabel.prefLabel}</p>`
+    }
+    if (has(data, 'type')) {
+      popUpTemplate += `
+        <p><b>${intl.get('perspectives.finds.properties.type.label')}</b>: ${data.type}</p>`
+    }
+    if (has(data, 'subCategory')) {
+      popUpTemplate += `
+        <p><b>${intl.get('perspectives.finds.properties.subCategory.label')}</b>: ${data.subCategory}</p>`
+    }
+    if (has(data, 'material')) {
+      popUpTemplate += `
+        <p><b>${intl.get('perspectives.finds.properties.material.label')}</b>: ${data.material}</p>`
+    }
+    if (has(data, 'period')) {
+      popUpTemplate += `
+        <p><b>${intl.get('perspectives.finds.properties.period.label')}</b>: ${data.period}</p>`
+    }
+    if (has(data, 'municipality')) {
+      popUpTemplate += `
+        <p><b>${intl.get('perspectives.finds.properties.municipality.label')}</b>: ${data.municipality}</p>`
+    }
+    if (has(data, 'id')) {
+      popUpTemplate += `
+        <p><b>${intl.get('perspectives.finds.properties.uri.label')}</b>: <a href=${data.id} target='_blank'>${data.id}</a></p>`
+    }
+
     // console.log(popUpTemplate)
     return popUpTemplate
   }
