@@ -12,6 +12,10 @@ export default {
   `,
   selectPerspective: '',
   mainPageImageLicence: '',
+  mainPage: {
+    carouselHeading:'FEATURED FINDS',
+    cardLearnMore: 'learn more'
+  },
   topBar: {
     feedback: 'feedback',
     info: {
