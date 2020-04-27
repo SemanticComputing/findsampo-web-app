@@ -24,7 +24,7 @@ import Footer from '../components/perspectives/findsampo/Footer'
 import Finds from '../components/perspectives/findsampo/Finds'
 import Perspective2 from '../components/perspectives/findsampo/Perspective2'
 import Perspective3 from '../components/perspectives/findsampo/Perspective3'
-import All from '../components/perspectives/mmm/All'
+import All from '../components/perspectives/sampo/All'
 import { perspectiveConfig } from '../configs/findsampo/PerspectiveConfig'
 import { perspectiveConfigOnlyInfoPages } from '../configs/findsampo/PerspectiveConfigOnlyInfoPages'
 import { rootUrl } from '../configs/sampo/GeneralConfig'
@@ -55,7 +55,7 @@ import {
   clientFSUpdateQuery,
   clientFSUpdateFacet
 } from '../actions'
-import { filterResults } from '../selectors'
+// import { filterResults } from '../selectors'
 
 const styles = theme => ({
   root: {
@@ -232,6 +232,7 @@ const SemanticPortal = props => {
   if (xlScreen) { screenSize = 'xl' }
   const rootUrlWithLang = `${rootUrl}/${props.options.currentLocale}`
   // const noResults = props.clientFS.results == null
+  console.log(rootUrlWithLang)
 
   const renderPerspective = (perspective, routeProps) => {
     let perspectiveElement = null
@@ -575,7 +576,7 @@ const SemanticPortal = props => {
 }
 
 const mapStateToProps = state => {
-  const { clientFSResults, clientFSFacetValues } = filterResults(state.clientSideFacetedSearch)
+  // const { clientFSResults, clientFSFacetValues } = filterResults(state.clientSideFacetedSearch)
   return {
     finds: state.finds,
     findsFacets: state.findsFacets,
@@ -586,9 +587,9 @@ const mapStateToProps = state => {
     perspective3Facets: state.perspective3Facets,
     places: state.places,
     leafletMap: state.leafletMap,
-    clientFS: state.clientSideFacetedSearch,
-    clientFSResults,
-    clientFSFacetValues,
+    // clientFS: state.clientSideFacetedSearch,
+    // clientFSResults,
+    // clientFSFacetValues,
     animationValue: state.animation.value,
     options: state.options,
     error: state.error
@@ -656,7 +657,7 @@ SemanticPortal.propTypes = {
   updateMapBounds: PropTypes.func.isRequired,
   loadLocales: PropTypes.func.isRequired,
   animateMap: PropTypes.func.isRequired,
-  clientFS: PropTypes.object.isRequired,
+  clientFS: PropTypes.object,
   clientFSToggleDataset: PropTypes.func.isRequired,
   clientFSFetchResults: PropTypes.func.isRequired,
   clientFSClearResults: PropTypes.func.isRequired,

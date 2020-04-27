@@ -7,7 +7,7 @@ import LeafletMap from '../../facet_results/LeafletMap'
 import Deck from '../../facet_results/Deck'
 // import Network from '../../facet_results/Network'
 import Export from '../../facet_results/Export'
-import MigrationsMapLegend from '../mmm/MigrationsMapLegend'
+import MigrationsMapLegend from '../sampo/MigrationsMapLegend'
 import { MAPBOX_ACCESS_TOKEN, MAPBOX_STYLE } from '../../../configs/findsampo/GeneralConfig'
 
 const Finds = props => {
@@ -36,6 +36,7 @@ const Finds = props => {
             updateRowsPerPage={props.updateRowsPerPage}
             sortResults={props.sortResults}
             routeProps={routeProps}
+            rootUrl={rootUrl}
           />}
       />
       <Route
