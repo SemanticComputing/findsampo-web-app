@@ -1,7 +1,12 @@
 import { combineReducers } from 'redux'
 import { reducer as toastrReducer } from 'react-redux-toastr'
+// general reducers:
 import error from './error'
 import options from './options'
+import animation from './animation'
+import leafletMap from './leafletMap'
+// portal spefic reducers:
+// import clientSideFacetedSearch from './sampo/clientSideFacetedSearch'
 import finds from './findsampo/finds'
 import perspective2 from './sampo/perspective2'
 import perspective3 from './sampo/perspective3'
@@ -10,9 +15,6 @@ import findsFacetsConstrainSelf from './findsampo/findsFacetsConstrainSelf'
 import perspective2Facets from './sampo/perspective2Facets'
 import perspective3Facets from './sampo/perspective3Facets'
 import places from './findsampo/places'
-import leafletMapLayers from './findsampo/leafletMapLayers'
-import animation from './mmm/animation'
-import clientSideFacetedSearch from './sampo/clientSideFacetedSearch'
 
 const reducer = combineReducers({
   finds,
@@ -23,11 +25,11 @@ const reducer = combineReducers({
   perspective2Facets,
   perspective3Facets,
   places,
-  leafletMapLayers,
+  leafletMap,
   animation,
   options,
   error,
-  clientSideFacetedSearch,
+  // clientSideFacetedSearch,
   toastr: toastrReducer
 })
 
