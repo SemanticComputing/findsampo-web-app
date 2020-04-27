@@ -13,10 +13,10 @@ const useStyles = makeStyles(theme => ({
   root: {
     width: '100%',
     marginBottom: theme.spacing(1),
-    [theme.breakpoints.up('md')]: {
-      height: 'calc(100% - 60px)',
-      overflow: 'auto'
-    }
+    // [theme.breakpoints.up('md')]: {
+    //   height: 'calc(100% - 60px)',
+    //   overflow: 'auto'
+    // }
   },
   banner: {
     // background: `linear-gradient( rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.35) ), url(${bannerImage})`,
@@ -33,7 +33,7 @@ const useStyles = makeStyles(theme => ({
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
-    marginBottom: theme.spacing(1)
+    marginBottom: theme.spacing(2)
   },
   bannerContent: {
     display: 'inline-block',

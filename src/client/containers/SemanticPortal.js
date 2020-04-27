@@ -85,15 +85,16 @@ const useStyles = makeStyles(theme => ({
   mainContainer: {
     height: 'auto',
     overflow: 'auto',
-    [theme.breakpoints.up('md')]: {
-      height: 'calc(100% - 64px)' // 100% - app bar - padding
-    },
+    // [theme.breakpoints.up('md')]: {
+    //   height: 'calc(100% - 64px)' // 100% - app bar - padding
+    // },
     [theme.breakpoints.down('sm')]: {
       marginTop: 56 // app bar
     },
     [theme.breakpoints.up('sm')]: {
       marginTop: 64 // app bar
-    }
+    },
+    backgroundColor: '#ffffff'
   },
   mainContainerClientFS: {
     height: 'auto',
@@ -234,7 +235,6 @@ const SemanticPortal = props => {
   if (xlScreen) { screenSize = 'xl' }
   const rootUrlWithLang = `${rootUrl}/${props.options.currentLocale}`
   // const noResults = props.clientFS.results == null
-  console.log(rootUrlWithLang)
 
   const renderPerspective = (perspective, routeProps) => {
     let perspectiveElement = null
