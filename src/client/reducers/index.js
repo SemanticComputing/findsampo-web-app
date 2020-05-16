@@ -6,7 +6,8 @@ import options from './options'
 import animation from './animation'
 import leafletMap from './leafletMap'
 // portal spefic reducers:
-// import clientSideFacetedSearch from './sampo/clientSideFacetedSearch'
+import fullTextSearch from './sampo/fullTextSearch'
+import clientSideFacetedSearch from './sampo/clientSideFacetedSearch'
 import finds from './findsampo/finds'
 import perspective2 from './sampo/perspective2'
 import perspective3 from './sampo/perspective3'
@@ -29,7 +30,8 @@ const reducer = combineReducers({
   animation,
   options,
   error,
-  // clientSideFacetedSearch,
+  clientSideFacetedSearch,
+  fullTextSearch,
   toastr: toastrReducer
 })
 

@@ -72,6 +72,9 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
+/**
+ * A component for generating a landing page for a semantic portal.
+ */
 const Main = props => {
   const { perspectives, screenSize } = props
   const classes = useStyles(props)
@@ -156,6 +159,9 @@ const Main = props => {
 }
 
 Main.propTypes = {
+  /**
+   * An array of objects used for configuration. Each object represents a single perspective.
+   */
   perspectives: PropTypes.array.isRequired,
   screenSize: PropTypes.string.isRequired,
   rootUrl: PropTypes.string.isRequired
