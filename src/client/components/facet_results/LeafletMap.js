@@ -754,7 +754,7 @@ class LeafletMap extends React.Component {
 
   createPopUpContentFindSampo = data => {
     let popUpTemplate = ''
-    console.log(data)
+    // console.log(data)
     popUpTemplate += `<h2>${intl.get('leafletMap.findPopUpHeading')}</h2>`
     if (has(data, 'prefLabel')) {
       popUpTemplate += `

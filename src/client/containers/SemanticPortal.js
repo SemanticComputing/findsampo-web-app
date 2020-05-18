@@ -15,7 +15,6 @@ import 'moment/locale/fi'
 import Grid from '@material-ui/core/Grid'
 
 // ** General components **
-import TopBar from '../components/main_layout/TopBar'
 import InstanceHomePage from '../components/main_layout/InstanceHomePage'
 import InfoHeader from '../components/main_layout/InfoHeader'
 import TextPage from '../components/main_layout/TextPage'
@@ -24,14 +23,14 @@ import FacetBar from '../components/facet_bar/FacetBar'
 // ** General components end **
 
 // ** Portal specific components and configs **
-import FacetedSearchPerspective from '../components/perspectives/sampo/FacetedSearchPerspective'
+import TopBar from '../components/perspectives/findsampo/TopBar'
+import Main from '../components/perspectives/findsampo/Main'
+import FacetedSearchPerspective from '../components/perspectives/findsampo/FacetedSearchPerspective'
 import FullTextSearch from '../components/perspectives/sampo/FullTextSearch'
-import ClientFSPerspective from '../components/perspectives/sampo/client_fs/ClientFSPerspective'
-import ClientFSMain from '../components/perspectives/sampo/client_fs/ClientFSMain'
-import Footer from '../components/perspectives/sampo/Footer'
-import { perspectiveConfig } from '../configs/sampo/PerspectiveConfig'
-import { perspectiveConfigOnlyInfoPages } from '../configs/sampo/PerspectiveConfigOnlyInfoPages'
-import { rootUrl } from '../configs/sampo/GeneralConfig'
+import Footer from '../components/perspectives/findsampo/Footer'
+import { perspectiveConfig } from '../configs/findsampo/PerspectiveConfig'
+import { perspectiveConfigOnlyInfoPages } from '../configs/findsampo/PerspectiveConfigOnlyInfoPages'
+import { rootUrl } from '../configs/findsampo/GeneralConfig'
 // ** Portal specific components and configs end **
 
 import {
@@ -556,10 +555,6 @@ const mapStateToProps = state => {
     finds: state.finds,
     findsFacets: state.findsFacets,
     findsFacetsConstrainSelf: state.findsFacetsConstrainSelf,
-    perspective2: state.perspective2,
-    perspective2Facets: state.perspective2Facets,
-    perspective3: state.perspective3,
-    perspective3Facets: state.perspective3Facets,
     places: state.places,
     leafletMap: state.leafletMap,
     fullTextSearch: state.fullTextSearch,
@@ -612,34 +607,6 @@ SemanticPortal.propTypes = {
   finds: PropTypes.object.isRequired,
   findsFacets: PropTypes.object.isRequired,
   findsFacetsConstrainSelf: PropTypes.object.isRequired,
-  /**
-   * Faceted search configs and results of 'Perspective 1'.
-   */
-  perspective1: PropTypes.object.isRequired,
-  /**
-   * Facet configs and values of 'Perspective 1'.
-   */
-  perspective1Facets: PropTypes.object.isRequired,
-  /**
-   * Facet configs and values for facets that restrict themselves of 'Perspective 1'.
-   */
-  perspective1FacetsConstrainSelf: PropTypes.object.isRequired,
-  /**
-   * Faceted search configs and results of 'Perspective 2'.
-   */
-  perspective2: PropTypes.object.isRequired,
-  /**
-   * Facet configs and values of 'Perspective 2'.
-   */
-  perspective2Facets: PropTypes.object.isRequired,
-  /**
-   * Faceted search configs and results of 'Perspective 3'.
-   */
-  perspective3: PropTypes.object.isRequired,
-  /**
-   * Facet configs and values of 'Perspective 3'.
-   */
-  perspective3Facets: PropTypes.object.isRequired,
   /**
    * Faceted search configs and results of 'Places'.
    */

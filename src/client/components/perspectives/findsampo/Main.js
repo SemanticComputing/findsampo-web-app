@@ -12,7 +12,7 @@ import InfoCards from './InfoCards'
 const useStyles = makeStyles(theme => ({
   root: {
     width: '100%',
-    marginBottom: theme.spacing(1),
+    marginBottom: theme.spacing(1)
     // [theme.breakpoints.up('md')]: {
     //   height: 'calc(100% - 60px)',
     //   overflow: 'auto'

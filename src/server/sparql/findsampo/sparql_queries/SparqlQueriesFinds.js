@@ -1,6 +1,6 @@
 const perspectiveID = 'finds'
 
-export const findsPropertiesInstancePage =
+export const findPropertiesInstancePage =
 `   {
       ?id skos:prefLabel ?prefLabel__id .
       BIND(?prefLabel__id as ?prefLabel__prefLabel)
@@ -30,7 +30,7 @@ export const findsPropertiesInstancePage =
     }
 `
 
-export const findsPropertiesFacetResults =
+export const findPropertiesFacetResults =
 `   {
       ?id skos:prefLabel ?prefLabel__id .
       BIND (?prefLabel__id as ?prefLabel__prefLabel)

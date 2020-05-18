@@ -1,11 +1,25 @@
-// export const endpoint = 'https://ldf.fi/sualt-fha-finds/sparql'
-export const endpoint = 'http://localhost:3039/ds/sparql'
+import {
+  findPropertiesFacetResults,
+  findPropertiesInstancePage
+} from '../sparql_queries/SparqlQueriesFinds'
+import { prefixes } from '../sparql_queries/SparqlQueriesPrefixes'
 
-export const endpointUseAuth = true
-
-export const facetConfigs = {
-  finds: {
-    facetClass: ':Find',
+export const findsPerspectiveConfig = {
+  endpoint: {
+    url: 'https://ldf.fi/sualt-fha-finds/sparql',
+    // url: 'http://localhost:3039/ds/sparql',
+    prefixes,
+    useAuth: true
+  },
+  facetClass: ':Find',
+  paginatedResults: {
+    properties: findPropertiesFacetResults
+  },
+  instance: {
+    properties: findPropertiesInstancePage,
+    relatedInstances: ''
+  },
+  facets: {
     prefLabel: {
       id: 'prefLabel',
       labelPath: 'skos:prefLabel',

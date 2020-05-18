@@ -27,7 +27,7 @@ const Finds = props => {
         path={`${props.rootUrl}/${perspective.id}/faceted-search/table`}
         render={routeProps =>
           <ResultTable
-            data={props.finds}
+            data={props.facetResults}
             facetUpdateID={props.facetData.facetUpdateID}
             resultClass='finds'
             facetClass='finds'
@@ -45,7 +45,7 @@ const Finds = props => {
           <LeafletMap
             center={[22.43, 10.37]}
             zoom={2}
-            results={props.places.results}
+            results={props.placesResults.results}
             layers={props.leafletMapLayers}
             pageType='facetResults'
             facetUpdateID={props.facetData.facetUpdateID}
@@ -53,11 +53,11 @@ const Finds = props => {
             facetClass='finds'
             mapMode='cluster'
             showMapModeControl={false}
-            instance={props.places.instance}
+            instance={props.placesResults.instance}
             fetchResults={props.fetchResults}
             fetchGeoJSONLayers={props.fetchGeoJSONLayers}
             fetchByURI={props.fetchByURI}
-            fetching={props.places.fetching}
+            fetching={props.placesResults.fetching}
             showInstanceCountInClusters={false}
             updateFacetOption={props.updateFacetOption}
             showExternalLayers
@@ -67,12 +67,12 @@ const Finds = props => {
         path={`${rootUrl}/${perspective.id}/faceted-search/heatmap`}
         render={() =>
           <Deck
-            results={props.places.results}
+            results={props.placesResults.results}
             facetUpdateID={props.facetData.facetUpdateID}
             resultClass='findsPlaces'
             facetClass='finds'
             fetchResults={props.fetchResults}
-            fetching={props.places.fetching}
+            fetching={props.placesResults.fetching}
             legendComponent={<MigrationsMapLegend />}
             layerType='heatmapLayer'
             mapBoxAccessToken={MAPBOX_ACCESS_TOKEN}
@@ -83,7 +83,7 @@ const Finds = props => {
         path={`${rootUrl}/${perspective.id}/faceted-search/export`}
         render={() =>
           <Export
-            sparqlQuery={props.finds.paginatedResultsSparqlQuery}
+            sparqlQuery={props.facetResults.paginatedResultsSparqlQuery}
             pageType='facetResults'
           />}
       />
@@ -92,8 +92,8 @@ const Finds = props => {
 }
 
 Finds.propTypes = {
-  finds: PropTypes.object.isRequired,
-  places: PropTypes.object.isRequired,
+  facetResults: PropTypes.object.isRequired,
+  placesResults: PropTypes.object.isRequired,
   leafletMapLayers: PropTypes.object.isRequired,
   facetData: PropTypes.object.isRequired,
   fetchResults: PropTypes.func.isRequired,
