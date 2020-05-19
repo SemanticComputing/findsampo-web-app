@@ -24,6 +24,7 @@ const FacetedSearchPerspective = props => {
             updateRowsPerPage={props.updateRowsPerPage}
             updateFacetOption={props.updateFacetOption}
             sortResults={props.sortResults}
+            showError={props.showError}
             routeProps={props.routeProps}
             perspective={props.perspective}
             animationValue={props.animationValue}
@@ -92,6 +93,10 @@ FacetedSearchPerspective.propTypes = {
   sortResults: PropTypes.func.isRequired,
   /**
    * Redux action for updating the active selection or config of a facet.
+   */
+  showError: PropTypes.func.isRequired,
+  /**
+   * Redux action for showing an error
    */
   updateFacetOption: PropTypes.func.isRequired,
   /**

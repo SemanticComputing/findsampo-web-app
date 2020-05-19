@@ -43,8 +43,10 @@ const Finds = props => {
         path={`${rootUrl}/${perspective.id}/faceted-search/map`}
         render={() =>
           <LeafletMap
-            center={[22.43, 10.37]}
-            zoom={2}
+            // center={[22.43, 10.37]}
+            // zoom={2}
+            center={[60.17, 24.81]}
+            zoom={14}
             results={props.placesResults.results}
             layers={props.leafletMapLayers}
             pageType='facetResults'
@@ -60,6 +62,7 @@ const Finds = props => {
             fetching={props.placesResults.fetching}
             showInstanceCountInClusters={false}
             updateFacetOption={props.updateFacetOption}
+            showError={props.showError}
             showExternalLayers
           />}
       />
@@ -109,7 +112,8 @@ Finds.propTypes = {
   animationValue: PropTypes.array.isRequired,
   animateMap: PropTypes.func.isRequired,
   screenSize: PropTypes.string.isRequired,
-  rootUrl: PropTypes.string.isRequired
+  rootUrl: PropTypes.string.isRequired,
+  showError: PropTypes.func.isRequired
 }
 
 export default Finds
