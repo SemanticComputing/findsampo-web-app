@@ -42,6 +42,7 @@ import {
   fetchByURI,
   fetchFacet,
   fetchFacetConstrainSelf,
+  clearFacet,
   fetchGeoJSONLayers,
   fetchGeoJSONLayersBackend,
   clearGeoJSONLayers,
@@ -351,6 +352,7 @@ const SemanticPortal = props => {
                                   resultCount={props[perspective.id].resultCount}
                                   fetchFacet={props.fetchFacet}
                                   fetchFacetConstrainSelf={props.fetchFacetConstrainSelf}
+                                  clearFacet={props.clearFacet}
                                   fetchResultCount={props.fetchResultCount}
                                   updateFacetOption={props.updateFacetOption}
                                   defaultActiveFacets={perspective.defaultActiveFacets}
@@ -366,6 +368,7 @@ const SemanticPortal = props => {
                                   fetchPaginatedResults={props.fetchPaginatedResults}
                                   fetchResults={props.fetchResults}
                                   fetchGeoJSONLayers={props.fetchGeoJSONLayers}
+                                  fetchGeoJSONLayersBackend={props.fetchGeoJSONLayersBackend}
                                   clearGeoJSONLayers={props.clearGeoJSONLayers}
                                   fetchByURI={props.fetchByURI}
                                   updatePage={props.updatePage}
@@ -441,7 +444,7 @@ const SemanticPortal = props => {
                   to={`${rootUrlWithLang}/${perspective.id}/page/:id`}
                 />
                 <Route
-                  path={`/${perspective.id}/page/:id`}
+                  path={`${rootUrlWithLang}/${perspective.id}/page/:id`}
                   render={routeProps => {
                     return (
                       <>
@@ -518,6 +521,9 @@ const SemanticPortal = props => {
                         clientFSSortResults={props.clientFSSortResults}
                         leafletMap={props.leafletMap}
                         fetchGeoJSONLayersBackend={props.fetchGeoJSONLayersBackend}
+                        fetchGeoJSONLayers={props.fetchGeoJSONLayers}
+                        clearGeoJSONLayers={props.clearGeoJSONLayers}
+                        showError={props.showError}
                         rootUrl={rootUrlWithLang}
                       />}
                   </Grid>
@@ -578,6 +584,7 @@ const mapDispatchToProps = ({
   fetchByURI,
   fetchFacet,
   fetchFacetConstrainSelf,
+  clearFacet,
   fetchGeoJSONLayers,
   fetchGeoJSONLayersBackend,
   clearGeoJSONLayers,
@@ -680,6 +687,10 @@ SemanticPortal.propTypes = {
    * Redux action for fetching the values of a facet.
    */
   fetchFacet: PropTypes.func.isRequired,
+  /**
+   * Redux action for resetting a facet.
+   */
+  clearFacet: PropTypes.func.isRequired,
   /**
    * Redux action for displaying an error message.
    */
