@@ -11,6 +11,7 @@ import finds from './findsampo/finds'
 import findsFacets from './findsampo/findsFacets'
 import findsFacetsConstrainSelf from './findsampo/findsFacetsConstrainSelf'
 import perspective2Facets from './sampo/perspective2Facets'
+import perspective2FacetsConstrainSelf from './sampo/perspective2FacetsConstrainSelf'
 import perspective3Facets from './sampo/perspective3Facets'
 import places from './findsampo/places'
 
@@ -19,6 +20,7 @@ const reducer = combineReducers({
   findsFacets,
   findsFacetsConstrainSelf,
   perspective2Facets,
+  perspective2FacetsConstrainSelf,
   perspective3Facets,
   places,
   leafletMap,

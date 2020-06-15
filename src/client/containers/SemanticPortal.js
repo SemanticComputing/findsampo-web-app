@@ -15,7 +15,6 @@ import 'moment/locale/fi'
 import Grid from '@material-ui/core/Grid'
 
 // ** General components **
-import InstanceHomePage from '../components/main_layout/InstanceHomePage'
 import InfoHeader from '../components/main_layout/InfoHeader'
 import TextPage from '../components/main_layout/TextPage'
 import Message from '../components/main_layout/Message'
@@ -26,6 +25,7 @@ import FacetBar from '../components/facet_bar/FacetBar'
 import TopBar from '../components/perspectives/findsampo/TopBar'
 import Main from '../components/perspectives/findsampo/Main'
 import FacetedSearchPerspective from '../components/perspectives/findsampo/FacetedSearchPerspective'
+import InstanceHomePage from '../components/perspectives/findsampo/InstanceHomePage'
 import FullTextSearch from '../components/perspectives/sampo/FullTextSearch'
 import Footer from '../components/perspectives/findsampo/Footer'
 import { perspectiveConfig } from '../configs/findsampo/PerspectiveConfig'
@@ -40,6 +40,7 @@ import {
   fetchFullTextResults,
   clearResults,
   fetchByURI,
+  fetchNetworkById,
   fetchFacet,
   fetchFacetConstrainSelf,
   clearFacet,
@@ -346,12 +347,14 @@ const SemanticPortal = props => {
                                   facetDataConstrainSelf={has(props, `${perspective.id}FacetsConstrainSelf`)
                                     ? props[`${perspective.id}FacetsConstrainSelf`]
                                     : null}
+                                  facetResults={props[`${perspective.id}`]}
                                   facetClass={perspective.id}
                                   resultClass={perspective.id}
                                   fetchingResultCount={props[perspective.id].fetchingResultCount}
                                   resultCount={props[perspective.id].resultCount}
                                   fetchFacet={props.fetchFacet}
                                   fetchFacetConstrainSelf={props.fetchFacetConstrainSelf}
+                                  fetchResults={props.fetchResults}
                                   clearFacet={props.clearFacet}
                                   fetchResultCount={props.fetchResultCount}
                                   updateFacetOption={props.updateFacetOption}
@@ -364,9 +367,13 @@ const SemanticPortal = props => {
                                   facetResults={props[`${perspective.id}`]}
                                   placesResults={props.places}
                                   facetData={props[`${perspective.id}Facets`]}
+                                  facetDataConstrainSelf={has(props, `${perspective.id}FacetsConstrainSelf`)
+                                    ? props[`${perspective.id}FacetsConstrainSelf`]
+                                    : null}
                                   leafletMap={props.leafletMap}
                                   fetchPaginatedResults={props.fetchPaginatedResults}
                                   fetchResults={props.fetchResults}
+                                  fetchFacetConstrainSelf={props.fetchFacetConstrainSelf}
                                   fetchGeoJSONLayers={props.fetchGeoJSONLayers}
                                   fetchGeoJSONLayersBackend={props.fetchGeoJSONLayersBackend}
                                   clearGeoJSONLayers={props.clearGeoJSONLayers}
@@ -416,10 +423,13 @@ const SemanticPortal = props => {
                                   <InstanceHomePage
                                     rootUrl={rootUrlWithLang}
                                     fetchByURI={props.fetchByURI}
+                                    fetchNetworkById={props.fetchNetworkById}
                                     resultClass={perspective.id}
+                                    resultUpdateID={props[perspective.id].resultUpdateID}
                                     properties={props[perspective.id].properties}
                                     tabs={perspective.instancePageTabs}
                                     data={props[perspective.id].instance}
+                                    networkData={props[perspective.id].instanceNetworkData}
                                     sparqlQuery={props[perspective.id].instanceSparqlQuery}
                                     isLoading={props[perspective.id].fetching}
                                     routeProps={routeProps}
@@ -440,7 +450,7 @@ const SemanticPortal = props => {
             {perspectiveConfigOnlyInfoPages.map(perspective =>
               <Switch key={perspective.id}>
                 <Redirect
-                  from={`/${perspective.id}/page/:id`}
+                  from={`${rootUrl}/${perspective.id}/page/:id`}
                   to={`${rootUrlWithLang}/${perspective.id}/page/:id`}
                 />
                 <Route
@@ -465,10 +475,13 @@ const SemanticPortal = props => {
                             <InstanceHomePage
                               rootUrl={rootUrlWithLang}
                               fetchByURI={props.fetchByURI}
+                              fetchNetworkById={props.fetchNetworkById}
                               resultClass={perspective.id}
+                              resultUpdateID={props[perspective.id].resultUpdateID}
                               properties={props[perspective.id].properties}
                               tabs={perspective.instancePageTabs}
                               data={props[perspective.id].instance}
+                              networkData={props[perspective.id].instanceNetworkData}
                               sparqlQuery={props[perspective.id].instanceSparqlQuery}
                               isLoading={props[perspective.id].fetching}
                               routeProps={routeProps}
@@ -586,6 +599,7 @@ const mapDispatchToProps = ({
   fetchFacetConstrainSelf,
   clearFacet,
   fetchGeoJSONLayers,
+  fetchNetworkById,
   fetchGeoJSONLayersBackend,
   clearGeoJSONLayers,
   sortResults,
@@ -650,6 +664,10 @@ SemanticPortal.propTypes = {
    * Redux action for fetching information about a single entity.
    */
   fetchByURI: PropTypes.func.isRequired,
+  /**
+   * Redux action for fetching network of a single entity.
+   */
+  fetchNetworkById: PropTypes.func.isRequired,
   /**
    * Redux action for loading external GeoJSON layers.
    */
