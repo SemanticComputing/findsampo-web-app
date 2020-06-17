@@ -89,6 +89,12 @@ const Finds = props => {
         render={() =>
           <Timeline
             pageType='facetResults'
+            resultClass='findsTimeline'
+            facetClass='finds'
+            data={props.facetResults.results}
+            dataUpdateID={props.facetResults.resultUpdateID}
+            facetUpdateID={props.facetData.facetUpdateID}
+            fetchResults={props.fetchResults}
           />}
       />
       <Route

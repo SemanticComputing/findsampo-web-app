@@ -31,6 +31,7 @@ import {
 
 export const INITIAL_STATE = {
   results: null,
+  resultUpdateID: 0,
   resultsSparqlQuery: null,
   paginatedResults: [],
   paginatedResultsSparqlQuery: null,
@@ -113,7 +114,8 @@ export const INITIAL_STATE = {
 }
 
 const resultClasses = new Set([
-  'finds'
+  'finds',
+  'findsTimeline'
 ])
 
 const finds = (state = INITIAL_STATE, action) => {

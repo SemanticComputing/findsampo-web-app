@@ -15,40 +15,29 @@ class Timeline extends React.Component {
   }
 
   componentDidMount = () => {
-    this.renderTimeline()
-    // if (this.props.rawData && this.props.rawData.length > 0) {
-    //   this.renderChart()
-    // }
-    // this.props.fetchData({
-    //   resultClass: this.props.resultClass,
-    //   facetClass: this.props.facetClass,
-    //   facetID: this.props.facetID
-    // })
+    this.props.fetchResults({
+      resultClass: this.props.resultClass,
+      facetClass: this.props.facetClass
+    })
   }
 
-  // componentDidUpdate = prevProps => {
-  //   // Render the chart again if the raw data has changed
-  //   if (prevProps.rawDataUpdateID !== this.props.rawDataUpdateID) {
-  //     this.renderChart()
-  //   }
-  //   // check if filters have changed
-  //   if (this.props.pageType === 'facetResults' && prevProps.facetUpdateID !== this.props.facetUpdateID) {
-  //     this.props.fetchData({
-  //       resultClass: this.props.resultClass,
-  //       facetClass: this.props.facetClass,
-  //       facetID: this.props.facetID
-  //     })
-  //   }
-  // }
-
-  // componentWillUnmount () {
-  //   if (!this.chart == null) {
-  //     this.chart.destroy()
-  //   }
-  // }
+  componentDidUpdate = prevProps => {
+    // Render the timeline when data has been fetched from the SPARQL endpoint
+    if (prevProps.dataUpdateID !== this.props.dataUpdateID) {
+      this.renderTimeline()
+    }
+    // Fetch data again if the facets have been updated
+    if (this.props.pageType === 'facetResults' && prevProps.facetUpdateID !== this.props.facetUpdateID) {
+      this.props.fetchResults({
+        resultClass: this.props.resultClass,
+        facetClass: this.props.facetClass
+      })
+    }
+  }
 
   renderTimeline = () => {
     const timelinesChart = TimelinesChart()
+    console.log(this.props.data)
     console.log(getRandomData(true))
     timelinesChart
       .data(getRandomData(true))
@@ -92,7 +81,12 @@ class Timeline extends React.Component {
 }
 
 Timeline.propTypes = {
-  pageType: PropTypes.string.isRequired
+  pageType: PropTypes.string.isRequired,
+  resultClass: PropTypes.string.isRequired,
+  facetUpdateID: PropTypes.number.isRequired,
+  fetchResults: PropTypes.func.isRequired,
+  dataUpdateID: PropTypes.number.isRequired,
+  data: PropTypes.array
 }
 
 export default Timeline

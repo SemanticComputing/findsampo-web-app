@@ -66,3 +66,20 @@ export const findsPlacesQuery = `
         wgs84:long ?long .
   }
 `
+
+export const findsTimelineQuery = `
+  SELECT ?id ?group ?data__id ?data__uri ?data__label ?data__timeRange ?data__val
+  WHERE {
+    <FILTER>
+    ?find :material ?id  . 
+    BIND (?id as ?group)
+    BIND (?find as ?data__id)
+    ?find :find_name ?data__label .
+    BIND (?find as ?data__uri) 
+    BIND(?find as ?data__val)
+    ?find :start_year [] .
+    ?find :end_year [] .
+    ?find :start_year|:end_year ?data__timeRange .
+    FILTER (?id != "-")
+  } 
+`
