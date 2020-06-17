@@ -14,7 +14,7 @@ export const perspectiveConfig = [
     id: 'finds',
     // frontPageImage: manuscriptsImage,
     perspectiveDescHeight: 160,
-    defaultActiveFacets: new Set(['prefLabel', 'type']),
+    defaultActiveFacets: new Set(['findName']),
     tabs: [
       {
         id: 'table',
