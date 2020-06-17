@@ -50,7 +50,8 @@ export default {
     migrations: 'migrations',
     network: 'network',
     export: 'export',
-    'by-period': 'by period'
+    'by-period': 'by period',
+    timeline: 'timeline'
   },
   table: {
     rowsPerPage: 'Rows per page',

@@ -4,6 +4,7 @@ import AddLocationIcon from '@material-ui/icons/AddLocation'
 // import LocationOnIcon from '@material-ui/icons/LocationOn'
 // import RedoIcon from '@material-ui/icons/Redo'
 import CloudDownloadIcon from '@material-ui/icons/CloudDownload'
+import ClearAllIcon from '@material-ui/icons/ClearAll'
 // import manuscriptsImage from '../../img/manuscripts-452x262.jpg'
 // import worksImage from '../../img/works-452x262_2.jpg'
 // import eventsImage from '../../img/events-452x262.jpg'
@@ -31,8 +32,13 @@ export const perspectiveConfig = [
         icon: <AddLocationIcon />
       },
       {
-        id: 'export',
+        id: 'timeline',
         value: 3,
+        icon: <ClearAllIcon />
+      },
+      {
+        id: 'export',
+        value: 4,
         icon: <CloudDownloadIcon />
       }
     ],

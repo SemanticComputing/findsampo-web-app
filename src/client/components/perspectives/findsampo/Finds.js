@@ -6,6 +6,7 @@ import ResultTable from '../../facet_results/ResultTable'
 import LeafletMap from '../../facet_results/LeafletMap'
 import Deck from '../../facet_results/Deck'
 // import Network from '../../facet_results/Network'
+import Timeline from '../../facet_results/Timeline'
 import Export from '../../facet_results/Export'
 import MigrationsMapLegend from '../sampo/MigrationsMapLegend'
 import { MAPBOX_ACCESS_TOKEN, MAPBOX_STYLE } from '../../../configs/findsampo/GeneralConfig'
@@ -81,6 +82,13 @@ const Finds = props => {
             layerType='heatmapLayer'
             mapBoxAccessToken={MAPBOX_ACCESS_TOKEN}
             mapBoxStyle={MAPBOX_STYLE}
+          />}
+      />
+      <Route
+        path={`${rootUrl}/${perspective.id}/faceted-search/timeline`}
+        render={() =>
+          <Timeline
+            pageType='facetResults'
           />}
       />
       <Route
