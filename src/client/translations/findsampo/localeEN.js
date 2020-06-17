@@ -183,9 +183,13 @@ export default {
           label: 'URI',
           description: 'Uniform Resource Identifier'
         },
+        findName: {
+          label: 'Find name',
+          description: 'Find name.'
+        },
         prefLabel: {
           label: 'Find name',
-          description: 'A short label describing the find.'
+          description: 'Find name.'
         },
         type: {
           label: 'Type',

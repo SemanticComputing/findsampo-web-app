@@ -15,21 +15,22 @@ export const INITIAL_STATE = {
   facetUpdateID: 0,
   updatedFilter: null,
   facets: {
-    prefLabel: {
-      id: 'prefLabel',
+    findName: {
+      id: 'find_name',
       // predicate: defined in backend
       distinctValueCount: 0,
       values: [],
       flatValues: [],
-      sortBy: null,
-      sortDirection: null,
-      sortButton: false,
+      sortBy: 'instanceCount',
+      sortDirection: 'desc',
+      sortButton: true,
       spatialFilterButton: false,
+      pieChartButton: true,
       isFetching: false,
-      searchField: false,
-      containerClass: 'one',
-      filterType: 'textFilter',
-      textFilter: null,
+      searchField: true,
+      containerClass: 'ten',
+      filterType: 'uriFilter',
+      uriFilter: null,
       priority: 1
     },
     type: {

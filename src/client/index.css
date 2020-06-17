@@ -47,6 +47,8 @@ a, a:visited, a:hover, a:active {
     top: 3px !important;
 }
 
+*/
+
 .carousel .control-dots {
     position: unset;
     display: flex;
@@ -57,4 +59,4 @@ a, a:visited, a:hover, a:active {
     
 .apexcharts-custom-tooltip {
     padding: 8px
-} */
+} 

@@ -20,12 +20,13 @@ export const findsPerspectiveConfig = {
     relatedInstances: ''
   },
   facets: {
-    prefLabel: {
-      id: 'prefLabel',
-      labelPath: 'skos:prefLabel',
-      textQueryPredicate: '', // empty for querying the facetClass
-      textQueryProperty: 'skos:prefLabel', // limit only to prefLabels
-      type: 'text'
+    findName: {
+      id: 'findName',
+      facetValueFilter: '',
+      predicate: ':find_name',
+      labelPath: ':find_name',
+      type: 'list',
+      literal: true
     },
     type: {
       id: 'type',
