@@ -42,6 +42,7 @@ class Timeline extends React.Component {
 
   renderTimeline = () => {
     const modifiedData = this.preprocess(this.props.data)
+    // console.log(modifiedData)
     this.timelinesChart
       .data(modifiedData)
       .width(1200)

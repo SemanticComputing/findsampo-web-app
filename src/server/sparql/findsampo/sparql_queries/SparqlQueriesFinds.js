@@ -71,17 +71,26 @@ export const findsTimelineQuery = `
   SELECT ?id ?group ?data__id ?data__uri ?data__label 
   ?data__data__id ?data__data__label ?data__data__val ?data__data__timeRange
   WHERE {
-    <FILTER>
-    ?find :material ?id  . 
+    
+    <FILTER> # a placeholder for facet filters
+    
+    ?find :material ?id  . # ?id = first hierarchy level
     BIND (?id as ?group) 
-    ?find :find_name ?data__id .
+    ?find :find_name ?data__id . # ?data__id = second hierarchy level
     BIND (?data__id as ?data__label)
-    BIND (?find as ?data__data__id)
+    BIND (?find as ?data__data__id) # ?data__data__id = third hierarchy level
     BIND (?data__id as ?data__data__label)
     BIND (?data__id as ?data__data__val)
+    
+    # make sure that the selected finds have both 'start_year' and 'end_year'
     ?find :start_year [] .
     ?find :end_year [] .
+    
+    # Combine 'start_year' and 'end_year' into same variable,
+    # so that the result mapper creates an array from these.
     ?find :start_year|:end_year ?data__data__timeRange .
+    
+    # Ignore missing values in the first hierarchy level
     FILTER (?id != "-")
   } 
 `
