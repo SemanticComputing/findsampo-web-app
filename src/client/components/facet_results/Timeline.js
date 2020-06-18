@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import TimelinesChart from 'timelines-chart'
 import purple from '@material-ui/core/colors/purple'
 import CircularProgress from '@material-ui/core/CircularProgress'
-import getRandomData from './TimelineTestData'
+// import getRandomData from './TimelineTestData'
 
 /**
  * A component for creating timelines with Timelines Chart.
@@ -12,6 +12,8 @@ class Timeline extends React.Component {
   constructor (props) {
     super(props)
     this.timelinesChartRef = React.createRef()
+    this.timelinesChart = TimelinesChart()
+    this.timelinesChartRendered = false // for making sure that timeline is rendered only once
   }
 
   componentDidMount = () => {
@@ -22,9 +24,12 @@ class Timeline extends React.Component {
   }
 
   componentDidUpdate = prevProps => {
-    // Render the timeline when data has been fetched from the SPARQL endpoint
+    /**
+     *  Render the timeline from scratch when data has been fetched from the SPARQL endpoint for the first time.
+     *  After that, only update the existing timeline.
+     */
     if (prevProps.dataUpdateID !== this.props.dataUpdateID) {
-      this.renderTimeline()
+      this.timelinesChartRendered ? this.updateTimeline() : this.renderTimeline()
     }
     // Fetch data again if the facets have been updated
     if (this.props.pageType === 'facetResults' && prevProps.facetUpdateID !== this.props.facetUpdateID) {
@@ -36,23 +41,34 @@ class Timeline extends React.Component {
   }
 
   renderTimeline = () => {
-    const timelinesChart = TimelinesChart()
-    // console.log(this.props.data)
-    // console.log(getRandomData(true))
-    const modifiedData = this.props.data.map(item => {
-      if (!Array.isArray(item.data)) {
-        item.data = [item.data]
-      }
-      return item
-    })
-    console.log(modifiedData)
-    timelinesChart
-      // .data(getRandomData(true))
+    const modifiedData = this.preprocess(this.props.data)
+    this.timelinesChart
       .data(modifiedData)
       .width(1200)
       .useUtc(true)
       .timeFormat('%Y')
       .zQualitative(true)(this.timelinesChartRef.current)
+    this.timelinesChartRendered = true
+  }
+
+  updateTimeline = () => {
+    const modifiedData = this.preprocess(this.props.data)
+    this.timelinesChart
+      .data(modifiedData)
+      .refresh()
+  }
+
+  preprocess = data => {
+    /**
+    * If there is only one value in the 'data' property, it is an object.
+    * Convert those objects into arrays with one element.
+    */
+    return data.map(item => {
+      if (!Array.isArray(item.data)) {
+        item.data = [item.data]
+      }
+      return item
+    })
   }
 
   render () {
