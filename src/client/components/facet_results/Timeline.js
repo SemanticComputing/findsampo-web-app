@@ -37,11 +37,21 @@ class Timeline extends React.Component {
 
   renderTimeline = () => {
     const timelinesChart = TimelinesChart()
-    console.log(this.props.data)
-    console.log(getRandomData(true))
+    // console.log(this.props.data)
+    // console.log(getRandomData(true))
+    const modifiedData = this.props.data.map(item => {
+      if (!Array.isArray(item.data)) {
+        item.data = [item.data]
+      }
+      return item
+    })
+    console.log(modifiedData)
     timelinesChart
-      .data(getRandomData(true))
+      // .data(getRandomData(true))
+      .data(modifiedData)
       .width(1200)
+      .useUtc(true)
+      .timeFormat('%Y')
       .zQualitative(true)(this.timelinesChartRef.current)
   }
 

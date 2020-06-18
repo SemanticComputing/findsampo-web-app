@@ -68,18 +68,20 @@ export const findsPlacesQuery = `
 `
 
 export const findsTimelineQuery = `
-  SELECT ?id ?group ?data__id ?data__uri ?data__label ?data__timeRange ?data__val
+  SELECT ?id ?group ?data__id ?data__uri ?data__label 
+  ?data__data__id ?data__data__label ?data__data__val ?data__data__timeRange
   WHERE {
     <FILTER>
     ?find :material ?id  . 
-    BIND (?id as ?group)
-    BIND (?find as ?data__id)
-    ?find :find_name ?data__label .
-    BIND (?find as ?data__uri) 
-    BIND(?find as ?data__val)
+    BIND (?id as ?group) 
+    ?find :find_name ?data__id .
+    BIND (?data__id as ?data__label)
+    BIND (?find as ?data__data__id)
+    BIND (?data__id as ?data__data__label)
+    BIND (?data__id as ?data__data__val)
     ?find :start_year [] .
     ?find :end_year [] .
-    ?find :start_year|:end_year ?data__timeRange .
+    ?find :start_year|:end_year ?data__data__timeRange .
     FILTER (?id != "-")
   } 
 `
