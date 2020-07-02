@@ -187,6 +187,10 @@ export default {
           label: 'Find name',
           description: 'Find name.'
         },
+        specification: {
+          label: 'Specification',
+          description: 'Specification.'
+        },
         prefLabel: {
           label: 'Find name',
           description: 'Find name.'

@@ -28,6 +28,14 @@ export const findsPerspectiveConfig = {
       type: 'list',
       literal: true
     },
+    specification: {
+      id: 'specification',
+      facetValueFilter: '',
+      predicate: ':specification',
+      labelPath: ':specification',
+      type: 'list',
+      literal: true
+    },
     type: {
       id: 'type',
       facetValueFilter: '',
