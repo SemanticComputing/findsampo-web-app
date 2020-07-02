@@ -38,6 +38,10 @@ export const findPropertiesFacetResults =
     }
     UNION
     {
+      ?id :specification ?specification .
+    }
+    UNION
+    {
       ?id :type ?type .
     }
     UNION
@@ -51,6 +55,16 @@ export const findPropertiesFacetResults =
     UNION
     {
       ?id :period ?period .
+    }
+    UNION
+    {
+      ?id :start_year ?startYear_ .
+      BIND (YEAR(?startYear_) as ?startYear)
+    }
+    UNION
+    {
+      ?id :end_year ?endYear_ .
+      BIND (YEAR(?endYear_) as ?endYear)
     }
     UNION
     {

@@ -68,6 +68,14 @@ export const findsPerspectiveConfig = {
       type: 'list',
       literal: true
     },
+    startYear: {
+      id: 'startYear',
+      labelPath: ':start_year'
+    },
+    endYear: {
+      id: 'endYear',
+      labelPath: ':end_year'
+    },
     municipality: {
       id: 'municipality',
       facetValueFilter: '',

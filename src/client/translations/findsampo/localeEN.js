@@ -214,9 +214,19 @@ export default {
           `
         },
         period: {
-          label: 'Time period',
+          label: 'Period',
+          description: 'Period'
+        },
+        startYear: {
+          label: 'Start year',
           description: `
-            Time period.
+            Start year.
+          `
+        },
+        endYear: {
+          label: 'End year',
+          description: `
+            End year.
           `
         },
         municipality: {
