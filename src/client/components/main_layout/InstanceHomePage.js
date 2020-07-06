@@ -52,7 +52,7 @@ class InstanceHomePage extends React.Component {
 
   fetchData = () => {
     let uri = ''
-    const base = 'http://ldf.fi/sualt-fha-finds'
+    const base = 'http://ldf.fi/findsampo/finds'
     const locationArr = this.props.routeProps.location.pathname.split('/')
     let localID = locationArr.pop()
     this.props.tabs.map(tab => {

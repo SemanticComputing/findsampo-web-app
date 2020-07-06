@@ -4,11 +4,9 @@ export default {
     short: 'FindSampo',
     long: 'FindSampo',
     subheading: `
-      
     `
   },
   appDescription: `
-    
   `,
   selectPerspective: '',
   mainPageImageLicence: '',

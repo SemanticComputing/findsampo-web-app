@@ -76,6 +76,14 @@ export const findsPerspectiveConfig = {
       id: 'endYear',
       labelPath: ':end_year'
     },
+    earliestStart: {
+      id: 'earliestStart',
+      labelPath: 'crm:P4_has_time_span/crm:P82a_begin_of_the_begin'
+    },
+    LatestEnd: {
+      id: 'latestEnd',
+      labelPath: 'crm:P4_has_time_span/crm:P82b_end_of_the_end'
+    },
     municipality: {
       id: 'municipality',
       facetValueFilter: '',
