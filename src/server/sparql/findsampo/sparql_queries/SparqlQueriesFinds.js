@@ -63,11 +63,11 @@ export const findPropertiesFacetResults =
     }
     UNION
     {
-      ?id :start_year_literal ?startYearLiteral .
+      ?id :start_year ?startYearLiteral .
     }
     UNION
     {
-      ?id :end_year_literal ?endYearLiteral .
+      ?id :end_year ?endYearLiteral .
     }
     UNION
     {
@@ -115,12 +115,15 @@ export const findsTimelineQuery = `
     BIND (?data__id as ?data__data__val)
 
     # make sure that the selected finds have both 'start_year' and 'end_year'
-    ?find :start_year [] .
-    ?find :end_year [] .
+    #?find :start_year [] .
+    #?find :end_year [] .
+    ?find crm:P4_has_time_span/crm:P82a_begin_of_the_begin [] .
+    ?find crm:P4_has_time_span/crm:P82b_end_of_the_end [] .
 
     # Combine 'start_year' and 'end_year' into same variable,
     # so that the result mapper creates an array from these.
-    ?find :start_year|:end_year ?data__data__timeRange .
+    #?find :start_year|:end_year ?data__data__timeRange .
+    ?find crm:P4_has_time_span/crm:P82a_begin_of_the_begin|crm:P4_has_time_span/crm:P82b_end_of_the_end ?data__data__timeRange .
 
     # Ignore missing values in the first hierarchy level
     FILTER (?id != "-")

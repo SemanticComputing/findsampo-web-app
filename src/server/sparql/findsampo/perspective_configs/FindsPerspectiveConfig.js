@@ -7,7 +7,7 @@ import { prefixes } from '../sparql_queries/SparqlQueriesPrefixes'
 export const findsPerspectiveConfig = {
   endpoint: {
     url: 'https://ldf.fi/sualt-fha-finds/sparql',
-    // url: 'http://localhost:3039/ds/sparql',
+    //url: 'http://localhost:3039/ds/sparql',
     prefixes,
     useAuth: true
   },
@@ -68,22 +68,22 @@ export const findsPerspectiveConfig = {
       type: 'list',
       literal: true
     },
-    startYear: {
-      id: 'startYear',
-      labelPath: ':start_year'
-    },
-    endYear: {
-      id: 'endYear',
-      labelPath: ':end_year'
-    },
-    earliestStart: {
-      id: 'earliestStart',
-      labelPath: 'crm:P4_has_time_span/crm:P82a_begin_of_the_begin'
-    },
-    LatestEnd: {
-      id: 'latestEnd',
-      labelPath: 'crm:P4_has_time_span/crm:P82b_end_of_the_end'
-    },
+    //startYear: {
+    //  id: 'startYear',
+    //  labelPath: ':start_year'
+    //},
+    //endYear: {
+    //  id: 'endYear',
+    //  labelPath: ':end_year'
+    //},
+    //startYear: {
+    //  id: 'startYear',
+    //  labelPath: 'crm:P4_has_time_span/crm:P82a_begin_of_the_begin'
+    //},
+    //endYear: {
+    //  id: 'endYear',
+    //  labelPath: 'crm:P4_has_time_span/crm:P82b_end_of_the_end'
+    //},
     municipality: {
       id: 'municipality',
       facetValueFilter: '',
