@@ -56,7 +56,7 @@ export const findsPerspectiveConfig = {
       id: 'material',
       facetValueFilter: '',
       predicate: ':material',
-      labelPath: ':material',
+      labelPath: ':material/skos:prefLabel',
       type: 'list',
       literal: true
     },
@@ -88,7 +88,7 @@ export const findsPerspectiveConfig = {
       id: 'municipality',
       facetValueFilter: '',
       predicate: ':municipality',
-      labelPath: ':municipality',
+      labelPath: ':municipality/skos:prefLabel',
       type: 'list',
       literal: true
     }

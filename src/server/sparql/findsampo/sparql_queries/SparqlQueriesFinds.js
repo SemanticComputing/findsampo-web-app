@@ -18,7 +18,12 @@ export const findPropertiesInstancePage =
     }
     UNION
     {
-      ?id :material ?material .
+      ?id :material_literal ?materialLiteral .
+    }
+    UNION
+    {
+      ?id :material ?material__id .
+      ?material__id skos:prefLabel ?material__prefLabel .
     }
     UNION
     {
@@ -26,7 +31,7 @@ export const findPropertiesInstancePage =
     }
     UNION
     {
-      ?id :municipality_literal ?municipality_literal .
+      ?id :municipality_literal ?municipalityLiteral .
     }
     UNION
     {
@@ -55,7 +60,12 @@ export const findPropertiesFacetResults =
     }
     UNION
     {
-      ?id :material ?material .
+      ?id :material_literal ?materialLiteral .
+    }
+    UNION
+    {
+      ?id :material ?material__id .
+      ?material__id skos:prefLabel ?material__prefLabel .
     }
     UNION
     {
@@ -71,12 +81,21 @@ export const findPropertiesFacetResults =
     }
     UNION
     {
-      ?id :municipality_literal ?municipality .
+      ?id :municipality_literal ?municipalityLiteral .
     }
     UNION
     {
       ?id :municipality ?municipality__id .
       ?municipality__id skos:prefLabel ?municipality__prefLabel .
+    }
+    UNION
+    {
+      ?id :province_literal ?provinceLiteral .
+    }
+    UNION
+    {
+      ?id :province ?province__id .
+      ?province__id skos:prefLabel ?province__prefLabel .
     }
     UNION
     {

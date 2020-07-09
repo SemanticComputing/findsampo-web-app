@@ -94,7 +94,7 @@ export const INITIAL_STATE = {
     },
     {
       id: 'material',
-      valueType: 'string',
+      valueType: 'object',
       makeLink: false,
       externalLink: false,
       sortValues: true,
