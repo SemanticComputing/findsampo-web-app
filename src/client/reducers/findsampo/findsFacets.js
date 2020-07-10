@@ -34,24 +34,24 @@ export const INITIAL_STATE = {
       uriFilter: null,
       priority: 1
     },
-    specification: {
-      id: 'specification',
-      // predicate: defined in backend
-      distinctValueCount: 0,
-      values: [],
-      flatValues: [],
-      sortBy: 'instanceCount',
-      sortDirection: 'desc',
-      sortButton: true,
-      spatialFilterButton: false,
-      pieChartButton: true,
-      isFetching: false,
-      searchField: true,
-      containerClass: 'ten',
-      filterType: 'uriFilter',
-      uriFilter: null,
-      priority: 2
-    },
+    // specification: {
+    //   id: 'specification',
+    //   // predicate: defined in backend
+    //   distinctValueCount: 0,
+    //   values: [],
+    //   flatValues: [],
+    //   sortBy: 'instanceCount',
+    //   sortDirection: 'desc',
+    //   sortButton: true,
+    //   spatialFilterButton: false,
+    //   pieChartButton: true,
+    //   isFetching: false,
+    //   searchField: true,
+    //   containerClass: 'ten',
+    //   filterType: 'uriFilter',
+    //   uriFilter: null,
+    //   priority: 2
+    // },
     type: {
       id: 'type',
       // predicate: defined in backend
@@ -88,6 +88,25 @@ export const INITIAL_STATE = {
       uriFilter: null,
       priority: 3
     },
+    objectSubCategory: {
+      id: 'objectSubCategory',
+      // predicate: defined in backend
+      distinctValueCount: 0,
+      values: [],
+      flatValues: [],
+      sortBy: 'instanceCount',
+      sortDirection: 'desc',
+      sortButton: true,
+      spatialFilterButton: false,
+      pieChartButton: true,
+      isFetching: false,
+      searchField: true,
+      containerClass: 'ten',
+      filterType: 'uriFilter',
+      uriFilter: null,
+      priority: 3,
+      //type: 'hierarchical'
+    },
     material: {
       id: 'material',
       // predicate: defined in backend
@@ -104,7 +123,8 @@ export const INITIAL_STATE = {
       containerClass: 'ten',
       filterType: 'uriFilter',
       uriFilter: null,
-      priority: 4
+      priority: 4,
+      type: 'hierarchical'
     },
     period: {
       id: 'period',

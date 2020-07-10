@@ -52,13 +52,24 @@ export const findsPerspectiveConfig = {
       type: 'list',
       literal: true
     },
+    objectSubCategory: {
+      id: 'objectSubCategory',
+      facetValueFilter: '',
+      predicate: ':object_type',
+      labelPath: ':object_type/skos:prefLabel',
+      type: 'list',
+      literal: true,
+      facetLabelFilter: 'FILTER(LANG(?prefLabel_) = \'fi\')',
+    },
     material: {
       id: 'material',
       facetValueFilter: '',
       predicate: ':material',
       labelPath: ':material/skos:prefLabel',
-      type: 'list',
-      literal: true
+      type: 'hierarchical',
+      literal: true,
+      parentPredicate: ':material/skos:broader+',
+      parentProperty: 'skos:broader'
     },
     period: {
       id: 'period',

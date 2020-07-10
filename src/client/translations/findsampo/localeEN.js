@@ -205,6 +205,12 @@ export default {
             Sub category.
           `
         },
+        objectSubCategory: {
+          label: 'Ontologized sub category',
+          description: `
+            Sub category using ontology terms.
+          `
+        },
         material: {
           label: 'Material',
           description: `

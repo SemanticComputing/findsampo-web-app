@@ -29,6 +29,14 @@ export const facetConfigs = {
       type: 'list',
       literal: true
     },
+    objectSubCategory: {
+      id: 'objectSubCategory',
+      facetValueFilter: '',
+      predicate: ':object_type',
+      labelPath: ':object_type',
+      type: 'list',
+      literal: true
+    },
     material: {
       id: 'material',
       facetValueFilter: '',

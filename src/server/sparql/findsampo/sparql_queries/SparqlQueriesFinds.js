@@ -60,6 +60,11 @@ export const findPropertiesFacetResults =
     }
     UNION
     {
+      ?id :object_type ?objectSubCatecory__id.
+      ?objectSubCatecory___id skos:prefLabel ?objectSubCatecory___prefLabel .
+    }
+    UNION
+    {
       ?id :material_literal ?materialLiteral .
     }
     UNION
