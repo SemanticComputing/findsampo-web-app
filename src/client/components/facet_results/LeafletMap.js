@@ -782,7 +782,7 @@ class LeafletMap extends React.Component {
     }
     if (has(data, 'material')) {
       popUpTemplate += `
-        <p><b>${intl.get('perspectives.finds.properties.material.label')}</b>: ${data.material}</p>`
+        <p><b>${intl.get('perspectives.finds.properties.material.label')}</b>: ${data.material.prefLabel}</p>`
     }
     if (has(data, 'period')) {
       popUpTemplate += `
@@ -790,7 +790,7 @@ class LeafletMap extends React.Component {
     }
     if (has(data, 'municipality')) {
       popUpTemplate += `
-        <p><b>${intl.get('perspectives.finds.properties.municipality.label')}</b>: ${data.municipality}</p>`
+        <p><b>${intl.get('perspectives.finds.properties.municipality.label')}</b>: ${data.municipality.prefLabel}</p>`
     }
     if (has(data, 'id')) {
       popUpTemplate += `
@@ -827,7 +827,7 @@ class LeafletMap extends React.Component {
     if (has(data, 'source')) {
       if (data.namesArchiveLink !== '-') {
         popUpTemplate += `
-        <p><b>${intl.get(`perspectives.${perspectiveID}.properties.source.label`)}</b>: 
+        <p><b>${intl.get(`perspectives.${perspectiveID}.properties.source.label`)}</b>:
           <a href="${data.namesArchiveLink}" target="_blank">${data.source}</a></p>`
       } else {
         popUpTemplate += `

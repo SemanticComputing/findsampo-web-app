@@ -125,7 +125,7 @@ export const findsTimelineQuery = `
 
     <FILTER> # a placeholder for facet filters
 
-    ?find :material ?id  . # ?id = first hierarchy level
+    ?find :material/skos:prefLabel ?id  . # ?id = first hierarchy level
     BIND (?id as ?group)
     ?find :find_name ?data__id . # ?data__id = second hierarchy level
     BIND (?data__id as ?data__label)
@@ -142,6 +142,11 @@ export const findsTimelineQuery = `
     # Combine 'start_year' and 'end_year' into same variable,
     # so that the result mapper creates an array from these.
     #?find :start_year|:end_year ?data__data__timeRange .
+
+    #?find crm:P4_has_time_span/crm:P82a_begin_of_the_begin|crm:P4_has_time_span/crm:P82b_end_of_the_end ?date .
+    #BIND(CONCAT(str(?date), 'T00:00:00+00:00') AS ?date_wth_ending) .
+    #BIND(STRDT(STR(?date_wth_ending), xsd:dateTime) AS ?data__data__timeRange)
+
     ?find crm:P4_has_time_span/crm:P82a_begin_of_the_begin|crm:P4_has_time_span/crm:P82b_end_of_the_end ?data__data__timeRange .
 
     # Ignore missing values in the first hierarchy level
