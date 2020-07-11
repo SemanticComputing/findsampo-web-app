@@ -206,7 +206,7 @@ export default {
           `
         },
         objectSubCategory: {
-          label: 'Ontologized sub category',
+          label: 'Sub category ontologized',
           description: `
             Sub category using ontology terms.
           `
@@ -217,9 +217,19 @@ export default {
             Material.
           `
         },
+        materialLiteral: {
+          label: 'Material literal',
+          description: `
+            Material literal.
+          `
+        },
         period: {
           label: 'Period',
           description: 'Period'
+        },
+        periodObject: {
+          label: 'Period ontologized',
+          description: 'Ontologized period. May include both earliest and lates periods.'
         },
         startYear: {
           label: 'Start year',

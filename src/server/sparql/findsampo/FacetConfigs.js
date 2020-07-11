@@ -53,13 +53,29 @@ export const facetConfigs = {
       type: 'list',
       literal: true
     },
+    periodObject: {
+      id: 'periodObject',
+      facetValueFilter: '',
+      predicate: ':period',
+      labelPath: ':period',
+      type: 'list',
+      literal: true
+    },
     municipality: {
       id: 'municipality',
       facetValueFilter: '',
       predicate: ':municipality',
-      labelPath: ':municipality',
+      labelPath: ':municipality/skos:prefLabel',
       type: 'list',
       literal: true
-    }
+    },
+    materialLiteral: {
+      id: 'materialLiteral',
+      facetValueFilter: '',
+      predicate: ':material_literal',
+      labelPath: ':material_literal',
+      type: 'list',
+      literal: true
+    },
   }
 }

@@ -58,7 +58,6 @@ export const findsPerspectiveConfig = {
       predicate: ':object_type',
       labelPath: ':object_type/skos:prefLabel',
       type: 'list',
-      literal: true,
       facetLabelFilter: 'FILTER(LANG(?prefLabel_) = \'fi\')',
     },
     material: {
@@ -67,9 +66,16 @@ export const findsPerspectiveConfig = {
       predicate: ':material',
       labelPath: ':material/skos:prefLabel',
       type: 'hierarchical',
-      literal: true,
       parentPredicate: ':material/skos:broader+',
       parentProperty: 'skos:broader'
+    },
+    materialLiteral: {
+      id: 'materialLiteral',
+      facetValueFilter: '',
+      predicate: ':material_literal',
+      labelPath: ':material_literal',
+      type: 'list',
+      literal: true
     },
     period: {
       id: 'period',
@@ -78,6 +84,15 @@ export const findsPerspectiveConfig = {
       labelPath: ':period',
       type: 'list',
       literal: true
+    },
+    periodObject: {
+      id: 'periodObject',
+      facetValueFilter: '',
+      predicate: ':earliest_period|:latest_period',
+      labelPath: ':earliest_period/skos:prefLabel|:latest_period/skos:prefLabel',
+      type: 'hierarchical',
+      parentPredicate: ':earliest_perio/skos:broader+|:latest_period/skos:broader+',
+      parentProperty: 'skos:broader'
     },
     //startYear: {
     //  id: 'startYear',
@@ -101,7 +116,6 @@ export const findsPerspectiveConfig = {
       predicate: ':municipality',
       labelPath: ':municipality/skos:prefLabel',
       type: 'list',
-      literal: true
     }
   }
 }
