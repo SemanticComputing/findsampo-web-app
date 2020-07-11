@@ -152,9 +152,14 @@ export const findsTimelineQuery = `
     #BIND(CONCAT(str(?date), 'T00:00:00+00:00') AS ?date_wth_ending) .
     #BIND(STRDT(STR(?date_wth_ending), xsd:dateTime) AS ?data__data__timeRange)
 
-    ?find crm:P4_has_time_span/crm:P82a_begin_of_the_begin|crm:P4_has_time_span/crm:P82b_end_of_the_end ?data__data__timeRange .
+    ?find crm:P4_has_time_span/crm:P82a_begin_of_the_begin|crm:P4_has_time_span/crm:P82b_end_of_the_end ?date .
 
     # Ignore missing values in the first hierarchy level
     FILTER (?id != "-")
+
+    # fill two extra digits with zeros for BCE dates
+    BIND (STRAFTER(str(?date), '-') AS ?after)
+    BIND (IF (STRSTARTS(str(?date), '-'), CONCAT('-00', ?after), str(?date)) AS ?new_date) .
+    BIND(STRDT(STR(?new_date), xsd:dateTime) AS ?data__data__timeRange) .
   }
 `
