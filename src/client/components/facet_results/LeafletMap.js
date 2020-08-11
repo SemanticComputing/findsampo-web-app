@@ -4,6 +4,7 @@ import { withStyles } from '@material-ui/core/styles'
 import intl from 'react-intl-universal'
 import L from 'leaflet'
 import { has, orderBy } from 'lodash'
+import buffer from '@turf/buffer'
 import CircularProgress from '@material-ui/core/CircularProgress'
 import { purple } from '@material-ui/core/colors'
 import { MAPBOX_ACCESS_TOKEN, MAPBOX_STYLE } from '../../configs/findsampo/GeneralConfig'
@@ -367,9 +368,14 @@ class LeafletMap extends React.Component {
       type: 'geoJSON',
       source: 'FHA',
       // this layer includes only GeoJSON Polygons, define style for them
-      geojsonMPolygonOptions: {
+      geoJSONPolygonOptions: {
         color: '#dd2c00',
-        cursor: 'pointer',
+        cursor: 'pointer'
+        // dashArray: '3, 5'
+      },
+      geoJSONPolygonBoundaryOptions: {
+        color: '#dd2c00',
+        // cursor: 'pointer',
         dashArray: '3, 5'
       }
     })
@@ -378,7 +384,7 @@ class LeafletMap extends React.Component {
       type: 'geoJSON',
       source: 'FHA',
       // this layer includes only GeoJSON points, define style for them
-      geojsonMarkerOptions: {
+      geoJSONMarkerOptions: {
         radius: 8,
         fillColor: '#dd2c00',
         weight: 1,
@@ -391,7 +397,7 @@ class LeafletMap extends React.Component {
     //   type: 'geoJSON',
     //   source: 'kotus',
     //   // this layer includes only GeoJSON Polygons, define style for them
-    //   geojsonMPolygonOptions: {
+    //   geoJSONPolygonOptions: {
     //     color: '#dd2c00',
     //     cursor: 'pointer',
     //     dashArray: '3, 5'
@@ -402,7 +408,7 @@ class LeafletMap extends React.Component {
     //   type: 'geoJSON',
     //   source: 'kotus',
     //   // this layer includes only GeoJSON Polygons, define style for them
-    //   geojsonMPolygonOptions: {
+    //   geoJSONPolygonOptions: {
     //     color: '#fca903',
     //     cursor: 'pointer',
     //     dashArray: '3, 5'
@@ -413,7 +419,7 @@ class LeafletMap extends React.Component {
     //   type: 'geoJSON',
     //   source: 'kotus',
     //   // this layer includes only GeoJSON Polygons, define style for them
-    //   geojsonMPolygonOptions: {
+    //   geoJSONPolygonOptions: {
     //     color: '#119100',
     //     cursor: 'pointer',
     //     dashArray: '3, 5'
@@ -424,7 +430,7 @@ class LeafletMap extends React.Component {
     //   type: 'geoJSON',
     //   source: 'kotus',
     //   // this layer includes only GeoJSON Polygons, define style for them
-    //   geojsonMPolygonOptions: {
+    //   geoJSONPolygonOptions: {
     //     color: '#2403fc',
     //     cursor: 'pointer',
     //     dashArray: '3, 5'
@@ -442,7 +448,7 @@ class LeafletMap extends React.Component {
       [intl.get('leafletMap.externalLayers.arkeologiset_kohteet_alue')]: fhaArchaeologicalSiteRegistryAreas,
       [intl.get('leafletMap.externalLayers.arkeologiset_kohteet_piste')]: fhaArchaeologicalSiteRegistryPoints,
       [intl.get('leafletMap.externalLayers.karelianMaps')]: karelianMaps,
-      [intl.get('leafletMap.externalLayers.senateAtlas')]: senateAtlas,
+      [intl.get('leafletMap.externalLayers.senateAtlas')]: senateAtlas
       // [intl.get('leafletMap.externalLayers.kotus:pitajat')]: kotusParishes1938,
       // [intl.get('leafletMap.externalLayers.kotus:rajat-sms-alueet')]: kotusParishesDialecticalRegions,
       // [intl.get('leafletMap.externalLayers.kotus:rajat-sms-alueosat')]: kotusParishesDialecticalSubRegions,
@@ -462,19 +468,38 @@ class LeafletMap extends React.Component {
       The baseLayers and overlays parameters are object literals with layer names as keys
       and Layer objects as values
     */
+
+    console.log(layerObj.geoJSON)
+    const bufferedGeoJSON = buffer(layerObj.geoJSON, 0.2, { units: 'kilometres' })
+    // const bufferedGeoJSON = transformScale(layerObj.geoJSON, 0.3)
+    console.log(bufferedGeoJSON)
     const leafletOverlay = this.overlayLayers[intl.get(`leafletMap.externalLayers.${layerObj.layerID}`)]
+    leafletOverlay.clearLayers()
     const leafletGeoJSONLayer = L.geoJSON(layerObj.geoJSON, {
       // style for GeoJSON Points
       pointToLayer: (feature, latlng) => {
         return L.circleMarker(latlng, leafletOverlay.options.geojsonMarkerOptions)
       },
       // style for GeoJSON Polygons
-      style: leafletOverlay.options.geojsonMPolygonOptions,
+      style: leafletOverlay.options.geoJSONPolygonOptions,
       // add popups
       onEachFeature: (feature, layer) => {
         layer.bindPopup(this.createPopUpContentGeoJSON(layerObj.layerID, feature.properties))
       }
     })
+    const leafletGeoJSONBoundaryLayer = L.geoJSON(bufferedGeoJSON, {
+      // style for GeoJSON Points
+      pointToLayer: (feature, latlng) => {
+        return L.circleMarker(latlng, leafletOverlay.options.geojsonMarkerOptions)
+      },
+      // style for GeoJSON Polygons
+      style: leafletOverlay.options.geoJSONPolygonBoundaryOptions
+      // add popups
+      // onEachFeature: (feature, layer) => {
+      //   layer.bindPopup(this.createPopUpContentGeoJSON(layerObj.layerID, feature.properties))
+      // }
+    })
+    leafletGeoJSONBoundaryLayer.addTo(leafletOverlay).addTo(this.leafletMap)
     leafletGeoJSONLayer.addTo(leafletOverlay).addTo(this.leafletMap)
   }
 
