@@ -3,7 +3,6 @@ import PropTypes from 'prop-types'
 import TimelinesChart from 'timelines-chart'
 import purple from '@material-ui/core/colors/purple'
 import CircularProgress from '@material-ui/core/CircularProgress'
-import _debounce from 'lodash.debounce'
 // import getRandomData from './TimelineTestData'
 
 /**
@@ -18,40 +17,14 @@ class Timeline extends React.Component {
     this.timelinesChartRendered = false // for making sure that timeline is rendered only once
   }
 
-  // local methods
-  setWindowWidth = () => {
-    if (this.state.width !== this.timelinesChartRef.current.clientWidth) {
-      this.setState({
-        width: this.timelinesChartRef.current.clientWidth
-      })
-    }
-    console.log(' setWindowWidth rendered width: ', this.state.width)
-    console.log(' setWindowWidth client width: ', this.timelinesChartRef.current.clientWidth)
-    console.log(' setWindowWidth timelineChartRef', this.timelinesChartRef)
-  }
-
   componentDidMount = () => {
     this.props.fetchResults({
       resultClass: this.props.resultClass,
       facetClass: this.props.facetClass
     })
-    window.addEventListener(
-      'resize',
-      _debounce(() => {
-        this.setWindowWidth()
-      }, 250)
-    )
   }
 
-  // Remove event listener
-  componentWillUnmount () { window.removeEventListener('resize', this.setWindowWidth()) }
   componentDidUpdate = prevProps => {
-    window.addEventListener(
-      'resize',
-      _debounce(() => {
-        this.setWindowWidth()
-      }, 250)
-    )
     /**
      *  Render the timeline from scratch when data has been fetched from the SPARQL endpoint for the first time.
      *  After that, only update the existing timeline.
@@ -80,24 +53,15 @@ class Timeline extends React.Component {
       .timeFormat('%Y')
       .zQualitative(true)(this.timelinesChartRef.current)
     this.timelinesChartRendered = true
-
-    console.log(modifiedData)
-    console.log('rendered width: ', width)
-    console.log('client width: ', this.timelinesChartRef.current.clientWidth)
-    console.log('timelineChartRef', this.timelinesChartRef)
   }
 
   updateTimeline = () => {
     const modifiedData = this.preprocess(this.props.data)
-    const width = this.state.width
+    const width = 1200
     this.timelinesChart
       .data(modifiedData)
       .width(width)
       .refresh()
-    console.log(modifiedData)
-    console.log('update width: ', width)
-    console.log('update client width: ', this.timelinesChartRef.current.clientWidth)
-    console.log('update timelineChartRef', this.timelinesChartRef)
   }
 
   preprocess = data => {

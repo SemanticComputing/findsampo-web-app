@@ -26,8 +26,8 @@ const Finds = props => {
       />
       <Route
         path={`${props.rootUrl}/${perspective.id}/faceted-search/table`}
-        render={routeProps =>
-          <ResultTable
+render={routeProps =>
+                  <ResultTable
             data={props.facetResults}
             facetUpdateID={props.facetData.facetUpdateID}
             resultClass='finds'
