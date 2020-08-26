@@ -11,7 +11,6 @@ import CircularProgress from '@material-ui/core/CircularProgress'
 class Timeline extends React.Component {
   constructor (props) {
     super(props)
-    this.state = { width: 1200 } // state for timelinewith
     this.timelinesChartRef = React.createRef()
     this.timelinesChart = TimelinesChart()
     this.timelinesChartRendered = false // for making sure that timeline is rendered only once
@@ -43,8 +42,7 @@ class Timeline extends React.Component {
 
   renderTimeline = () => {
     const modifiedData = this.preprocess(this.props.data)
-    this.setWindowWidth(this.timelinesChartRef.current)
-    const width = this.state.width
+    const width = 1200
 
     this.timelinesChart
       .data(modifiedData)
