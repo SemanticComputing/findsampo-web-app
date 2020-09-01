@@ -199,6 +199,18 @@ export default {
             Type.
           `
         },
+        objectType: {
+          label: 'Object type',
+          description: `
+            Object type.
+          `
+        },
+        place: {
+          label: 'Place',
+          description: `
+            Find pace
+          `
+        },
         subCategory: {
           label: 'Sub category',
           description: `

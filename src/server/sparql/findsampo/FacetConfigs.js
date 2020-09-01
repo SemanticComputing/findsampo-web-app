@@ -69,6 +69,14 @@ export const facetConfigs = {
       type: 'list',
       literal: true
     },
+    place: {
+      id: 'place',
+      facetValueFilter: '',
+      predicate: ':municipality',
+      labelPath: ':municipality/skos:prefLabel',
+      type: 'list',
+      literal: true
+    },
     materialLiteral: {
       id: 'materialLiteral',
       facetValueFilter: '',
@@ -77,5 +85,14 @@ export const facetConfigs = {
       type: 'list',
       literal: true
     },
+    objectType: {
+      id: 'objectType',
+      facetValueFilter: '',
+      predicate: ':object_type',
+      labelPath: ':object_type/skos:prefLabel',
+      type: 'hierarchical',
+      parentPredicate: ':object_type/skos:broader+',
+      parentProperty: 'skos:broader'
+    }
   }
 }

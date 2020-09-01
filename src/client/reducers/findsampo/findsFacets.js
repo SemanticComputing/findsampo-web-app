@@ -34,6 +34,25 @@ export const INITIAL_STATE = {
       uriFilter: null,
       priority: 1
     },
+    objectType: {
+      id: 'objectType',
+      // predicate: defined in backend
+      distinctValueCount: 0,
+      values: [],
+      flatValues: [],
+      sortBy: 'instanceCount',
+      sortDirection: 'desc',
+      sortButton: true,
+      spatialFilterButton: false,
+      pieChartButton: true,
+      isFetching: false,
+      searchField: true,
+      containerClass: 'ten',
+      filterType: 'uriFilter',
+      uriFilter: null,
+      type: 'hierarchical',
+      priority: 6
+    },
     // specification: {
     //   id: 'specification',
     //   // predicate: defined in backend
@@ -52,61 +71,61 @@ export const INITIAL_STATE = {
     //   uriFilter: null,
     //   priority: 2
     // },
-    type: {
-      id: 'type',
-      // predicate: defined in backend
-      distinctValueCount: 0,
-      values: [],
-      flatValues: [],
-      sortBy: 'instanceCount',
-      sortDirection: 'desc',
-      sortButton: true,
-      spatialFilterButton: false,
-      pieChartButton: true,
-      isFetching: false,
-      searchField: true,
-      containerClass: 'ten',
-      filterType: 'uriFilter',
-      uriFilter: null,
-      priority: 2
-    },
-    subCategory: {
-      id: 'subCategory',
-      // predicate: defined in backend
-      distinctValueCount: 0,
-      values: [],
-      flatValues: [],
-      sortBy: 'instanceCount',
-      sortDirection: 'desc',
-      sortButton: true,
-      spatialFilterButton: false,
-      pieChartButton: true,
-      isFetching: false,
-      searchField: true,
-      containerClass: 'ten',
-      filterType: 'uriFilter',
-      uriFilter: null,
-      priority: 3
-    },
-    objectSubCategory: {
-      id: 'objectSubCategory',
-      // predicate: defined in backend
-      distinctValueCount: 0,
-      values: [],
-      flatValues: [],
-      sortBy: 'instanceCount',
-      sortDirection: 'desc',
-      sortButton: true,
-      spatialFilterButton: false,
-      pieChartButton: true,
-      isFetching: false,
-      searchField: true,
-      containerClass: 'ten',
-      filterType: 'uriFilter',
-      uriFilter: null,
-      priority: 3,
-      //type: 'hierarchical'
-    },
+    // type: {
+    //   id: 'type',
+    //   // predicate: defined in backend
+    //   distinctValueCount: 0,
+    //   values: [],
+    //   flatValues: [],
+    //   sortBy: 'instanceCount',
+    //   sortDirection: 'desc',
+    //   sortButton: true,
+    //   spatialFilterButton: false,
+    //   pieChartButton: true,
+    //   isFetching: false,
+    //   searchField: true,
+    //   containerClass: 'ten',
+    //   filterType: 'uriFilter',
+    //   uriFilter: null,
+    //   priority: 2
+    // },
+    // subCategory: {
+    //   id: 'subCategory',
+    //   // predicate: defined in backend
+    //   distinctValueCount: 0,
+    //   values: [],
+    //   flatValues: [],
+    //   sortBy: 'instanceCount',
+    //   sortDirection: 'desc',
+    //   sortButton: true,
+    //   spatialFilterButton: false,
+    //   pieChartButton: true,
+    //   isFetching: false,
+    //   searchField: true,
+    //   containerClass: 'ten',
+    //   filterType: 'uriFilter',
+    //   uriFilter: null,
+    //   priority: 3
+    // },
+    // objectSubCategory: {
+    //   id: 'objectSubCategory',
+    //   // predicate: defined in backend
+    //   distinctValueCount: 0,
+    //   values: [],
+    //   flatValues: [],
+    //   sortBy: 'instanceCount',
+    //   sortDirection: 'desc',
+    //   sortButton: true,
+    //   spatialFilterButton: false,
+    //   pieChartButton: true,
+    //   isFetching: false,
+    //   searchField: true,
+    //   containerClass: 'ten',
+    //   filterType: 'uriFilter',
+    //   uriFilter: null,
+    //   priority: 3,
+    //   //type: 'hierarchical'
+    // },
     material: {
       id: 'material',
       // predicate: defined in backend
@@ -181,8 +200,8 @@ export const INITIAL_STATE = {
       type: 'hierarchical',
       priority: 6
     },
-    municipality: {
-      id: 'municipality',
+    place: {
+      id: 'place',
       // predicate: defined in backend
       distinctValueCount: 0,
       values: [],
@@ -197,6 +216,7 @@ export const INITIAL_STATE = {
       containerClass: 'ten',
       filterType: 'uriFilter',
       uriFilter: null,
+      type: 'hierarchical',
       priority: 6
     },
   }
