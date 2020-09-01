@@ -42,18 +42,23 @@ export const perspectiveConfig = [
         icon: <LineChartIcon />
       },
       {
-        id: 'last_known_locations',
+        id: 'event_dates',
         value: 4,
+        icon: <LineChartIcon />
+      },
+      {
+        id: 'last_known_locations',
+        value: 5,
         icon: <LocationOnIcon />
       },
       {
         id: 'migrations',
-        value: 5,
+        value: 6,
         icon: <RedoIcon />
       },
       {
         id: 'export',
-        value: 6,
+        value: 7,
         icon: <CloudDownloadIcon />
       }
     ],
@@ -108,6 +113,44 @@ export const perspectiveConfig = [
   {
     id: 'perspective3',
     frontPageImage: eventsImage,
+    perspectiveDescHeight: 160,
+    defaultActiveFacets: new Set(['prefLabel']),
+    tabs: [
+      {
+        id: 'table',
+        value: 0,
+        icon: <CalendarViewDayIcon />
+      },
+      {
+        id: 'map',
+        value: 1,
+        icon: <AddLocationIcon />
+      },
+
+      {
+        id: 'export',
+        value: 2,
+        icon: <CloudDownloadIcon />
+      }
+    ],
+    instancePageTabs: [
+      {
+        id: 'table',
+        value: 0,
+        icon: <CalendarViewDayIcon />
+      },
+
+      {
+        id: 'export',
+        value: 1,
+        icon: <CloudDownloadIcon />
+      }
+    ]
+  },
+  {
+    id: 'finds',
+    isHidden: true,
+    frontPageImage: null,
     perspectiveDescHeight: 160,
     defaultActiveFacets: new Set(['prefLabel']),
     tabs: [

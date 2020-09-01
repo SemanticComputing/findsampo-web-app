@@ -6,10 +6,10 @@ import ResultTable from '../../facet_results/ResultTable'
 import LeafletMap from '../../facet_results/LeafletMap'
 import Deck from '../../facet_results/Deck'
 // import Network from '../../facet_results/Network'
-import Timeline from '../../facet_results/Timeline'
+// import Timeline from '../../facet_results/Timeline'
 import Export from '../../facet_results/Export'
 import MigrationsMapLegend from '../sampo/MigrationsMapLegend'
-import { MAPBOX_ACCESS_TOKEN, MAPBOX_STYLE } from '../../../configs/findsampo/GeneralConfig'
+import { MAPBOX_ACCESS_TOKEN, MAPBOX_STYLE } from '../../../configs/sampo/GeneralConfig'
 
 const Finds = props => {
   const { rootUrl, perspective } = props
@@ -26,8 +26,8 @@ const Finds = props => {
       />
       <Route
         path={`${props.rootUrl}/${perspective.id}/faceted-search/table`}
-render={routeProps =>
-                  <ResultTable
+        render={routeProps =>
+          <ResultTable
             data={props.facetResults}
             facetUpdateID={props.facetData.facetUpdateID}
             resultClass='finds'
@@ -84,7 +84,7 @@ render={routeProps =>
             mapBoxStyle={MAPBOX_STYLE}
           />}
       />
-      <Route
+      {/* <Route
         path={`${rootUrl}/${perspective.id}/faceted-search/timeline`}
         render={() =>
           <Timeline
@@ -96,13 +96,17 @@ render={routeProps =>
             facetUpdateID={props.facetData.facetUpdateID}
             fetchResults={props.fetchResults}
           />}
-      />
+      /> */}
       <Route
         path={`${rootUrl}/${perspective.id}/faceted-search/export`}
         render={() =>
           <Export
-            sparqlQuery={props.facetResults.paginatedResultsSparqlQuery}
+            data={props.facetResults}
+            resultClass='finds'
+            facetClass='finds'
             pageType='facetResults'
+            fetchPaginatedResults={props.fetchPaginatedResults}
+            updatePage={props.updatePage}
           />}
       />
     </>

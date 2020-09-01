@@ -42,10 +42,11 @@ class Timeline extends React.Component {
 
   renderTimeline = () => {
     const modifiedData = this.preprocess(this.props.data)
-    // console.log(modifiedData)
+    const width = 1200
+
     this.timelinesChart
       .data(modifiedData)
-      .width(1200)
+      .width(width)
       .useUtc(true)
       .timeFormat('%Y')
       .zQualitative(true)(this.timelinesChartRef.current)
@@ -54,8 +55,10 @@ class Timeline extends React.Component {
 
   updateTimeline = () => {
     const modifiedData = this.preprocess(this.props.data)
+    const width = 1200
     this.timelinesChart
       .data(modifiedData)
+      .width(width)
       .refresh()
   }
 
