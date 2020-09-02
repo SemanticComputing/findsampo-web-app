@@ -67,8 +67,8 @@ export const findPropertiesFacetResults =
     }
     UNION
     {
-      ?id :object_type ?objectSubCatecory__id.
-      ?objectSubCatecory___id skos:prefLabel ?objectSubCatecory___prefLabel .
+      ?id :object_type ?objectType__id.
+      ?objectType__id skos:prefLabel ?objectType__prefLabel .
     }
     UNION
     {
@@ -132,6 +132,20 @@ export const findsPlacesQuery = `
   SELECT ?id ?lat ?long
   WHERE {
     <FILTER>
+    ?id wgs84:lat ?lat ;
+        wgs84:long ?long .
+  }
+`
+
+export const nearbyFindsQuery = `
+  SELECT ?id ?lat ?long
+  WHERE {
+    BIND(<ID> as ?find)
+    ?find wgs84:lat ?fLat ;
+        wgs84:long ?fLong .
+    BIND(?fLat as ?findLat)
+    BIND(?fLong as ?findLong)
+    ?id spatial:nearby (?findLat ?findLong 20 'km') .
     ?id wgs84:lat ?lat ;
         wgs84:long ?long .
   }
