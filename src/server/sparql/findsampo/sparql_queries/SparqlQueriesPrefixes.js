@@ -17,5 +17,7 @@ export const prefixes = `
   PREFIX spatial: <http://jena.apache.org/spatial#>
   PREFIX text: <http://jena.apache.org/text#>
   PREFIX : <http://ldf.fi/schema/findsampo/>
+
+
   
 `
