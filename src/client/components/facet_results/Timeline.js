@@ -61,6 +61,7 @@ class Timeline extends React.Component {
     this.timelinesChart
       .data(modifiedData)
       .width(width)
+      .zQualitative(true)
       .refresh()
   }
 
