@@ -146,7 +146,12 @@ export const findsTimelineQuery = `
 
     ?find :material/skos:prefLabel ?id  . # ?id = first hierarchy level
     BIND (?id as ?group)
-    ?find :find_name ?data__id . # ?data__id = second hierarchy level
+    #?find :find_name ?data__id . # ?data__id = second hierarchy level
+
+     ?find :find_name ?lable_temp .
+    BIND( STRAFTER(STR(?find),'http://ldf.fi/findsampo/finds/' ) AS ?find_num ).
+    BIND (CONCAT(str(?lable_temp), str(?find_num)) as ?data__id) .
+    
     BIND (?data__id as ?data__label)
     BIND (?find as ?data__data__id) # ?data__data__id = third hierarchy level
     BIND (?data__id as ?data__data__label)
