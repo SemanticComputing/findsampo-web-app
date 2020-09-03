@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import TimelinesChart from 'timelines-chart'
 import purple from '@material-ui/core/colors/purple'
 import CircularProgress from '@material-ui/core/CircularProgress'
+import { has } from 'lodash'
 // import getRandomData from './TimelineTestData'
 
 /**
@@ -55,6 +56,7 @@ class Timeline extends React.Component {
 
   updateTimeline = () => {
     const modifiedData = this.preprocess(this.props.data)
+    // console.log(modifiedData)
     const width = 1200
     this.timelinesChart
       .data(modifiedData)
@@ -68,8 +70,11 @@ class Timeline extends React.Component {
     * Convert those objects into arrays with one element.
     */
     return data.map(item => {
-      if (!Array.isArray(item.data)) {
-        item.data = [item.data]
+      if (has(item, 'data')) {
+        if (!Array.isArray(item.data)) {
+          item.data = [item.data]
+        }
+        this.preprocess(item.data)
       }
       return item
     })
