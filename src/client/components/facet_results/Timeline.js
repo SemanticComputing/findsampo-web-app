@@ -49,7 +49,7 @@ class Timeline extends React.Component {
       .data(modifiedData)
       .width(width)
       .useUtc(true)
-      .timeFormat('%Y')
+      .timeFormat('%Y').onSegmentClick(cd => console.log(cd))
       .zQualitative(true)(this.timelinesChartRef.current)
     this.timelinesChartRendered = true
   }
@@ -61,6 +61,8 @@ class Timeline extends React.Component {
     this.timelinesChart
       .data(modifiedData)
       .width(width)
+      .useUtc(true)
+      .onSegmentClick(cd => console.log(cd))
       .zQualitative(true)
       .refresh()
   }
