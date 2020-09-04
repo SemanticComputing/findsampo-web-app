@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { ReactDOM } from 'react'
 import PropTypes from 'prop-types'
 import TimelinesChart from 'timelines-chart'
 import purple from '@material-ui/core/colors/purple'
@@ -16,6 +16,11 @@ class Timeline extends React.Component {
     this.timelinesChartRef = React.createRef()
     this.timelinesChart = TimelinesChart()
     this.timelinesChartRendered = false // for making sure that timeline is rendered only once
+  }
+
+  componentWillUnmount = () => {
+    // use to remove chart-tooltip, becasue it lingered on the find home page.
+    document.querySelectorAll('.chart-tooltip').forEach(e => e.remove())
   }
 
   componentDidMount = () => {
