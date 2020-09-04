@@ -152,8 +152,8 @@ export const findsTimelineQuery = `
     BIND( STRAFTER(STR(?find),'http://ldf.fi/findsampo/finds/' ) AS ?find_num ).
     BIND (CONCAT(str(?lable_temp), str(?find_num)) as ?data__id) .
     BIND (?data__id as ?data__label)
-    BIND (?find as ?data__data__id) # ?data__data__id = third hierarchy level
-    BIND (?lable_temp as ?data__data__label)
+    BIND (?find_num as ?data__data__id) # ?data__data__id = third hierarchy level
+    BIND (?data__id as ?data__data__label)
     BIND (?data__id as ?data__data__val)
 
     # make sure that the selected finds have both 'start_year' and 'end_year'

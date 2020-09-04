@@ -4,6 +4,7 @@ import TimelinesChart from 'timelines-chart'
 import purple from '@material-ui/core/colors/purple'
 import CircularProgress from '@material-ui/core/CircularProgress'
 import { has } from 'lodash'
+import history from '../../History'
 // import getRandomData from './TimelineTestData'
 
 /**
@@ -44,13 +45,16 @@ class Timeline extends React.Component {
   renderTimeline = () => {
     const modifiedData = this.preprocess(this.props.data)
     const width = 1200
-
+    // .timeFormat('%Y').onSegmentClick(cd => history.push(this.data(`/finds/page/${cd.}`)))
     this.timelinesChart
       .data(modifiedData)
       .width(width)
       .useUtc(true)
-      .timeFormat('%Y').onSegmentClick(cd => console.log(cd))
+      .timeFormat('%Y')
       .zQualitative(true)(this.timelinesChartRef.current)
+      .onSegmentClick(cd => {
+        return history.push(`/finds/page/${cd.data.id}`)
+      })
     this.timelinesChartRendered = true
   }
 
@@ -62,9 +66,12 @@ class Timeline extends React.Component {
       .data(modifiedData)
       .width(width)
       .useUtc(true)
-      .onSegmentClick(cd => console.log(cd))
+      .onSegmentClick(cd => console.log(cd.data.id))
       .zQualitative(true)
       .refresh()
+      .onSegmentClick(cd => {
+        return history.push(`/finds/page/${cd.data.id}`)
+      })
   }
 
   preprocess = data => {
