@@ -66,12 +66,8 @@ class Timeline extends React.Component {
   updateTimeline = () => {
     const modifiedData = this.preprocess(this.props.data)
     // console.log(modifiedData)
-    const width = 1200
     this.timelinesChart
       .data(modifiedData)
-      .width(width)
-      .useUtc(true)
-      .onSegmentClick(cd => console.log(cd.data.id))
       .zQualitative(true)
       .refresh()
       .onSegmentClick(cd => {
