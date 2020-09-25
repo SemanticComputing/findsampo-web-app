@@ -207,7 +207,7 @@ export const INITIAL_STATE = {
       uriFilter: null,
       type: 'hierarchical',
       priority: 6
-    }
+    },
   }
 }
 

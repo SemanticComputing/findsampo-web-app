@@ -264,6 +264,14 @@ export default {
         image: {
           label: 'Image',
           description: 'Image description.'
+        },
+        earliestStart: {
+          label: 'Earliest date',
+          description: 'Earliest possible creation date of the object'
+        },
+        latestEnd: {
+          label: 'Latest date',
+          description: 'Latest possible creation date of the object'
         }
       }
     },

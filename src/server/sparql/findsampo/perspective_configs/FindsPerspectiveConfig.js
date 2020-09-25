@@ -94,22 +94,6 @@ export const findsPerspectiveConfig = {
       parentPredicate: ':earliest_perio/skos:broader+|:latest_period/skos:broader+',
       parentProperty: 'skos:broader'
     },
-    //startYear: {
-    //  id: 'startYear',
-    //  labelPath: ':start_year'
-    //},
-    //endYear: {
-    //  id: 'endYear',
-    //  labelPath: ':end_year'
-    //},
-    //startYear: {
-    //  id: 'startYear',
-    //  labelPath: 'crm:P4_has_time_span/crm:P82a_begin_of_the_begin'
-    //},
-    //endYear: {
-    //  id: 'endYear',
-    //  labelPath: 'crm:P4_has_time_span/crm:P82b_end_of_the_end'
-    //},
     municipality: {
       id: 'municipality',
       facetValueFilter: '',
@@ -135,6 +119,16 @@ export const findsPerspectiveConfig = {
       type: 'hierarchical',
       parentPredicate: ':object_type/skos:broader+',
       parentProperty: 'skos:broader'
-    }
+    },
+    // creationTimespan: {
+    //   id: 'creationTimespan',
+    //   facetValueFilter: '',
+    //   sortByAscPredicate: ':has_time_span/crm:P82a_begin_of_the_begin',
+    //   sortByDescPredicate: ':has_time_Span/crm:P82b_end_of_the_end',
+    //   predicate: ':has_time_Span',
+    //   startProperty: 'crm:P82a_begin_of_the_begin',
+    //   endProperty: 'crm:P82b_end_of_the_end',
+    //   type: 'timespan'
+    // },
   }
 }

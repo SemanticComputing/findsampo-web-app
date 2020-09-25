@@ -43,7 +43,7 @@ export const findPropertiesInstancePage =
       ?id :image_url ?image__id .
       ?id :find_name ?image__title .
       BIND(?image__id as ?image__url)
-      BIND(CONCAT("Sample description text for image ", ?image__id) as ?image__description) 
+      BIND(CONCAT("Sample description text for image ", ?image__id) as ?image__description)
     }
 `
 
@@ -111,20 +111,20 @@ export const findPropertiesFacetResults =
     }
     UNION
     {
-      ?id crm:P4_has_time_span/crm:P82a_begin_of_the_begin ?earliestStart .
-      BIND (YEAR(?earliestStart) as ?startYear) .
+      ?id :has_time_span/crm:P82a_begin_of_the_begin ?earliestStart .
+      BIND (YEAR(?earliestStart) as ?earliestStartYear) .
     }
     UNION
     {
-      ?id crm:P4_has_time_span/crm:P82b_end_of_the_end ?latestEnd .
-      BIND (YEAR(?latestEnd) as ?endYear) .
+      ?id :has_time_span/crm:P82b_end_of_the_end ?latestEnd .
+      BIND (YEAR(?latestEnd) as ?latestEndYear) .
     }
     UNION
     {
       ?id :image_url ?image__id .
       ?id :find_name ?image__title .
       BIND(?image__id as ?image__url)
-      BIND(CONCAT("Sample description text for image ", ?image__id) as ?image__description) 
+      BIND(CONCAT("Sample description text for image ", ?image__id) as ?image__description)
     }
   `
 
@@ -159,18 +159,18 @@ export const findsTimelineQuery = `
     # make sure that the selected finds have both 'start_year' and 'end_year'
     #?find :start_year [] .
     #?find :end_year [] .
-    ?find crm:P4_has_time_span/crm:P82a_begin_of_the_begin [] .
-    ?find crm:P4_has_time_span/crm:P82b_end_of_the_end [] .
+    ?find :has_time_span/crm:P82a_begin_of_the_begin [] .
+    ?find :has_time_span/crm:P82b_end_of_the_end [] .
 
     # Combine 'start_year' and 'end_year' into same variable,
     # so that the result mapper creates an array from these.
     #?find :start_year|:end_year ?data__data__timeRange .
 
-    #?find crm:P4_has_time_span/crm:P82a_begin_of_the_begin|crm:P4_has_time_span/crm:P82b_end_of_the_end ?date .
+    #?find :has_time_span/crm:P82a_begin_of_the_begin|:has_time_span/crm:P82b_end_of_the_end ?date .
     #BIND(CONCAT(str(?date), 'T00:00:00+00:00') AS ?date_wth_ending) .
     #BIND(STRDT(STR(?date_wth_ending), xsd:dateTime) AS ?data__data__timeRange)
 
-    ?find crm:P4_has_time_span/crm:P82a_begin_of_the_begin|crm:P4_has_time_span/crm:P82b_end_of_the_end ?date .
+    ?find :has_time_span/crm:P82a_begin_of_the_begin|:has_time_span/crm:P82b_end_of_the_end ?date .
 
     # Ignore missing values in the first hierarchy level
     FILTER (?id != "-")
