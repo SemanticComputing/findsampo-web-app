@@ -11,7 +11,7 @@ import { makeStyles } from '@material-ui/core/styles'
 import MoreIcon from '@material-ui/icons/MoreVert'
 import Button from '@material-ui/core/Button'
 import { Link, NavLink } from 'react-router-dom'
-import TopBarSearchField from '../../main_layout/TopBarSearchField'
+// import TopBarSearchField from '../../main_layout/TopBarSearchField'
 import TopBarInfoButton from '../../main_layout/TopBarInfoButton'
 import TopBarLanguageButton from '../../main_layout/TopBarLanguageButton'
 import Divider from '@material-ui/core/Divider'
@@ -84,7 +84,7 @@ const useStyles = makeStyles((theme) => ({
 const TopBar = props => {
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null)
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl)
-  const { perspectives, currentLocale, availableLocales, rootUrl } = props
+  const { perspectives, currentLocale, availableLocales /* rootUrl */ } = props
   const classes = useStyles()
   const handleMobileMenuOpen = event => setMobileMoreAnchorEl(event.currentTarget)
   const handleMobileMenuClose = () => setMobileMoreAnchorEl(null)
@@ -216,12 +216,12 @@ const TopBar = props => {
             <img className={classes.mainLogo} src={findSampoLogo} />
             <Typography variant='h5'>{intl.get('appTitle.short')}</Typography>
           </Button>
-          <TopBarSearchField
+          {/* <TopBarSearchField
             fetchFullTextResults={props.fetchFullTextResults}
             clearResults={props.clearResults}
             xsScreen={props.xsScreen}
             rootUrl={rootUrl}
-          />
+          /> */}
           <div className={classes.grow} />
           <div className={classes.sectionDesktop}>
             {perspectives.map((perspective, index) => renderDesktopTopMenuItem(perspective, index))}
