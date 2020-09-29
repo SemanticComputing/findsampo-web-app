@@ -1,5 +1,9 @@
 # FindSampo Semantic Portal 
 
+Master branch published at https://dev.xn--lytsampo-n4ac.fi
+
+Currently using a password protected SPARQL endpoint. When running on a local machine, you need to put a `.env` file at the root of this repository and define `SPARQL_ENDPOINT_BASIC_AUTH=...` there.  
+
 Based on [Sampo-UI &ndash; A framework for building semantic portal user interfaces](https://github.com/SemanticComputing/sampo-ui)
 
 The Sampo-UI framework is being developed by the [Semantic Computing Research Group (SeCo)](https://seco.cs.aalto.fi) 
