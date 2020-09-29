@@ -261,14 +261,15 @@ const fetchFacetEpic = (action$, state$) => action$.pipe(
   ofType(FETCH_FACET),
   withLatestFrom(state$),
   mergeMap(([action, state]) => {
-    const { facetClass, facetID } = action
+    const { facetClass, facetID, constrainSelf } = action
     const facets = state[`${facetClass}Facets`].facets
     const facet = facets[facetID]
-    const { sortBy, sortDirection } = facet
+    const { sortBy, sortDirection = false } = facet
     const params = stateToUrl({
-      facets: facets,
-      sortBy: sortBy,
-      sortDirection: sortDirection
+      facets,
+      sortBy,
+      sortDirection,
+      constrainSelf
     })
     const requestUrl = `${apiUrl}/faceted-search/${action.facetClass}/facet/${facetID}`
     return ajax({
@@ -491,7 +492,7 @@ const fetchKnowledgeGraphMetadataEpic = (action$, state$) => action$.pipe(
     }).pipe(
       map(ajaxResponse => updateKnowledgeGraphMetadata({
         resultClass: action.resultClass,
-        data: ajaxResponse.response.data || [],
+        data: ajaxResponse.response.data[0],
         sparqlQuery: ajaxResponse.response.sparqlQuery
       })),
       catchError(error => of({

@@ -574,11 +574,14 @@ const SemanticPortal = props => {
               path={`${rootUrlWithLang}/about`}
               render={() =>
                 <div className={classNames(classes.mainContainer, classes.textPageContainer)}>
-                  <TextPage
-                    fetchKnowledgeGraphMetadata={props.fetchKnowledgeGraphMetadata}
-                    knowledgeGraphMetadata={props.perspective1.knowledgeGraphMetadata}
-                  >
-                    {intl.getHTML('aboutThePortal')}
+                  <TextPage>
+                    {intl.getHTML('aboutThePortalPartOne')}
+                    <KnowledgeGraphMetadataTable
+                      resultClass='perspective1KnowledgeGraphMetadata'
+                      fetchKnowledgeGraphMetadata={props.fetchKnowledgeGraphMetadata}
+                      knowledgeGraphMetadata={props.perspective1.knowledgeGraphMetadata}
+                    />
+                    {intl.getHTML('aboutThePortalPartTwo')}
                   </TextPage>
                 </div>}
             />
