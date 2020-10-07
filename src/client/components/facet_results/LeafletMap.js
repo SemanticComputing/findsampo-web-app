@@ -8,7 +8,7 @@ import buffer from '@turf/buffer'
 import CircularProgress from '@material-ui/core/CircularProgress'
 import { purple } from '@material-ui/core/colors'
 import { MAPBOX_ACCESS_TOKEN, MAPBOX_STYLE } from '../../configs/findsampo/GeneralConfig'
-// import { apiUrl } from '../../epics'
+import { apiUrl } from '../../epics'
 import 'leaflet/dist/leaflet.css' // Official Leaflet styles
 import './LeafletMap.css' // Customizations to Leaflet styles
 
@@ -202,14 +202,14 @@ class LeafletMap extends React.Component {
       Password protected base layers from https://www.maanmittauslaitos.fi/karttakuvapalvelu/tekninen-kuvaus-wmts
       Routed via backend.
     */
-    // const backgroundMapNLS = L.tileLayer(`${apiUrl}/nls-wmts?z={z}&x={x}&y={y}&layerID=taustakartta`, {
-    //   attribution: 'National Land Survey of Finland',
-    //   maxZoom: 18
-    // })
-    // const topographicalMapNLS = L.tileLayer(`${apiUrl}/nls-wmts?z={z}&x={x}&y={y}&layerID=maastokartta`, {
-    //   attribution: 'National Land Survey of Finland',
-    //   maxZoom: 18
-    // })
+    const backgroundMapNLS = L.tileLayer(`${apiUrl}/nls-wmts?z={z}&x={x}&y={y}&layerID=taustakartta`, {
+      attribution: 'National Land Survey of Finland',
+      maxZoom: 18
+    })
+    const topographicalMapNLS = L.tileLayer(`${apiUrl}/nls-wmts?z={z}&x={x}&y={y}&layerID=maastokartta`, {
+      attribution: 'National Land Survey of Finland',
+      maxZoom: 18
+    })
     // const googleRoadmap = L.gridLayer.googleMutant({
     //   type: 'roadmap'
     // })
@@ -234,9 +234,9 @@ class LeafletMap extends React.Component {
     // initialize layers from external sources
     if (this.props.showExternalLayers) {
       const basemaps = {
-        [intl.get(`leafletMap.basemaps.mapbox.${MAPBOX_STYLE}`)]: mapboxBaseLayer
-        // [intl.get('leafletMap.basemaps.backgroundMapNLS')]: backgroundMapNLS,
-        // [intl.get('leafletMap.basemaps.topographicalMapNLS')]: topographicalMapNLS
+        [intl.get(`leafletMap.basemaps.mapbox.${MAPBOX_STYLE}`)]: mapboxBaseLayer,
+        [intl.get('leafletMap.basemaps.backgroundMapNLS')]: backgroundMapNLS,
+        [intl.get('leafletMap.basemaps.topographicalMapNLS')]: topographicalMapNLS
         // [intl.get('leafletMap.basemaps.googleRoadmap')]: googleRoadmap,
       }
       this.initOverLays(basemaps)
