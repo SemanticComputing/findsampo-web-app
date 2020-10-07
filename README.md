@@ -2,8 +2,6 @@
 
 Master branch published at https://dev.xn--lytsampo-n4ac.fi
 
-Currently using a password protected SPARQL endpoint. When running on a local machine, you need to put a `.env` file at the root of this repository and define `SPARQL_ENDPOINT_BASIC_AUTH=...` there.  
-
 Based on [Sampo-UI &ndash; A framework for building semantic portal user interfaces](https://github.com/SemanticComputing/sampo-ui)
 
 The Sampo-UI framework is being developed by the [Semantic Computing Research Group (SeCo)](https://seco.cs.aalto.fi) 
@@ -17,6 +15,8 @@ more information.
 * [Nodemon &ndash; monitor for any changes in your source and automatically restart your server](https://nodemon.io/)
 
 Note for Linux users: if your home directory is mounted from a network drive, using the [Node Version Manager](https://github.com/nvm-sh/nvm) for installing Node.js highly recommended. 
+
+Currently using a password protected SPARQL endpoint. When running on a local machine, you need to put a `.env` file at the root of this repository and define `SPARQL_ENDPOINT_BASIC_AUTH=...` there. 
 
 ## Installation
 
