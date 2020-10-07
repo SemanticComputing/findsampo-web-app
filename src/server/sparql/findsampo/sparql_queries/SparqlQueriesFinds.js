@@ -136,6 +136,14 @@ export const findsPlacesQuery = `
         wgs84:long ?long .
   }
 `
+export const nearbyFindsQuery = `
+  SELECT ?id ?lat ?long
+  WHERE {
+    ?id spatial:nearby (64.791 29.249 50 'km') . # Vuokkijärvi, Suomussalmi
+    ?id wgs84:lat ?lat ;
+        wgs84:long ?long .
+  }
+`
 
 export const findsTimelineQuery = `
   SELECT ?id ?group ?data__id ?data__uri ?data__label

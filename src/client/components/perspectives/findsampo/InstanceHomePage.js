@@ -7,10 +7,11 @@ import CircularProgress from '@material-ui/core/CircularProgress'
 import purple from '@material-ui/core/colors/purple'
 import PerspectiveTabs from '../../main_layout/PerspectiveTabs'
 import InstanceHomePageTable from '../../main_layout/InstanceHomePageTable'
-import Network from '../../facet_results/Network'
+// import Network from '../../facet_results/Network'
 // import LeafletMap from '../../facet_results/LeafletMap'
 import Export from '../../facet_results/Export'
-import { coseLayout, cytoscapeStyle } from '../../../configs/sampo/Cytoscape.js/NetworkConfig'
+import Recommendations from './Recommendations'
+// import { coseLayout, cytoscapeStyle } from '../../../configs/sampo/Cytoscape.js/NetworkConfig'
 import { Route, Redirect } from 'react-router-dom'
 import { has } from 'lodash'
 
@@ -35,7 +36,7 @@ const styles = () => ({
 
 /**
  * A component for generating a landing page for a single entity.
- *  * Customized for FindSampo data
+ * Customized for FindSampo.
  */
 class InstanceHomePage extends React.Component {
   constructor (props) {
@@ -45,15 +46,18 @@ class InstanceHomePage extends React.Component {
     }
   }
 
-  componentDidMount = () => this.fetchData()
+  componentDidMount = () => this.fetchTableData()
 
   componentDidUpdate = prevProps => {
-    if (prevProps.routeProps.location !== this.props.routeProps.location) {
-      this.fetchData()
+    // handle the case when the TABLE tab was not originally active
+    const prevPathname = prevProps.routeProps.location.pathname
+    const currentPathname = this.props.routeProps.location.pathname
+    if (prevPathname !== currentPathname && currentPathname.endsWith('table')) {
+      this.fetchTableData()
     }
   }
 
-  fetchData = () => {
+  fetchTableData = () => {
     let uri = ''
     const base = 'http://ldf.fi/findsampo/finds'
     const locationArr = this.props.routeProps.location.pathname.split('/')
@@ -91,7 +95,7 @@ class InstanceHomePage extends React.Component {
 
   render = () => {
     const { classes, tableData, isLoading, resultClass, rootUrl } = this.props
-    const hasData = tableData !== null && Object.values(tableData).length >= 1
+    const hasTableData = tableData !== null && Object.values(tableData).length >= 1
     return (
       <div className={classes.root}>
         <PerspectiveTabs
@@ -104,13 +108,13 @@ class InstanceHomePage extends React.Component {
             <div className={classes.spinnerContainer}>
               <CircularProgress style={{ color: purple[500] }} thickness={5} />
             </div>}
-          {!hasData &&
+          {!hasTableData &&
             <>
               <Typography variant='h6'>
                 No data found for id: <span style={{ fontStyle: 'italic' }}>{this.state.localID}</span>
               </Typography>
             </>}
-          {hasData &&
+          {hasTableData &&
             <>
               <Route
                 exact path={`${rootUrl}/${resultClass}/page/${this.state.localID}`}
@@ -126,38 +130,6 @@ class InstanceHomePage extends React.Component {
                   />}
               />
               <Route
-                path={`${rootUrl}/${resultClass}/page/${this.state.localID}/network`}
-                render={() =>
-                  <Network
-                    pageType='instancePage'
-                    results={this.props.results}
-                    resultUpdateID={this.props.resultUpdateID}
-                    fetchResults={this.props.fetchResults}
-                    resultClass='manuscriptInstancePageNetwork'
-                    uri={tableData.id}
-                    limit={200}
-                    optimize={1.2}
-                    style={cytoscapeStyle}
-                    layout={coseLayout}
-                  />}
-              />
-              <Route
-                path={`${rootUrl}/${resultClass}/page/${this.state.localID}/emloLetterNetwork`}
-                render={() =>
-                  <Network
-                    pageType='instancePage'
-                    results={this.props.results}
-                    resultUpdateID={this.props.resultUpdateID}
-                    fetchResults={this.props.fetchResults}
-                    resultClass='emloLetterNetwork'
-                    uri={tableData.id}
-                    limit={100}
-                    optimize={5.0}
-                    style={cytoscapeStyle}
-                    layout={coseLayout}
-                  />}
-              />
-              {/* <Route
                 path={`${rootUrl}/${resultClass}/page/${this.state.localID}/recommendations`}
                 render={() =>
                   <Recommendations
@@ -176,7 +148,7 @@ class InstanceHomePage extends React.Component {
                     fetchByURI={this.props.fetchByURI}
                     showError={this.props.showError}
                   />}
-              /> */}
+              />
               <Route
                 path={`${rootUrl}/${resultClass}/page/${this.state.localID}/export`}
                 render={() =>

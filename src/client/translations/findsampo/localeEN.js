@@ -49,7 +49,8 @@ export default {
     network: 'network',
     export: 'export',
     'by-period': 'by period',
-    timeline: 'timeline'
+    timeline: 'timeline',
+    recommendations: 'recommendations'
   },
   table: {
     rowsPerPage: 'Rows per page',

@@ -2,12 +2,13 @@ import { findsPerspectiveConfig } from './perspective_configs/FindsPerspectiveCo
 import {
   findPropertiesInstancePage,
   findsPlacesQuery,
-  findsTimelineQuery
+  findsTimelineQuery,
+  nearbyFindsQuery
 } from './sparql_queries/SparqlQueriesFinds'
 import { fullTextSearchProperties } from './sparql_queries/SparqlQueriesFullText'
 import { makeObjectList } from '../SparqlObjectMapper'
 import {
-  mapPlaces,
+  mapPlaces
   // mapTimelineData
 } from '../Mappers'
 
@@ -28,6 +29,15 @@ export const backendSearchConfig = {
     q: findsTimelineQuery,
     filterTarget: 'find',
     resultMapper: makeObjectList
+  },
+  nearbyFinds: {
+    perspectiveID: 'finds', // use endpoint config from finds
+    q: nearbyFindsQuery,
+    resultMapper: mapPlaces,
+    instance: {
+      properties: findPropertiesInstancePage,
+      relatedInstances: ''
+    }
   },
   jenaText: {
     perspectiveID: 'finds',
