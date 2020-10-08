@@ -36,7 +36,7 @@ const Recommendations = props => {
       <Grid container spacing={3}>
         <Grid item xs={12}>
           <Paper elevation={3} className={classes.gridItem}>
-            <Typography className={classes.title} variant='h4'>Nearby finds</Typography>
+            <Typography className={classes.title} variant='h4'>Nearby finds (static example)</Typography>
             <div className={classes.content}>
               <LeafletMap
                 center={[64.921472, 26.809735]}
