@@ -8,7 +8,6 @@ import buffer from '@turf/buffer'
 import CircularProgress from '@material-ui/core/CircularProgress'
 import { purple } from '@material-ui/core/colors'
 import { MAPBOX_ACCESS_TOKEN, MAPBOX_STYLE } from '../../configs/findsampo/GeneralConfig'
-import { apiUrl } from '../../epics'
 import 'leaflet/dist/leaflet.css' // Official Leaflet styles
 import './LeafletMap.css' // Customizations to Leaflet styles
 
@@ -202,11 +201,11 @@ class LeafletMap extends React.Component {
       Password protected base layers from https://www.maanmittauslaitos.fi/karttakuvapalvelu/tekninen-kuvaus-wmts
       Routed via backend.
     */
-    const backgroundMapNLS = L.tileLayer(`${apiUrl}/nls-wmts?z={z}&x={x}&y={y}&layerID=taustakartta`, {
+    const backgroundMapNLS = L.tileLayer(`${process.env.API_URL}/nls-wmts?z={z}&x={x}&y={y}&layerID=taustakartta`, {
       attribution: 'National Land Survey of Finland',
       maxZoom: 18
     })
-    const topographicalMapNLS = L.tileLayer(`${apiUrl}/nls-wmts?z={z}&x={x}&y={y}&layerID=maastokartta`, {
+    const topographicalMapNLS = L.tileLayer(`${process.env.API_URL}/nls-wmts?z={z}&x={x}&y={y}&layerID=maastokartta`, {
       attribution: 'National Land Survey of Finland',
       maxZoom: 18
     })
