@@ -49,8 +49,7 @@ class Timeline extends React.Component {
 
   renderTimeline = () => {
     const modifiedData = this.preprocess(this.props.data)
-    const width = 1200
-    // .timeFormat('%Y').onSegmentClick(cd => history.push(this.data(`/finds/page/${cd.}`)))
+    const width = this.timelinesChartRef.current.clientWidth // sets the timeline chart's width to the width of the perent component.
     this.timelinesChart
       .data(modifiedData)
       .width(width)
@@ -61,6 +60,7 @@ class Timeline extends React.Component {
         return history.push(`/finds/page/${cd.data.id}`)
       })
     this.timelinesChartRendered = true
+    console.log('current width', this.timelinesChartRef.current.clientWidth)
   }
 
   updateTimeline = () => {
