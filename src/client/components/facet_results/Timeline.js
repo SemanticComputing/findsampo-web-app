@@ -101,9 +101,10 @@ class Timeline extends React.Component {
       rootStyle = {
         height: 'calc(100% - 136px)',
         width: 'calc(100% - 64px)',
-        padding: 32,
+        padding: 16,
         backgroundColor: '#fff',
-        borderTop: '1px solid rgba(224, 224, 224, 1)'
+        borderTop: '1px solid rgba(224, 224, 224, 1)',
+        overflow: 'auto'
       }
     }
     const spinnerContainerStyle = {
