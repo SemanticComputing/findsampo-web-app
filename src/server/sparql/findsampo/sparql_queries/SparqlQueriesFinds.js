@@ -14,6 +14,11 @@ export const findPropertiesInstancePage =
     }
     UNION
     {
+      ?id :object_type ?objectType__id .
+      ?objectType__id skos:prefLabel ?objectType__prefLabel .
+    }
+    UNION
+    {
       ?id :sub_category ?subCategory .
     }
     UNION
@@ -37,6 +42,21 @@ export const findPropertiesInstancePage =
     {
       ?id :municipality ?municipality__id .
       ?municipality__id skos:prefLabel ?municipality__prefLabel .
+    }
+    UNION
+    {
+      ?id :province ?province__id .
+      ?province__id skos:prefLabel ?province__prefLabel .
+    }
+    UNION
+    {
+      ?id :has_time_span/crm:P82a_begin_of_the_begin ?earliestStart .
+      BIND (YEAR(?earliestStart) as ?earliestStartYear) .
+    }
+    UNION
+    {
+      ?id :has_time_span/crm:P82b_end_of_the_end ?latestEnd .
+      BIND (YEAR(?latestEnd) as ?latestEndYear) .
     }
     UNION
     {

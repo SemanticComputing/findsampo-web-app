@@ -51,34 +51,61 @@ export const INITIAL_STATE = {
       minWidth: 180
     },
     {
-      id: 'specification',
-      valueType: 'string',
-      makeLink: true,
-      externalLink: false,
-      sortValues: true,
-      numberedList: false,
-      minWidth: 180
-    },
-    {
-      id: 'type',
-      valueType: 'string',
+      id: 'objectType',
+      valueType: 'object',
       makeLink: false,
       externalLink: false,
       sortValues: true,
       numberedList: false,
       minWidth: 180
     },
-    {
-      id: 'subCategory',
-      valueType: 'string',
-      makeLink: false,
-      externalLink: false,
-      sortValues: true,
-      numberedList: false,
-      minWidth: 180
-    },
+    // {
+    //   id: 'specification',
+    //   valueType: 'string',
+    //   makeLink: true,
+    //   externalLink: false,
+    //   sortValues: true,
+    //   numberedList: false,
+    //   minWidth: 180
+    // },
+    // {
+    //   id: 'type',
+    //   valueType: 'string',
+    //   makeLink: false,
+    //   externalLink: false,
+    //   sortValues: true,
+    //   numberedList: false,
+    //   minWidth: 180
+    // },
+    // {
+    //   id: 'subCategory',
+    //   valueType: 'string',
+    //   makeLink: false,
+    //   externalLink: false,
+    //   sortValues: true,
+    //   numberedList: false,
+    //   minWidth: 180
+    // },
     {
       id: 'material',
+      valueType: 'object',
+      makeLink: false,
+      externalLink: false,
+      sortValues: true,
+      numberedList: false,
+      minWidth: 180
+    },
+    {
+      id: 'province',
+      valueType: 'object',
+      makeLink: false,
+      externalLink: false,
+      sortValues: true,
+      numberedList: false,
+      minWidth: 180
+    },
+    {
+      id: 'municipality',
       valueType: 'object',
       makeLink: false,
       externalLink: false,

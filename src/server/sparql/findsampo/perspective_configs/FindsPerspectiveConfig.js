@@ -78,14 +78,6 @@ export const findsPerspectiveConfig = {
       literal: true
     },
     period: {
-      id: 'period',
-      facetValueFilter: '',
-      predicate: ':period',
-      labelPath: ':period',
-      type: 'list',
-      literal: true
-    },
-    periodObject: {
       id: 'periodObject',
       facetValueFilter: '',
       predicate: ':earliest_period|:latest_period',
@@ -120,6 +112,16 @@ export const findsPerspectiveConfig = {
       parentPredicate: ':object_type/skos:broader+',
       parentProperty: 'skos:broader'
     },
+    // objectType: {
+    //   id: 'objectType',
+    //   facetValueFilter: '?id a skos:Concept',
+    //   predicate: ':object_type/skos:exactMatch',
+    //   labelPath: ':object_type/skos:exactMatch/skos:prefLabel',
+    //   type: 'hierarchical',
+    //   parentPredicate: ':object_type/skos:exactMatch/:broader_type+',
+    //   parentProperty: ':broader_type',
+    //   facetLabelFilter: 'FILTER(LANG(?prefLabel_) = \'fi\')',
+    // },
     // creationTimespan: {
     //   id: 'creationTimespan',
     //   facetValueFilter: '',

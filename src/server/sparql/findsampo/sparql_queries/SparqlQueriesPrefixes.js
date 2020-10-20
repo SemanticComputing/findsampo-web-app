@@ -18,6 +18,4 @@ export const prefixes = `
   PREFIX text: <http://jena.apache.org/text#>
   PREFIX : <http://ldf.fi/schema/findsampo/>
 
-
-  
 `

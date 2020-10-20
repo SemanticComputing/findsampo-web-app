@@ -261,7 +261,7 @@ export default {
         },
         period: {
           label: 'Period',
-          description: 'Period'
+          description: 'Ontologized period. May include both earliest and lates periods.'
         },
         periodObject: {
           label: 'Period ontologized',
@@ -277,6 +277,12 @@ export default {
           label: 'End year',
           description: `
             End year.
+          `
+        },
+        province: {
+          label: 'Province',
+          description: `
+            Province.
           `
         },
         municipality: {
