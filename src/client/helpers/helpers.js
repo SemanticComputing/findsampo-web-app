@@ -141,3 +141,13 @@ export const updateLocaleToPathname = ({ pathname, locale, replaceOld }) => {
 export const objectToQueryParams = data => {
   return Object.keys(data).map(key => `${key}=${encodeURIComponent(data[key])}`).join('&')
 }
+
+// source: https://dev.to/monaye/refactor-davidwalsh-s-debounce-function-5afc
+export const debounce = (func, delay) => {
+  let timerId
+  return (...args) => {
+    const boundFunc = func.bind(this, ...args)
+    clearTimeout(timerId)
+    timerId = setTimeout(boundFunc, delay)
+  }
+}

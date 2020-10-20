@@ -60,3 +60,7 @@ a, a:visited, a:hover, a:active {
 .apexcharts-custom-tooltip {
     padding: 8px
 } 
+
+.chart-tooltip.line-tooltip {
+    display: none;
+}
