@@ -1,10 +1,11 @@
-import React, { ReactDOM } from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
 import TimelinesChart from 'timelines-chart'
 import purple from '@material-ui/core/colors/purple'
 import CircularProgress from '@material-ui/core/CircularProgress'
 import { has } from 'lodash'
 import history from '../../History'
+import { debounce } from '../../helpers/helpers'
 // import getRandomData from './TimelineTestData'
 
 /**
@@ -36,7 +37,7 @@ class Timeline extends React.Component {
      *  After that, only update the existing timeline.
      */
     if (prevProps.dataUpdateID !== this.props.dataUpdateID) {
-      this.timelinesChartRendered ? this.updateTimeline() : this.renderTimeline()
+      this.timelinesChartRendered ? this.updateTimelineData() : this.renderTimeline()
     }
     // Fetch data again if the facets have been updated
     if (this.props.pageType === 'facetResults' && prevProps.facetUpdateID !== this.props.facetUpdateID) {
@@ -49,31 +50,33 @@ class Timeline extends React.Component {
 
   renderTimeline = () => {
     const modifiedData = this.preprocess(this.props.data)
-    const width = this.timelinesChartRef.current.clientWidth // sets the timeline chart's width to the width of the perent component.
+    // Set the timeline chart's width to the width of the parent component.
+    const width = this.timelinesChartRef.current.clientWidth
+    /* Update timeline width every time browser window is resized. Use debounce
+       function to reduce function calls when the user is resizing. */
+    window.addEventListener('resize', debounce(this.updateTimelineWidth, 500))
+    // Pass settings and data to the Timelines Chart library only once.
     this.timelinesChart
       .data(modifiedData)
       .width(width)
       .useUtc(true)
       .timeFormat('%Y')
       .zQualitative(true)(this.timelinesChartRef.current)
-      .onSegmentClick(cd => {
-        return history.push(`/finds/page/${cd.data.id}`)
-      })
+      .onSegmentClick(cd => history.push(`/finds/page/${cd.data.id}`))
     this.timelinesChartRendered = true
-    console.log('current width', this.timelinesChartRef.current.clientWidth)
   }
 
-  updateTimeline = () => {
+  updateTimelineData = () => {
     const modifiedData = this.preprocess(this.props.data)
-    // console.log(modifiedData)
+    /* Only update the timeline data. All other timeline settings are preserved
+       from the first time the timeline was rendered. */
     this.timelinesChart
       .data(modifiedData)
-      .zQualitative(true)
       .refresh()
-      .onSegmentClick(cd => {
-        return history.push(`/finds/page/${cd.data.id}`)
-      })
   }
+
+  updateTimelineWidth = () =>
+    this.timelinesChart.width(this.timelinesChartRef.current.clientWidth)
 
   preprocess = data => {
     /**
@@ -98,10 +101,11 @@ class Timeline extends React.Component {
       height: '100%'
     }
     if (pageType === 'facetResults') {
+      const padding = 16
       rootStyle = {
         height: 'calc(100% - 136px)',
-        width: 'calc(100% - 64px)',
-        padding: 16,
+        width: `calc(100% - ${2 * padding}px)`,
+        padding,
         backgroundColor: '#fff',
         borderTop: '1px solid rgba(224, 224, 224, 1)',
         overflow: 'auto'
