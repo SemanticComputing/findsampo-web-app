@@ -102,8 +102,9 @@ class Timeline extends React.Component {
     }
     if (pageType === 'facetResults') {
       const padding = 16
+      const heightOffset = 72 + 2 * padding
       rootStyle = {
-        height: 'calc(100% - 136px)',
+        height: `calc(100% - ${heightOffset}px)`,
         width: `calc(100% - ${2 * padding}px)`,
         padding,
         backgroundColor: '#fff',
