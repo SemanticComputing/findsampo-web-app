@@ -189,6 +189,27 @@ export const INITIAL_STATE = {
       type: 'hierarchical',
       priority: 6
     },
+    dateTimespan: {
+      id: 'dateTimespan',
+      // predicate: defined in backend
+      distinctValueCount: 0,
+      values: [],
+      flatValues: [],
+      sortBy: null,
+      sortDirection: null,
+      sortButton: false,
+      spatialFilterButton: false,
+      lineChartButton: false,
+      isFetching: false,
+      searchField: false,
+      containerClass: 'four',
+      filterType: 'timespanFilter',
+      min: null,
+      max: null,
+      timespanFilter: null,
+      type: 'timespan',
+      priority: 8
+    },
     place: {
       id: 'place',
       // predicate: defined in backend
@@ -207,7 +228,7 @@ export const INITIAL_STATE = {
       uriFilter: null,
       type: 'hierarchical',
       priority: 6
-    },
+    }
   }
 }
 

@@ -7,7 +7,7 @@ import { prefixes } from '../sparql_queries/SparqlQueriesPrefixes'
 export const findsPerspectiveConfig = {
   endpoint: {
     url: 'https://ldf.fi/sualt-fha-finds/sparql',
-    //url: 'http://localhost:3039/ds/sparql',
+    // url: 'http://localhost:3039/ds/sparql',
     prefixes,
     useAuth: true
   },
@@ -58,7 +58,7 @@ export const findsPerspectiveConfig = {
       predicate: ':object_type',
       labelPath: ':object_type/skos:prefLabel',
       type: 'list',
-      facetLabelFilter: 'FILTER(LANG(?prefLabel_) = \'fi\')',
+      facetLabelFilter: 'FILTER(LANG(?prefLabel_) = \'fi\')'
     },
     material: {
       id: 'material',
@@ -86,12 +86,22 @@ export const findsPerspectiveConfig = {
       parentPredicate: ':earliest_perio/skos:broader+|:latest_period/skos:broader+',
       parentProperty: 'skos:broader'
     },
+    dateTimespan: {
+      id: 'dateTimespan',
+      facetValueFilter: '',
+      sortByAscPredicate: ':has_time_span/crm:P82a_begin_of_the_begin',
+      sortByDescPredicate: ':has_time_span/crm:P82b_end_of_the_end',
+      predicate: ':has_time_span',
+      startProperty: 'crm:P82a_begin_of_the_begin',
+      endProperty: 'crm:P82b_end_of_the_end',
+      type: 'timespan'
+    },
     municipality: {
       id: 'municipality',
       facetValueFilter: '',
       predicate: ':municipality',
       labelPath: ':municipality/skos:prefLabel',
-      type: 'list',
+      type: 'list'
     },
     place: {
       id: 'place',
@@ -101,7 +111,7 @@ export const findsPerspectiveConfig = {
       type: 'hierarchical',
       parentPredicate: ':municipality/skos:related/skos:broader+',
       parentProperty: 'skos:broader',
-      facetLabelFilter: 'FILTER(LANG(?prefLabel_) = \'fi\')',
+      facetLabelFilter: 'FILTER(LANG(?prefLabel_) = \'fi\')'
     },
     objectType: {
       id: 'objectType',
@@ -111,7 +121,7 @@ export const findsPerspectiveConfig = {
       type: 'hierarchical',
       parentPredicate: ':object_type/skos:broader+',
       parentProperty: 'skos:broader'
-    },
+    }
     // objectType: {
     //   id: 'objectType',
     //   facetValueFilter: '?id a skos:Concept',
