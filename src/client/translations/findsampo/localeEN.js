@@ -156,24 +156,17 @@ export default {
       shortDescription: 'Data provided by the Finnish Heritage Agency',
       longDescription: `
         <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
-          Use this perspective to access data related to physical manuscript objects.
-          If two or more source datasets include the same manuscript and
-          this has been verified, the information from the source datasets has been merged
-          into one manuscript. See <a href="/instructions">instructions</a> for using the
-          filters. The result view can be selected using the tabs:
+          Use this perspective to access data related to...
         </p>
         <ul class="MuiTypography-root MuiTypography-body1">
           <li>
-            <strong>TABLE</STRONG> view includes all manuscripts in
-            the MMM data. One table row is equivalent to one manuscript.
+            <strong>TABLE</STRONG> view includes ...
           </li>
           <li>
-            <strong>PRODUCTION PLACES</STRONG> view visualizes the connection
-            between manuscripts and the places where they were produced.
+            <strong>PRODUCTION PLACES</STRONG> view visualizes the ...
           </li>
           <li>
-            <strong>MIGRATIONS</strong> view visualizes the migration of a
-            manuscript from place of production to its most recently observed location.
+            <strong>MIGRATIONS</strong> view visualizes the ....
           </li>
           <li>
             <strong>EXPORT</strong> the SPARQL query used to generate the result

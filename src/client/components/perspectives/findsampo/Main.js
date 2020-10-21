@@ -154,7 +154,7 @@ const Main = props => {
         </div> */}
         <Grid
           container spacing={screenSize === 'sm' ? 2 : 1}
-          justify={screenSize === 'xs' || screenSize === 'sm' ? 'center' : 'flex-start'}
+          justify='center'
         >
           {perspectives.map(perspective =>
             <MainCard
