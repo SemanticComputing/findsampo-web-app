@@ -40,6 +40,11 @@ export default {
     sortByNumberOfSearchResults: 'Sort by number of search results',
     useDisjunction: 'Use logical OR between selections',
     useConjuction: 'Use logical AND between selections',
+    minYear: 'Min year',
+    maxYear: 'Max year',
+    min: 'Min',
+    max: 'Max',
+    applyFacetSelection: 'apply',
     pieChart: {
       tooltip: 'Pie chart'
     },
@@ -81,6 +86,24 @@ export default {
   },
   exportToYasgui: 'open the result table query in yasgui sparql editor',
   openInLinkedDataBrowser: 'open in linked data browser',
+  resultsAsCSV: 'download the search results as a CSV table',
+  facets: {
+    dateFacet: {
+      invalidDate: 'Epäkelpo päivämäärä.',
+      toBeforeFrom: 'Alkupäivämäärän täytyy olla ennen loppupäivämäärää.',
+      minDate: 'Aikaisin sallittu päivämäärä on {minDate}',
+      maxDate: 'Myöhäisin sallittu päivämäärä on {maxDate}',
+      cancel: 'Peruuta',
+      fromLabel: 'Alku',
+      toLabel: 'Loppu'
+    },
+    textFacet: {
+      inputLabel: 'Etsi nimellä'
+    },
+    sliderFacet: {
+      invalidStartOrEnd: 'Min value must be smaller than max value. The smallest value can be {min} and the largest value can be {max}.'
+    }
+  },
   leafletMap: {
     findPopUpHeading: 'Archaeological find',
     basemaps: {
@@ -131,6 +154,19 @@ export default {
       </p>
     `
   },
+  deckGlMap: {
+    arcColouring: 'Arc colouring:',
+    showMoreInformation: 'Click to show more information.',
+    manuscriptMigrations: {
+      legendTitle: 'Arc colouring',
+      legendFrom: 'Manuscript production place',
+      legendTo: 'Last known location',
+      from: 'Production place:',
+      to: 'Last known location:',
+      listHeadingSingleInstance: 'Manuscript:',
+      listHeadingMultipleInstances: 'Manuscripts:'
+    }
+  },
   perspectives: {
     finds: {
       label: 'Archaeological finds',
@@ -138,24 +174,17 @@ export default {
       shortDescription: 'Data provided by the Finnish Heritage Agency',
       longDescription: `
         <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
-          Use this perspective to access data related to physical manuscript objects.
-          If two or more source datasets include the same manuscript and
-          this has been verified, the information from the source datasets has been merged
-          into one manuscript. See <a href="/instructions">instructions</a> for using the
-          filters. The result view can be selected using the tabs:
+          Use this perspective to access data related to...
         </p>
         <ul class="MuiTypography-root MuiTypography-body1">
           <li>
-            <strong>TABLE</STRONG> view includes all manuscripts in
-            the MMM data. One table row is equivalent to one manuscript.
+            <strong>TABLE</STRONG> view includes ...
           </li>
           <li>
-            <strong>PRODUCTION PLACES</STRONG> view visualizes the connection
-            between manuscripts and the places where they were produced.
+            <strong>PRODUCTION PLACES</STRONG> view visualizes the ...
           </li>
           <li>
-            <strong>MIGRATIONS</strong> view visualizes the migration of a
-            manuscript from place of production to its most recently observed location.
+            <strong>MIGRATIONS</strong> view visualizes the ....
           </li>
           <li>
             <strong>EXPORT</strong> the SPARQL query used to generate the result
@@ -266,6 +295,12 @@ export default {
         periodObject: {
           label: 'Period ontologized',
           description: 'Ontologized period. May include both earliest and lates periods.'
+        },
+        dateTimespan: {
+          label: 'Date',
+          description: `
+            Date.
+          `
         },
         startYear: {
           label: 'Start year',
