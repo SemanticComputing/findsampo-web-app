@@ -86,6 +86,24 @@ export default {
   },
   exportToYasgui: 'open the result table query in yasgui sparql editor',
   openInLinkedDataBrowser: 'open in linked data browser',
+  resultsAsCSV: 'download the search results as a CSV table',
+  facets: {
+    dateFacet: {
+      invalidDate: 'Epäkelpo päivämäärä.',
+      toBeforeFrom: 'Alkupäivämäärän täytyy olla ennen loppupäivämäärää.',
+      minDate: 'Aikaisin sallittu päivämäärä on {minDate}',
+      maxDate: 'Myöhäisin sallittu päivämäärä on {maxDate}',
+      cancel: 'Peruuta',
+      fromLabel: 'Alku',
+      toLabel: 'Loppu'
+    },
+    textFacet: {
+      inputLabel: 'Etsi nimellä'
+    },
+    sliderFacet: {
+      invalidStartOrEnd: 'Min value must be smaller than max value. The smallest value can be {min} and the largest value can be {max}.'
+    }
+  },
   leafletMap: {
     findPopUpHeading: 'Archaeological find',
     basemaps: {
