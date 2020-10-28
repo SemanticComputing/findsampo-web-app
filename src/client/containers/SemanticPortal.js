@@ -28,6 +28,7 @@ import FacetedSearchPerspective from '../components/perspectives/findsampo/Facet
 import InstanceHomePage from '../components/perspectives/findsampo/InstanceHomePage'
 import FullTextSearch from '../components/perspectives/sampo/FullTextSearch'
 import Footer from '../components/perspectives/findsampo/Footer'
+import KnowledgeGraphMetadataTable from '../components/perspectives/findsampo/KnowledgeGraphMetadataTable'
 import { perspectiveConfig } from '../configs/findsampo/PerspectiveConfig'
 import { perspectiveConfigOnlyInfoPages } from '../configs/findsampo/PerspectiveConfigOnlyInfoPages'
 import { rootUrl } from '../configs/findsampo/GeneralConfig'
@@ -578,9 +579,9 @@ const SemanticPortal = props => {
                   <TextPage>
                     {intl.getHTML('aboutThePortalPartOne')}
                     <KnowledgeGraphMetadataTable
-                      resultClass='perspective1KnowledgeGraphMetadata'
+                      resultClass='findsKnowledgeGraphMetadata'
                       fetchKnowledgeGraphMetadata={props.fetchKnowledgeGraphMetadata}
-                      knowledgeGraphMetadata={props.perspective1.knowledgeGraphMetadata}
+                      knowledgeGraphMetadata={props.finds.knowledgeGraphMetadata}
                     />
                     {intl.getHTML('aboutThePortalPartTwo')}
                   </TextPage>
