@@ -172,7 +172,7 @@ export const findsTimelineQuery = `
 
     <FILTER> # a placeholder for facet filters
 
-    ?find :material/skos:prefLabel ?id  . # ?id = first hierarchy level
+    ?find :province/skos:prefLabel ?id  . # ?id = first hierarchy level
     BIND (?id as ?group)
     #?find :find_name ?data__id . # ?data__id = second hierarchy level
 
