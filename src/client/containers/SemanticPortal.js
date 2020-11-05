@@ -44,6 +44,7 @@ import {
   fetchFacet,
   fetchFacetConstrainSelf,
   clearFacet,
+  clearAllFacets,
   fetchGeoJSONLayers,
   fetchGeoJSONLayersBackend,
   clearGeoJSONLayers,
@@ -363,6 +364,7 @@ const SemanticPortal = props => {
                                   fetchFacetConstrainSelf={props.fetchFacetConstrainSelf}
                                   fetchResults={props.fetchResults}
                                   clearFacet={props.clearFacet}
+                                  clearAllFacets={props.clearAllFacets}
                                   fetchResultCount={props.fetchResultCount}
                                   updateFacetOption={props.updateFacetOption}
                                   showError={props.showError}
@@ -628,6 +630,7 @@ const mapDispatchToProps = ({
   fetchFacet,
   fetchFacetConstrainSelf,
   clearFacet,
+  clearAllFacets,
   fetchGeoJSONLayers,
   fetchGeoJSONLayersBackend,
   clearGeoJSONLayers,
