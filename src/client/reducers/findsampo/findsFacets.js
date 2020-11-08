@@ -23,8 +23,8 @@ export const INITIAL_STATE = {
       uriFilter: null,
       priority: 1
     },
-    objectType: {
-      id: 'objectType',
+    objectTypeFHAFacet: {
+      id: 'objectTypeFHAFacet',
       // predicate: defined in backend
       distinctValueCount: 0,
       values: [],
@@ -42,6 +42,43 @@ export const INITIAL_STATE = {
       type: 'hierarchical',
       priority: 6
     },
+    objectTypeFlat: {
+      id: 'objectTypeFlat',
+      // predicate: defined in backend
+      distinctValueCount: 0,
+      values: [],
+      flatValues: [],
+      sortBy: 'alphapetical',
+      sortDirection: 'desc',
+      sortButton: true,
+      spatialFilterButton: false,
+      pieChartButton: false,
+      isFetching: false,
+      searchField: true,
+      containerClass: 'ten',
+      filterType: 'uriFilter',
+      uriFilter: null,
+      priority: 6
+    },
+    // objectTypeMAO: {
+    //   id: 'objectTypeMAO',
+    //   // predicate: defined in backend
+    //   distinctValueCount: 0,
+    //   values: [],
+    //   flatValues: [],
+    //   sortBy: 'instanceCount',
+    //   sortDirection: 'desc',
+    //   sortButton: false,
+    //   spatialFilterButton: false,
+    //   pieChartButton: false,
+    //   isFetching: false,
+    //   searchField: true,
+    //   containerClass: 'ten',
+    //   filterType: 'uriFilter',
+    //   uriFilter: null,
+    //   type: 'hierarchical',
+    //   priority: 7
+    // },
     // specification: {
     //   id: 'specification',
     //   // predicate: defined in backend

@@ -258,6 +258,24 @@ export default {
             Object type.
           `
         },
+        objectType: {
+          label: 'Object type',
+          description: `
+            Object type.
+          `
+        },
+        objectTypeFHAFacet: {
+          label: 'Object type with FHA hierarchy (Unknown = missing from FHA hierarchy)',
+          description: `
+            Object type.
+          `
+        },
+        objectTypeFlat: {
+          label: 'Object type MAO term (no hierarchy)',
+          description: `
+            Object type without hierarchy using MAO term.
+          `
+        },
         place: {
           label: 'Place',
           description: `
