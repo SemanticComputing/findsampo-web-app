@@ -172,7 +172,7 @@ export const findsTimelineQuery = `
 
     <FILTER> # a placeholder for facet filters
 
-    ?find :material/skos:prefLabel ?id  . # ?id = first hierarchy level
+    ?find :province/skos:prefLabel ?id  . # ?id = first hierarchy level
     BIND (?id as ?group)
     #?find :find_name ?data__id . # ?data__id = second hierarchy level
 
@@ -207,5 +207,19 @@ export const findsTimelineQuery = `
     BIND (STRAFTER(str(?date), '-') AS ?after)
     BIND (IF (STRSTARTS(str(?date), '-'), CONCAT('-00', ?after), str(?date)) AS ?new_date) .
     BIND(STRDT(STR(?new_date), xsd:dateTime) AS ?data__data__timeRange) .
+  }
+`
+export const knowledgeGraphMetadataQuery = `
+  SELECT * 
+  WHERE {
+    ?id a sd:Dataset ;
+        dct:title ?title ;
+        dct:publisher ?publisher ;
+        dct:rightsHolder ?rightsHolder ;
+        dct:modified ?modified ;
+        dct:source ?databaseDump__id .
+    ?databaseDump__id skos:prefLabel ?databaseDump__prefLabel ;
+                      mmm-schema:data_provider_url ?databaseDump__dataProviderUrl ;
+                      dct:modified ?databaseDump__modified .
   }
 `

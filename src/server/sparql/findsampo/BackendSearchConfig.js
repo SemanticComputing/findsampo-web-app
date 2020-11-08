@@ -3,7 +3,8 @@ import {
   findPropertiesInstancePage,
   findsPlacesQuery,
   findsTimelineQuery,
-  nearbyFindsQuery
+  nearbyFindsQuery,
+  knowledgeGraphMetadataQuery
 } from './sparql_queries/SparqlQueriesFinds'
 import { fullTextSearchProperties } from './sparql_queries/SparqlQueriesFullText'
 import { makeObjectList } from '../SparqlObjectMapper'
@@ -38,6 +39,11 @@ export const backendSearchConfig = {
       properties: findPropertiesInstancePage,
       relatedInstances: ''
     }
+  },
+  findsKnowledgeGraphMetadata: {
+    perspectiveID: 'finds', // use endpoint config from finds
+    q: knowledgeGraphMetadataQuery,
+    resultMapper: makeObjectList
   },
   jenaText: {
     perspectiveID: 'finds',

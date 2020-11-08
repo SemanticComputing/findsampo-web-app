@@ -2,7 +2,7 @@ export const rootUrl = ''
 
 export const defaultLocale = 'en'
 
-export const showLanguageButton = true
+export const showLanguageButton = false
 
 export const MAPBOX_ACCESS_TOKEN = 'pk.eyJ1IjoiZWtrb25lbiIsImEiOiJjazhlbW16MWExNnFzM2VtanpmdTFwbThmIn0.BCYqZObBlHvxkW2TBMGPLw'
 
