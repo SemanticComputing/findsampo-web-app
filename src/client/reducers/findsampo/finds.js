@@ -51,6 +51,15 @@ export const INITIAL_STATE = {
       minWidth: 180
     },
     {
+      id: 'identifierFHA',
+      valueType: 'string',
+      makeLink: false,
+      externalLink: false,
+      sortValues: true,
+      numberedList: false,
+      minWidth: 180
+    },
+    {
       id: 'objectType',
       valueType: 'object',
       makeLink: false,

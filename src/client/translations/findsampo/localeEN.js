@@ -240,6 +240,10 @@ export default {
           label: 'Find name',
           description: 'Find name.'
         },
+        identifierFHA: {
+          label: 'FHA identifier',
+          description: 'FHA identifier of the find.'
+        },
         specification: {
           label: 'Specification',
           description: 'Specification.'
@@ -583,65 +587,65 @@ export default {
       About the Portal
     </h1>
     <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
-      Morbi nunc ex, ultrices vitae molestie eu, fringilla quis dolor. Vivamus in enim nibh. 
-      Nunc rutrum molestie ex eget dictum. Mauris lectus leo, ultrices in sodales ac, fermentum 
-      ut massa. In porta, mauris sed facilisis lacinia, eros magna sollicitudin tortor, quis venenatis 
-      nisl ipsum lacinia justo. Duis pretium bibendum consequat. 
+      Morbi nunc ex, ultrices vitae molestie eu, fringilla quis dolor. Vivamus in enim nibh.
+      Nunc rutrum molestie ex eget dictum. Mauris lectus leo, ultrices in sodales ac, fermentum
+      ut massa. In porta, mauris sed facilisis lacinia, eros magna sollicitudin tortor, quis venenatis
+      nisl ipsum lacinia justo. Duis pretium bibendum consequat.
     </p>
     <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
-      Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; In 
-      hac habitasse platea dictumst. Curabitur consectetur aliquet est, ac dapibus ante semper vitae. 
-      Sed consequat at est ac lobortis. In vitae metus in ligula pretium vehicula. Aliquam maximus 
+      Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; In
+      hac habitasse platea dictumst. Curabitur consectetur aliquet est, ac dapibus ante semper vitae.
+      Sed consequat at est ac lobortis. In vitae metus in ligula pretium vehicula. Aliquam maximus
       ac massa euismod eleifend. Vestibulum vehicula mattis libero at tempus.
     </p>
     <h2 class="MuiTypography-root MuiTypography-h4 MuiTypography-gutterBottom">
       Data
     </h2>
     <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
-      Nullam eu blandit ex, quis consectetur enim. Nulla aliquam, enim non euismod tincidunt, 
-      neque eros tincidunt urna, eget elementum diam metus vel elit. Donec dui augue, vehicula a cursus ut, 
-      efficitur eget velit. Aliquam pellentesque odio vel metus sodales tempor. Donec in lectus magna. 
-      Cras at odio a libero laoreet viverra nec sed lorem. In malesuada tempus dolor. 
-      Suspendisse et ligula quis nisi facilisis maximus. Sed dictum justo eu condimentum efficitur. 
-      Mauris porttitor ante nec auctor vulputate. Phasellus varius, odio sed egestas bibendum, 
-      dolor lacus consequat turpis, ac pulvinar libero lorem maximus nunc. Praesent egestas volutpat 
-      leo, vel faucibus dui convallis sed. Ut sed libero eu nisi accumsan mollis. Pellentesque 
+      Nullam eu blandit ex, quis consectetur enim. Nulla aliquam, enim non euismod tincidunt,
+      neque eros tincidunt urna, eget elementum diam metus vel elit. Donec dui augue, vehicula a cursus ut,
+      efficitur eget velit. Aliquam pellentesque odio vel metus sodales tempor. Donec in lectus magna.
+      Cras at odio a libero laoreet viverra nec sed lorem. In malesuada tempus dolor.
+      Suspendisse et ligula quis nisi facilisis maximus. Sed dictum justo eu condimentum efficitur.
+      Mauris porttitor ante nec auctor vulputate. Phasellus varius, odio sed egestas bibendum,
+      dolor lacus consequat turpis, ac pulvinar libero lorem maximus nunc. Praesent egestas volutpat
+      leo, vel faucibus dui convallis sed. Ut sed libero eu nisi accumsan mollis. Pellentesque
       ultricies est non porta luctus. Maecenas eget viverra mauris.
     </p>
     `,
   aboutThePortalPartTwo: `
     <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
-      Mauris porttitor ante nec auctor vulputate. Phasellus varius, odio sed egestas bibendum, 
-      dolor lacus consequat turpis, ac pulvinar libero lorem maximus nunc. Praesent egestas volutpat 
-      leo, vel faucibus dui convallis sed. Ut sed libero eu nisi accumsan mollis. Pellentesque 
+      Mauris porttitor ante nec auctor vulputate. Phasellus varius, odio sed egestas bibendum,
+      dolor lacus consequat turpis, ac pulvinar libero lorem maximus nunc. Praesent egestas volutpat
+      leo, vel faucibus dui convallis sed. Ut sed libero eu nisi accumsan mollis. Pellentesque
       ultricies est non porta luctus. Maecenas eget viverra mauris.
       </p>
     <h2 class="MuiTypography-root MuiTypography-h4 MuiTypography-gutterBottom">
       Data Reuse
     </h2>
     <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
-      Nullam eu blandit ex, quis consectetur enim. Nulla aliquam, enim non euismod tincidunt, 
-      neque eros tincidunt urna, eget elementum diam metus vel elit. Donec dui augue, vehicula a cursus ut, 
-      efficitur eget velit. Aliquam pellentesque odio vel metus sodales tempor. Donec in lectus magna. 
-      Cras at odio a libero laoreet viverra nec sed lorem. In malesuada tempus dolor. 
-      Suspendisse et ligula quis nisi facilisis maximus. Sed dictum justo eu condimentum efficitur. 
-      Mauris porttitor ante nec auctor vulputate. Phasellus varius, odio sed egestas bibendum, 
-      dolor lacus consequat turpis, ac pulvinar libero lorem maximus nunc. Praesent egestas volutpat 
-      leo, vel faucibus dui convallis sed. Ut sed libero eu nisi accumsan mollis. Pellentesque 
+      Nullam eu blandit ex, quis consectetur enim. Nulla aliquam, enim non euismod tincidunt,
+      neque eros tincidunt urna, eget elementum diam metus vel elit. Donec dui augue, vehicula a cursus ut,
+      efficitur eget velit. Aliquam pellentesque odio vel metus sodales tempor. Donec in lectus magna.
+      Cras at odio a libero laoreet viverra nec sed lorem. In malesuada tempus dolor.
+      Suspendisse et ligula quis nisi facilisis maximus. Sed dictum justo eu condimentum efficitur.
+      Mauris porttitor ante nec auctor vulputate. Phasellus varius, odio sed egestas bibendum,
+      dolor lacus consequat turpis, ac pulvinar libero lorem maximus nunc. Praesent egestas volutpat
+      leo, vel faucibus dui convallis sed. Ut sed libero eu nisi accumsan mollis. Pellentesque
       ultricies est non porta luctus. Maecenas eget viverra mauris.
     </p>
     <h2 class="MuiTypography-root MuiTypography-h4 MuiTypography-gutterBottom">
       More Information
     </h2>
     <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
-      Nullam eu blandit ex, quis consectetur enim. Nulla aliquam, enim non euismod tincidunt, 
-      neque eros tincidunt urna, eget elementum diam metus vel elit. Donec dui augue, vehicula a cursus ut, 
-      efficitur eget velit. Aliquam pellentesque odio vel metus sodales tempor. Donec in lectus magna. 
-      Cras at odio a libero laoreet viverra nec sed lorem. In malesuada tempus dolor. 
-      Suspendisse et ligula quis nisi facilisis maximus. Sed dictum justo eu condimentum efficitur. 
-      Mauris porttitor ante nec auctor vulputate. Phasellus varius, odio sed egestas bibendum, 
-      dolor lacus consequat turpis, ac pulvinar libero lorem maximus nunc. Praesent egestas volutpat 
-      leo, vel faucibus dui convallis sed. Ut sed libero eu nisi accumsan mollis. Pellentesque 
+      Nullam eu blandit ex, quis consectetur enim. Nulla aliquam, enim non euismod tincidunt,
+      neque eros tincidunt urna, eget elementum diam metus vel elit. Donec dui augue, vehicula a cursus ut,
+      efficitur eget velit. Aliquam pellentesque odio vel metus sodales tempor. Donec in lectus magna.
+      Cras at odio a libero laoreet viverra nec sed lorem. In malesuada tempus dolor.
+      Suspendisse et ligula quis nisi facilisis maximus. Sed dictum justo eu condimentum efficitur.
+      Mauris porttitor ante nec auctor vulputate. Phasellus varius, odio sed egestas bibendum,
+      dolor lacus consequat turpis, ac pulvinar libero lorem maximus nunc. Praesent egestas volutpat
+      leo, vel faucibus dui convallis sed. Ut sed libero eu nisi accumsan mollis. Pellentesque
       ultricies est non porta luctus. Maecenas eget viverra mauris.
     </p>
   `,

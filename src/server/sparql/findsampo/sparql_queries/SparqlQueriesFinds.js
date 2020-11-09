@@ -65,6 +65,13 @@ export const findPropertiesInstancePage =
       BIND(?image__id as ?image__url)
       BIND(CONCAT("Sample description text for image ", ?image__id) as ?image__description)
     }
+    UNION
+    {
+      ?id :find_set_number ?setNumber .
+      ?id :individual_find_number ?individualNumber .
+      BIND(CONCAT(?setNumber, ':') as ?identifierStart) .
+      BIND(CONCAT(?identifierStart, ?individualNumber) as ?identifierFHA) .
+    }
 `
 
 export const findPropertiesFacetResults =
@@ -146,6 +153,13 @@ export const findPropertiesFacetResults =
       BIND(?image__id as ?image__url)
       BIND(CONCAT("Sample description text for image ", ?image__id) as ?image__description)
     }
+    UNION
+    {
+      ?id :find_set_number ?setNumber .
+      ?id :individual_find_number ?individualNumber .
+      BIND(CONCAT(?setNumber, ':') as ?identifierStart) .
+      BIND(CONCAT(?identifierStart, ?individualNumber) as ?identifierFHA) .
+    }
   `
 
 export const findsPlacesQuery = `
@@ -209,8 +223,9 @@ export const findsTimelineQuery = `
     BIND(STRDT(STR(?new_date), xsd:dateTime) AS ?data__data__timeRange) .
   }
 `
+
 export const knowledgeGraphMetadataQuery = `
-  SELECT * 
+  SELECT *
   WHERE {
     ?id a sd:Dataset ;
         dct:title ?title ;

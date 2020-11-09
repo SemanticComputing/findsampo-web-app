@@ -208,7 +208,7 @@ export const INITIAL_STATE = {
     //   priority: 5
     // },
     period: {
-      id: 'periodObject',
+      id: 'period',
       // predicate: defined in backend
       distinctValueCount: 0,
       values: [],

@@ -7,7 +7,7 @@ import { prefixes } from '../sparql_queries/SparqlQueriesPrefixes'
 export const findsPerspectiveConfig = {
   endpoint: {
     url: 'https://ldf.fi/sualt-fha-finds/sparql',
-    // url: 'http://localhost:3039/ds/sparql',
+    //url: 'http://localhost:3039/ds/sparql',
     prefixes,
     useAuth: true
   },
@@ -78,7 +78,7 @@ export const findsPerspectiveConfig = {
       literal: true
     },
     period: {
-      id: 'periodObject',
+      id: 'period',
       facetValueFilter: '',
       predicate: ':earliest_period|:latest_period',
       labelPath: ':earliest_period/skos:prefLabel|:latest_period/skos:prefLabel',
