@@ -80,11 +80,20 @@ export default {
     export: 'export',
     'by-period': 'by period',
     timeline: 'timeline',
-    recommendations: 'recommendations'
+    recommendations: 'recommendations',
+    statistics: 'statistics'
   },
   table: {
     rowsPerPage: 'Rows per page',
     of: 'of'
+  },
+  pieChart: {
+    by: 'by',
+    resultClasses: {
+      findsByProvince: 'province',
+      findsByMaterial: 'material',
+      findsByObjectName: 'object name'
+    }
   },
   exportToYasgui: 'open the result table query in yasgui sparql editor',
   openInLinkedDataBrowser: 'open in linked data browser',
@@ -256,12 +265,6 @@ export default {
           label: 'Type',
           description: `
             Type.
-          `
-        },
-        objectType: {
-          label: 'Object type',
-          description: `
-            Object type.
           `
         },
         objectType: {

@@ -238,3 +238,41 @@ export const knowledgeGraphMetadataQuery = `
                       dct:modified ?databaseDump__modified .
   }
 `
+
+export const findsByProvinceQuery = `
+ SELECT ?category ?prefLabel
+ (COUNT(?find) as ?instanceCount)
+  WHERE {
+    <FILTER>
+    ?find :province ?category ;
+        a :Find .
+    ?category skos:prefLabel ?prefLabel .
+  }
+  GROUP BY ?category ?prefLabel
+  ORDER BY DESC(?instanceCount)
+`
+
+export const findsByMaterialQuery = `
+ SELECT ?category ?prefLabel
+ (COUNT(?find) as ?instanceCount)
+  WHERE {
+    <FILTER>
+    ?find :material ?category ;
+        a :Find .
+    ?category skos:prefLabel ?prefLabel .
+  }
+  GROUP BY ?category ?prefLabel
+  ORDER BY DESC(?instanceCount)
+`
+export const findsByObjectNameQuery = `
+ SELECT ?category ?prefLabel
+ (COUNT(?find) as ?instanceCount)
+  WHERE {
+    <FILTER>
+    ?find :find_name ?category ;  # find_name is literal
+        a :Find .
+    BIND(?category as ?prefLabel)
+  }
+  GROUP BY ?category ?prefLabel
+  ORDER BY DESC(?instanceCount)
+`

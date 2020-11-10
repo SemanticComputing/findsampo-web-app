@@ -173,7 +173,10 @@ export const INITIAL_STATE = {
 const resultClasses = new Set([
   'finds',
   'findsTimeline',
-  'nearbyFinds'
+  'nearbyFinds',
+  'findsByProvince',
+  'findsByMaterial',
+  'findsByObjectName'
 ])
 
 const finds = (state = INITIAL_STATE, action) => {

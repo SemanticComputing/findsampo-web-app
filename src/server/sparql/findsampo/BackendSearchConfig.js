@@ -1,6 +1,9 @@
 import { findsPerspectiveConfig } from './perspective_configs/FindsPerspectiveConfig'
 import {
   findPropertiesInstancePage,
+  findsByProvinceQuery,
+  findsByMaterialQuery,
+  findsByObjectNameQuery,
   findsPlacesQuery,
   findsTimelineQuery,
   nearbyFindsQuery,
@@ -9,8 +12,8 @@ import {
 import { fullTextSearchProperties } from './sparql_queries/SparqlQueriesFullText'
 import { makeObjectList } from '../SparqlObjectMapper'
 import {
-  mapPlaces
-  // mapTimelineData
+  mapPlaces,
+  mapPieChart
 } from '../Mappers'
 
 export const backendSearchConfig = {
@@ -39,6 +42,24 @@ export const backendSearchConfig = {
       properties: findPropertiesInstancePage,
       relatedInstances: ''
     }
+  },
+  findsByProvince: {
+    perspectiveID: 'finds', // use endpoint config from finds
+    q: findsByProvinceQuery,
+    filterTarget: 'find',
+    resultMapper: mapPieChart
+  },
+  findsByMaterial: {
+    perspectiveID: 'finds', // use endpoint config from finds
+    q: findsByMaterialQuery,
+    filterTarget: 'find',
+    resultMapper: mapPieChart
+  },
+  findsByObjectName: {
+    perspectiveID: 'finds', // use endpoint config from finds
+    q: findsByObjectNameQuery,
+    filterTarget: 'find',
+    resultMapper: mapPieChart
   },
   findsKnowledgeGraphMetadata: {
     perspectiveID: 'finds', // use endpoint config from finds

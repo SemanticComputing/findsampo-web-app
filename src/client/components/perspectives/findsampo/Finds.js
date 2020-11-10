@@ -1,14 +1,17 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import intl from 'react-intl-universal'
 import { Route, Redirect } from 'react-router-dom'
 import PerspectiveTabs from '../../main_layout/PerspectiveTabs'
 import ResultTable from '../../facet_results/ResultTable'
 import LeafletMap from '../../facet_results/LeafletMap'
 import Deck from '../../facet_results/Deck'
+import ApexChart from '../../facet_results/ApexChart'
 // import Network from '../../facet_results/Network'
 import Timeline from '../../facet_results/Timeline'
 import Export from '../../facet_results/Export'
 import { MAPBOX_ACCESS_TOKEN, MAPBOX_STYLE } from '../../../configs/findsampo/GeneralConfig'
+import { createApexPieChartData } from '../../../configs/findsampo/ApexCharts/PieChartConfig'
 
 const Finds = props => {
   const { rootUrl, perspective } = props
@@ -80,6 +83,24 @@ const Finds = props => {
             layerType='heatmapLayer'
             mapBoxAccessToken={MAPBOX_ACCESS_TOKEN}
             mapBoxStyle={MAPBOX_STYLE}
+          />}
+      />
+      <Route
+        path={`${rootUrl}/${perspective.id}/faceted-search/statistics`}
+        render={() =>
+          <ApexChart
+            pageType='facetResults'
+            rawData={props.facetResults.results}
+            rawDataUpdateID={props.facetResults.resultUpdateID}
+            facetUpdateID={props.facetData.facetUpdateID}
+            fetching={props.facetResults.fetching}
+            fetchData={props.fetchResults}
+            createChartData={createApexPieChartData}
+            resultClass='findsByProvince'
+            facetClass='finds'
+            dropdownForResultClasses
+            facetResultsType={intl.get(`perspectives.${perspective.id}.facetResultsType`)}
+            resultClasses={['findsByProvince', 'findsByMaterial', 'findsByObjectName']}
           />}
       />
       <Route
