@@ -13,6 +13,10 @@ import Export from '../../facet_results/Export'
 import { MAPBOX_ACCESS_TOKEN, MAPBOX_STYLE } from '../../../configs/findsampo/GeneralConfig'
 import { createApexPieChartData } from '../../../configs/findsampo/ApexCharts/PieChartConfig'
 import { createApexBarChartData } from '../../../configs/findsampo/ApexCharts/BarChartConfig'
+import {
+  createSingleLineChartData
+  // createMultipleLineChartData
+} from '../../../configs/findsampo/ApexCharts/LineChartConfig'
 
 const Finds = props => {
   const { rootUrl, perspective } = props
@@ -87,7 +91,7 @@ const Finds = props => {
           />}
       />
       <Route
-        path={`${rootUrl}/${perspective.id}/faceted-search/statistics`}
+        path={`${rootUrl}/${perspective.id}/faceted-search/pie_chart`}
         render={() =>
           <ApexChart
             pageType='facetResults'
@@ -108,6 +112,25 @@ const Finds = props => {
             dropdownForResultClasses
             facetResultsType={intl.get(`perspectives.${perspective.id}.facetResultsType`)}
             resultClasses={['findsByProvince', 'findsByMaterial', 'findsByObjectName']}
+          />}
+      />
+      <Route
+        path={`${rootUrl}/${perspective.id}/faceted-search/line_chart`}
+        render={() =>
+          <ApexChart
+            pageType='facetResults'
+            rawData={props.facetResults.results}
+            rawDataUpdateID={props.facetResults.resultUpdateID}
+            facetUpdateID={props.facetData.facetUpdateID}
+            fetching={props.facetResults.fetching}
+            fetchData={props.fetchResults}
+            createChartData={createSingleLineChartData}
+            title='Number of coins'
+            xaxisTitle='Year'
+            yaxisTitle='Number of coins'
+            seriesTitle='Number of coins'
+            resultClass='findsByYear'
+            facetClass='finds'
           />}
       />
       <Route

@@ -4,6 +4,7 @@ import {
   findsByProvinceQuery,
   findsByMaterialQuery,
   findsByObjectNameQuery,
+  findsByYearQuery,
   findsPlacesQuery,
   findsTimelineQuery,
   nearbyFindsQuery,
@@ -13,7 +14,8 @@ import { fullTextSearchProperties } from './sparql_queries/SparqlQueriesFullText
 import { makeObjectList } from '../SparqlObjectMapper'
 import {
   mapPlaces,
-  mapPieChart
+  mapPieChart,
+  mapLineChart
 } from '../Mappers'
 
 export const backendSearchConfig = {
@@ -60,6 +62,12 @@ export const backendSearchConfig = {
     q: findsByObjectNameQuery,
     filterTarget: 'find',
     resultMapper: mapPieChart
+  },
+  findsByYear: {
+    perspectiveID: 'finds', // use endpoint config from finds
+    q: findsByYearQuery,
+    filterTarget: 'find',
+    resultMapper: mapLineChart
   },
   findsKnowledgeGraphMetadata: {
     perspectiveID: 'finds', // use endpoint config from finds

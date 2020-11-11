@@ -81,7 +81,9 @@ export default {
     'by-period': 'by period',
     timeline: 'timeline',
     recommendations: 'recommendations',
-    statistics: 'statistics'
+    statistics: 'statistics',
+    pie_chart: 'pie chart',
+    line_chart: 'line chart'
   },
   table: {
     rowsPerPage: 'Rows per page',

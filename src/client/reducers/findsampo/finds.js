@@ -176,7 +176,8 @@ const resultClasses = new Set([
   'nearbyFinds',
   'findsByProvince',
   'findsByMaterial',
-  'findsByObjectName'
+  'findsByObjectName',
+  'findsByYear'
 ])
 
 const finds = (state = INITIAL_STATE, action) => {

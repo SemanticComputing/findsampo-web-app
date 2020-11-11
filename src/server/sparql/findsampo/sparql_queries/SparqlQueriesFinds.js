@@ -241,7 +241,7 @@ export const knowledgeGraphMetadataQuery = `
 
 export const findsByProvinceQuery = `
  SELECT ?category ?prefLabel
- (COUNT(?find) as ?instanceCount)
+ (COUNT(DISTINCT ?find) as ?instanceCount)
   WHERE {
     <FILTER>
     ?find :province ?category ;
@@ -254,7 +254,7 @@ export const findsByProvinceQuery = `
 
 export const findsByMaterialQuery = `
  SELECT ?category ?prefLabel
- (COUNT(?find) as ?instanceCount)
+ (COUNT(DISTINCT ?find) as ?instanceCount)
   WHERE {
     <FILTER>
     ?find :material ?category ;
@@ -266,7 +266,7 @@ export const findsByMaterialQuery = `
 `
 export const findsByObjectNameQuery = `
  SELECT ?category ?prefLabel
- (COUNT(?find) as ?instanceCount)
+ (COUNT(DISTINCT ?find) as ?instanceCount)
   WHERE {
     <FILTER>
     ?find :find_name ?category ;  # find_name is literal
@@ -275,4 +275,15 @@ export const findsByObjectNameQuery = `
   }
   GROUP BY ?category ?prefLabel
   ORDER BY DESC(?instanceCount)
+`
+export const findsByYearQuery = `
+  SELECT ?category 
+  (COUNT(DISTINCT ?find) as ?count) 
+  WHERE {
+    <FILTER>
+    ?find :object_type <http://ldf.fi/schema/object_types/raha> . 
+    ?find :start_year ?category
+  }
+  GROUP BY ?category
+  ORDER BY ?category
 `

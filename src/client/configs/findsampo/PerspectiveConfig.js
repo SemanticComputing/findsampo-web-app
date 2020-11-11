@@ -7,6 +7,7 @@ import PieChartIcon from '@material-ui/icons/PieChart'
 import CloudDownloadIcon from '@material-ui/icons/CloudDownload'
 import ClearAllIcon from '@material-ui/icons/ClearAll'
 import StarIcon from '@material-ui/icons/Star'
+import LineChartIcon from '@material-ui/icons/ShowChart'
 // import manuscriptsImage from '../../img/manuscripts-452x262.jpg'
 // import worksImage from '../../img/works-452x262_2.jpg'
 // import eventsImage from '../../img/events-452x262.jpg'
@@ -39,13 +40,18 @@ export const perspectiveConfig = [
         icon: <ClearAllIcon />
       },
       {
-        id: 'statistics',
+        id: 'pie_chart',
         value: 4,
         icon: <PieChartIcon />
       },
       {
-        id: 'export',
+        id: 'line_chart',
         value: 5,
+        icon: <LineChartIcon />
+      },
+      {
+        id: 'export',
+        value: 6,
         icon: <CloudDownloadIcon />
       }
     ],
