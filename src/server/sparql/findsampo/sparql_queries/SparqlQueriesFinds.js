@@ -282,7 +282,7 @@ export const findsByYearQuery = `
   WHERE {
     <FILTER>
     ?find :object_type <http://ldf.fi/schema/object_types/raha> . 
-    ?find :start_year ?category
+    ?find :start_year ?category .
   }
   GROUP BY ?category
   ORDER BY ?category
