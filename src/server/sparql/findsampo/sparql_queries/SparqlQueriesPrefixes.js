@@ -20,4 +20,5 @@ export const prefixes = `
   PREFIX : <http://ldf.fi/schema/findsampo/>
 
 
+
 `

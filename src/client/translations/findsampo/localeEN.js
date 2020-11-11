@@ -273,19 +273,19 @@ export default {
           `
         },
         objectType: {
-          label: 'Object type',
+          label: 'Object type (MAO)',
           description: `
-            Object type.
+            Object type in MAO .
           `
         },
         objectTypeFHAFacet: {
-          label: 'Object type with FHA hierarchy (Unknown = missing from FHA hierarchy)',
+          label: 'Object type using facet ontology (unfinished)',
           description: `
             Object type.
           `
         },
         objectTypeFlat: {
-          label: 'Object type MAO term (no hierarchy)',
+          label: 'Object type MAO annotation term (for testing and development purposes)',
           description: `
             Object type without hierarchy using MAO term.
           `
