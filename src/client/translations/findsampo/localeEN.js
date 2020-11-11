@@ -89,6 +89,9 @@ export default {
   },
   pieChart: {
     by: 'by',
+    chartType: 'Chart type:',
+    pie: 'pie chart',
+    bar: 'bar chart',
     resultClasses: {
       findsByProvince: 'province',
       findsByMaterial: 'material',

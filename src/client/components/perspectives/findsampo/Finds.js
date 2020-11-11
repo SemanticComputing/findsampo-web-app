@@ -12,6 +12,7 @@ import Timeline from '../../facet_results/Timeline'
 import Export from '../../facet_results/Export'
 import { MAPBOX_ACCESS_TOKEN, MAPBOX_STYLE } from '../../../configs/findsampo/GeneralConfig'
 import { createApexPieChartData } from '../../../configs/findsampo/ApexCharts/PieChartConfig'
+import { createApexBarChartData } from '../../../configs/findsampo/ApexCharts/BarChartConfig'
 
 const Finds = props => {
   const { rootUrl, perspective } = props
@@ -96,6 +97,12 @@ const Finds = props => {
             fetching={props.facetResults.fetching}
             fetchData={props.fetchResults}
             createChartData={createApexPieChartData}
+            dropdownForChartTypes
+            chartTypes={[
+              { id: 'pie', createChartData: createApexPieChartData },
+              { id: 'bar', createChartData: createApexBarChartData }
+            ]}
+            yaxisTitle='Number of finds'
             resultClass='findsByProvince'
             facetClass='finds'
             dropdownForResultClasses
