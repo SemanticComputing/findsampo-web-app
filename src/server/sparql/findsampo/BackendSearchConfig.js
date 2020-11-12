@@ -5,6 +5,7 @@ import {
   findsByMaterialQuery,
   findsByObjectNameQuery,
   findsByYearQuery,
+  findsByWeightQuery,
   findsPlacesQuery,
   findsTimelineQuery,
   nearbyFindsQuery,
@@ -15,7 +16,7 @@ import { makeObjectList } from '../SparqlObjectMapper'
 import {
   mapPlaces,
   mapPieChart,
-  // mapLineChart,
+  mapLineChart,
   mapLineChartFillEmptyValues
 } from '../Mappers'
 
@@ -69,6 +70,12 @@ export const backendSearchConfig = {
     q: findsByYearQuery,
     filterTarget: 'find',
     resultMapper: mapLineChartFillEmptyValues
+  },
+  findsByWeight: {
+    perspectiveID: 'finds', // use endpoint config from finds
+    q: findsByWeightQuery,
+    filterTarget: 'find',
+    resultMapper: mapLineChart
   },
   findsKnowledgeGraphMetadata: {
     perspectiveID: 'finds', // use endpoint config from finds

@@ -45,13 +45,18 @@ export const perspectiveConfig = [
         icon: <PieChartIcon />
       },
       {
-        id: 'line_chart',
+        id: 'weights',
         value: 5,
         icon: <LineChartIcon />
       },
       {
-        id: 'export',
+        id: 'coins_by_year',
         value: 6,
+        icon: <LineChartIcon />
+      },
+      {
+        id: 'export',
+        value: 7,
         icon: <CloudDownloadIcon />
       }
     ],

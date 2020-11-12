@@ -289,3 +289,15 @@ export const findsByYearQuery = `
   GROUP BY ?category
   ORDER BY ?category
 `
+
+export const findsByWeightQuery = `
+  SELECT ?category 
+  (COUNT(DISTINCT ?find) as ?count) 
+  WHERE {
+    <FILTER>
+    ?find :weight_rounded ?category ;
+          a :Find . 
+  }
+  GROUP BY ?category
+  ORDER BY ?category
+`

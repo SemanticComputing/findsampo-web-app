@@ -177,7 +177,8 @@ const resultClasses = new Set([
   'findsByProvince',
   'findsByMaterial',
   'findsByObjectName',
-  'findsByYear'
+  'findsByYear',
+  'findsByWeight'
 ])
 
 const finds = (state = INITIAL_STATE, action) => {

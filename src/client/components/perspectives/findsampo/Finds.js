@@ -115,7 +115,7 @@ const Finds = props => {
           />}
       />
       <Route
-        path={`${rootUrl}/${perspective.id}/faceted-search/line_chart`}
+        path={`${rootUrl}/${perspective.id}/faceted-search/coins_by_year`}
         render={() =>
           <ApexChart
             pageType='facetResults'
@@ -130,6 +130,25 @@ const Finds = props => {
             yaxisTitle='Number of coins'
             seriesTitle='Number of coins'
             resultClass='findsByYear'
+            facetClass='finds'
+          />}
+      />
+      <Route
+        path={`${rootUrl}/${perspective.id}/faceted-search/weights`}
+        render={() =>
+          <ApexChart
+            pageType='facetResults'
+            rawData={props.facetResults.results}
+            rawDataUpdateID={props.facetResults.resultUpdateID}
+            facetUpdateID={props.facetData.facetUpdateID}
+            fetching={props.facetResults.fetching}
+            fetchData={props.fetchResults}
+            createChartData={createSingleLineChartData}
+            title='Weight'
+            xaxisTitle='Weight (g)'
+            yaxisTitle='Number of finds'
+            seriesTitle='Number of finds'
+            resultClass='findsByWeight'
             facetClass='finds'
           />}
       />

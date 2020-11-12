@@ -83,7 +83,10 @@ export default {
     recommendations: 'recommendations',
     statistics: 'statistics',
     pie_chart: 'pie chart',
-    line_chart: 'line chart'
+    line_chart: 'line chart',
+    weights: 'weights',
+    coins_by_year: 'coins by year'
+
   },
   table: {
     rowsPerPage: 'Rows per page',
