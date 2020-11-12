@@ -16,7 +16,7 @@ import { makeObjectList } from '../SparqlObjectMapper'
 import {
   mapPlaces,
   mapPieChart,
-  mapLineChart,
+  // mapLineChart,
   mapLineChartFillEmptyValues
 } from '../Mappers'
 
@@ -75,7 +75,7 @@ export const backendSearchConfig = {
     perspectiveID: 'finds', // use endpoint config from finds
     q: findsByWeightQuery,
     filterTarget: 'find',
-    resultMapper: mapLineChart
+    resultMapper: mapLineChartFillEmptyValues
   },
   findsKnowledgeGraphMetadata: {
     perspectiveID: 'finds', // use endpoint config from finds
