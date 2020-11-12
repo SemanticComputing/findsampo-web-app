@@ -257,9 +257,20 @@ export const findsByMaterialQuery = `
  (COUNT(DISTINCT ?find) as ?instanceCount)
   WHERE {
     <FILTER>
-    ?find :material ?category ;
+    {
+      ?find :material ?category ;
         a :Find .
-    ?category skos:prefLabel ?prefLabel .
+      ?category skos:prefLabel ?prefLabel .
+    } 
+    UNION
+    {
+      ?find a :Find .
+      FILTER NOT EXISTS {
+        ?find :material [] .
+      }
+      BIND("unknown" as ?category)
+      BIND("unknown" as ?prefLabel)
+    }
   }
   GROUP BY ?category ?prefLabel
   ORDER BY DESC(?instanceCount)
