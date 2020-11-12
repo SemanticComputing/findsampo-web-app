@@ -281,8 +281,10 @@ export const findsByYearQuery = `
   (COUNT(DISTINCT ?find) as ?count) 
   WHERE {
     <FILTER>
-    ?find :object_type <http://ldf.fi/schema/object_types/raha> . 
+    VALUES ?money { "Hopearaha" "Raha" }
+    ?find :find_name ?money . 
     ?find :start_year ?category .
+    FILTER (?category < 2000)
   }
   GROUP BY ?category
   ORDER BY ?category

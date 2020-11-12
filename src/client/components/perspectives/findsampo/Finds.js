@@ -125,8 +125,8 @@ const Finds = props => {
             fetching={props.facetResults.fetching}
             fetchData={props.fetchResults}
             createChartData={createSingleLineChartData}
-            title='Number of coins'
-            xaxisTitle='Year'
+            title='Number of coins (find_name = "Raha" or "Hopearaha")'
+            xaxisTitle='Year (using only "start_year")'
             yaxisTitle='Number of coins'
             seriesTitle='Number of coins'
             resultClass='findsByYear'

@@ -32,6 +32,9 @@ export const createSingleLineChartData = ({
       title: {
         text: yaxisTitle
       }
+    },
+    stroke: {
+      width: 2
     }
   }
   return apexChartOptionsWithData
