@@ -122,15 +122,24 @@ export const findsPerspectiveConfig = {
       parentPredicate: ':object_type/skos:broader+',
       parentProperty: 'skos:broader'
     },
+    // objectTypeFHAFacet: {
+    //   id: 'objectTypeFHAFacet',
+    //   facetValueFilter: '?id a :Object_facet_type',
+    //   predicate: ':object_type/:mao_match/^skos:related',
+    //   labelPath: ':object_type/:mao_match/^skos:related/skos:prefLabel',
+    //   type: 'hierarchical',
+    //   parentPredicate: ':object_type/:mao_match/^skos:related/skos:broader+',
+    //   parentProperty: 'skos:broader',
+    //   facetLabelFilter: 'FILTER(LANG(?prefLabel_) = \'fi\')',
+    // },
     objectTypeFHAFacet: {
       id: 'objectTypeFHAFacet',
       facetValueFilter: '?id a :Object_facet_type',
-      predicate: ':object_type/:mao_match/^skos:related',
-      labelPath: ':object_type/:mao_match/^skos:related/skos:prefLabel',
+      predicate: ':facet_object_term',
+      labelPath: ':facet_object_term/skos:prefLabel',
       type: 'hierarchical',
-      parentPredicate: ':object_type/:mao_match/^skos:related/skos:broader+',
+      parentPredicate: ':facet_object_term/skos:broader+',
       parentProperty: 'skos:broader',
-      facetLabelFilter: 'FILTER(LANG(?prefLabel_) = \'fi\')',
     },
     objectTypeMAO: {
       id: 'objectTypeMAO',
