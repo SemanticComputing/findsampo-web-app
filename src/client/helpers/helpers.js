@@ -142,6 +142,12 @@ export const objectToQueryParams = data => {
   return Object.keys(data).map(key => `${key}=${encodeURIComponent(data[key])}`).join('&')
 }
 
+export const arrayToObject = ({ array, keyField }) =>
+  array.reduce((obj, item) => {
+    obj[item[keyField]] = item
+    return obj
+  }, {})
+
 // source: https://dev.to/monaye/refactor-davidwalsh-s-debounce-function-5afc
 export const debounce = (func, delay) => {
   let timerId

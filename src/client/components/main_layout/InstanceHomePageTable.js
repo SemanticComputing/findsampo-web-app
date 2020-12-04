@@ -10,13 +10,12 @@ import ResultTableCell from '../facet_results/ResultTableCell'
 import Tooltip from '@material-ui/core/Tooltip'
 import IconButton from '@material-ui/core/IconButton'
 import InfoIcon from '@material-ui/icons/InfoOutlined'
-import has from 'lodash'
 
 const styles = theme => ({
   instanceTable: {
-    // maxWidth: 800,
+    // maxWidth: 1000,
     // width: '100%',
-    height: '100%',
+    // height: '100%',
     borderTop: '1px solid rgba(224, 224, 224, 1);'
   },
   divider: {
@@ -35,74 +34,89 @@ const styles = theme => ({
   },
   labelCell: {
     width: 240
+  },
+  tooltip: {
+    marginTop: -3
   }
 })
 
 /**
  * A component for generating a table based on data about an entity.
  */
-const InstanceHomePageTable = props => {
-  const { classes, data, properties } = props
-  return (
-    <Table className={classes.instanceTable}>
-      <TableBody>
-        {properties.map(row => {
-          const label = intl.get(`perspectives.${props.resultClass}.properties.${row.id}.label`)
-          const description = intl.get(`perspectives.${props.resultClass}.properties.${row.id}.description`)
-          return (
-            <TableRow key={row.id}>
-              <TableCell className={classes.labelCell}>
-                {label}
-                <Tooltip
-                  title={description}
-                  enterDelay={300}
-                >
-                  <IconButton>
-                    <InfoIcon />
-                  </IconButton>
-                </Tooltip>
-              </TableCell>
-              <ResultTableCell
-                columnId={row.id}
-                data={data[row.id]}
-                valueType={row.valueType}
-                makeLink={row.makeLink}
-                externalLink={row.externalLink}
-                sortValues={row.sortValues}
-                sortBy={row.sortBy}
-                numberedList={row.numberedList}
-                container='cell'
-                expanded
-                previewImageHeight={row.previewImageHeight}
-                linkAsButton={has(row, 'linkAsButton')
-                  ? row.linkAsButton
-                  : null}
-                collapsedMaxWords={has(row, 'collapsedMaxWords')
-                  ? row.collapsedMaxWords
-                  : null}
-                showSource={has(row, 'showSource')
-                  ? row.showSource
-                  : null}
-                sourceExternalLink={has(row, 'sourceExternalLink')
-                  ? row.sourceExternalLink
-                  : null}
-                renderAsHTML={has(row, 'renderAsHTML')
-                  ? row.renderAsHTML
-                  : null}
-              />
-            </TableRow>
-          )
-        }
-        )}
-      </TableBody>
-    </Table>
-  )
+class InstanceHomePageTable extends React.Component {
+  componentDidMount = () => {
+    if (this.props.fetchResultsWhenMounted) {
+      this.props.fetchResults({
+        resultClass: this.props.resultClassVariant,
+        facetClass: this.props.facetClass,
+        uri: this.props.uri
+      })
+    }
+  }
+
+  render = () => {
+    const { classes, data, resultClass, properties } = this.props
+    return (
+      <>
+        {data &&
+          <Table className={classes.instanceTable} size='small'>
+            <TableBody>
+              {properties.map(row => {
+                const label = intl.get(`perspectives.${resultClass}.properties.${row.id}.label`)
+                const description = intl.get(`perspectives.${resultClass}.properties.${row.id}.description`)
+                const {
+                  id, valueType, makeLink, externalLink, sortValues, sortBy, numberedList, previewImageHeight,
+                  linkAsButton, collapsedMaxWords, showSource, sourceExternalLink, renderAsHTML, HTMLParserTask
+                } = row
+                return (
+                  <TableRow key={row.id}>
+                    <TableCell className={classes.labelCell}>
+                      {label}
+                      <Tooltip
+                        className={classes.tooltip}
+                        title={description}
+                        enterDelay={300}
+                      >
+                        <IconButton>
+                          <InfoIcon />
+                        </IconButton>
+                      </Tooltip>
+                    </TableCell>
+                    <ResultTableCell
+                      columnId={id}
+                      data={data[id]}
+                      valueType={valueType}
+                      makeLink={makeLink}
+                      externalLink={externalLink}
+                      sortValues={sortValues}
+                      sortBy={sortBy}
+                      numberedList={numberedList}
+                      container='cell'
+                      expanded
+                      previewImageHeight={previewImageHeight}
+                      linkAsButton={linkAsButton}
+                      collapsedMaxWords={collapsedMaxWords}
+                      showSource={showSource}
+                      sourceExternalLink={sourceExternalLink}
+                      renderAsHTML={renderAsHTML}
+                      HTMLParserTask={HTMLParserTask}
+                      referencedTerm={data.referencedTerm}
+                    />
+                  </TableRow>
+                )
+              }
+              )}
+            </TableBody>
+          </Table>}
+      </>
+    )
+  }
 }
 
 InstanceHomePageTable.propTypes = {
   classes: PropTypes.object.isRequired,
   resultClass: PropTypes.string.isRequired,
-  data: PropTypes.object.isRequired,
+  data: PropTypes.object,
   properties: PropTypes.array.isRequired
 }
 

@@ -1,7 +1,7 @@
 export default {
   languageLabel: 'English',
   appTitle: {
-    short: 'sampo-ui',
+    short: 'Sampo-UI',
     long: ' &nbsp; &nbsp; Sampo-UI  &nbsp;  &nbsp;',
     subheading: `
       "Here to forge for us the Sampo, Hammer us the lid in colors"
@@ -59,6 +59,7 @@ export default {
     maxYear: 'Max year',
     min: 'Min',
     max: 'Max',
+    facetSearchFieldPlaceholder: 'Search...',
     applyFacetSelection: 'apply',
     pieChart: {
       tooltip: 'Pie chart'
@@ -274,7 +275,8 @@ export default {
         },
         prefLabel: {
           label: 'Label',
-          description: 'A short label describing the manuscript.'
+          description: 'A short label describing the manuscript.',
+          textFacetInputPlaceholder: 'Search...'
         },
         author: {
           label: 'Author',
@@ -487,7 +489,8 @@ export default {
         },
         prefLabel: {
           label: 'Title',
-          description: 'The name or title of the Work.'
+          description: 'The name or title of the Work.',
+          textFacetInputPlaceholder: 'Search...'
         },
         author: {
           label: 'Possible author',
