@@ -392,6 +392,13 @@ class LeafletMap extends React.Component {
         fillOpacity: 0.8
       }
     })
+    const fhaLidar = L.tileLayer.wms(`${process.env.API_URL}/fha-wms`, {
+      layers: 'NBA:lidar',
+      version: '1.3.0',
+      attribution: 'FHA',
+      minZoom: 12,
+      maxZoom: 16
+    })
     // const kotusParishes1938 = L.layerGroup([], {
     //   id: 'kotus:pitajat',
     //   type: 'geoJSON',
@@ -447,6 +454,7 @@ class LeafletMap extends React.Component {
     this.overlayLayers = {
       [intl.get('leafletMap.externalLayers.arkeologiset_kohteet_alue')]: fhaArchaeologicalSiteRegistryAreas,
       [intl.get('leafletMap.externalLayers.arkeologiset_kohteet_piste')]: fhaArchaeologicalSiteRegistryPoints,
+      [intl.get('leafletMap.externalLayers.fhaLidar')]: fhaLidar,
       [intl.get('leafletMap.externalLayers.karelianMaps')]: karelianMaps,
       [intl.get('leafletMap.externalLayers.senateAtlas')]: senateAtlas
       // [intl.get('leafletMap.externalLayers.kotus:pitajat')]: kotusParishes1938,
