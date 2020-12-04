@@ -29,6 +29,7 @@ export default {
   facetBar: {
     results: 'Results',
     activeFilters: 'Active filters:',
+    defaultMissingValueLabel: '?tieto puuttuu',
     removeAllFilters: 'Remove all',
     narrowDownBy: 'Narrow down by',
     filterOptions: 'Filter options',
@@ -46,6 +47,7 @@ export default {
     maxYear: 'Max year',
     min: 'Min',
     max: 'Max',
+    facetSearchFieldPlaceholder: 'Search...',
     applyFacetSelection: 'apply',
     pieChart: {
       tooltip: 'Pie chart'
