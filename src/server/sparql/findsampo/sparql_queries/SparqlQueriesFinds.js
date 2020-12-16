@@ -67,10 +67,11 @@ export const findPropertiesInstancePage =
     }
     UNION
     {
-      ?id :find_set_number ?setNumber .
-      ?id :individual_find_number ?individualNumber .
-      BIND(CONCAT(?setNumber, ':') as ?identifierStart) .
-      BIND(CONCAT(?identifierStart, ?individualNumber) as ?identifierFHA) .
+      #?id :find_set_number ?setNumber .
+      #?id :individual_find_number ?individualNumber .
+      #BIND(CONCAT(?setNumber, ':') as ?identifierStart) .
+      #BIND(CONCAT(?identifierStart, ?individualNumber) as ?identifierFHA) .
+      ?id :km_number ?kmNumber .
     }
 `
 
@@ -155,10 +156,11 @@ export const findPropertiesFacetResults =
     }
     UNION
     {
-      ?id :find_set_number ?setNumber .
-      ?id :individual_find_number ?individualNumber .
-      BIND(CONCAT(?setNumber, ':') as ?identifierStart) .
-      BIND(CONCAT(?identifierStart, ?individualNumber) as ?identifierFHA) .
+      #?id :find_set_number ?setNumber .
+      #?id :individual_find_number ?individualNumber .
+      #BIND(CONCAT(?setNumber, ':') as ?identifierStart) .
+      #BIND(CONCAT(?identifierStart, ?individualNumber) as ?identifierFHA) .
+      ?id :km_number ?kmNumber .
     }
   `
 
@@ -261,7 +263,7 @@ export const findsByMaterialQuery = `
       ?find :material ?category ;
         a :Find .
       ?category skos:prefLabel ?prefLabel .
-    } 
+    }
     UNION
     {
       ?find a :Find .
@@ -288,12 +290,12 @@ export const findsByObjectNameQuery = `
   ORDER BY DESC(?instanceCount)
 `
 export const findsByYearQuery = `
-  SELECT ?category 
-  (COUNT(DISTINCT ?find) as ?count) 
+  SELECT ?category
+  (COUNT(DISTINCT ?find) as ?count)
   WHERE {
     <FILTER>
     VALUES ?money { "Hopearaha" "Raha" }
-    ?find :find_name ?money . 
+    ?find :find_name ?money .
     ?find :start_year ?category .
     FILTER (?category < 2000)
   }
@@ -302,12 +304,12 @@ export const findsByYearQuery = `
 `
 
 export const findsByWeightQuery = `
-  SELECT ?category 
-  (COUNT(DISTINCT ?find) as ?count) 
+  SELECT ?category
+  (COUNT(DISTINCT ?find) as ?count)
   WHERE {
     <FILTER>
     ?find :weight_rounded ?category ;
-          a :Find . 
+          a :Find .
   }
   GROUP BY ?category
   ORDER BY ?category

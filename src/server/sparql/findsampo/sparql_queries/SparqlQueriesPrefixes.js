@@ -19,4 +19,5 @@ export const prefixes = `
   PREFIX sd: <http://www.w3.org/ns/sparql-service-description#>
   PREFIX : <http://ldf.fi/schema/findsampo/>
 
+
 `

@@ -51,7 +51,7 @@ export const INITIAL_STATE = {
       minWidth: 180
     },
     {
-      id: 'identifierFHA',
+      id: 'kmNumber',
       valueType: 'string',
       makeLink: false,
       externalLink: false,
