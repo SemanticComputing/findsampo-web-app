@@ -207,8 +207,8 @@ export const INITIAL_STATE = {
     //   uriFilter: null,
     //   priority: 5
     // },
-    period: {
-      id: 'period',
+    place: {
+      id: 'place',
       // predicate: defined in backend
       distinctValueCount: 0,
       values: [],
@@ -247,8 +247,8 @@ export const INITIAL_STATE = {
       type: 'timespan',
       priority: 8
     },
-    place: {
-      id: 'place',
+    period: {
+      id: 'period',
       // predicate: defined in backend
       distinctValueCount: 0,
       values: [],
@@ -265,7 +265,44 @@ export const INITIAL_STATE = {
       uriFilter: null,
       type: 'hierarchical',
       priority: 6
-    }
+    },
+    ceramicStyle: {
+      id: 'ceramicStyle',
+      // predicate: defined in backend
+      distinctValueCount: 0,
+      values: [],
+      flatValues: [],
+      sortBy: 'instanceCount',
+      sortDirection: 'desc',
+      sortButton: true,
+      spatialFilterButton: false,
+      pieChartButton: true,
+      isFetching: false,
+      searchField: true,
+      containerClass: 'ten',
+      filterType: 'uriFilter',
+      uriFilter: null,
+      type: 'hierarchical',
+      priority: 6
+    },
+    kmNumber: {
+      id: 'kmNumber',
+      // predicate: defined in backend
+      distinctValueCount: 0,
+      values: [],
+      flatValues: [],
+      sortBy: 'instanceCount',
+      sortDirection: 'desc',
+      sortButton: true,
+      spatialFilterButton: false,
+      pieChartButton: true,
+      isFetching: false,
+      searchField: true,
+      containerClass: 'ten',
+      filterType: 'uriFilter',
+      uriFilter: null,
+      priority: 8,
+    },
   }
 }
 

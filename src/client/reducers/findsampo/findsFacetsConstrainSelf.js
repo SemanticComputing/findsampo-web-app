@@ -122,9 +122,9 @@ export const INITIAL_STATE = {
       flatValues: [],
       sortBy: 'instanceCount',
       sortDirection: 'desc',
-      sortButton: true,
+      sortButton: false,
       spatialFilterButton: false,
-      chartButton: false,
+      pieChartButton: false,
       isFetching: false,
       searchField: true,
       containerClass: 'ten',
@@ -132,6 +132,82 @@ export const INITIAL_STATE = {
       uriFilter: null,
       priority: 4,
       type: 'hierarchical'
+    },
+    // materialLiteral: {
+    //   id: 'materialLiteral',
+    //   // predicate: defined in backend
+    //   distinctValueCount: 0,
+    //   values: [],
+    //   flatValues: [],
+    //   sortBy: 'instanceCount',
+    //   sortDirection: 'desc',
+    //   sortButton: true,
+    //   spatialFilterButton: false,
+    //   pieChartButton: true,
+    //   isFetching: false,
+    //   searchField: true,
+    //   containerClass: 'ten',
+    //   filterType: 'uriFilter',
+    //   uriFilter: null,
+    //   priority: 4,
+    // },
+    // period: {
+    //   id: 'period',
+    //   // predicate: defined in backend
+    //   distinctValueCount: 0,
+    //   values: [],
+    //   flatValues: [],
+    //   sortBy: 'instanceCount',
+    //   sortDirection: 'desc',
+    //   sortButton: true,
+    //   spatialFilterButton: false,
+    //   pieChartButton: true,
+    //   isFetching: false,
+    //   searchField: true,
+    //   containerClass: 'ten',
+    //   filterType: 'uriFilter',
+    //   uriFilter: null,
+    //   priority: 5
+    // },
+    place: {
+      id: 'place',
+      // predicate: defined in backend
+      distinctValueCount: 0,
+      values: [],
+      flatValues: [],
+      sortBy: 'instanceCount',
+      sortDirection: 'desc',
+      sortButton: false,
+      spatialFilterButton: false,
+      pieChartButton: false,
+      isFetching: false,
+      searchField: true,
+      containerClass: 'ten',
+      filterType: 'uriFilter',
+      uriFilter: null,
+      type: 'hierarchical',
+      priority: 6
+    },
+    dateTimespan: {
+      id: 'dateTimespan',
+      // predicate: defined in backend
+      distinctValueCount: 0,
+      values: [],
+      flatValues: [],
+      sortBy: null,
+      sortDirection: null,
+      sortButton: false,
+      spatialFilterButton: false,
+      lineChartButton: false,
+      isFetching: false,
+      searchField: false,
+      containerClass: 'four',
+      filterType: 'timespanFilter',
+      min: null,
+      max: null,
+      timespanFilter: null,
+      type: 'timespan',
+      priority: 8
     },
     period: {
       id: 'period',
@@ -141,55 +217,19 @@ export const INITIAL_STATE = {
       flatValues: [],
       sortBy: 'instanceCount',
       sortDirection: 'desc',
-      sortButton: true,
+      sortButton: false,
       spatialFilterButton: false,
-      chartButton: false,
-      isFetching: false,
-      searchField: true,
-      containerClass: 'ten',
-      filterType: 'uriFilter',
-      uriFilter: null,
-      priority: 5
-    },
-    periodObject: {
-      id: 'periodObject',
-      // predicate: defined in backend
-      distinctValueCount: 0,
-      values: [],
-      flatValues: [],
-      sortBy: 'instanceCount',
-      sortDirection: 'desc',
-      sortButton: true,
-      spatialFilterButton: false,
-      chartButton: false,
+      pieChartButton: false,
       isFetching: false,
       searchField: true,
       containerClass: 'ten',
       filterType: 'uriFilter',
       uriFilter: null,
       type: 'hierarchical',
-      priority: 5
+      priority: 6
     },
-    materialLiteral: {
-      id: 'materialLiteral',
-      // predicate: defined in backend
-      distinctValueCount: 0,
-      values: [],
-      flatValues: [],
-      sortBy: 'instanceCount',
-      sortDirection: 'desc',
-      sortButton: true,
-      spatialFilterButton: false,
-      pieChartButton: true,
-      isFetching: false,
-      searchField: true,
-      containerClass: 'ten',
-      filterType: 'uriFilter',
-      uriFilter: null,
-      priority: 4
-    },
-    place: {
-      id: 'place',
+    ceramicStyle: {
+      id: 'ceramicStyle',
       // predicate: defined in backend
       distinctValueCount: 0,
       values: [],
@@ -206,8 +246,25 @@ export const INITIAL_STATE = {
       uriFilter: null,
       type: 'hierarchical',
       priority: 6
-    }
-
+    },
+    kmNumber: {
+      id: 'kmNumber',
+      // predicate: defined in backend
+      distinctValueCount: 0,
+      values: [],
+      flatValues: [],
+      sortBy: 'instanceCount',
+      sortDirection: 'desc',
+      sortButton: true,
+      spatialFilterButton: false,
+      pieChartButton: true,
+      isFetching: false,
+      searchField: true,
+      containerClass: 'ten',
+      filterType: 'uriFilter',
+      uriFilter: null,
+      priority: 8,
+    },
   }
 }
 

@@ -375,7 +375,15 @@ export default {
         latestEnd: {
           label: 'Latest date',
           description: 'Latest possible creation date of the object'
-        }
+        },
+        kmNumber: {
+          label: 'KM number',
+          description: 'accession number of the collections'
+        },
+        ceramicStyle: {
+          label: 'Ceramic style',
+          description: 'Ceramic culture associated with the find'
+        },
       }
     },
     perspective2: {

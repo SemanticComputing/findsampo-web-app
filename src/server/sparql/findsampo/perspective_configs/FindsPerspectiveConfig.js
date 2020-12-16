@@ -160,6 +160,23 @@ export const findsPerspectiveConfig = {
       type: 'list',
       facetLabelFilter: 'FILTER(LANG(?prefLabel_) = \'fi\')',
     },
+    kmNumber: {
+      id: 'kmNumber',
+      facetValueFilter: '',
+      predicate: ':km_number',
+      labelPath: ':km_number',
+      type: 'list',
+      literal: true
+    },
+    ceramicStyle: {
+      id: 'ceramicStyle',
+      facetValueFilter: '',
+      predicate: ':ceramic_style',
+      labelPath: ':ceramic_style/skos:prefLabel',
+      type: 'hierarchical',
+      parentPredicate: ':ceramic_style/skos:broader+',
+      parentProperty: 'skos:broader',
+    },
     // creationTimespan: {
     //   id: 'creationTimespan',
     //   facetValueFilter: '',
