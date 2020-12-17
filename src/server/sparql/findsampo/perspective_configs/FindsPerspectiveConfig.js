@@ -7,7 +7,7 @@ import { prefixes } from '../sparql_queries/SparqlQueriesPrefixes'
 export const findsPerspectiveConfig = {
   endpoint: {
     url: 'https://ldf.fi/sualt-fha-finds/sparql',
-    //url: 'http://localhost:3039/ds/sparql',
+    // url: 'http://localhost:3039/ds/sparql',
     prefixes,
     useAuth: true
   },
@@ -139,7 +139,7 @@ export const findsPerspectiveConfig = {
       labelPath: ':facet_object_term/skos:prefLabel',
       type: 'hierarchical',
       parentPredicate: ':facet_object_term/skos:broader+',
-      parentProperty: 'skos:broader',
+      parentProperty: 'skos:broader'
     },
     objectTypeMAO: {
       id: 'objectTypeMAO',
@@ -149,16 +149,16 @@ export const findsPerspectiveConfig = {
       type: 'hierarchical',
       parentPredicate: ':object_type/:mao_match/skos:broader+',
       parentProperty: 'skos:broader',
-      facetLabelFilter: 'FILTER(LANG(?prefLabel_) = \'fi\')',
+      facetLabelFilter: 'FILTER(LANG(?prefLabel_) = \'fi\')'
     },
     objectTypeFlat: {
       id: 'objectTypeFlat',
       facetValueFilter: '',
       predicate: ':object_type',
       labelPath: ':object_type/skos:prefLabel',
-      type: 'hierarchical',
+      // type: 'hierarchical',
       type: 'list',
-      facetLabelFilter: 'FILTER(LANG(?prefLabel_) = \'fi\')',
+      facetLabelFilter: 'FILTER(LANG(?prefLabel_) = \'fi\')'
     },
     kmNumber: {
       id: 'kmNumber',
@@ -175,8 +175,8 @@ export const findsPerspectiveConfig = {
       labelPath: ':ceramic_style/skos:prefLabel',
       type: 'hierarchical',
       parentPredicate: ':ceramic_style/skos:broader+',
-      parentProperty: 'skos:broader',
-    },
+      parentProperty: 'skos:broader'
+    }
     // creationTimespan: {
     //   id: 'creationTimespan',
     //   facetValueFilter: '',

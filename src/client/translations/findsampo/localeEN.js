@@ -383,7 +383,7 @@ export default {
         ceramicStyle: {
           label: 'Ceramic style',
           description: 'Ceramic culture associated with the find'
-        },
+        }
       }
     },
     perspective2: {
