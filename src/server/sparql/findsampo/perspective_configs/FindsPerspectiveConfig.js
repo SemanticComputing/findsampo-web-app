@@ -6,8 +6,8 @@ import { prefixes } from '../sparql_queries/SparqlQueriesPrefixes'
 
 export const findsPerspectiveConfig = {
   endpoint: {
-    url: 'https://ldf.fi/sualt-fha-finds/sparql',
-    // url: 'http://localhost:3039/ds/sparql',
+    //url: 'https://ldf.fi/sualt-fha-finds/sparql',
+    url: 'http://localhost:3039/ds/sparql',
     prefixes,
     useAuth: true
   },
@@ -176,7 +176,35 @@ export const findsPerspectiveConfig = {
       type: 'hierarchical',
       parentPredicate: ':ceramic_style/skos:broader+',
       parentProperty: 'skos:broader'
-    }
+    },
+    length: {
+      id: 'lenght',
+      facetValueFilter: '',
+      labelPath: ':length_literal',
+      predicate: ':length_literal',
+      type: 'integer'
+    },
+    width: {
+      id: 'width',
+      facetValueFilter: '',
+      labelPath: ':width_literal',
+      predicate: ':width_literal',
+      type: 'integer'
+    },
+    weight: {
+      id: 'weight',
+      facetValueFilter: '',
+      labelPath: ':weight_rounded',
+      predicate: ':weight_rounded',
+      type: 'integer'
+    },
+    thickness: {
+      id: 'thickness',
+      facetValueFilter: '',
+      labelPath: ':thickness_literal',
+      predicate: ':thickness_literal',
+      type: 'integer'
+    },
     // creationTimespan: {
     //   id: 'creationTimespan',
     //   facetValueFilter: '',

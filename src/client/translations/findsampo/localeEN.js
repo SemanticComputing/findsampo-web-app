@@ -383,6 +383,22 @@ export default {
         ceramicStyle: {
           label: 'Ceramic style',
           description: 'Ceramic culture associated with the find'
+        },
+        weight: {
+          label: 'Weight',
+          description: 'Weight'
+        },
+        length: {
+          label: 'Length',
+          description: 'Length'
+        },
+        thickness: {
+          label: 'Thickness',
+          description: 'Thickness'
+        },
+        width: {
+          label: 'Width',
+          description: 'Width'
         }
       }
     },

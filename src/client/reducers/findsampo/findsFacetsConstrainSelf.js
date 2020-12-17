@@ -247,6 +247,58 @@ export const INITIAL_STATE = {
       type: 'hierarchical',
       priority: 6
     },
+    length: {
+      id: 'length',
+      // predicate: defined in backend
+      sortButton: false,
+      spatialFilterButton: false,
+      isFetching: false,
+      containerClass: 'five',
+      type: 'integer',
+      filterType: 'integerFilterRange',
+      integerFilter: null,
+      unit: 'mm',
+      priority: 12
+    },
+    weight: {
+      id: 'weight',
+      // predicate: defined in backend
+      sortButton: false,
+      spatialFilterButton: false,
+      isFetching: false,
+      containerClass: 'five',
+      type: 'integer',
+      filterType: 'integerFilterRange',
+      integerFilter: null,
+      unit: 'g',
+      priority: 12
+    },
+    width: {
+      id: 'width',
+      // predicate: defined in backend
+      sortButton: false,
+      spatialFilterButton: false,
+      isFetching: false,
+      containerClass: 'five',
+      type: 'integer',
+      filterType: 'integerFilterRange',
+      integerFilter: null,
+      unit: 'mm',
+      priority: 12
+    },
+    thickness: {
+      id: 'thickness',
+      // predicate: defined in backend
+      sortButton: false,
+      spatialFilterButton: false,
+      isFetching: false,
+      containerClass: 'five',
+      type: 'integer',
+      filterType: 'integerFilterRange',
+      integerFilter: null,
+      unit: 'mm',
+      priority: 12
+    },
     kmNumber: {
       id: 'kmNumber',
       // predicate: defined in backend

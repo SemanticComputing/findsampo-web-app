@@ -73,6 +73,22 @@ export const findPropertiesInstancePage =
       #BIND(CONCAT(?identifierStart, ?individualNumber) as ?identifierFHA) .
       ?id :km_number ?kmNumber .
     }
+    UNION
+    {
+      ?id :weight_literal ?weight .
+    }
+    UNION
+    {
+      ?id :length_literal ?length .
+    }
+    UNION
+    {
+      ?id :thickness_literal ?thickness .
+    }
+    UNION
+    {
+      ?id :width_literal ?width .
+    }
 `
 
 export const findPropertiesFacetResults =
@@ -161,6 +177,22 @@ export const findPropertiesFacetResults =
       #BIND(CONCAT(?setNumber, ':') as ?identifierStart) .
       #BIND(CONCAT(?identifierStart, ?individualNumber) as ?identifierFHA) .
       ?id :km_number ?kmNumber .
+    }
+    UNION
+    {
+      ?id :weight_literal ?weight .
+    }
+    UNION
+    {
+      ?id :length_literal ?length .
+    }
+    UNION
+    {
+      ?id :thickness_literal ?thickness .
+    }
+    UNION
+    {
+      ?id :width_literal ?width .
     }
   `
 
