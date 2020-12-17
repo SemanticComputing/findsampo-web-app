@@ -1,8 +1,8 @@
 {
-  "name": "sampo-ui",
+  "name": "findsampo-web-app",
   "repository": {
     "type": "git",
-    "url": "https://github.com/SemanticComputing/sampo-ui"
+    "url": "https://github.com/SemanticComputing/findsampo-web-app"
   },
   "license": "MIT",
   "author": "Esko Ikkala <esko.ikkala@aalto.fi>",
