@@ -9,7 +9,7 @@ export default {
   },
   appDescription: `
   `,
-  selectPerspective: 'Select a perspective to search and browse the knowledge graph:',
+  selectPerspective: 'Select an application perspective to search and browse the data:',
   mainPageImageLicence: '',
   mainPage: {
     carouselHeading: 'FEATURED FINDS',
