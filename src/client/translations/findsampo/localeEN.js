@@ -4,11 +4,12 @@ export default {
     short: 'FindSampo',
     long: 'FindSampo',
     subheading: `
+      Finnish Archaeological Finds on the Semantic Web
     `
   },
   appDescription: `
   `,
-  selectPerspective: '',
+  selectPerspective: 'Select a perspective to search and browse the knowledge graph:',
   mainPageImageLicence: '',
   mainPage: {
     carouselHeading: 'FEATURED FINDS',
