@@ -7,7 +7,7 @@ import { prefixes } from '../sparql_queries/SparqlQueriesPrefixes'
 export const findsPerspectiveConfig = {
   endpoint: {
     url: 'https://ldf.fi/sualt-fha-finds/sparql',
-    //url: 'http://localhost:3039/ds/sparql',
+    // url: 'http://localhost:3039/ds/sparql',
     prefixes,
     useAuth: true
   },
@@ -66,7 +66,6 @@ export const findsPerspectiveConfig = {
       predicate: ':material',
       labelPath: ':material/skos:prefLabel',
       type: 'hierarchical',
-      parentPredicate: ':material/skos:broader+',
       parentProperty: 'skos:broader'
     },
     materialLiteral: {
@@ -83,7 +82,6 @@ export const findsPerspectiveConfig = {
       predicate: ':earliest_period|:latest_period',
       labelPath: ':earliest_period/skos:prefLabel|:latest_period/skos:prefLabel',
       type: 'hierarchical',
-      parentPredicate: ':earliest_perio/skos:broader+|:latest_period/skos:broader+',
       parentProperty: 'skos:broader'
     },
     dateTimespan: {
@@ -109,7 +107,6 @@ export const findsPerspectiveConfig = {
       predicate: ':municipality/skos:related',
       labelPath: ':municipalityskos:related//skos:prefLabel',
       type: 'hierarchical',
-      parentPredicate: ':municipality/skos:related/skos:broader+',
       parentProperty: 'skos:broader',
       facetLabelFilter: 'FILTER(LANG(?prefLabel_) = \'fi\')'
     },
@@ -119,7 +116,7 @@ export const findsPerspectiveConfig = {
       predicate: ':object_type',
       labelPath: ':object_type/skos:prefLabel',
       type: 'hierarchical',
-      parentPredicate: ':object_type/skos:broader+',
+      // parentPredicate: ':object_type/skos:broader+',
       parentProperty: 'skos:broader'
     },
     // objectTypeFHAFacet: {
@@ -128,7 +125,6 @@ export const findsPerspectiveConfig = {
     //   predicate: ':object_type/:mao_match/^skos:related',
     //   labelPath: ':object_type/:mao_match/^skos:related/skos:prefLabel',
     //   type: 'hierarchical',
-    //   parentPredicate: ':object_type/:mao_match/^skos:related/skos:broader+',
     //   parentProperty: 'skos:broader',
     //   facetLabelFilter: 'FILTER(LANG(?prefLabel_) = \'fi\')',
     // },
@@ -138,7 +134,6 @@ export const findsPerspectiveConfig = {
       predicate: ':facet_object_term',
       labelPath: ':facet_object_term/skos:prefLabel',
       type: 'hierarchical',
-      parentPredicate: ':facet_object_term/skos:broader+',
       parentProperty: 'skos:broader'
     },
     objectTypeMAO: {
@@ -147,7 +142,6 @@ export const findsPerspectiveConfig = {
       predicate: ':object_type/:mao_match',
       labelPath: ':object_type/:mao_match/skos:prefLabel',
       type: 'hierarchical',
-      parentPredicate: ':object_type/:mao_match/skos:broader+',
       parentProperty: 'skos:broader',
       facetLabelFilter: 'FILTER(LANG(?prefLabel_) = \'fi\')'
     },
@@ -174,7 +168,6 @@ export const findsPerspectiveConfig = {
       predicate: ':ceramic_style',
       labelPath: ':ceramic_style/skos:prefLabel',
       type: 'hierarchical',
-      parentPredicate: ':ceramic_style/skos:broader+',
       parentProperty: 'skos:broader'
     },
     length: {
@@ -204,7 +197,7 @@ export const findsPerspectiveConfig = {
       labelPath: ':thickness_literal',
       predicate: ':thickness_literal',
       type: 'integer'
-    },
+    }
     // creationTimespan: {
     //   id: 'creationTimespan',
     //   facetValueFilter: '',
