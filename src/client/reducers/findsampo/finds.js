@@ -68,6 +68,15 @@ export const INITIAL_STATE = {
       numberedList: false,
       minWidth: 180
     },
+    {
+      id: 'objectTypeFHAFacet',
+      valueType: 'object',
+      makeLink: false,
+      externalLink: false,
+      sortValues: true,
+      numberedList: false,
+      minWidth: 180
+    },
     // {
     //   id: 'specification',
     //   valueType: 'string',

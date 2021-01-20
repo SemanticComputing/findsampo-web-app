@@ -280,15 +280,15 @@ export default {
           `
         },
         objectType: {
-          label: 'Object type (MAO)',
+          label: 'Type (annotation)',
           description: `
             Object type in MAO .
           `
         },
         objectTypeFHAFacet: {
-          label: 'Object type using facet ontology (unfinished)',
+          label: 'Type (facet)',
           description: `
-            Object type.
+            Object type of the find using a facet ontology created by the FHA.
           `
         },
         objectTypeFlat: {

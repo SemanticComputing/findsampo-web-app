@@ -5,24 +5,24 @@ export const INITIAL_STATE = {
   facetUpdateID: 0,
   updatedFilter: null,
   facets: {
-    findName: {
-      id: 'find_name',
-      // predicate: defined in backend
-      distinctValueCount: 0,
-      values: [],
-      flatValues: [],
-      sortBy: 'instanceCount',
-      sortDirection: 'desc',
-      sortButton: true,
-      spatialFilterButton: false,
-      pieChartButton: true,
-      isFetching: false,
-      searchField: true,
-      containerClass: 'ten',
-      filterType: 'uriFilter',
-      uriFilter: null,
-      priority: 1
-    },
+    // findName: {
+    //   id: 'find_name',
+    //   // predicate: defined in backend
+    //   distinctValueCount: 0,
+    //   values: [],
+    //   flatValues: [],
+    //   sortBy: 'instanceCount',
+    //   sortDirection: 'desc',
+    //   sortButton: true,
+    //   spatialFilterButton: false,
+    //   pieChartButton: true,
+    //   isFetching: false,
+    //   searchField: true,
+    //   containerClass: 'ten',
+    //   filterType: 'uriFilter',
+    //   uriFilter: null,
+    //   priority: 1
+    // },
     objectTypeFHAFacet: {
       id: 'objectTypeFHAFacet',
       // predicate: defined in backend
@@ -42,24 +42,24 @@ export const INITIAL_STATE = {
       type: 'hierarchical',
       priority: 6
     },
-    objectTypeFlat: {
-      id: 'objectTypeFlat',
-      // predicate: defined in backend
-      distinctValueCount: 0,
-      values: [],
-      flatValues: [],
-      sortBy: 'alphapetical',
-      sortDirection: 'desc',
-      sortButton: true,
-      spatialFilterButton: false,
-      pieChartButton: false,
-      isFetching: false,
-      searchField: true,
-      containerClass: 'ten',
-      filterType: 'uriFilter',
-      uriFilter: null,
-      priority: 6
-    },
+    // objectTypeFlat: {
+    //   id: 'objectTypeFlat',
+    //   // predicate: defined in backend
+    //   distinctValueCount: 0,
+    //   values: [],
+    //   flatValues: [],
+    //   sortBy: 'alphapetical',
+    //   sortDirection: 'desc',
+    //   sortButton: true,
+    //   spatialFilterButton: false,
+    //   pieChartButton: false,
+    //   isFetching: false,
+    //   searchField: true,
+    //   containerClass: 'ten',
+    //   filterType: 'uriFilter',
+    //   uriFilter: null,
+    //   priority: 6
+    // },
     // objectTypeMAO: {
     //   id: 'objectTypeMAO',
     //   // predicate: defined in backend

@@ -19,6 +19,11 @@ export const findPropertiesInstancePage =
     }
     UNION
     {
+      ?id :facet_object_term ?objectTypeFHAFacet__id .
+      ?objectTypeFHAFacet__id skos:prefLabel ?objectTypeFHAFacet__prefLabel .
+    }
+    UNION
+    {
       ?id :sub_category ?subCategory .
     }
     UNION
@@ -113,6 +118,11 @@ export const findPropertiesFacetResults =
     {
       ?id :object_type ?objectType__id.
       ?objectType__id skos:prefLabel ?objectType__prefLabel .
+    }
+    UNION
+    {
+      ?id :facet_object_term ?objectTypeFHAFacet__id .
+      ?objectTypeFHAFacet__id skos:prefLabel ?objectTypeFHAFacet__prefLabel .
     }
     UNION
     {
