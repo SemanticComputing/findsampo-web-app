@@ -212,6 +212,24 @@ export const INITIAL_STATE = {
       numberedList: false,
       minWidth: 180
     },
+    {
+      id: 'similarInternalFind',
+      valueType: 'object',
+      makeLink: true,
+      externalLink: false,
+      sortValues: true,
+      numberedList: false,
+      onlyOnInstancePage: true
+    },
+    {
+      id: 'similarExternalFind',
+      valueType: 'object',
+      makeLink: true,
+      externalLink: true,
+      sortValues: true,
+      numberedList: false,
+      onlyOnInstancePage: true
+    },
   ]
 }
 

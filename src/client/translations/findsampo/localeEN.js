@@ -400,6 +400,14 @@ export default {
         width: {
           label: 'Width',
           description: 'Width'
+        },
+        similarInternalFind: {
+          label: 'similar Internal Find',
+          description: 'Similar find in FindSampo'
+        },
+        similarExternalFind: {
+          label: 'similar External Find',
+          description: 'Similar find in PAS'
         }
       }
     },

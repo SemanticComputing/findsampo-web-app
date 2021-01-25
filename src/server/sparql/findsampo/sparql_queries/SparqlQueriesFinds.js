@@ -94,6 +94,18 @@ export const findPropertiesInstancePage =
     {
       ?id :width_literal ?width .
     }
+    UNION
+    {
+      ?id :similar_internal_find ?similarInternalFind__id .
+      ?similarInternalFind__id skos:prefLabel ?similarInternalFind__prefLabel .
+      BIND(CONCAT("/${perspectiveID}/page/", REPLACE(STR(?similarInternalFind__id), "^.*\\\\/(.+)", "$1")) AS ?similarInternalFind__dataProviderUrl)
+    }
+    UNION
+    {
+      ?id :similar_external_find ?similarExternalFind__id .
+      BIND(?similarExternalFind__id AS ?similarExternalFind__prefLabel) .
+      BIND(?similarExternalFind__id AS ?similarExternalFind__dataProviderUrl)
+    }
 `
 
 export const findPropertiesFacetResults =
