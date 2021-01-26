@@ -8,14 +8,14 @@ import CloudDownloadIcon from '@material-ui/icons/CloudDownload'
 import ClearAllIcon from '@material-ui/icons/ClearAll'
 import StarIcon from '@material-ui/icons/Star'
 import LineChartIcon from '@material-ui/icons/ShowChart'
-// import manuscriptsImage from '../../img/manuscripts-452x262.jpg'
+import findsImage from '../../img/findsampo/sword.jpg'
 // import worksImage from '../../img/works-452x262_2.jpg'
 // import eventsImage from '../../img/events-452x262.jpg'
 
 export const perspectiveConfig = [
   {
     id: 'finds',
-    // frontPageImage: manuscriptsImage,
+    frontPageImage: findsImage,
     perspectiveDescHeight: 160,
     defaultActiveFacets: new Set(['findName']),
     tabs: [
