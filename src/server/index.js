@@ -100,7 +100,9 @@ new OpenApiValidator({
           constraints: body.constraints,
           resultFormat: resultFormat,
           limit: body.limit,
-          optimize: body.optimize
+          optimize: body.optimize,
+          fromID: body.fromID,
+          toID: body.toID
         })
         if (resultFormat === 'csv') {
           res.writeHead(200, {
