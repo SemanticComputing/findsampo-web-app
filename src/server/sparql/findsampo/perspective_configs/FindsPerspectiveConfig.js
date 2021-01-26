@@ -20,11 +20,11 @@ export const findsPerspectiveConfig = {
     relatedInstances: ''
   },
   facets: {
-    findName: {
-      id: 'findName',
+    prefLabel: {
+      id: 'prefLabel',
       facetValueFilter: '',
-      predicate: ':find_name',
-      labelPath: ':find_name',
+      predicate: 'skos:prefLabel',
+      labelPath: 'skos:prefLabel',
       type: 'list',
       literal: true
     },
