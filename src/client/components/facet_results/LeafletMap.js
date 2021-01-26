@@ -807,42 +807,6 @@ class LeafletMap extends React.Component {
     return container
   }
 
-  createPopUpContentFindSampo = data => {
-    let popUpTemplate = ''
-    // console.log(data)
-    popUpTemplate += `<h2>${intl.get('leafletMap.findPopUpHeading')}</h2>`
-    if (has(data, 'prefLabel')) {
-      popUpTemplate += `
-        <p><b>${intl.get('perspectives.finds.properties.prefLabel.label')}</b>: ${data.prefLabel.prefLabel}</p>`
-    }
-    if (has(data, 'type')) {
-      popUpTemplate += `
-        <p><b>${intl.get('perspectives.finds.properties.type.label')}</b>: ${data.type}</p>`
-    }
-    if (has(data, 'subCategory')) {
-      popUpTemplate += `
-        <p><b>${intl.get('perspectives.finds.properties.subCategory.label')}</b>: ${data.subCategory}</p>`
-    }
-    if (has(data, 'material')) {
-      popUpTemplate += `
-        <p><b>${intl.get('perspectives.finds.properties.material.label')}</b>: ${data.material.prefLabel}</p>`
-    }
-    if (has(data, 'period')) {
-      popUpTemplate += `
-        <p><b>${intl.get('perspectives.finds.properties.period.label')}</b>: ${data.period}</p>`
-    }
-    if (has(data, 'municipality')) {
-      popUpTemplate += `
-        <p><b>${intl.get('perspectives.finds.properties.municipality.label')}</b>: ${data.municipality.prefLabel}</p>`
-    }
-    if (has(data, 'id')) {
-      popUpTemplate += `
-        <p><b>${intl.get('perspectives.finds.properties.uri.label')}</b>: <a href=${data.id} target='_blank'>${data.id}</a></p>`
-    }
-    // console.log(popUpTemplate)
-    return popUpTemplate
-  }
-
   createPopUpContentNameSampo = data => {
     const { perspectiveID } = this.props
     let popUpTemplate = ''
@@ -881,10 +845,11 @@ class LeafletMap extends React.Component {
   }
 
   createPopUpContentFindSampo = data => {
+    console.log(data)
     const container = document.createElement('div')
     const heading = document.createElement('h3')
     const headingLink = document.createElement('a')
-    headingLink.href = ''
+    headingLink.style.cssText = 'cursor: pointer; text-decoration: underline'
     headingLink.textContent = data.prefLabel.prefLabel
     headingLink.addEventListener('click', () => history.push(data.dataProviderUrl))
     heading.appendChild(headingLink)
