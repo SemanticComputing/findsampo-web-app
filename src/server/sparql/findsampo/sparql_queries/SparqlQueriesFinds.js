@@ -7,6 +7,7 @@ export const findPropertiesInstancePage =
       BIND(?id as ?uri__id)
       BIND(?id as ?uri__dataProviderUrl)
       BIND(?id as ?uri__prefLabel)
+      BIND(CONCAT("/${perspectiveID}/page/", REPLACE(STR(?id), "^.*\\\\/(.+)", "$1")) AS ?dataProviderUrl)    
     }
     UNION
     {
@@ -232,7 +233,6 @@ export const nearbyFindsQuery = `
     ?id spatial:nearby (64.791 29.249 50 'km') . # Vuokkijärvi, Suomussalmi
     ?id wgs84:lat ?lat ;
         wgs84:long ?long .
-    BIND(CONCAT("/${perspectiveID}/page/", REPLACE(STR(?id), "^.*\\\\/(.+)", "$1")) AS ?dataProviderUrl)    
     ${findPropertiesInstancePage}    
   }
 `

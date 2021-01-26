@@ -845,7 +845,6 @@ class LeafletMap extends React.Component {
   }
 
   createPopUpContentFindSampo = data => {
-    console.log(data)
     const container = document.createElement('div')
     const heading = document.createElement('h3')
     const headingLink = document.createElement('a')
