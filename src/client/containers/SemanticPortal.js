@@ -32,7 +32,7 @@ import KnowledgeGraphMetadataTable from '../components/perspectives/findsampo/Kn
 import { perspectiveConfig } from '../configs/findsampo/PerspectiveConfig'
 import { perspectiveConfigOnlyInfoPages } from '../configs/findsampo/PerspectiveConfigOnlyInfoPages'
 import { rootUrl } from '../configs/findsampo/GeneralConfig'
-// ** Portal specific components and configs end **
+// ** Portal specific components and configs end **finds
 
 import {
   fetchResultCount,
@@ -272,7 +272,6 @@ const SemanticPortal = props => {
   useEffect(() => {
     document.title = intl.get('appTitle.short')
   }, [props.options.currentLocale])
-
   return (
     <MuiPickersUtilsProvider libInstance={moment} utils={MomentUtils} locale={props.options.currentLocale}>
       <div className={classes.root}>
@@ -615,6 +614,9 @@ const mapStateToProps = state => {
     finds: state.finds,
     findsFacets: state.findsFacets,
     findsFacetsConstrainSelf: state.findsFacetsConstrainSelf,
+    types: state.types,
+    typesFacets: state.typesFacets,
+    typesFacetsConstrainSelf: state.typesFacetsConstrainSelf,
     places: state.places,
     leafletMap: state.leafletMap,
     fullTextSearch: state.fullTextSearch,
@@ -672,6 +674,12 @@ SemanticPortal.propTypes = {
   finds: PropTypes.object.isRequired,
   findsFacets: PropTypes.object.isRequired,
   findsFacetsConstrainSelf: PropTypes.object.isRequired,
+  /**
+   * Faceted search configs and results of 'Places'.
+   */
+  types: PropTypes.object.isRequired,
+  typesFacets: PropTypes.object.isRequired,
+  typesFacetsConstrainSelf: PropTypes.object.isRequired,
   /**
    * Faceted search configs and results of 'Places'.
    */

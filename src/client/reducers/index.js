@@ -10,6 +10,9 @@ import fullTextSearch from './sampo/fullTextSearch'
 import finds from './findsampo/finds'
 import findsFacets from './findsampo/findsFacets'
 import findsFacetsConstrainSelf from './findsampo/findsFacetsConstrainSelf'
+import types from './findsampo/types'
+import typesFacets from './findsampo/typesFacets'
+import typesFacetsConstrainSelf from './findsampo/typesFacetsConstrainSelf'
 import perspective2Facets from './sampo/perspective2Facets'
 import perspective2FacetsConstrainSelf from './sampo/perspective2FacetsConstrainSelf'
 import perspective3Facets from './sampo/perspective3Facets'
@@ -19,6 +22,9 @@ const reducer = combineReducers({
   finds,
   findsFacets,
   findsFacetsConstrainSelf,
+  types,
+  typesFacets,
+  typesFacetsConstrainSelf,
   perspective2Facets,
   perspective2FacetsConstrainSelf,
   perspective3Facets,

@@ -1,4 +1,5 @@
 import { findsPerspectiveConfig } from './perspective_configs/FindsPerspectiveConfig'
+import { typesPerspectiveConfig } from './perspective_configs/TypesPerspectiveConfig'
 import {
   findPropertiesInstancePage,
   findsByProvinceQuery,
@@ -22,6 +23,7 @@ import {
 
 export const backendSearchConfig = {
   finds: findsPerspectiveConfig,
+  types: typesPerspectiveConfig,
   findsPlaces: {
     perspectiveID: 'finds', // use endpoint config from finds
     q: findsPlacesQuery,

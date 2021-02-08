@@ -9,6 +9,7 @@ import ClearAllIcon from '@material-ui/icons/ClearAll'
 import StarIcon from '@material-ui/icons/Star'
 import LineChartIcon from '@material-ui/icons/ShowChart'
 import findsImage from '../../img/findsampo/sword.jpg'
+import typesImage from '../../img/findsampo/coin.jpg'
 // import worksImage from '../../img/works-452x262_2.jpg'
 // import eventsImage from '../../img/events-452x262.jpg'
 
@@ -76,6 +77,36 @@ export const perspectiveConfig = [
         value: 2,
         icon: <CloudDownloadIcon />
       }
+    ],
+  },
+  {
+    id: 'types',
+    frontPageImage: typesImage,
+    perspectiveDescHeight: 160,
+    defaultActiveFacets: new Set(['prefLabel']),
+    tabs: [
+      {
+        id: 'table',
+        value: 0,
+        icon: <CalendarViewDayIcon />
+      },
+      {
+        id: 'export',
+        value: 1,
+        icon: <CloudDownloadIcon />
+      }
+    ],
+    instancePageTabs: [
+      {
+        id: 'table',
+        value: 0,
+        icon: <CalendarViewDayIcon />
+      },
+      {
+        id: 'export',
+        value: 1,
+        icon: <CloudDownloadIcon />
+      }
     ]
-  }
+  },
 ]

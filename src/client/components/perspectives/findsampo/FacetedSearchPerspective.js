@@ -1,6 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import Finds from './Finds'
+import Types from './Types'
 
 /**
  * A component for creating a faceted search perspective for a semantic portal.
@@ -34,6 +35,31 @@ const FacetedSearchPerspective = props => {
             rootUrl={props.rootUrl}
           />
         break
+      case 'types':
+        perspectiveElement =
+          <Types
+            facetResults={props.facetResults}
+            placesResults={props.placesResults}
+            leafletMapLayers={props.leafletMap}
+            facetData={props.facetData}
+            fetchPaginatedResults={props.fetchPaginatedResults}
+            fetchResults={props.fetchResults}
+            fetchGeoJSONLayers={props.fetchGeoJSONLayers}
+            clearGeoJSONLayers={props.clearGeoJSONLayers}
+            fetchByURI={props.fetchByURI}
+            updatePage={props.updatePage}
+            updateRowsPerPage={props.updateRowsPerPage}
+            updateFacetOption={props.updateFacetOption}
+            sortResults={props.sortResults}
+            showError={props.showError}
+            routeProps={props.routeProps}
+            perspective={props.perspective}
+            animationValue={props.animationValue}
+            animateMap={props.animateMap}
+            screenSize={props.screenSize}
+            rootUrl={props.rootUrl}
+          />
+      break
       default:
         perspectiveElement = <div />
         break
