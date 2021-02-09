@@ -18,7 +18,7 @@ import Divider from '@material-ui/core/Divider'
 import { has } from 'lodash'
 import findSampoLogo from '../../../img/findsampo/logo.png'
 import secoLogo from '../../../img/logos/seco-logo-48x50.png'
-import { showLanguageButton } from '../../../configs/findsampo/GeneralConfig'
+import { showLanguageButton, feedbackLink } from '../../../configs/findsampo/GeneralConfig'
 
 const useStyles = makeStyles((theme) => ({
   grow: {
@@ -105,7 +105,9 @@ const TopBar = props => {
           rel='noopener noreferrer'
         >
           <MenuItem>
-            {intl.get(`perspectives.${perspective.id}.label`).toUpperCase()}
+            {perspective.label
+              ? perspective.label.toUpperCase()
+              : intl.get(`perspectives.${perspective.id}.label`).toUpperCase()}
           </MenuItem>
         </a>
       )
@@ -136,7 +138,9 @@ const TopBar = props => {
           <Button
             className={classes.appBarButton}
           >
-            {intl.get(`perspectives.${perspective.id}.label`).toUpperCase()}
+            {perspective.label
+              ? perspective.label
+              : intl.get(`perspectives.${perspective.id}.label`).toUpperCase()}
           </Button>
         </a>
       )
@@ -166,13 +170,11 @@ const TopBar = props => {
     >
       {perspectives.map(perspective => renderMobileMenuItem(perspective))}
       <Divider />
-      <MenuItem
-        key='feedback'
-        component={AdapterLink}
-        to={`${props.rootUrl}/feedback`}
-      >
-        {intl.get('topBar.feedback').toUpperCase()}
-      </MenuItem>
+      {renderMobileMenuItem({
+        id: 'feedback',
+        externalUrl: feedbackLink,
+        label: intl.get('topBar.feedback')
+      })}
       <MenuItem
         key={0}
         component={AdapterLink}
@@ -226,15 +228,11 @@ const TopBar = props => {
           <div className={classes.sectionDesktop}>
             {perspectives.map((perspective, index) => renderDesktopTopMenuItem(perspective, index))}
             <div className={classes.appBarDivider} />
-            <Button
-              className={classes.appBarButton}
-              component={AdapterNavLink}
-              to={`${props.rootUrl}/feedback`}
-              isActive={(match, location) => location.pathname.startsWith(`${props.rootUrl}/feedback`)}
-              activeClassName={classes.appBarButtonActive}
-            >
-              {intl.get('topBar.feedback')}
-            </Button>
+            {renderDesktopTopMenuItem({
+              id: 'feedback',
+              externalUrl: feedbackLink,
+              label: intl.get('topBar.feedback')
+            })}
             <TopBarInfoButton rootUrl={props.rootUrl} />
             <Button
               className={classes.appBarButton}
@@ -262,6 +260,13 @@ const TopBar = props => {
             <Button><img src={secoLogo} /></Button>
           </a>
           <div className={classes.sectionMobile}>
+            {showLanguageButton &&
+              <TopBarLanguageButton
+                currentLocale={currentLocale}
+                availableLocales={availableLocales}
+                loadLocales={props.loadLocales}
+                location={props.location}
+              />}
             <IconButton aria-haspopup='true' onClick={handleMobileMenuOpen} color='inherit'>
               <MoreIcon />
             </IconButton>
