@@ -20,6 +20,7 @@ export const queryJenaIndex = async ({
   const { properties } = config
   q = q.replace('<QUERY>', `?id text:query ('${queryTerm.toLowerCase()}' 2000) .`)
   q = q.replace('<RESULT_SET_PROPERTIES>', properties)
+  // console.log(endpoint.prefixes + q)
   const results = await runSelectQuery({
     query: endpoint.prefixes + q,
     endpoint: endpoint.url,
