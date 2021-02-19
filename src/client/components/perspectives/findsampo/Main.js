@@ -6,7 +6,7 @@ import Typography from '@material-ui/core/Typography'
 import { makeStyles } from '@material-ui/core/styles'
 import MainCard from '../../main_layout/MainCard'
 import bannerImage from '../../../img/findsampo_banner_huge.jpg'
-// import ImageCarousel from '../../main_layout/ImageCarousel'
+import ImageCarousel from '../../main_layout/ImageCarousel'
 // import InfoCards from './InfoCards'
 
 const useStyles = makeStyles(theme => ({
@@ -172,12 +172,16 @@ const Main = props => {
           <Typography className={classes.licenceText}>{intl.getHTML('mainPageImageLicence')}</Typography>
         </div>
       </div>
-      {/* <div className={classes.carouselContainer}>
+      <div className={classes.carouselContainer}>
         <div className={classes.carouselHeadingContainer}>
           <Typography className={classes.carouselHeading}>{intl.get('mainPage.carouselHeading')}</Typography>
         </div>
-        <ImageCarousel />
-      </div> */}
+        <ImageCarousel
+          resultClass='findsKnowledgeGraphMetadata'
+          fetchData={props.fetchKnowledgeGraphMetadata}
+          data={props.knowledgeGraphMetadata}
+        />
+      </div>
       {/* <InfoCards /> */}
     </div>
   )

@@ -1,8 +1,10 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import PropTypes from 'prop-types'
 import { Carousel } from 'react-responsive-carousel'
 import 'react-responsive-carousel/lib/styles/carousel.min.css'
 import { makeStyles } from '@material-ui/core/styles'
+import { Typography } from '@material-ui/core'
+import history from '../../History'
 
 // const DESKTOP_SCREEN_PERSENTAGE = 30
 // const MOBILE_SCREEN_PERSENTAGE = 95
@@ -10,45 +12,32 @@ import { makeStyles } from '@material-ui/core/styles'
 const useStyles = makeStyles(theme => ({
   itemContainer: {
     background: 'rgb(247, 247, 247)',
-    transition: 'transform 420ms cubic-bezier(0.165, 0.84, 0.44, 1)'
+    transition: 'transform 420ms cubic-bezier(0.165, 0.84, 0.44, 1)',
+    height: 230,
+    cursor: 'pointer'
   },
   carouselImage: {
-    height: 200,
     maxWidth: 250,
+    height: 200,
     objectFit: 'cover',
     borderRadius: 25
+  },
+  carouselImageCaption: {
+    marginTop: theme.spacing(1)
   }
 }))
 
-const sampleItems = [
-  {
-    desc: 'Neulahakaisia, Imatra',
-    imgSrc: 'http://luettelointi.nba.fi/assets/uploads/find_images/40039-131.JPG'
-  },
-  {
-    desc: 'Kehäsolki, Imatea',
-    imgSrc: 'http://luettelointi.nba.fi/assets/uploads/find_images/40039-118.JPG'
-  },
-  {
-    desc: 'Miekanpansi, Asikkala',
-    imgSrc: 'http://luettelointi.nba.fi/assets/uploads/find_images/40932_1a.JPG'
-  },
-  {
-    desc: 'Kantasormus, Haapavesi',
-    imgSrc: 'http://luettelointi.nba.fi/assets/uploads/find_images/40548-1.JPG'
-  },
-  {
-    desc: 'Linturiipus, Hattula',
-    imgSrc: 'http://luettelointi.nba.fi/assets/uploads/find_images/40449-2.jpg'
-  },
-  {
-    desc: 'Rengaskuolaimet, Vesilahti',
-    imgSrc: 'http://luettelointi.nba.fi/assets/uploads/find_images/40548-1.JPG'
-  }
-]
-
-const ImageCarousel = pros => {
+const ImageCarousel = props => {
   const classes = useStyles()
+  const { data } = props
+
+  useEffect(() => {
+    if (props.fetchData) {
+      const { resultClass } = props
+      props.fetchData({ resultClass })
+    }
+  }, [])
+
   return (
     <Carousel
       centerMode
@@ -59,14 +48,18 @@ const ImageCarousel = pros => {
       infiniteLoop
       showArrows
       centerSlidePercentage={30}
+      onClickItem={(index, item) => history.push(item.props.link)}
     >
-      {
-        sampleItems.map((item, index) => (
-          <div key={index} className={classes.itemContainer}>
-            <img className={classes.carouselImage} src={item.imgSrc} />
+      {data && data.featuredFind &&
+        data.featuredFind.map((item, index) => (
+          <div key={index} className={classes.itemContainer} link={item.dataProviderUrl}>
+            <img
+              className={classes.carouselImage}
+              src={Array.isArray(item.imageURL) ? item.imageURL[0] : item.imageURL}
+            />
+            <Typography className={classes.carouselImageCaption}>{item.prefLabel}</Typography>
           </div>
-        ))
-      }
+        ))}
     </Carousel>
   )
 }

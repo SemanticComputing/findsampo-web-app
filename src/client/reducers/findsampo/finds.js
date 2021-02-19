@@ -229,7 +229,7 @@ export const INITIAL_STATE = {
       sortValues: true,
       numberedList: false,
       onlyOnInstancePage: true
-    },
+    }
   ]
 }
 
@@ -241,7 +241,8 @@ const resultClasses = new Set([
   'findsByMaterial',
   'findsByObjectName',
   'findsByYear',
-  'findsByWeight'
+  'findsByWeight',
+  'findsKnowledgeGraphMetadata'
 ])
 
 const finds = (state = INITIAL_STATE, action) => {

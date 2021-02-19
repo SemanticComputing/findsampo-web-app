@@ -301,6 +301,9 @@ const SemanticPortal = props => {
                     perspectives={perspectiveConfig}
                     screenSize={screenSize}
                     rootUrl={rootUrlWithLang}
+                    resultClass='finds'
+                    fetchKnowledgeGraphMetadata={props.fetchKnowledgeGraphMetadata}
+                    knowledgeGraphMetadata={props.finds.knowledgeGraphMetadata}
                   />
                   <Footer />
                 </Grid>}
