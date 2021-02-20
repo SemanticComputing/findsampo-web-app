@@ -52,10 +52,12 @@ class InstanceHomePage extends React.Component {
     // handle the case when the TABLE tab was not originally active
     const prevPathname = prevProps.routeProps.location.pathname
     const currentPathname = this.props.routeProps.location.pathname
-    if (prevPathname !== currentPathname && currentPathname.endsWith('table')) {
+    if (!this.hasTableData() && prevPathname !== currentPathname && currentPathname.endsWith('table')) {
       this.fetchTableData()
     }
   }
+
+  hasTableData = () => this.props.tableData !== null && Object.values(this.props.tableData).length >= 1
 
   fetchTableData = () => {
     let uri = ''
@@ -95,7 +97,7 @@ class InstanceHomePage extends React.Component {
 
   render = () => {
     const { classes, tableData, isLoading, resultClass, rootUrl } = this.props
-    const hasTableData = tableData !== null && Object.values(tableData).length >= 1
+    const hasTableData = this.hasTableData()
     return (
       <div className={classes.root}>
         <PerspectiveTabs
