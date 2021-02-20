@@ -1,5 +1,9 @@
 export default {
   languageLabel: 'English',
+  html: {
+    title: 'FindSampo – Finnish Archaeological Finds on the Semantic Web',
+    description: 'FindSampo is a semantic portal and a Linked Open Data service searching and analyzing archaeological Finds'
+  },
   appTitle: {
     short: 'FindSampo',
     long: 'FindSampo',
@@ -453,7 +457,7 @@ export default {
           label: 'Catecory in facet ontology',
           description: `
           `
-        },
+        }
       }
     },
     perspective3: {

@@ -29,7 +29,8 @@ const KnowledgeGraphMetadataTable = props => {
     }
   }, [])
 
-  const data = props.knowledgeGraphMetadata ? props.knowledgeGraphMetadata.databaseDump : []
+  const data = props.knowledgeGraphMetadata && props.knowledgeGraphMetadata.databaseDump
+    ? props.knowledgeGraphMetadata.databaseDump : []
 
   return (
     <div className={classes.root}>
