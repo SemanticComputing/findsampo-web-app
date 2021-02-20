@@ -13,8 +13,8 @@ export const INITIAL_STATE = {
   sortDirection: null,
   fetching: false,
   fetchingResultCount: false,
-  facetedSearchHeaderExpanded: false,
-  instancePageHeaderExpanded: false,
+  facetedSearchHeaderExpanded: true,
+  instancePageHeaderExpanded: true,
   instanceTableData: null,
   instanceTableExternalData: null,
   instanceAnalysisData: null,
@@ -56,13 +56,13 @@ export const INITIAL_STATE = {
       sortValues: true,
       numberedList: false,
       minWidth: 180
-    },
+    }
 
   ]
 }
 
 const resultClasses = new Set([
-  'types',
+  'types'
 ])
 
 const types = (state = INITIAL_STATE, action) => {

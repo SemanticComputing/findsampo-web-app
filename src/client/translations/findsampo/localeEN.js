@@ -157,30 +157,6 @@ export default {
     },
     wrongZoomLevelFHA: 'The map zoom level has to be at least 13 in order to show this layer'
   },
-  instancePageGeneral: {
-    introduction: `
-      <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
-        This landing page provides a human-readable summary of the data points that link
-        to this {entity}. The data included in this summary reflect only those data points
-        used in the MMM Portal. Click the Open in Linked Data Browser on button on the
-        Export tab to view the complete set of classes and properties linked to this record.
-      </p>
-      <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
-        To cite this record, use its url. You can use also use the url to return directly
-        to the record at any time.
-      </p>
-    `,
-    repetition: `
-      <h6 class="MuiTypography-root MuiTypography-h6">
-        Repetition of data
-      </h6>
-      <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
-        The same or similar data may appear within a single data field multiple times.
-        This repetition occurs due to the merging of multiple records from different datasets
-        to create the MMM record.
-      </p>
-    `
-  },
   deckGlMap: {
     arcColouring: 'Arc colouring:',
     showMoreInformation: 'Click to show more information.',
@@ -201,21 +177,20 @@ export default {
       shortDescription: 'Data provided by the Finnish Heritage Agency',
       longDescription: `
         <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
-          Use this perspective to access data related to...
+           [ short instructions here... ]
         </p>
         <ul class="MuiTypography-root MuiTypography-body1">
           <li>
-            <strong>TABLE</STRONG> view includes ...
+            <strong>TABLE</STRONG> tab presents the finds as paginated table
           </li>
           <li>
-            <strong>PRODUCTION PLACES</STRONG> view visualizes the ...
+            ...
           </li>
           <li>
-            <strong>MIGRATIONS</strong> view visualizes the ....
+            ...
           </li>
           <li>
-            <strong>EXPORT</strong> the SPARQL query used to generate the result
-            table view into YASGUI query editor.
+            ...
           </li>
         </ul>
       `,
@@ -223,37 +198,8 @@ export default {
         label: 'Archaeological find',
         description: `
           <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
-            MMM’s Manuscript entity corresponds to
-            <a href='https://www.ifla.org/publications/node/11240' target='_blank' rel='noopener noreferrer'>FRBRoo’s</a>
-            Manifestation Singleton, defined as "physical objects that each carry an instance of
-            [an Expression], and that were produced as unique objects..." The various types
-            of records that describe manuscripts in each of the three contributing MMM
-            datasets have been mapped to this entity.
+            [ short instructions here... ]
           </p>
-          <h6 class="MuiTypography-root MuiTypography-h6">
-            Manuscript labels
-          </h6>
-          <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
-            If the Bibale or Oxford databases reference a shelf mark for the manuscript,
-            that information will appear as its label. Otherwise, an SDBM ID number will serve
-            as its label. SDBM ID numbers contain prefixes that indicate different things about
-            the type of record they contain:
-          </p>
-          <ul class="MuiTypography-root MuiTypography-body1">
-            <li>
-              SDBM_MS: SDBM Manuscript Record, which aggregates the data of two or more SDBM
-              Entries. Each Entry represents a different observation of a manuscript at a different
-              point in time, derived from various sources.
-            </li>
-            <li>
-              SDBM_MS_orphan: a single Entry in the SDBM, meaning it has not been linked to any
-              other Entries and therefore has no SDBM Manuscript Record.
-            </li>
-            <li>
-              SDBM_MS_part: a record identified as a fragment of a larger manuscript.
-            </li>
-          </ul>
-          <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph"></p>
         `
       },
       properties: {
@@ -406,11 +352,11 @@ export default {
           description: 'Width'
         },
         similarInternalFind: {
-          label: 'similar Internal Find',
+          label: 'Similar internal find',
           description: 'Similar find in FindSampo'
         },
         similarExternalFind: {
-          label: 'similar External Find',
+          label: 'Similar external find',
           description: 'Similar find in PAS'
         }
       }
@@ -424,11 +370,11 @@ export default {
         </p>
         <ul class="MuiTypography-root MuiTypography-body1">
           <li>
-            <strong>TABLE</STRONG> view gives you a list of object types
+            <strong>TABLE</STRONG> tab presents the object types as a paginated table
           </li>
           <li>
             <strong>EXPORT</strong> the SPARQL query used to generate the result
-            table view into YASGUI query editor.
+            table into YASGUI query editor.
           </li>
         </ul>
       `,
@@ -436,8 +382,9 @@ export default {
         label: 'Object type',
         description: `
           <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
+            [ short instructions here... ]
           </p>
-        `
+      `
       },
       properties: {
         uri: {
@@ -456,113 +403,6 @@ export default {
         facetType: {
           label: 'Catecory in facet ontology',
           description: `
-          `
-        }
-      }
-    },
-    perspective3: {
-      label: 'Perspective 3',
-      facetResultsType: 'events',
-      shortDescription: 'Perspective 3 description',
-      longDescription: `
-        <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
-          Use this perspective to access data related to events associated with the
-          histories of manuscripts and manuscript collections over the centuries.
-          See <a href="/instructions">instructions</a> for using the filters.
-          The result view can be selected using the tabs:
-        </p>
-        <ul class="MuiTypography-root MuiTypography-body1">
-          <li>
-            <strong>TABLE</STRONG> view includes all events in the MMM data.
-          </li>
-          <li>
-            <strong>MAP</STRONG> view visualizes the events that have location information on a map.
-          </li>
-          <li>
-            <strong>EXPORT</strong> the SPARQL query used to generate the result
-            table view into YASGUI query editor.
-          </li>
-        </ul>
-      `,
-      instancePage: {
-        label: 'Event',
-        description: `
-          <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
-            Events refer to various activities related to Manuscripts and Actors. Event
-            types include Production, Transfer of Custody, and Activity events.
-            Production events refer to the production of the physical manuscript.
-            Transfer of Custody events indicate a change of ownership that involved
-            a transaction of some kind, usually through an auction house or bookseller.
-            The generic Activity event type covers all other types of events.
-          </p>
-        `
-      },
-      properties: {
-        uri: {
-          label: 'URI',
-          description: 'Uniform Resource Identifier'
-        },
-        type: {
-          label: 'Type',
-          description: `
-            Distinguish between “Transfer of Custody”, “Production”, and other
-            types of “Activity” events.
-          `
-        },
-        language: {
-          label: 'Language',
-          description: `
-            The language in which a Work is written in the manuscript
-            (i.e., an “Expression” of a Work). One manuscript may contain multiple languages.
-          `
-        },
-        manuscript: {
-          label: 'Manuscript / Collection',
-          description: `
-            The manuscript or manuscript collection associated with the event.
-          `
-        },
-        eventTimespan: {
-          label: 'Date',
-          description: `
-            The date or time period associated with the event.
-          `
-        },
-        place: {
-          label: 'Place',
-          description: `
-            The specific place(s) associated with the event.
-          `
-        },
-        note: {
-          label: 'Note',
-          description: `
-            Note
-          `
-        },
-        surrender: {
-          label: 'Custody surrendered by',
-          description: `
-            Custody surrendered by
-          `
-        },
-        receiver: {
-          label: 'Custody received by',
-          description: `
-            Custody received by
-          `
-        },
-        observedOwner: {
-          label: 'Observed owner',
-          description: `
-            Observed owner
-          `
-        },
-        source: {
-          label: 'Source',
-          description: `
-            The source database (Schoenberg, Bibale, and Bodleian) that provided
-            the information about the event.
           `
         }
       }
@@ -723,25 +563,5 @@ export default {
     <p class="MuiTypography-root MuiTypography-body1">
       (Owner: <i>Sir Thomas Phillipps</i> <strong>OR</strong> Owner: <i>Thomas Thorpe</i>)
     </p>
-  `,
-  feedback: `
-    <h1 class="MuiTypography-root MuiTypography-h2 MuiTypography-gutterBottom">
-      Feedback
-    </h1>
-    <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
-      This semantic portal has been developed by the research project ...
-    </p>
-    <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
-      We are interested in your feedback on the functionality, coverage, and usefulness of the portal and its data.
-    </p>
-    <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
-      Please complete our
-      <a href="" target='_blank' rel='noopener noreferrer'>Feedback Survey Form.</a>
-    </p>
-    <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
-    You can also contact us via email:
-    ...
-    or DM us on Twitter: ...
-    </p>
-    `
+  `
 }
