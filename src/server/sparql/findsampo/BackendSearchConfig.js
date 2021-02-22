@@ -1,5 +1,6 @@
 import { findsPerspectiveConfig } from './perspective_configs/FindsPerspectiveConfig'
 import { typesPerspectiveConfig } from './perspective_configs/TypesPerspectiveConfig'
+import { periodsPerspectiveConfig } from './perspective_configs/PeriodsPerspectiveConfig'
 import {
   findPropertiesInstancePage,
   findsByProvinceQuery,
@@ -12,6 +13,9 @@ import {
   nearbyFindsQuery,
   knowledgeGraphMetadataQuery
 } from './sparql_queries/SparqlQueriesFinds'
+import {
+  typesPropertiesInstancePage,
+} from './sparql_queries/SparqlQueriesTypes'
 import { fullTextSearchProperties } from './sparql_queries/SparqlQueriesFullText'
 import { makeObjectList } from '../SparqlObjectMapper'
 import {
@@ -24,6 +28,7 @@ import {
 export const backendSearchConfig = {
   finds: findsPerspectiveConfig,
   types: typesPerspectiveConfig,
+  periods: periodsPerspectiveConfig,
   findsPlaces: {
     perspectiveID: 'finds', // use endpoint config from finds
     q: findsPlacesQuery,

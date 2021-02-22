@@ -406,7 +406,61 @@ export default {
           `
         }
       }
-    }
+    },
+    periods: {
+      label: 'Periods',
+      facetResultsType: 'periods',
+      shortDescription: 'Information about periods',
+      longDescription: `
+        <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
+        </p>
+        <ul class="MuiTypography-root MuiTypography-body1">
+          <li>
+            <strong>TABLE</STRONG> tab presents the object types as a paginated table
+          </li>
+          <li>
+            <strong>EXPORT</strong> the SPARQL query used to generate the result
+            table into YASGUI query editor.
+          </li>
+        </ul>
+      `,
+      instancePage: {
+        label: 'Object type',
+        description: `
+          <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
+            [ short instructions here... ]
+          </p>
+      `
+      },
+      properties: {
+        uri: {
+          label: 'URI',
+          description: 'Uniform Resource Identifier'
+        },
+        prefLabel: {
+          label: 'Name',
+          description: 'NAme of the period'
+        },
+        hiddenLabel: {
+          label: 'Alternative terms',
+          description: `
+             possible alternative terms for the period
+          `
+        },
+        earliestBegin: {
+          label: 'Period start',
+          description: `
+             Earliest year that period started
+          `
+        },
+        latestEnd: {
+          label: 'Period end',
+          description: `
+             latest year that period ended
+          `
+        },
+      }
+    },
   },
   aboutThePortalPartOne: `
     <h1 class="MuiTypography-root MuiTypography-h2 MuiTypography-gutterBottom">

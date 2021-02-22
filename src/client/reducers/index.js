@@ -13,6 +13,9 @@ import findsFacetsConstrainSelf from './findsampo/findsFacetsConstrainSelf'
 import types from './findsampo/types'
 import typesFacets from './findsampo/typesFacets'
 import typesFacetsConstrainSelf from './findsampo/typesFacetsConstrainSelf'
+import periods from './findsampo/periods'
+import periodsFacets from './findsampo/periodsFacets'
+import periodsFacetsConstrainSelf from './findsampo/periodsFacetsConstrainSelf'
 import perspective2Facets from './sampo/perspective2Facets'
 import perspective2FacetsConstrainSelf from './sampo/perspective2FacetsConstrainSelf'
 import perspective3Facets from './sampo/perspective3Facets'
@@ -25,6 +28,9 @@ const reducer = combineReducers({
   types,
   typesFacets,
   typesFacetsConstrainSelf,
+  periods,
+  periodsFacets,
+  periodsFacetsConstrainSelf,
   perspective2Facets,
   perspective2FacetsConstrainSelf,
   perspective3Facets,

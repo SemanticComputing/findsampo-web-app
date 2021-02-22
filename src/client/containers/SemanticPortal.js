@@ -622,6 +622,9 @@ const mapStateToProps = state => {
     types: state.types,
     typesFacets: state.typesFacets,
     typesFacetsConstrainSelf: state.typesFacetsConstrainSelf,
+    periods: state.periods,
+    periodsFacets: state.periodsFacets,
+    periodsFacetsConstrainSelf: state.periodsFacetsConstrainSelf,
     places: state.places,
     leafletMap: state.leafletMap,
     fullTextSearch: state.fullTextSearch,
@@ -680,11 +683,17 @@ SemanticPortal.propTypes = {
   findsFacets: PropTypes.object.isRequired,
   findsFacetsConstrainSelf: PropTypes.object.isRequired,
   /**
-   * Faceted search configs and results of 'Places'.
+   * Faceted search configs and results of 'Types'.
    */
   types: PropTypes.object.isRequired,
   typesFacets: PropTypes.object.isRequired,
   typesFacetsConstrainSelf: PropTypes.object.isRequired,
+  /**
+   * Faceted search configs and results of 'Periods'.
+   */
+  periods: PropTypes.object.isRequired,
+  periodsFacets: PropTypes.object.isRequired,
+  periodsFacetsConstrainSelf: PropTypes.object.isRequired,
   /**
    * Faceted search configs and results of 'Places'.
    */

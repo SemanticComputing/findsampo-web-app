@@ -42,33 +42,41 @@ export const INITIAL_STATE = {
     {
       id: 'hiddenLabel',
       valueType: 'string',
-      makeLink: true,
+      makeLink: false,
       externalLink: false,
       sortValues: true,
       numberedList: false,
       minWidth: 180
     },
     {
-      id: 'facetType',
-      valueType: 'object',
-      makeLink: true,
+      id: 'earliestBegin',
+      valueType: 'string',
+      makeLink: false,
       externalLink: false,
       sortValues: true,
       numberedList: false,
       minWidth: 180
-    }
-
+    },
+    {
+      id: 'latestEnd',
+      valueType: 'string',
+      makeLink: false,
+      externalLink: false,
+      sortValues: true,
+      numberedList: false,
+      minWidth: 180
+    },
   ]
 }
 
 const resultClasses = new Set([
-  'types'
+  'periods'
 ])
 
-const types = (state = INITIAL_STATE, action) => {
+const periods = (state = INITIAL_STATE, action) => {
   if (resultClasses.has(action.resultClass)) {
     return handleDataFetchingAction(state, action)
   } else return state
 }
 
-export default types
+export default periods
