@@ -1,6 +1,7 @@
 import { findsPerspectiveConfig } from './perspective_configs/FindsPerspectiveConfig'
 import { typesPerspectiveConfig } from './perspective_configs/TypesPerspectiveConfig'
 import { periodsPerspectiveConfig } from './perspective_configs/PeriodsPerspectiveConfig'
+import { coinsPerspectiveConfig } from './perspective_configs/CoinsPerspectiveConfig'
 import {
   findPropertiesInstancePage,
   findsByProvinceQuery,
@@ -13,6 +14,11 @@ import {
   nearbyFindsQuery,
   knowledgeGraphMetadataQuery
 } from './sparql_queries/SparqlQueriesFinds'
+import {
+  coinsByYearQuery,
+  coinsPlacesQuery,
+  coinsTimelineQuery,
+} from './sparql_queries/SparqlQueriesCoins'
 import {
   typesPropertiesInstancePage,
 } from './sparql_queries/SparqlQueriesTypes'
@@ -29,6 +35,7 @@ export const backendSearchConfig = {
   finds: findsPerspectiveConfig,
   types: typesPerspectiveConfig,
   periods: periodsPerspectiveConfig,
+  coins: coinsPerspectiveConfig,
   findsPlaces: {
     perspectiveID: 'finds', // use endpoint config from finds
     q: findsPlacesQuery,
@@ -74,6 +81,7 @@ export const backendSearchConfig = {
     filterTarget: 'find',
     resultMapper: mapLineChartFillEmptyValues
   },
+
   findsByWeight: {
     perspectiveID: 'finds', // use endpoint config from finds
     q: findsByWeightQuery,
@@ -88,5 +96,11 @@ export const backendSearchConfig = {
   jenaText: {
     perspectiveID: 'finds',
     properties: fullTextSearchProperties
-  }
+  },
+  coinsByYear: {
+    perspectiveID: 'coins',
+    q: coinsByYearQuery,
+    filterTarget: 'find',
+    resultMapper: mapLineChartFillEmptyValues
+  },
 }

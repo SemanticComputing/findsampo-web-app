@@ -9,7 +9,7 @@ import ClearAllIcon from '@material-ui/icons/ClearAll'
 import StarIcon from '@material-ui/icons/Star'
 import LineChartIcon from '@material-ui/icons/ShowChart'
 import findsImage from '../../img/findsampo/sword.jpg'
-import typesImage from '../../img/findsampo/coin.jpg'
+import coinsImage from '../../img/findsampo/coin.jpg'
 import periodsImage from '../../img/findsampo/periods_image.jpg'
 // import worksImage from '../../img/works-452x262_2.jpg'
 // import eventsImage from '../../img/events-452x262.jpg'
@@ -81,21 +81,51 @@ export const perspectiveConfig = [
     ],
   },
   {
-    id: 'types',
-    frontPageImage: typesImage,
+    id: 'coins',
+    frontPageImage: coinsImage,
     perspectiveDescHeight: 160,
-    defaultActiveFacets: new Set(['prefLabel']),
+    defaultActiveFacets: new Set(['findName']),
     tabs: [
       {
         id: 'table',
         value: 0,
         icon: <CalendarViewDayIcon />
       },
-      {
-        id: 'export',
-        value: 1,
-        icon: <CloudDownloadIcon />
-      }
+      // {
+      //   id: 'map',
+      //   value: 1,
+      //   icon: <AddLocationIcon />
+      // },
+      // {
+      //   id: 'heatmap',
+      //   value: 2,
+      //   icon: <AddLocationIcon />
+      // },
+      // {
+      //   id: 'timeline',
+      //   value: 3,
+      //   icon: <ClearAllIcon />
+      // },
+      // {
+      //   id: 'pie_chart',
+      //   value: 4,
+      //   icon: <PieChartIcon />
+      // },
+      // {
+      //   id: 'weights',
+      //   value: 5,
+      //   icon: <LineChartIcon />
+      // },
+      // {
+      //   id: 'coins_by_year',
+      //   value: 6,
+      //   icon: <LineChartIcon />
+      // },
+      // {
+      //   id: 'export',
+      //   value: 7,
+      //   icon: <CloudDownloadIcon />
+      // }
     ],
     instancePageTabs: [
       {
@@ -104,12 +134,47 @@ export const perspectiveConfig = [
         icon: <CalendarViewDayIcon />
       },
       {
-        id: 'export',
+        id: 'recommendations',
         value: 1,
+        icon: <StarIcon />
+      },
+      {
+        id: 'export',
+        value: 2,
         icon: <CloudDownloadIcon />
       }
-    ]
+    ],
   },
+  // {
+  //   id: 'types',
+  //   frontPageImage: typesImage,
+  //   perspectiveDescHeight: 160,
+  //   defaultActiveFacets: new Set(['prefLabel']),
+  //   tabs: [
+  //     {
+  //       id: 'table',
+  //       value: 0,
+  //       icon: <CalendarViewDayIcon />
+  //     },
+  //     {
+  //       id: 'export',
+  //       value: 1,
+  //       icon: <CloudDownloadIcon />
+  //     }
+  //   ],
+  //   instancePageTabs: [
+  //     {
+  //       id: 'table',
+  //       value: 0,
+  //       icon: <CalendarViewDayIcon />
+  //     },
+  //     {
+  //       id: 'export',
+  //       value: 1,
+  //       icon: <CloudDownloadIcon />
+  //     }
+  //   ]
+  // },
   {
     id: 'periods',
     frontPageImage: periodsImage,

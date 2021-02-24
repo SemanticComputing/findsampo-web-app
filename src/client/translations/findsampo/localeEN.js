@@ -361,6 +361,196 @@ export default {
         }
       }
     },
+    coins: {
+      label: 'Coins',
+      facetResultsType: 'coins',
+      shortDescription: 'Perspective focused on coins in the data',
+      longDescription: `
+        <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
+           [ short instructions here... ]
+        </p>
+        <ul class="MuiTypography-root MuiTypography-body1">
+          <li>
+            <strong>TABLE</STRONG> tab presents the finds as paginated table
+          </li>
+          <li>
+            ...
+          </li>
+          <li>
+            ...
+          </li>
+          <li>
+            ...
+          </li>
+        </ul>
+      `,
+      instancePage: {
+        label: 'Archaeological find',
+        description: `
+          <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
+            [ short instructions here... ]
+          </p>
+        `
+      },
+      properties: {
+        uri: {
+          label: 'URI',
+          description: 'Uniform Resource Identifier'
+        },
+        findName: {
+          label: 'Find name',
+          description: 'Find name.'
+        },
+        identifierFHA: {
+          label: 'FHA identifier',
+          description: 'FHA identifier of the find.'
+        },
+        specification: {
+          label: 'Specification',
+          description: 'Specification.'
+        },
+        prefLabel: {
+          label: 'Find name',
+          description: 'Find name.'
+        },
+        type: {
+          label: 'Type',
+          description: `
+            Type.
+          `
+        },
+        objectType: {
+          label: 'Type (annotation)',
+          description: `
+            Object type in MAO .
+          `
+        },
+        objectTypeFHAFacet: {
+          label: 'Type (facet)',
+          description: `
+            Object type of the find using a facet ontology created by the FHA.
+          `
+        },
+        objectTypeFlat: {
+          label: 'Object type MAO annotation term (for testing and development purposes)',
+          description: `
+            Object type without hierarchy using MAO term.
+          `
+        },
+        place: {
+          label: 'Place',
+          description: `
+            Find pace
+          `
+        },
+        subCategory: {
+          label: 'Sub category',
+          description: `
+            Sub category.
+          `
+        },
+        objectSubCategory: {
+          label: 'Sub category ontologized',
+          description: `
+            Sub category using ontology terms.
+          `
+        },
+        material: {
+          label: 'Material',
+          description: `
+            Material.
+          `
+        },
+        materialLiteral: {
+          label: 'Material literal',
+          description: `
+            Material literal.
+          `
+        },
+        period: {
+          label: 'Period',
+          description: 'Ontologized period. May include both earliest and lates periods.'
+        },
+        periodObject: {
+          label: 'Period ontologized',
+          description: 'Ontologized period. May include both earliest and lates periods.'
+        },
+        dateTimespan: {
+          label: 'Date',
+          description: `
+            Date.
+          `
+        },
+        startYear: {
+          label: 'Start year',
+          description: `
+            Start year.
+          `
+        },
+        endYear: {
+          label: 'End year',
+          description: `
+            End year.
+          `
+        },
+        province: {
+          label: 'Province',
+          description: `
+            Province.
+          `
+        },
+        municipality: {
+          label: 'Municipality',
+          description: `
+            Municipality.
+          `
+        },
+        image: {
+          label: 'Image',
+          description: 'Image description.'
+        },
+        earliestStart: {
+          label: 'Earliest date',
+          description: 'Earliest possible creation date of the object'
+        },
+        latestEnd: {
+          label: 'Latest date',
+          description: 'Latest possible creation date of the object'
+        },
+        kmNumber: {
+          label: 'KM number',
+          description: 'accession number of the collections'
+        },
+        ceramicStyle: {
+          label: 'Ceramic style',
+          description: 'Ceramic culture associated with the find'
+        },
+        weight: {
+          label: 'Weight',
+          description: 'Weight'
+        },
+        length: {
+          label: 'Length',
+          description: 'Length'
+        },
+        thickness: {
+          label: 'Thickness',
+          description: 'Thickness'
+        },
+        width: {
+          label: 'Width',
+          description: 'Width'
+        },
+        similarInternalFind: {
+          label: 'Similar internal find',
+          description: 'Similar find in FindSampo'
+        },
+        similarExternalFind: {
+          label: 'Similar external find',
+          description: 'Similar find in PAS'
+        }
+      }
+    },
     types: {
       label: 'Object Types',
       facetResultsType: 'types',
