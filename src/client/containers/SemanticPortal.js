@@ -29,6 +29,7 @@ import InstanceHomePage from '../components/perspectives/findsampo/InstanceHomeP
 import FullTextSearch from '../components/perspectives/findsampo/FullTextSearch'
 import Footer from '../components/perspectives/findsampo/Footer'
 import KnowledgeGraphMetadataTable from '../components/perspectives/findsampo/KnowledgeGraphMetadataTable'
+import Sites from '../components/perspectives/findsampo/Sites'
 import { perspectiveConfig } from '../configs/findsampo/PerspectiveConfig'
 import { perspectiveConfigOnlyInfoPages } from '../configs/findsampo/PerspectiveConfigOnlyInfoPages'
 import { rootUrl } from '../configs/findsampo/GeneralConfig'
@@ -529,6 +530,18 @@ const SemanticPortal = props => {
                 />
               </Switch>
             )}
+            <Route
+              path={`${rootUrlWithLang}/sites/map`}
+              render={routeProps =>
+                <Sites
+                  leafletMap={props.leafletMap}
+                  fetchGeoJSONLayers={props.fetchGeoJSONLayers}
+                  fetchGeoJSONLayersBackend={props.fetchGeoJSONLayersBackend}
+                  clearGeoJSONLayers={props.clearGeoJSONLayers}
+                  showError={props.showError}
+                />}
+            />
+
             {/* <Route
               path={`${rootUrlWithLang}/clientFSPlaces/federated-search`}
               render={routeProps =>

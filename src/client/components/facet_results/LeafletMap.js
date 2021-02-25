@@ -95,7 +95,7 @@ class LeafletMap extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
-      activeOverlays: [],
+      activeOverlays: props.activeOverlays ? props.activeOverlays : [],
       prevZoomLevel: null,
       mapMode: props.mapMode
     }
@@ -117,6 +117,12 @@ class LeafletMap extends React.Component {
     }
     if (this.props.showExternalLayers) {
       this.props.clearGeoJSONLayers()
+      if (this.state.activeOverlays.length > 0 && this.isSafeToLoadLargeLayers()) {
+        this.props.fetchGeoJSONLayers({
+          layerIDs: this.state.activeOverlays,
+          bounds: this.leafletMap.getBounds()
+        })
+      }
     }
   }
 
@@ -977,6 +983,7 @@ class LeafletMap extends React.Component {
   }
 
   render = () => {
+    console.log(this.state)
     return (
       <>
         <div className={this.props.classes[`leafletContainer${this.props.pageType}`]}>
