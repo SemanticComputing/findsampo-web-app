@@ -175,7 +175,7 @@ export default {
     finds: {
       label: 'Finds',
       facetResultsType: 'finds',
-      shortDescription: 'Data provided by the Finnish Heritage Agency',
+      shortDescription: 'Faceted search for all types of archaelogical finds',
       longDescription: `
         <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
            [ short instructions here... ]
@@ -365,7 +365,7 @@ export default {
     coins: {
       label: 'Coins',
       facetResultsType: 'coins',
-      shortDescription: 'Perspective focused on coins in the data',
+      shortDescription: 'Faceted search for coins',
       longDescription: `
         <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
            [ short instructions here... ]
@@ -661,6 +661,11 @@ export default {
       label: 'Map',
       mainPageLabel: 'Map',
       shortDescription: 'Interactive map for visualizing the finds'
+    },
+    sites: {
+      label: 'Sites',
+      mainPageLabel: 'Sites',
+      shortDescription: 'View archaelogical sites and protected areas'
     }
   },
   aboutThePortalPartOne: `
