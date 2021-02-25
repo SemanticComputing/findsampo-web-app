@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import intl from 'react-intl-universal'
+// import intl from 'react-intl-universal'
 import { Route, Redirect } from 'react-router-dom'
 import PerspectiveTabs from '../../main_layout/PerspectiveTabs'
 import ResultTable from '../../facet_results/ResultTable'
@@ -11,8 +11,8 @@ import ApexChart from '../../facet_results/ApexChart'
 import Timeline from '../../facet_results/Timeline'
 import Export from '../../facet_results/Export'
 import { MAPBOX_ACCESS_TOKEN, MAPBOX_STYLE } from '../../../configs/findsampo/GeneralConfig'
-import { createApexPieChartData } from '../../../configs/findsampo/ApexCharts/PieChartConfig'
-import { createApexBarChartData } from '../../../configs/findsampo/ApexCharts/BarChartConfig'
+// import { createApexPieChartData } from '../../../configs/findsampo/ApexCharts/PieChartConfig'
+// import { createApexBarChartData } from '../../../configs/findsampo/ApexCharts/BarChartConfig'
 import {
   createSingleLineChartData
   // createMultipleLineChartData

@@ -3,12 +3,12 @@ import PropTypes from 'prop-types'
 import { Route, Redirect } from 'react-router-dom'
 import PerspectiveTabs from '../../main_layout/PerspectiveTabs'
 import ResultTable from '../../facet_results/ResultTable'
-import LeafletMap from '../../facet_results/LeafletMap'
-import Deck from '../../facet_results/Deck'
+// import LeafletMap from '../../facet_results/LeafletMap'
+// import Deck from '../../facet_results/Deck'
 // import Network from '../../facet_results/Network'
 // import Timeline from '../../facet_results/Timeline'
 import Export from '../../facet_results/Export'
-import { MAPBOX_ACCESS_TOKEN, MAPBOX_STYLE } from '../../../configs/sampo/GeneralConfig'
+// import { MAPBOX_ACCESS_TOKEN, MAPBOX_STYLE } from '../../../configs/sampo/GeneralConfig'
 
 const Periods = props => {
   const { rootUrl, perspective } = props
