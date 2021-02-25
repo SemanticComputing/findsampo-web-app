@@ -10,13 +10,14 @@ import fhaLogo from '../../../img/findsampo/logo_fha-compressor.png'
 
 const styles = theme => ({
   root: {
+    marginTop: theme.spacing(3),
     backgroundColor: theme.palette.primary.main,
-    position: 'absolute',
+    // position: 'absolute',
     [theme.breakpoints.down('sm')]: {
       display: 'none'
     },
-    bottom: 0,
-    left: 0,
+    // bottom: 0,
+    // left: 0,
     boxShadow: '0 -20px 20px -20px #333',
     width: '100%',
     borderRadius: 0

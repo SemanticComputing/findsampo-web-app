@@ -14,6 +14,7 @@ export default {
   appDescription: `
   `,
   selectPerspective: 'Select an application perspective to search and browse the data:',
+  selectPerspectiveExternal: 'Other applications:',
   mainPageImageLicence: '',
   mainPage: {
     carouselHeading: 'FEATURED FINDS',
@@ -172,7 +173,7 @@ export default {
   },
   perspectives: {
     finds: {
-      label: 'Archaeological finds',
+      label: 'Finds',
       facetResultsType: 'finds',
       shortDescription: 'Data provided by the Finnish Heritage Agency',
       longDescription: `
@@ -648,9 +649,14 @@ export default {
           description: `
              latest year that period ended
           `
-        },
+        }
       }
     },
+    ilppari: {
+      label: 'Ilppari',
+      mainPageLabel: 'Case Law Finder',
+      shortDescription: 'Reporting service for archaelogical finds found in Finland'
+    }
   },
   aboutThePortalPartOne: `
     <h1 class="MuiTypography-root MuiTypography-h2 MuiTypography-gutterBottom">

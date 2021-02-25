@@ -11,8 +11,6 @@ import LineChartIcon from '@material-ui/icons/ShowChart'
 import findsImage from '../../img/findsampo/sword.jpg'
 import coinsImage from '../../img/findsampo/coin.jpg'
 import periodsImage from '../../img/findsampo/periods_image.jpg'
-// import worksImage from '../../img/works-452x262_2.jpg'
-// import eventsImage from '../../img/events-452x262.jpg'
 
 export const perspectiveConfig = [
   {
@@ -78,7 +76,7 @@ export const perspectiveConfig = [
         value: 2,
         icon: <CloudDownloadIcon />
       }
-    ],
+    ]
   },
   {
     id: 'coins',
@@ -90,7 +88,7 @@ export const perspectiveConfig = [
         id: 'table',
         value: 0,
         icon: <CalendarViewDayIcon />
-      },
+      }
       // {
       //   id: 'map',
       //   value: 1,
@@ -143,7 +141,7 @@ export const perspectiveConfig = [
         value: 2,
         icon: <CloudDownloadIcon />
       }
-    ],
+    ]
   },
   // {
   //   id: 'types',
@@ -205,4 +203,9 @@ export const perspectiveConfig = [
       }
     ]
   },
+  {
+    id: 'ilppari',
+    frontPageImage: null,
+    externalUrl: 'http://ilppari.fi'
+  }
 ]
