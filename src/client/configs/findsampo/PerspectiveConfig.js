@@ -79,6 +79,12 @@ export const perspectiveConfig = [
     ]
   },
   {
+    id: 'map',
+    fronPageImage: null,
+    searchMode: 'dummy-internal',
+    internalLink: '/finds/faceted-search/map'
+  },
+  {
     id: 'coins',
     frontPageImage: coinsImage,
     perspectiveDescHeight: 160,

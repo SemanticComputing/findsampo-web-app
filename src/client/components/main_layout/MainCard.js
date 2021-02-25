@@ -69,14 +69,21 @@ const MainCard = props => {
   const externalPerspective = has(perspective, 'externalUrl')
   const card = has(perspective, 'frontPageElement') && perspective.frontPageElement === 'card'
   const searchMode = has(perspective, 'searchMode') ? perspective.searchMode : 'faceted-search'
+  let link = null
+  if (!externalPerspective && searchMode === 'dummy-internal') {
+    link = `${props.rootUrl}${perspective.internalLink}`
+  }
+  if (!externalPerspective && searchMode !== 'dummy-internal') {
+    link = `${props.rootUrl}/${perspective.id}/${searchMode}`
+  }
 
   return (
     <Grid
       className={classes.gridItem}
       key={perspective.id}
-      item xs={12} sm={4} // optimized for three perspectives
+      item xs={12} sm={4}
       component={externalPerspective ? 'a' : Link}
-      to={externalPerspective ? null : `${props.rootUrl}/${perspective.id}/${searchMode}`}
+      to={link}
       container={xsScreen}
       href={externalPerspective ? perspective.externalUrl : null}
       target={externalPerspective ? '_blank' : null}

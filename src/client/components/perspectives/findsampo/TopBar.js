@@ -93,8 +93,19 @@ const TopBar = props => {
   const AdapterLink = React.forwardRef((props, ref) => <Link innerRef={ref} {...props} />)
   const AdapterNavLink = React.forwardRef((props, ref) => <NavLink innerRef={ref} {...props} />)
 
-  const renderMobileMenuItem = perspective => {
+  const getInternalLink = perspective => {
     const searchMode = has(perspective, 'searchMode') ? perspective.searchMode : 'faceted-search'
+    let link = null
+    if (searchMode === 'dummy-internal') {
+      link = `${props.rootUrl}${perspective.internalLink}`
+    }
+    if (searchMode !== 'dummy-internal') {
+      link = `${props.rootUrl}/${perspective.id}/${searchMode}`
+    }
+    return link
+  }
+
+  const renderMobileMenuItem = perspective => {
     if (has(perspective, 'externalUrl') && perspective.id !== 'feedback') { return }
     if (has(perspective, 'externalUrl')) {
       return (
@@ -117,7 +128,7 @@ const TopBar = props => {
         <MenuItem
           key={perspective.id}
           component={AdapterLink}
-          to={`${props.rootUrl}/${perspective.id}/${searchMode}`}
+          to={getInternalLink(perspective)}
         >
           {intl.get(`perspectives.${perspective.id}.label`).toUpperCase()}
         </MenuItem>
@@ -126,7 +137,6 @@ const TopBar = props => {
   }
 
   const renderDesktopTopMenuItem = perspective => {
-    const searchMode = has(perspective, 'searchMode') ? perspective.searchMode : 'faceted-search'
     if (has(perspective, 'externalUrl') && perspective.id !== 'feedback') { return }
     if (has(perspective, 'externalUrl')) {
       return (
@@ -147,13 +157,16 @@ const TopBar = props => {
         </a>
       )
     } else {
+      const urlToMatch = perspective.searchMode === 'dummy-internal'
+        ? `${props.rootUrl}${perspective.internalLink}`
+        : `${props.rootUrl}/${perspective.id}`
       return (
         <Button
           key={perspective.id}
           className={classes.appBarButton}
           component={AdapterNavLink}
-          to={`${props.rootUrl}/${perspective.id}/${searchMode}`}
-          isActive={(match, location) => location.pathname.startsWith(`${props.rootUrl}/${perspective.id}`)}
+          to={getInternalLink(perspective)}
+          isActive={(match, location) => location.pathname.startsWith(urlToMatch)}
           activeClassName={classes.appBarButtonActive}
         >
           {intl.get(`perspectives.${perspective.id}.label`).toUpperCase()}

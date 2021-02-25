@@ -61,10 +61,6 @@ const useStyles = makeStyles(theme => ({
       marginRight: 'auto'
     }
   },
-  heroContent: {
-    // paddingTop: theme.spacing(3),
-    paddingBottom: theme.spacing(1)
-  },
   licenceText: {
     marginTop: theme.spacing(0.5),
     fontSize: '0.7em'
@@ -164,14 +160,9 @@ const Main = props => {
 
       </div>
       <div className={classes.layout}>
-        <div className={classes.heroContent}>
-          {/* <Typography variant={descriptionVariant} color='textPrimary' paragraph>
-            {intl.getHTML('appDescription')}
-          </Typography> */}
-          <Typography variant={descriptionVariant} align='center' color='textPrimary' paragraph>
-            {intl.get('selectPerspective')}
-          </Typography>
-        </div>
+        <Typography className={classes.selectInternalPerspective} variant={descriptionVariant} align='center' color='textPrimary' paragraph>
+          {intl.get('selectPerspective')}
+        </Typography>
         <Grid
           container spacing={screenSize === 'sm' ? 2 : 1}
           justify='center'
@@ -180,7 +171,7 @@ const Main = props => {
             <MainCard
               key={perspective.id}
               perspective={perspective}
-              cardHeadingVariant='h5'
+              cardHeadingVariant='h4'
               rootUrl={props.rootUrl}
             />)}
         </Grid>

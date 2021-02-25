@@ -656,6 +656,11 @@ export default {
       label: 'Ilppari',
       mainPageLabel: 'Case Law Finder',
       shortDescription: 'Reporting service for archaelogical finds found in Finland'
+    },
+    map: {
+      label: 'Map',
+      mainPageLabel: 'Map',
+      shortDescription: 'Interactive map for visualizing the finds'
     }
   },
   aboutThePortalPartOne: `
