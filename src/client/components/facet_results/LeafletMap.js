@@ -485,10 +485,10 @@ class LeafletMap extends React.Component {
       and Layer objects as values
     */
 
-    console.log(layerObj.geoJSON)
+    // console.log(layerObj.geoJSON)
     const bufferedGeoJSON = buffer(layerObj.geoJSON, 0.2, { units: 'kilometres' })
     // const bufferedGeoJSON = transformScale(layerObj.geoJSON, 0.3)
-    console.log(bufferedGeoJSON)
+    // console.log(bufferedGeoJSON)
     const leafletOverlay = this.overlayLayers[intl.get(`leafletMap.externalLayers.${layerObj.layerID}`)]
     leafletOverlay.clearLayers()
     const leafletGeoJSONLayer = L.geoJSON(layerObj.geoJSON, {
@@ -983,7 +983,6 @@ class LeafletMap extends React.Component {
   }
 
   render = () => {
-    console.log(this.state)
     return (
       <>
         <div className={this.props.classes[`leafletContainer${this.props.pageType}`]}>
