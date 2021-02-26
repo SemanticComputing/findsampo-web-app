@@ -586,6 +586,11 @@ export default {
           label: 'Term',
           description: ''
         },
+        maoMatch: {
+          label: 'Equivalent term in MAO',
+          description: `
+          `
+        },
         hiddenLabel: {
           label: 'Alternative terms',
           description: `
@@ -607,7 +612,7 @@ export default {
         </p>
         <ul class="MuiTypography-root MuiTypography-body1">
           <li>
-            <strong>TABLE</STRONG> tab presents the object types as a paginated table
+            <strong>TABLE</STRONG> tab presents the periods as a paginated table
           </li>
           <li>
             <strong>EXPORT</strong> the SPARQL query used to generate the result
@@ -616,7 +621,7 @@ export default {
         </ul>
       `,
       instancePage: {
-        label: 'Object type',
+        label: 'Period',
         description: `
           <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
             [ short instructions here... ]

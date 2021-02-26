@@ -11,7 +11,7 @@ export const typesPerspectiveConfig = {
     prefixes,
     useAuth: true
   },
-  facetClass: ':Object_type',
+  facetClass: ':Object_facet_type',
   paginatedResults: {
     properties: typesPropertiesFacetResults
   },
@@ -39,8 +39,8 @@ export const typesPerspectiveConfig = {
     facetType: {
       id: 'facetType',
       facetValueFilter: '',
-      predicate: ':mao_match/^skos:related',
-      labelPath: ':mao_match/^skos:related/skos:prefLabel',
+      predicate: 'skos:broader',
+      labelPath: 'skos:broader/skos:prefLabel',
       parentProperty: 'skos:broader',
       type: 'hierarchical'
     },

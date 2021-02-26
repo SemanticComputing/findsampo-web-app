@@ -8,7 +8,7 @@ export const INITIAL_STATE = {
   paginatedResultsSparqlQuery: null,
   resultCount: 0,
   page: -1,
-  pagesize: 10,
+  pagesize: 50,
   sortBy: null,
   sortDirection: null,
   fetching: false,
@@ -33,15 +33,6 @@ export const INITIAL_STATE = {
     {
       id: 'prefLabel',
       valueType: 'object',
-      makeLink: false,
-      externalLink: false,
-      sortValues: true,
-      numberedList: false,
-      minWidth: 180
-    },
-    {
-      id: 'hiddenLabel',
-      valueType: 'string',
       makeLink: true,
       externalLink: false,
       sortValues: true,
@@ -49,14 +40,14 @@ export const INITIAL_STATE = {
       minWidth: 180
     },
     {
-      id: 'facetType',
+      id: 'maoMatch',
       valueType: 'object',
       makeLink: true,
-      externalLink: false,
+      externalLink: true,
       sortValues: true,
       numberedList: false,
       minWidth: 180
-    }
+    },
 
   ]
 }

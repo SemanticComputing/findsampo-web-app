@@ -61,7 +61,7 @@ class InstanceHomePage extends React.Component {
 
   fetchTableData = () => {
     let uri = ''
-    const base = 'http://ldf.fi/findsampo/finds'
+    const base = 'http://ldf.fi/findsampo/'
     const locationArr = this.props.routeProps.location.pathname.split('/')
     let localID = locationArr.pop()
     this.props.tabs.map(tab => {
@@ -72,7 +72,13 @@ class InstanceHomePage extends React.Component {
     this.setState({ localID: localID })
     switch (this.props.resultClass) {
       case 'finds':
-        uri = `${base}/${localID}`
+        uri = `${base}finds/${localID}`
+        break
+      case 'types':
+        uri = `${base}facet_ontologies/object_types/${localID}`
+        break
+      case 'periods':
+        uri = `${base}periods/${localID}`
         break
     }
     this.props.fetchByURI({

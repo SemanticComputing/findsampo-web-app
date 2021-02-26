@@ -22,6 +22,9 @@ import {
 import {
   typesPropertiesInstancePage,
 } from './sparql_queries/SparqlQueriesTypes'
+import {
+  periodsPropertiesInstancePage,
+} from './sparql_queries/SparqlQueriesPeriods'
 import { fullTextSearchProperties } from './sparql_queries/SparqlQueriesFullText'
 import { makeObjectList } from '../SparqlObjectMapper'
 import {
