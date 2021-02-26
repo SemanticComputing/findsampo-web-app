@@ -11,6 +11,8 @@ import LineChartIcon from '@material-ui/icons/ShowChart'
 import findsImage from '../../img/findsampo/sword.jpg'
 import coinsImage from '../../img/findsampo/coin.jpg'
 import periodsImage from '../../img/findsampo/periods_image.jpg'
+import mapImage from '../../img/findsampo/map.jpg'
+import sitesImage from '../../img/findsampo/sites.jpg'
 
 export const perspectiveConfig = [
   {
@@ -80,7 +82,7 @@ export const perspectiveConfig = [
   },
   {
     id: 'map',
-    fronPageImage: null,
+    fronPageImage: mapImage,
     searchMode: 'dummy-internal',
     internalLink: '/finds/faceted-search/map'
   },
@@ -151,7 +153,7 @@ export const perspectiveConfig = [
   },
   {
     id: 'sites',
-    fronPageImage: null,
+    fronPageImage: sitesImage,
     searchMode: 'dummy-internal',
     internalLink: '/sites/map'
   },
