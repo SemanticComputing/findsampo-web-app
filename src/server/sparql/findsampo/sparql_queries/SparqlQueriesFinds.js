@@ -7,7 +7,7 @@ export const findPropertiesInstancePage =
       BIND(?id as ?uri__id)
       BIND(?id as ?uri__dataProviderUrl)
       BIND(?id as ?uri__prefLabel)
-      BIND(CONCAT("/${perspectiveID}/page/", REPLACE(STR(?id), "^.*\\\\/(.+)", "$1")) AS ?dataProviderUrl)    
+      BIND(CONCAT("/${perspectiveID}/page/", REPLACE(STR(?id), "^.*\\\\/(.+)", "$1")) AS ?dataProviderUrl)
     }
     UNION
     {
@@ -17,11 +17,15 @@ export const findPropertiesInstancePage =
     {
       ?id :object_type ?objectType__id .
       ?objectType__id skos:prefLabel ?objectType__prefLabel .
+      OPTIONAL {
+        ?objectType__id :mao_match ?objectType__dataProviderUrl .
+      }
     }
     UNION
     {
       ?id :facet_object_term ?objectTypeFHAFacet__id .
       ?objectTypeFHAFacet__id skos:prefLabel ?objectTypeFHAFacet__prefLabel .
+      BIND(CONCAT("/types/page/", REPLACE(STR(?objectTypeFHAFacet__id ), "^.*\\\\/(.+)", "$1")) AS ?objectTypeFHAFacet__dataProviderUrl)
     }
     UNION
     {
@@ -131,11 +135,15 @@ export const findPropertiesFacetResults =
     {
       ?id :object_type ?objectType__id.
       ?objectType__id skos:prefLabel ?objectType__prefLabel .
+      OPTIONAL {
+        ?objectType__id :mao_match ?objectType__dataProviderUrl .
+      }
     }
     UNION
     {
       ?id :facet_object_term ?objectTypeFHAFacet__id .
       ?objectTypeFHAFacet__id skos:prefLabel ?objectTypeFHAFacet__prefLabel .
+      BIND(CONCAT("/types/page/", REPLACE(STR(?objectTypeFHAFacet__id ), "^.*\\\\/(.+)", "$1")) AS ?objectTypeFHAFacet__dataProviderUrl)
     }
     UNION
     {
@@ -233,7 +241,7 @@ export const nearbyFindsQuery = `
     ?id spatial:nearby (64.791 29.249 50 'km') . # Vuokkijärvi, Suomussalmi
     ?id wgs84:lat ?lat ;
         wgs84:long ?long .
-    ${findPropertiesInstancePage}    
+    ${findPropertiesInstancePage}
   }
 `
 

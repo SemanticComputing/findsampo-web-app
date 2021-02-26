@@ -62,8 +62,8 @@ export const INITIAL_STATE = {
     {
       id: 'objectType',
       valueType: 'object',
-      makeLink: false,
-      externalLink: false,
+      makeLink: true,
+      externalLink: true,
       sortValues: true,
       numberedList: false,
       minWidth: 180
@@ -71,7 +71,7 @@ export const INITIAL_STATE = {
     {
       id: 'objectTypeFHAFacet',
       valueType: 'object',
-      makeLink: false,
+      makeLink: true,
       externalLink: false,
       sortValues: true,
       numberedList: false,

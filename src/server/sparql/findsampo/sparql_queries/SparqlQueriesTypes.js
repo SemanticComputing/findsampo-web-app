@@ -13,7 +13,7 @@ export const typesPropertiesInstancePage =
     {
       ?id skos:related ?maoMatch__id .
       ?maoMatch__id ^:mao_match/skos:prefLabel ?maoMatch__prefLabel .
-      BIND(?maoMatch as ?maoMatch__dataProviderUrl)
+      BIND(?maoMatch__id as ?maoMatch__dataProviderUrl)
     }
   `
 
@@ -26,7 +26,7 @@ export const typesPropertiesInstancePage =
       UNION
       {
         ?id skos:related ?maoMatch__id .
-        BIND(?maoMatch as ?maoMatch__dataProviderUrl)
+        BIND(?maoMatch__id as ?maoMatch__dataProviderUrl)
         ?maoMatch__id ^:mao_match/skos:prefLabel ?maoMatch__prefLabel .
       }
     `
