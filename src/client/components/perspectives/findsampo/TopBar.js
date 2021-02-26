@@ -20,6 +20,8 @@ import findSampoLogo from '../../../img/findsampo/logo.png'
 import secoLogo from '../../../img/logos/seco-logo-48x50.png'
 import { showLanguageButton, feedbackLink } from '../../../configs/findsampo/GeneralConfig'
 
+const mobileMenuBreakPoint = 1450
+
 const useStyles = makeStyles((theme) => ({
   grow: {
     flexGrow: 1
@@ -30,7 +32,7 @@ const useStyles = makeStyles((theme) => ({
   },
   sectionDesktop: {
     display: 'none',
-    [theme.breakpoints.up('lg')]: {
+    [theme.breakpoints.up(mobileMenuBreakPoint)]: {
       display: 'flex'
     }
   },
@@ -39,7 +41,7 @@ const useStyles = makeStyles((theme) => ({
   },
   sectionMobile: {
     display: 'flex',
-    [theme.breakpoints.up('lg')]: {
+    [theme.breakpoints.up(mobileMenuBreakPoint)]: {
       display: 'none'
     }
   },
@@ -137,7 +139,10 @@ const TopBar = props => {
   }
 
   const renderDesktopTopMenuItem = perspective => {
-    if (has(perspective, 'externalUrl') && perspective.id !== 'feedback') { return }
+    if ((has(perspective, 'externalUrl') && perspective.id !== 'feedback') ||
+      perspective.id === 'guides') {
+      return
+    }
     if (has(perspective, 'externalUrl')) {
       return (
         <a

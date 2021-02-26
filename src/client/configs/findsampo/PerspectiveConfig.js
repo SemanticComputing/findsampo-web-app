@@ -85,12 +85,6 @@ export const perspectiveConfig = [
     internalLink: '/finds/faceted-search/map'
   },
   {
-    id: 'sites',
-    fronPageImage: null,
-    searchMode: 'dummy-internal',
-    internalLink: '/sites/map'
-  },
-  {
     id: 'coins',
     frontPageImage: coinsImage,
     perspectiveDescHeight: 160,
@@ -155,36 +149,42 @@ export const perspectiveConfig = [
       }
     ]
   },
-  // {
-  //   id: 'types',
-  //   frontPageImage: typesImage,
-  //   perspectiveDescHeight: 160,
-  //   defaultActiveFacets: new Set(['prefLabel']),
-  //   tabs: [
-  //     {
-  //       id: 'table',
-  //       value: 0,
-  //       icon: <CalendarViewDayIcon />
-  //     },
-  //     {
-  //       id: 'export',
-  //       value: 1,
-  //       icon: <CloudDownloadIcon />
-  //     }
-  //   ],
-  //   instancePageTabs: [
-  //     {
-  //       id: 'table',
-  //       value: 0,
-  //       icon: <CalendarViewDayIcon />
-  //     },
-  //     {
-  //       id: 'export',
-  //       value: 1,
-  //       icon: <CloudDownloadIcon />
-  //     }
-  //   ]
-  // },
+  {
+    id: 'sites',
+    fronPageImage: null,
+    searchMode: 'dummy-internal',
+    internalLink: '/sites/map'
+  },
+  {
+    id: 'types',
+    frontPageImage: null,
+    perspectiveDescHeight: 160,
+    defaultActiveFacets: new Set(['prefLabel']),
+    tabs: [
+      {
+        id: 'table',
+        value: 0,
+        icon: <CalendarViewDayIcon />
+      },
+      {
+        id: 'export',
+        value: 1,
+        icon: <CloudDownloadIcon />
+      }
+    ],
+    instancePageTabs: [
+      {
+        id: 'table',
+        value: 0,
+        icon: <CalendarViewDayIcon />
+      },
+      {
+        id: 'export',
+        value: 1,
+        icon: <CloudDownloadIcon />
+      }
+    ]
+  },
   {
     id: 'periods',
     frontPageImage: periodsImage,
@@ -214,6 +214,12 @@ export const perspectiveConfig = [
         icon: <CloudDownloadIcon />
       }
     ]
+  },
+  {
+    id: 'guides',
+    fronPageImage: null,
+    searchMode: 'dummy-internal',
+    internalLink: '/guides'
   },
   {
     id: 'ilppari',

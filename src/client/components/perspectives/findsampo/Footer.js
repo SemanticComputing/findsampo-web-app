@@ -10,7 +10,8 @@ import fhaLogo from '../../../img/findsampo/logo_fha-compressor.png'
 
 const styles = theme => ({
   root: {
-    marginTop: theme.spacing(3),
+    height: 64,
+    // marginTop: theme.spacing(3),
     backgroundColor: theme.palette.primary.main,
     // position: 'absolute',
     [theme.breakpoints.down('sm')]: {

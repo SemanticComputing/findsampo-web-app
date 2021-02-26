@@ -95,7 +95,10 @@ const useStyles = makeStyles(theme => ({
     width: '100%'
   },
   mainContainer: {
-    height: 'auto',
+    display: 'flex',
+    // flexDirection: 'column',
+    // justifyContent: 'space-between',
+    // height: 'auto',
     overflow: 'auto',
     // [theme.breakpoints.up('md')]: {
     //   height: 'calc(100% - 64px)' // 100% - app bar - padding

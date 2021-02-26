@@ -601,7 +601,7 @@ export default {
     periods: {
       label: 'Periods',
       facetResultsType: 'periods',
-      shortDescription: 'Information about periods',
+      shortDescription: 'Information about archaeological periods',
       longDescription: `
         <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
         </p>
@@ -666,6 +666,11 @@ export default {
       label: 'Sites',
       mainPageLabel: 'Sites',
       shortDescription: 'View archaelogical sites and protected areas'
+    },
+    guides: {
+      label: 'Guides',
+      mainPageLabel: 'Guides',
+      shortDescription: 'Guides and instructions for conducting archaelogy as a hobby'
     }
   },
   aboutThePortalPartOne: `

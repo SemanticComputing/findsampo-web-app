@@ -12,11 +12,7 @@ import ImageCarousel from '../../main_layout/ImageCarousel'
 const useStyles = makeStyles(theme => ({
   root: {
     width: '100%',
-    marginBottom: theme.spacing(1)
-    // [theme.breakpoints.up('md')]: {
-    //   height: 'calc(100% - 60px)',
-    //   overflow: 'auto'
-    // }
+    minHeight: 'calc(100% - 74px)'
   },
   banner: {
     // background: `linear-gradient( rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.35) ), url(${bannerImage})`,
@@ -26,7 +22,7 @@ const useStyles = makeStyles(theme => ({
     backgroundPosition: 'center',
     height: 225,
     [theme.breakpoints.up('xl')]: {
-      height: 400
+      height: 370
     },
     width: '100%',
     boxShadow: '0 -15px 15px 0px #bdbdbd inset',
@@ -98,44 +94,45 @@ const useStyles = makeStyles(theme => ({
 
 const Main = props => {
   const { perspectives, screenSize } = props
-  const internalPerspectives = []
-  const externalPerspectives = []
-  perspectives.map(perspective => {
-    if (perspective.externalUrl) {
-      externalPerspectives.push(perspective)
-    } else {
-      internalPerspectives.push(perspective)
-    }
-  })
+  const internalPerspectives = perspectives
+  // const internalPerspectives = []
+  // const externalPerspectives = []
+  // perspectives.map(perspective => {
+  //   if (perspective.externalUrl) {
+  //     externalPerspectives.push(perspective)
+  //   } else {
+  //     internalPerspectives.push(perspective)
+  //   }
+  // })
   const classes = useStyles(props)
   let headingVariant = 'h5'
   let subheadingVariant = 'body1'
-  let descriptionVariant = 'body1'
+  // let descriptionVariant = 'body1'
   switch (screenSize) {
     case 'xs':
       headingVariant = 'h5'
       subheadingVariant = 'body1'
-      descriptionVariant = 'body1'
+      // descriptionVariant = 'body1'
       break
     case 'sm':
       headingVariant = 'h4'
       subheadingVariant = 'h6'
-      descriptionVariant = 'h6'
+      // descriptionVariant = 'h6'
       break
     case 'md':
       headingVariant = 'h3'
       subheadingVariant = 'h6'
-      descriptionVariant = 'h6'
+      // descriptionVariant = 'h6'
       break
     case 'lg':
       headingVariant = 'h2'
       subheadingVariant = 'h5'
-      descriptionVariant = 'h6'
+      // descriptionVariant = 'h6'
       break
     case 'xl':
       headingVariant = 'h1'
       subheadingVariant = 'h4'
-      descriptionVariant = 'h6'
+      // descriptionVariant = 'h6'
       break
   }
 
@@ -160,9 +157,9 @@ const Main = props => {
 
       </div>
       <div className={classes.layout}>
-        <Typography className={classes.selectInternalPerspective} variant={descriptionVariant} align='center' color='textPrimary' paragraph>
+        {/* <Typography className={classes.selectInternalPerspective} variant={descriptionVariant} align='center' color='textPrimary' paragraph>
           {intl.get('selectPerspective')}
-        </Typography>
+        </Typography> */}
         <Grid
           container spacing={screenSize === 'sm' ? 2 : 1}
           justify='center'
@@ -175,7 +172,7 @@ const Main = props => {
               rootUrl={props.rootUrl}
             />)}
         </Grid>
-        <Typography className={classes.selectExternalPerspective} variant={descriptionVariant} align='center' color='textPrimary'>
+        {/* <Typography className={classes.selectExternalPerspective} variant={descriptionVariant} align='center' color='textPrimary'>
           {intl.get('selectPerspectiveExternal')}
         </Typography>
         <Grid
@@ -189,7 +186,7 @@ const Main = props => {
               cardHeadingVariant='h4'
               rootUrl={props.rootUrl}
             />)}
-        </Grid>
+        </Grid> */}
         <div className={classes.licenceTextContainer}>
           <Typography className={classes.licenceText}>{intl.getHTML('mainPageImageLicence')}</Typography>
         </div>
