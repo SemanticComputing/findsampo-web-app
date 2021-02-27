@@ -82,7 +82,7 @@ export const perspectiveConfig = [
   },
   {
     id: 'map',
-    fronPageImage: mapImage,
+    frontPageImage: mapImage,
     searchMode: 'dummy-internal',
     internalLink: '/finds/faceted-search/map'
   },
@@ -153,7 +153,7 @@ export const perspectiveConfig = [
   },
   {
     id: 'sites',
-    fronPageImage: sitesImage,
+    frontPageImage: sitesImage,
     searchMode: 'dummy-internal',
     internalLink: '/sites/map'
   },
@@ -219,7 +219,7 @@ export const perspectiveConfig = [
   },
   {
     id: 'guides',
-    fronPageImage: null,
+    frontPageImage: null,
     searchMode: 'dummy-internal',
     internalLink: '/guides'
   },
