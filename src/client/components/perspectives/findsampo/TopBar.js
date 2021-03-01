@@ -75,7 +75,15 @@ const useStyles = makeStyles((theme) => ({
     marginRight: theme.spacing(1)
   },
   mainLogoText: {
-    textTransform: 'none'
+    textTransform: 'none',
+    [theme.breakpoints.down('xs')]: {
+      display: 'none'
+    }
+  },
+  mainLogoTypography: {
+    [theme.breakpoints.down('xs')]: {
+      display: 'none'
+    }
   }
 }))
 
@@ -236,7 +244,7 @@ const TopBar = props => {
             }}
           >
             <img className={classes.mainLogo} src={findSampoLogo} />
-            <Typography variant='h5'>{intl.get('appTitle.short')}</Typography>
+            <Typography className={classes.mainLogoTypography} variant='h5'>{intl.get('appTitle.short')}</Typography>
           </Button>
           <TopBarSearchField
             fetchFullTextResults={props.fetchFullTextResults}

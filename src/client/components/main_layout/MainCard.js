@@ -82,7 +82,7 @@ const MainCard = props => {
     <Grid
       className={classes.gridItem}
       key={perspective.id}
-      item xs={12} sm={3}
+      item xs={12} sm={6} md={3}
       component={externalPerspective ? 'a' : Link}
       to={link}
       container={xsScreen}

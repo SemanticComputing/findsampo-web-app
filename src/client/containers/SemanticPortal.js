@@ -30,6 +30,7 @@ import FullTextSearch from '../components/perspectives/findsampo/FullTextSearch'
 import Footer from '../components/perspectives/findsampo/Footer'
 import KnowledgeGraphMetadataTable from '../components/perspectives/findsampo/KnowledgeGraphMetadataTable'
 import Sites from '../components/perspectives/findsampo/Sites'
+// import InfoCards from '../components/perspectives/findsampo/InfoCards'
 import { perspectiveConfig } from '../configs/findsampo/PerspectiveConfig'
 import { perspectiveConfigOnlyInfoPages } from '../configs/findsampo/PerspectiveConfigOnlyInfoPages'
 import { rootUrl } from '../configs/findsampo/GeneralConfig'
@@ -95,6 +96,7 @@ const useStyles = makeStyles(theme => ({
     width: '100%'
   },
   mainContainer: {
+    width: '100%',
     display: 'flex',
     // flexDirection: 'column',
     // justifyContent: 'space-between',
@@ -599,6 +601,10 @@ const SemanticPortal = props => {
                 <div className={classNames(classes.mainContainer, classes.textPageContainer)}>
                   <TextPage>{intl.getHTML('feedback')}</TextPage>
                 </div>}
+            /> */}
+            {/* <Route
+              path={`${rootUrlWithLang}/guides`}
+              render={() => <InfoCards />}
             /> */}
             <Route
               path={`${rootUrlWithLang}/about`}
