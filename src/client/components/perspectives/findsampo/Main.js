@@ -76,8 +76,9 @@ const useStyles = makeStyles(theme => ({
     display: 'flex',
     justifyContent: 'center'
   },
-  carouselContainer: {
-    background: 'rgb(247, 247, 247)'
+  carouselSection: {
+    background: 'rgb(247, 247, 247)',
+    paddingBottom: theme.spacing(3)
   },
   carouselHeadingContainer: {
     display: 'flex',
@@ -89,6 +90,9 @@ const useStyles = makeStyles(theme => ({
     color: theme.palette.primary.main,
     fontWeight: 'bold',
     fontSize: '1.2rem'
+  },
+  carouselContainer: {
+    // marginBottom: theme.spacing(2)
   }
 }))
 
@@ -191,15 +195,18 @@ const Main = props => {
           <Typography className={classes.licenceText}>{intl.getHTML('mainPageImageLicence')}</Typography>
         </div>
       </div>
-      <div className={classes.carouselContainer}>
+      <div className={classes.carouselSection}>
         <div className={classes.carouselHeadingContainer}>
           <Typography className={classes.carouselHeading}>{intl.get('mainPage.carouselHeading')}</Typography>
         </div>
-        <ImageCarousel
-          resultClass='findsKnowledgeGraphMetadata'
-          fetchData={props.fetchKnowledgeGraphMetadata}
-          data={props.knowledgeGraphMetadata}
-        />
+        <div className={classes.carouselContainer}>
+          <ImageCarousel
+            resultClass='findsKnowledgeGraphMetadata'
+            fetchData={props.fetchKnowledgeGraphMetadata}
+            data={props.knowledgeGraphMetadata}
+          />
+        </div>
+
       </div>
       {/* <InfoCards /> */}
     </div>
