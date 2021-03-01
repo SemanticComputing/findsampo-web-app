@@ -47,6 +47,7 @@ const Sites = props => {
           'arkeologiset_kohteet_alue',
           'arkeologiset_kohteet_piste'
         ]}
+        layerControlExpanded
       />
     </div>
   )
