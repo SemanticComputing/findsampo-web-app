@@ -65,13 +65,14 @@ const Perspective1 = props => {
             showMapModeControl={false}
             instance={props.placesResults.instanceTableData}
             fetchResults={props.fetchResults}
-            fetchGeoJSONLayers={props.fetchGeoJSONLayersBackend}
+            fetchGeoJSONLayers={props.fetchGeoJSONLayers}
             clearGeoJSONLayers={props.clearGeoJSONLayers}
             fetchByURI={props.fetchByURI}
             fetching={props.placesResults.fetching}
             showInstanceCountInClusters
             updateFacetOption={props.updateFacetOption}
             showExternalLayers
+            layerControlExpanded
             showError={props.showError}
           />}
       />
@@ -108,7 +109,7 @@ const Perspective1 = props => {
             showMapModeControl={false}
             instance={props.placesResults.instanceTableData}
             fetchResults={props.fetchResults}
-            fetchGeoJSONLayers={props.fetchGeoJSONLayersBackend}
+            fetchGeoJSONLayers={props.fetchGeoJSONLayers}
             clearGeoJSONLayers={props.clearGeoJSONLayers}
             fetchByURI={props.fetchByURI}
             fetching={props.placesResults.fetching}

@@ -470,7 +470,14 @@ class LeafletMap extends React.Component {
       // [intl.get('leafletMap.externalLayers.kotus:rajat-sms-alueosat')]: kotusParishesDialecticalSubRegions,
       // [intl.get('leafletMap.externalLayers.kotus:rajat-lansi-ita')]: kotusParishesDialecticalBorder
     }
-    L.control.layers(basemaps, this.overlayLayers).addTo(this.leafletMap)
+
+    // Add default active overlays directly to the map
+    this.state.activeOverlays.map(overlay =>
+      this.leafletMap.addLayer(this.overlayLayers[intl.get(`leafletMap.externalLayers.${overlay}`)]))
+
+    // Add all basemaps and all overlays via the control to the map
+    L.control.layers(basemaps, this.overlayLayers, { collapsed: !this.props.layerControlExpanded }).addTo(this.leafletMap)
+
     const opacityLayers = {
       [intl.get('leafletMap.externalLayers.karelianMaps')]: karelianMaps,
       [intl.get('leafletMap.externalLayers.senateAtlas')]: senateAtlas
