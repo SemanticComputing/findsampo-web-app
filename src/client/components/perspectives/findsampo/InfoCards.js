@@ -2,7 +2,7 @@ import React from 'react'
 import intl from 'react-intl-universal'
 import {
   Card,
-  CardActionArea,
+  // CardActionArea,
   CardMedia,
   CardContent,
   Typography,
@@ -10,67 +10,107 @@ import {
   CardActions
 } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'
+// import FHA060 from '../../../img/findsampo/Museovirasto_060-vaaka.jpg'
+import FHA043 from '../../../img/findsampo/Museovirasto_043-vaaka.jpg'
+import FHA054 from '../../../img/findsampo/Museovirasto_054-vaaka.jpg'
+import FHA062 from '../../../img/findsampo/Museovirasto_062_vaaka.jpg'
+import FHA063 from '../../../img/findsampo/Museovirasto_063_vaaka.jpg'
+// import FHA067 from '../../../img/findsampo/Museovirasto_067-vaaka.jpg'
+import FHA056 from '../../../img/findsampo/Museovirasto_056_vaaka.jpg'
+
+const fourCardsBreakpoint = 1335
 
 const useStyles = makeStyles(theme => ({
-  infoCardsContainer: {
+  root: {
+    width: '100%',
     display: 'flex',
     flexWrap: 'wrap',
-    alignItems: 'center',
-    justifyContent: 'center'
+    justifyContent: 'center',
+    [theme.breakpoints.down(fourCardsBreakpoint)]: {
+      alignItems: 'flex-start'
+    },
+    [theme.breakpoints.up(fourCardsBreakpoint)]: {
+      alignItems: 'center'
+    },
+    [theme.breakpoints.down('sm')]: {
+      marginTop: 56 // app bar
+    },
+    [theme.breakpoints.up('sm')]: {
+      marginTop: 64 // app bar
+    },
+    overflow: 'auto',
+    backgroundImage: `radial-gradient(ellipse at center, rgba(194,194,194,0.50) 15%, rgb(191, 191, 191) 100%), url(${FHA062})`,
+    backgroundPosition: 'center',
+    backgroundRepeat: 'no-repeat',
+    backgroundSize: 'cover'
   },
   infoCard: {
+    [theme.breakpoints.down(fourCardsBreakpoint)]: {
+      maxHeight: 350
+    },
+    [theme.breakpoints.down('xs')]: {
+      width: '100%'
+    },
     maxWidth: 350,
     margin: theme.spacing(1.5)
   },
   infoCardMedia: {
     height: 140
+  },
+  link: {
+    textDecoration: 'none'
   }
 }))
 
-const sampleData = [
+const cardData = [
   {
-    title: 'What should I do if I find an antiquity?',
-    description: 'If you find an object from the ground and you suspect it may be an antiquity, retrieve it and make a note of the exact location where the object was found.',
-    image: 'https://www.museovirasto.fi/uploads/Arkeologiset_kokoelmat/_1600xAUTO_crop_center-center/Museovirasto_043-vaaka.jpg'
+    id: 'whatShoulIDo',
+    image: FHA063
   },
   {
-    title: 'Archaeological collections of the Finnish Heritage Agency',
-    description: 'Archaeological collections contain objects from the whole current territory of Finland as well as from the so-called ceded areas. The collections cover the whole prehistoric era extensively.',
-    image: 'https://www.museovirasto.fi/uploads/Arkeologiset_kokoelmat/_1600xAUTO_crop_center-center/Museovirasto_056_vaaka.jpg'
+    id: 'reportingADiscovery',
+    image: FHA056
   },
   {
-    title: 'Enthusiast´s guide, Updated 2019',
-    description: 'The archaeological collections of the historical era have been catalogued in the historical item collections of the National Museum of Finland until the end of 2010.',
-    image: 'https://www.museovirasto.fi/uploads/Meista/_1600xAUTO_crop_center-center/Museovirasto_054-vaaka.jpg'
+    id: 'archaelogyAsAHobby',
+    image: FHA043
+  },
+  {
+    id: 'enthusiastsGuide',
+    image: FHA054
   }
 ]
 
 const InfoCards = props => {
   const classes = useStyles()
-  const cardData = sampleData
   return (
-    <div className={classes.infoCardsContainer}>
-      {cardData && cardData.map((data, index) => (
+    <div className={classes.root}>
+      {cardData && cardData.map((card, index) => (
         <Card key={index} className={classes.infoCard}>
-          <CardActionArea>
-            <CardMedia
-              className={classes.infoCardMedia}
-              image={data.image}
-              title={data.title}
-            />
-            <CardContent>
-              <Typography gutterBottom variant='h5' component='h2'>
-                {data.title}
-              </Typography>
-              <Typography component='p'>
-                {data.description}
-              </Typography>
-            </CardContent>
-          </CardActionArea>
+          <CardMedia
+            className={classes.infoCardMedia}
+            image={card.image}
+            title={intl.get(`perspectives.guides.${card.id}.title`)}
+          />
+          <CardContent>
+            <Typography gutterBottom variant='h5' component='h2'>
+              {intl.get(`perspectives.guides.${card.id}.title`)}
+            </Typography>
+            {/* <Typography component='p'>
+              {intl.get(`perspectives.guides.${card.id}.description`)}
+            </Typography> */}
+          </CardContent>
           <CardActions>
-            <Button size='small' color='primary'>
-              {intl.get('mainPage.cardLearnMore')}
-            </Button>
+            <a
+              className={classes.link}
+              href={intl.get(`perspectives.guides.${card.id}.link`)}
+              target='_blank'
+              rel='noopener noreferrer'
+            >
+              <Button size='small' color='primary'>
+                {intl.get('mainPage.cardLearnMore')}
+              </Button>
+            </a>
           </CardActions>
         </Card>
       ))}

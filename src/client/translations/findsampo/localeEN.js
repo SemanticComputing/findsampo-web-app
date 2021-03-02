@@ -23,6 +23,7 @@ export default {
   topBar: {
     feedback: 'feedback',
     info: {
+      guides: 'Archaeology guides',
       info: 'Info',
       blog: 'Project blog',
       blogUrl: 'https://blogs.helsinki.fi/sualt-project',
@@ -675,7 +676,23 @@ export default {
     guides: {
       label: 'Guides',
       mainPageLabel: 'Guides',
-      shortDescription: 'Guides and instructions for conducting archaelogy as a hobby'
+      shortDescription: 'Guides and instructions for conducting archaelogy as a hobby',
+      whatShoulIDo: {
+        title: 'What should I do if I find an antiquity?',
+        link: 'https://www.museovirasto.fi/en/collection-and-information-services/item-collections/mitae-teen-kun-loeydaen-muinaisesineen'
+      },
+      reportingADiscovery: {
+        title: 'Reporting a discovery',
+        link: 'https://www.museovirasto.fi/en/cultural-environment/archaeological-cultural-heritage/reporting-a-discovery'
+      },
+      archaelogyAsAHobby: {
+        title: 'Archaeology as hobby',
+        link: 'https://www.museovirasto.fi/en/cultural-environment/archaeological-cultural-heritage/archaeology-as-a-hobby'
+      },
+      enthusiastsGuide: {
+        title: 'Antiquities, ancient monuments and metal detectors: an enthusiast’s guide (PDF)',
+        link: 'https://www.museovirasto.fi/uploads/Palvelut_ja_ohjeet/Antiquities_and_metal_detectors_guide_2020_final.pdf '
+      }
     }
   },
   aboutThePortalPartOne: `

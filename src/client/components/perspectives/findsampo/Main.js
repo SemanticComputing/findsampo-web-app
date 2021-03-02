@@ -12,7 +12,8 @@ import ImageCarousel from '../../main_layout/ImageCarousel'
 const useStyles = makeStyles(theme => ({
   root: {
     width: '100%',
-    minHeight: 'calc(100% - 74px)'
+    minHeight: 'calc(100% - 74px)',
+    backgroundColor: '#ffffff'
   },
   banner: {
     // background: `linear-gradient( rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.35) ), url(${bannerImage})`,

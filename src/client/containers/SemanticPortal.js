@@ -30,11 +30,11 @@ import FullTextSearch from '../components/perspectives/findsampo/FullTextSearch'
 import Footer from '../components/perspectives/findsampo/Footer'
 import KnowledgeGraphMetadataTable from '../components/perspectives/findsampo/KnowledgeGraphMetadataTable'
 import Sites from '../components/perspectives/findsampo/Sites'
-// import InfoCards from '../components/perspectives/findsampo/InfoCards'
+import InfoCards from '../components/perspectives/findsampo/InfoCards'
 import { perspectiveConfig } from '../configs/findsampo/PerspectiveConfig'
 import { perspectiveConfigOnlyInfoPages } from '../configs/findsampo/PerspectiveConfigOnlyInfoPages'
 import { rootUrl } from '../configs/findsampo/GeneralConfig'
-// ** Portal specific components and configs end **finds
+// ** Portal specific components and configs end **
 
 import {
   fetchResultCount,
@@ -110,8 +110,7 @@ const useStyles = makeStyles(theme => ({
     },
     [theme.breakpoints.up('sm')]: {
       marginTop: 64 // app bar
-    },
-    backgroundColor: '#ffffff'
+    }
   },
   mainContainerClientFS: {
     height: 'auto',
@@ -304,7 +303,7 @@ const SemanticPortal = props => {
             <Route
               exact path={`${rootUrlWithLang}/`}
               render={() =>
-                <Grid container spacing={1} className={classes.mainContainer}>
+                <Grid container spacing={0} className={classes.mainContainer}>
                   <Main
                     perspectives={perspectiveConfig}
                     screenSize={screenSize}
@@ -602,10 +601,10 @@ const SemanticPortal = props => {
                   <TextPage>{intl.getHTML('feedback')}</TextPage>
                 </div>}
             /> */}
-            {/* <Route
+            <Route
               path={`${rootUrlWithLang}/guides`}
               render={() => <InfoCards />}
-            /> */}
+            />
             <Route
               path={`${rootUrlWithLang}/about`}
               render={() =>
