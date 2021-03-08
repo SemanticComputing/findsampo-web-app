@@ -71,3 +71,7 @@ a, a:visited, a:hover, a:active {
     justify-content: center;
     margin-bottom: 20px;
   }
+.leaflet-usermarker-small i.pulse {
+    top: -12px !important;
+    left: -12px !important;
+}
