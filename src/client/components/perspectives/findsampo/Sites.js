@@ -30,8 +30,9 @@ const Sites = props => {
   return (
     <div className={classes.root}>
       <LeafletMap
-        center={[60.187, 24.821]}
-        zoom={14}
+        // center={[60.187, 24.821]}
+        // zoom={15}
+        locateUser
         // results={this.props.results}
         layers={props.leafletMap}
         pageType='instancePage'
