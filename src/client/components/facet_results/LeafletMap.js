@@ -63,6 +63,10 @@ const styles = theme => ({
     },
     position: 'relative'
   },
+  leafletContainermobileMapPage: {
+    height: '100%',
+    position: 'relative'
+  },
   mapElement: {
     width: '100%',
     height: '100%'
@@ -515,7 +519,7 @@ class LeafletMap extends React.Component {
       this.leafletMap.addLayer(this.overlayLayers[intl.get(`leafletMap.externalLayers.${overlay}`)]))
 
     // Add all basemaps and all overlays via the control to the map
-    L.control.layers(basemaps, this.overlayLayers, { collapsed: !this.props.layerControlExpanded }).addTo(this.leafletMap)
+    this.layerControl = L.control.layers(basemaps, this.overlayLayers, { collapsed: !this.props.layerControlExpanded }).addTo(this.leafletMap)
 
     const opacityLayers = {
       [intl.get('leafletMap.externalLayers.karelianMaps')]: karelianMaps,

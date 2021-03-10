@@ -71,18 +71,24 @@ import {
 // import { filterResults } from '../selectors'
 
 const useStyles = makeStyles(theme => ({
-  root: {
-    flexGrow: 1,
-    // Set app height for different screen sizes
-    height: 'auto',
-    [theme.breakpoints.up('md')]: {
-      height: '100%'
-    },
-    /* Background color of the app.
-       In order to use both 'auto' and '100%' heights, bg-color
-       needs to be defined also in index.html (for #app and #root elements)
-    */
-    backgroundColor: '#bdbdbd'
+  root: props => {
+    let height = 'auto'
+    if (props.location.pathname.includes('/sites/map')) {
+      height = '100%'
+    }
+    return {
+      flexGrow: 1,
+      // Set app height for different screen sizes
+      height,
+      [theme.breakpoints.up('md')]: {
+        height: '100%'
+      },
+      /* Background color of the app.
+        In order to use both 'auto' and '100%' heights, bg-color
+        needs to be defined also in index.html (for #app and #root elements)
+      */
+      backgroundColor: '#bdbdbd'
+    }
   },
   flex: {
     flexGrow: 1
@@ -543,6 +549,7 @@ const SemanticPortal = props => {
                   fetchGeoJSONLayersBackend={props.fetchGeoJSONLayersBackend}
                   clearGeoJSONLayers={props.clearGeoJSONLayers}
                   showError={props.showError}
+                  screenSize={screenSize}
                 />}
             />
 

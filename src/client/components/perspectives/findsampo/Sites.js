@@ -27,6 +27,10 @@ const useStyles = makeStyles(theme => ({
 
 const Sites = props => {
   const classes = useStyles()
+  const { screenSize } = props
+  const layerControlExpanded = screenSize === 'md' ||
+    screenSize === 'lg' ||
+    screenSize === 'xl'
   return (
     <div className={classes.root}>
       <LeafletMap
@@ -35,8 +39,7 @@ const Sites = props => {
         locateUser
         // results={this.props.results}
         layers={props.leafletMap}
-        pageType='instancePage'
-        fetchResults={() => null}
+        pageType='mobileMapPage'
         fetchGeoJSONLayers={props.fetchGeoJSONLayers}
         clearGeoJSONLayers={props.clearGeoJSONLayers}
         fetching={false}
@@ -48,7 +51,7 @@ const Sites = props => {
           'arkeologiset_kohteet_alue',
           'arkeologiset_kohteet_piste'
         ]}
-        layerControlExpanded
+        layerControlExpanded={layerControlExpanded}
       />
     </div>
   )
