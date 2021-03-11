@@ -136,11 +136,12 @@ export default {
     findPopUpHeading: 'Archaeological find',
     basemaps: {
       mapbox: {
-        'light-v10': 'Mapbox Light'
+        'light-v10': 'Mapbox Light (OpenStreetMap)'
       },
       googleRoadmap: 'Google Maps',
       topographicalMapNLS: 'Topographical map (National Land Survey of Finland)',
-      backgroundMapNLS: 'Background map (National Land Survey of Finland)'
+      backgroundMapNLS: 'Background map (National Land Survey of Finland)',
+      airMapNLS: 'Air map (National Land Survey of Finland)'
     },
     externalLayers: {
       arkeologiset_kohteet_alue: 'Register of Archaeological Sites, areas (Finnish Heritage Agency)',
