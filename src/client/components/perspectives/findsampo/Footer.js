@@ -10,7 +10,7 @@ import fhaLogo from '../../../img/findsampo/logo_fha-compressor.png'
 
 const styles = theme => ({
   root: {
-    height: 64,
+    height: 74,
     // marginTop: theme.spacing(3),
     backgroundColor: theme.palette.primary.main,
     // position: 'absolute',
@@ -26,8 +26,8 @@ const styles = theme => ({
   layout: {
     width: 'auto',
     // height: 115,
-    marginTop: theme.spacing(1),
-    marginBottom: theme.spacing(1),
+    marginTop: theme.spacing(2),
+    // marginBottom: theme.spacing(1),
     marginLeft: theme.spacing(2),
     marginRight: theme.spacing(2),
     [theme.breakpoints.up(1500 + theme.spacing(6))]: {
@@ -59,8 +59,8 @@ const Footer = props => {
   const { classes } = props
   return (
     <Paper className={classes.root}>
-      <Grid container className={classes.layout}>
-        <Grid container spacing={3} item xs={12}>
+      <div className={classes.layout}>
+        <Grid container spacing={0} item xs={12}>
           <Grid item xs className={classes.logoContainer}>
             <a href='https://www.aalto.fi/en/school-of-science' target='_blank' rel='noopener noreferrer'>
               <img className={classes.aaltoLogo} src={aaltoLogo} alt='logo' />
@@ -82,7 +82,7 @@ const Footer = props => {
             </a>
           </Grid>
         </Grid>
-      </Grid>
+      </div>
     </Paper>
   )
 }
