@@ -15,23 +15,22 @@ import {
   knowledgeGraphMetadataQuery
 } from './sparql_queries/SparqlQueriesFinds'
 import {
-  coinsByYearQuery,
-  coinsPlacesQuery,
-  coinsTimelineQuery,
+  coinsByYearQuery
+  // coinsPlacesQuery,
+  // coinsTimelineQuery
 } from './sparql_queries/SparqlQueriesCoins'
-import {
-  typesPropertiesInstancePage,
-} from './sparql_queries/SparqlQueriesTypes'
-import {
-  periodsPropertiesInstancePage,
-} from './sparql_queries/SparqlQueriesPeriods'
+// import {
+//   typesPropertiesInstancePage
+// } from './sparql_queries/SparqlQueriesTypes'
+// import {
+//   periodsPropertiesInstancePage
+// } from './sparql_queries/SparqlQueriesPeriods'
 import { fullTextSearchProperties } from './sparql_queries/SparqlQueriesFullText'
 import { makeObjectList } from '../SparqlObjectMapper'
 import {
   mapPlaces,
   mapPieChart,
-  // mapLineChart,
-  mapLineChartFillEmptyValues
+  mapLineChart
 } from '../Mappers'
 
 export const backendSearchConfig = {
@@ -82,14 +81,22 @@ export const backendSearchConfig = {
     perspectiveID: 'finds', // use endpoint config from finds
     q: findsByYearQuery,
     filterTarget: 'find',
-    resultMapper: mapLineChartFillEmptyValues
+    resultMapper: mapLineChart,
+    resultMapperConfig: {
+      fillEmptyValues: true,
+      xAxisConverter: value => {
+        return new Date(value, 0)
+      }
+    }
   },
-
   findsByWeight: {
     perspectiveID: 'finds', // use endpoint config from finds
     q: findsByWeightQuery,
     filterTarget: 'find',
-    resultMapper: mapLineChartFillEmptyValues
+    resultMapper: mapLineChart,
+    resultMapperConfig: {
+      fillEmptyValues: true
+    }
   },
   findsKnowledgeGraphMetadata: {
     perspectiveID: 'finds', // use endpoint config from finds
@@ -104,6 +111,6 @@ export const backendSearchConfig = {
     perspectiveID: 'coins',
     q: coinsByYearQuery,
     filterTarget: 'find',
-    resultMapper: mapLineChartFillEmptyValues
-  },
+    resultMapper: mapLineChart
+  }
 }

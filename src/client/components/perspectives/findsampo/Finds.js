@@ -129,8 +129,13 @@ const Finds = props => {
             createChartData={createSingleLineChartData}
             title='Number of coins (find_name = "Raha" or "Hopearaha")'
             xaxisTitle='Year (using only "start_year")'
+            xaxisType='datetime'
             yaxisTitle='Number of coins'
             seriesTitle='Number of coins'
+            stroke={{ width: 2 }}
+            tooltip={{
+              x: { format: 'yyyy' }
+            }}
             resultClass='findsByYear'
             facetClass='finds'
           />}
@@ -148,8 +153,11 @@ const Finds = props => {
             createChartData={createSingleLineChartData}
             title='Weight'
             xaxisTitle='Weight (g)'
+            xaxisType='numeric'
+            xaxisTickAmount={30}
             yaxisTitle='Number of finds'
             seriesTitle='Number of finds'
+            stroke={{ width: 2 }}
             resultClass='findsByWeight'
             facetClass='finds'
           />}
