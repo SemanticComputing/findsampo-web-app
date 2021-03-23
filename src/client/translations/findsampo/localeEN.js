@@ -16,6 +16,7 @@ export default {
   selectPerspective: 'Select an application perspective to search and browse the data:',
   selectPerspectiveExternal: 'Other applications:',
   mainPageImageLicence: '',
+  backendErrorText: 'One of the backend services is not available at the moment. Please try again later.',
   mainPage: {
     carouselHeading: 'FEATURED FINDS',
     cardLearnMore: 'learn more'
