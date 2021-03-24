@@ -13,7 +13,7 @@ export const coinsPerspectiveConfig = {
   },
   facetClass: ':Find',
   defaultConstraint: `
-  <SUBJECT> :facet_object_term* <http://ldf.fi/findsampo/facet_ontologies/object_types/raha> .
+  <SUBJECT> :object_type* <http://ldf.fi/findsampo/object_types/maksuvaeline> .
   `,
   paginatedResults: {
     properties: coinsPropertiesFacetResults
@@ -82,16 +82,16 @@ export const coinsPerspectiveConfig = {
     period: {
       id: 'period',
       facetValueFilter: '',
-      predicate: ':earliest_period|:latest_period',
-      labelPath: ':earliest_period/skos:prefLabel|:latest_period/skos:prefLabel',
+      predicate: ':period',
+      labelPath: ':period/skos:prefLabel',
       type: 'hierarchical',
       parentProperty: 'skos:broader'
     },
     dateTimespan: {
       id: 'dateTimespan',
       facetValueFilter: '',
-      sortByAscPredicate: ':has_time_span/crm:P82a_begin_of_the_begin',
-      sortByDescPredicate: ':has_time_span/crm:P82b_end_of_the_end',
+      sortByAscPredicate: ':has_creation_time_span/crm:P82a_begin_of_the_begin',
+      sortByDescPredicate: ':has_creation_time_span/crm:P82b_end_of_the_end',
       predicate: ':has_time_span',
       startProperty: 'crm:P82a_begin_of_the_begin',
       endProperty: 'crm:P82b_end_of_the_end',
@@ -100,15 +100,15 @@ export const coinsPerspectiveConfig = {
     municipality: {
       id: 'municipality',
       facetValueFilter: '',
-      predicate: ':municipality',
-      labelPath: ':municipality/skos:prefLabel',
+      predicate: ':found_in_municipality',
+      labelPath: ':found_in_municipality/skos:prefLabel',
       type: 'list'
     },
     place: {
       id: 'place',
       facetValueFilter: '',
-      predicate: ':municipality/skos:related',
-      labelPath: ':municipalityskos:related//skos:prefLabel',
+      predicate: ':found_in_municipality',
+      labelPath: ':found_in_municipality/skos:prefLabel',
       type: 'hierarchical',
       parentProperty: 'skos:broader',
       facetLabelFilter: 'FILTER(LANG(?prefLabel_) = \'fi\')'
@@ -133,9 +133,9 @@ export const coinsPerspectiveConfig = {
     // },
     objectTypeFHAFacet: {
       id: 'objectTypeFHAFacet',
-      facetValueFilter: '?id a :Object_facet_type',
-      predicate: ':facet_object_term',
-      labelPath: ':facet_object_term/skos:prefLabel',
+      facetValueFilter: '?id a :Object_type',
+      predicate: ':object_type',
+      labelPath: ':object_type/skos:prefLabel',
       type: 'hierarchical',
       parentProperty: 'skos:broader'
     },
@@ -160,8 +160,8 @@ export const coinsPerspectiveConfig = {
     kmNumber: {
       id: 'kmNumber',
       facetValueFilter: '',
-      predicate: ':km_number',
-      labelPath: ':km_number',
+      predicate: 'ltk-s:identifier',
+      labelPath: 'ltk-s:identifier',
       type: 'list',
       literal: true
     },
@@ -176,29 +176,29 @@ export const coinsPerspectiveConfig = {
     length: {
       id: 'lenght',
       facetValueFilter: '',
-      labelPath: ':length_literal',
-      predicate: ':length_literal',
+      labelPath: 'ltk-s:length',
+      predicate: ':ltk-s:length',
       type: 'integer'
     },
     width: {
       id: 'width',
       facetValueFilter: '',
-      labelPath: ':width_literal',
-      predicate: ':width_literal',
+      labelPath: 'ltk-s:width',
+      predicate: 'ltk-s:width',
       type: 'integer'
     },
     weight: {
       id: 'weight',
       facetValueFilter: '',
-      labelPath: ':weight_rounded',
-      predicate: ':weight_rounded',
+      labelPath: 'ltk-s:weight',
+      predicate: 'ltk-s:weight',
       type: 'integer'
     },
     thickness: {
       id: 'thickness',
       facetValueFilter: '',
-      labelPath: ':thickness_literal',
-      predicate: ':thickness_literal',
+      labelPath: 'ltk-s:thickness',
+      predicate: 'ltk-s:thickness',
       type: 'integer'
     }
     // creationTimespan: {

@@ -17,7 +17,8 @@ export const prefixes = `
   PREFIX spatial: <http://jena.apache.org/spatial#>
   PREFIX text: <http://jena.apache.org/text#>
   PREFIX sd: <http://www.w3.org/ns/sparql-service-description#>
-  PREFIX : <http://ldf.fi/schema/findsampo/>
+  PREFIX : <http://ldf.fi/schema/findsampo/core/>
+  PREFIX ltk-s: <http://ldf.fi/schema/findsampo/extended/ltk/>
 
 
 `

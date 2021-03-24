@@ -11,7 +11,7 @@ export const typesPerspectiveConfig = {
     prefixes,
     useAuth: true
   },
-  facetClass: ':Object_facet_type',
+  facetClass: ':Object_type',
   paginatedResults: {
     properties: typesPropertiesFacetResults
   },

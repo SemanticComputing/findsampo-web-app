@@ -11,8 +11,8 @@ export const typesPropertiesInstancePage =
     }
     UNION
     {
-      ?id skos:related ?maoMatch__id .
-      ?maoMatch__id ^:mao_match/skos:prefLabel ?maoMatch__prefLabel .
+      ?id skos:closeMatch ?maoMatch__id .
+      ?id skos:hiddenLabel ?maoMatch__prefLabel .
       BIND(?maoMatch__id as ?maoMatch__dataProviderUrl)
     }
   `
@@ -25,8 +25,8 @@ export const typesPropertiesInstancePage =
       }
       UNION
       {
-        ?id skos:related ?maoMatch__id .
+        ?id skos:closeMatch ?maoMatch__id .
+        ?id skos:hiddenLabel ?maoMatch__prefLabel .
         BIND(?maoMatch__id as ?maoMatch__dataProviderUrl)
-        ?maoMatch__id ^:mao_match/skos:prefLabel ?maoMatch__prefLabel .
       }
     `

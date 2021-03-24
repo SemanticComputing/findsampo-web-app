@@ -23,8 +23,8 @@ export const INITIAL_STATE = {
     //   uriFilter: null,
     //   priority: 1
     // },
-    objectTypeFHAFacet: {
-      id: 'objectTypeFHAFacet',
+    objectType: {
+      id: 'objectType',
       // predicate: defined in backend
       distinctValueCount: 0,
       values: [],

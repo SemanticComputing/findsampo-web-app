@@ -7,29 +7,31 @@ export const coinsPropertiesInstancePage =
       BIND(?id as ?uri__id)
       BIND(?id as ?uri__dataProviderUrl)
       BIND(?id as ?uri__prefLabel)
-      BIND(CONCAT("/finds/page/", REPLACE(STR(?id), "^.*\\\\/(.+)", "$1")) AS ?dataProviderUrl)
+      BIND(CONCAT("/${perspectiveID}/page/", REPLACE(STR(?id), "^.*\\\\/(.+)", "$1")) AS ?dataProviderUrl)
     }
     UNION
     {
-      ?id :type ?type .
+      ?id ltk-s:type ?type .
     }
     UNION
     {
       ?id :object_type ?objectType__id .
       ?objectType__id skos:prefLabel ?objectType__prefLabel .
+      BIND(CONCAT("/types/page/", REPLACE(STR(?objectType__id ), "^.*\\\\/(.+)", "$1")) AS ?objectType__dataProviderUrl)
+      OPTIONAL {
+        ?objectType__id skos:closeMatch ?maoMatch__id .
+        ?objectType__id skos:closeMatch ?maoMatch__prefLabel .
+        ?objectType__id skos:closeMatch ?maoMatch__dataProviderUrl .
+        ?objectType__id skos:hiddenLabel ??objectType__hiddenLabel .
+      }
     }
     UNION
     {
-      ?id :facet_object_term ?objectTypeFHAFacet__id .
-      ?objectTypeFHAFacet__id skos:prefLabel ?objectTypeFHAFacet__prefLabel .
+      ?id ltk-s:sub_category ?subCategory .
     }
     UNION
     {
-      ?id :sub_category ?subCategory .
-    }
-    UNION
-    {
-      ?id :material_literal ?materialLiteral .
+      ?id ltk-s:material ?materialLiteral .
     }
     UNION
     {
@@ -38,38 +40,41 @@ export const coinsPropertiesInstancePage =
     }
     UNION
     {
-      ?id :period ?period .
+      ?id ltk-s:period ?period .
     }
     UNION
     {
-      ?id :municipality_literal ?municipalityLiteral .
+      ?id ltk-s:municipality ?municipalityLiteral .
     }
     UNION
     {
-      ?id :municipality ?municipality__id .
-      ?municipality__id skos:prefLabel ?municipality__prefLabel .
+      ?id :found_in_municipality ?municipality__id .
+      ?municipality__id skos:exactMatch/skos:prefLabel ?municipality__prefLabel .
     }
     UNION
     {
-      ?id :province ?province__id .
-      ?province__id skos:prefLabel ?province__prefLabel .
+      ?id :found_in_province ?province__id .
+      ?province__id skos:exactMatch/skos:prefLabel ?province__prefLabel .
     }
     UNION
     {
-      ?id :has_time_span/crm:P82a_begin_of_the_begin ?earliestStart .
+      ?id :has_creation_time_span/crm:P82a_begin_of_the_begin ?earliestStart .
       BIND (YEAR(?earliestStart) as ?earliestStartYear) .
     }
     UNION
     {
-      ?id :has_time_span/crm:P82b_end_of_the_end ?latestEnd .
+      ?id :has_creation_time_span/crm:P82b_end_of_the_end ?latestEnd .
       BIND (YEAR(?latestEnd) as ?latestEndYear) .
     }
     UNION
     {
-      ?id :image_url ?image__id .
-      ?id :find_name ?image__title .
-      BIND(?image__id as ?image__url)
-      BIND(CONCAT("Sample description text for image ", ?image__id) as ?image__description)
+      ?image__id a :Picture .
+      ?image__id :documents ?id .
+      ?image__id ltk-s:image_url ?image__url .
+      ?image__id skos:prefLabel ?image__title .
+      ?image__id skos:prefLabel ?image__description .
+      #BIND(?image__id as ?image__url)
+      #BIND(CONCAT("Sample description text for image ", ?image__id) as ?image__description)
     }
     UNION
     {
@@ -77,29 +82,29 @@ export const coinsPropertiesInstancePage =
       #?id :individual_find_number ?individualNumber .
       #BIND(CONCAT(?setNumber, ':') as ?identifierStart) .
       #BIND(CONCAT(?identifierStart, ?individualNumber) as ?identifierFHA) .
-      ?id :km_number ?kmNumber .
+      ?id ltk-s:identifier ?kmNumber .
     }
     UNION
     {
-      ?id :weight_literal ?weight .
+      ?id ltk-s:weight ?weight .
     }
     UNION
     {
-      ?id :length_literal ?length .
+      ?id ltk-s:length ?length .
     }
     UNION
     {
-      ?id :thickness_literal ?thickness .
+      ?id ltk-s:thickness ?thickness .
     }
     UNION
     {
-      ?id :width_literal ?width .
+      ?id ltk-s:width ?width .
     }
     UNION
     {
       ?id :similar_internal_find ?similarInternalFind__id .
       ?similarInternalFind__id skos:prefLabel ?similarInternalFind__prefLabel .
-      BIND(CONCAT("/finds/page/", REPLACE(STR(?similarInternalFind__id), "^.*\\\\/(.+)", "$1")) AS ?similarInternalFind__dataProviderUrl)
+      BIND(CONCAT("/${perspectiveID}/page/", REPLACE(STR(?similarInternalFind__id), "^.*\\\\/(.+)", "$1")) AS ?similarInternalFind__dataProviderUrl)
     }
     UNION
     {
@@ -111,112 +116,123 @@ export const coinsPropertiesInstancePage =
 
 export const coinsPropertiesFacetResults =
 `   {
-      ?id skos:prefLabel ?prefLabel__id .
-      BIND (?prefLabel__id as ?prefLabel__prefLabel)
-      BIND(CONCAT("/finds/page/", REPLACE(STR(?id), "^.*\\\\/(.+)", "$1")) AS ?prefLabel__dataProviderUrl)
-    }
-    UNION
-    {
-      ?id :specification ?specification .
-    }
-    UNION
-    {
-      ?id :type ?type .
-    }
-    UNION
-    {
-      ?id :sub_category ?subCategory .
-    }
-    UNION
-    {
-      ?id :object_type ?objectType__id.
-      ?objectType__id skos:prefLabel ?objectType__prefLabel .
-    }
-    UNION
-    {
-      ?id :facet_object_term ?objectTypeFHAFacet__id .
-      ?objectTypeFHAFacet__id skos:prefLabel ?objectTypeFHAFacet__prefLabel .
-    }
-    UNION
-    {
-      ?id :material_literal ?materialLiteral .
-    }
-    UNION
-    {
-      ?id :material ?material__id .
-      ?material__id skos:prefLabel ?material__prefLabel .
-    }
-    UNION
-    {
-      ?id :period ?period .
-    }
-    UNION
-    {
-      ?id :start_year ?startYearLiteral .
-    }
-    UNION
-    {
-      ?id :end_year ?endYearLiteral .
-    }
-    UNION
-    {
-      ?id :municipality_literal ?municipalityLiteral .
-    }
-    UNION
-    {
-      ?id :municipality ?municipality__id .
-      ?municipality__id skos:prefLabel ?municipality__prefLabel .
-    }
-    UNION
-    {
-      ?id :province_literal ?provinceLiteral .
-    }
-    UNION
-    {
-      ?id :province ?province__id .
-      ?province__id skos:prefLabel ?province__prefLabel .
-    }
-    UNION
-    {
-      ?id :has_time_span/crm:P82a_begin_of_the_begin ?earliestStart .
-      BIND (YEAR(?earliestStart) as ?earliestStartYear) .
-    }
-    UNION
-    {
-      ?id :has_time_span/crm:P82b_end_of_the_end ?latestEnd .
-      BIND (YEAR(?latestEnd) as ?latestEndYear) .
-    }
-    UNION
-    {
-      ?id :image_url ?image__id .
-      ?id :find_name ?image__title .
-      BIND(?image__id as ?image__url)
-      BIND(CONCAT("Sample description text for image ", ?image__id) as ?image__description)
-    }
-    UNION
-    {
-      #?id :find_set_number ?setNumber .
-      #?id :individual_find_number ?individualNumber .
-      #BIND(CONCAT(?setNumber, ':') as ?identifierStart) .
-      #BIND(CONCAT(?identifierStart, ?individualNumber) as ?identifierFHA) .
-      ?id :km_number ?kmNumber .
-    }
-    UNION
-    {
-      ?id :weight_literal ?weight .
-    }
-    UNION
-    {
-      ?id :length_literal ?length .
-    }
-    UNION
-    {
-      ?id :thickness_literal ?thickness .
-    }
-    UNION
-    {
-      ?id :width_literal ?width .
-    }
+        ?id skos:prefLabel ?prefLabel__id .
+        BIND (?prefLabel__id as ?prefLabel__prefLabel)
+        BIND(CONCAT("/${perspectiveID}/page/", REPLACE(STR(?id), "^.*\\\\/(.+)", "$1")) AS ?prefLabel__dataProviderUrl)
+      }
+      UNION
+      {
+        ?id ltk-s:specification ?specification .
+      }
+      UNION
+      {
+        ?id ltk-s:type ?type .
+      }
+      UNION
+      {
+        ?id ltk-s:sub_category ?subCategory .
+      }
+      UNION
+      {
+        ?id :object_type ?objectType__id .
+        ?objectType__id skos:prefLabel ?objectType__prefLabel .
+        BIND(CONCAT("/types/page/", REPLACE(STR(?objectType__id ), "^.*\\\\/(.+)", "$1")) AS ?objectType__dataProviderUrl)
+        OPTIONAL {
+          ?objectType__id skos:closeMatch ?maoMatch__id .
+          ?objectType__id skos:closeMatch ?maoMatch__prefLabel .
+          ?objectType__id skos:closeMatch ?maoMatch__dataProviderUrl .
+          ?objectType__id skos:hiddenLabel ??objectType__hiddenLabel .
+        }
+      }
+      UNION
+      {
+        ?id :facet_object_term ?objectTypeFHAFacet__id .
+        ?objectTypeFHAFacet__id skos:prefLabel ?objectTypeFHAFacet__prefLabel .
+        BIND(CONCAT("/types/page/", REPLACE(STR(?objectTypeFHAFacet__id ), "^.*\\\\/(.+)", "$1")) AS ?objectTypeFHAFacet__dataProviderUrl)
+      }
+      UNION
+      {
+        ?id ltk-s:material ?materialLiteral .
+      }
+      UNION
+      {
+        ?id :material ?material__id .
+        ?material__id skos:prefLabel ?material__prefLabel .
+      }
+      UNION
+      {
+        ?id ltk-s:period ?period .
+      }
+      UNION
+      {
+        ?id ltk-s:start_year ?startYearLiteral .
+      }
+      UNION
+      {
+        ?id ltk-s:end_year ?endYearLiteral .
+      }
+      UNION
+      {
+        ?id ltk-s:municipality ?municipalityLiteral .
+      }
+      UNION
+      {
+        ?id :found_in_municipality ?municipality__id .
+        ?municipality__id skos:exactMatch/skos:prefLabel ?municipality__prefLabel .
+      }
+      UNION
+      {
+        ?id ltk-s:province ?provinceLiteral .
+      }
+      UNION
+      {
+        ?id :found_in_province ?province__id .
+        ?province__id skos:exactMatch/skos:prefLabel ?province__prefLabel .
+      }
+      UNION
+      {
+        ?id :has_creation_time_span/crm:P82a_begin_of_the_begin ?earliestStart .
+        BIND (YEAR(?earliestStart) as ?earliestStartYear) .
+      }
+      UNION
+      {
+        ?id :has_creation_time_span/crm:P82b_end_of_the_end ?latestEnd .
+        BIND (YEAR(?latestEnd) as ?latestEndYear) .
+      }
+      UNION
+      {
+        ?image__id a :Picture .
+        ?image__id :documents ?id .
+        ?image__id ltk-s:image_url ?image__url .
+        ?image__id skos:prefLabel ?image__title .
+        ?image__id skos:prefLabel ?image__description .
+        #BIND(?image__id as ?image__url)
+        #BIND(CONCAT("Sample description text for image ", ?image__id) as ?image__description)
+      }
+      UNION
+      {
+        #?id :find_set_number ?setNumber .
+        #?id :individual_find_number ?individualNumber .
+        #BIND(CONCAT(?setNumber, ':') as ?identifierStart) .
+        #BIND(CONCAT(?identifierStart, ?individualNumber) as ?identifierFHA) .
+        ?id ltk-s:identifier ?kmNumber .
+      }
+      UNION
+      {
+        ?id :weight_literal ?weight .
+      }
+      UNION
+      {
+        ?id :length_literal ?length .
+      }
+      UNION
+      {
+        ?id :thickness_literal ?thickness .
+      }
+      UNION
+      {
+        ?id :width_literal ?width .
+      }
   `
 
 export const coinsPlacesQuery = `

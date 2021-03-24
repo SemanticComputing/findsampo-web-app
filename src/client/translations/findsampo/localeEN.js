@@ -234,9 +234,9 @@ export default {
           `
         },
         objectType: {
-          label: 'Object type (MAO)',
+          label: 'Object type',
           description: `
-            Object type in MAO .
+            Object type .
           `
         },
         objectTypeFHAFacet: {
@@ -323,11 +323,11 @@ export default {
           label: 'Image',
           description: 'Image description.'
         },
-        earliestStart: {
+        earliestStartYear: {
           label: 'Earliest date',
           description: 'Earliest possible creation date of the object'
         },
-        latestEnd: {
+        latestEndYear: {
           label: 'Latest date',
           description: 'Latest possible creation date of the object'
         },

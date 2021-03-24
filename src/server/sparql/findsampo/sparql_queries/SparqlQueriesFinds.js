@@ -11,29 +11,27 @@ export const findPropertiesInstancePage =
     }
     UNION
     {
-      ?id :type ?type .
+      ?id ltk-s:type ?type .
     }
     UNION
     {
       ?id :object_type ?objectType__id .
       ?objectType__id skos:prefLabel ?objectType__prefLabel .
+      BIND(CONCAT("/types/page/", REPLACE(STR(?objectType__id ), "^.*\\\\/(.+)", "$1")) AS ?objectType__dataProviderUrl)
       OPTIONAL {
-        ?objectType__id :mao_match ?objectType__dataProviderUrl .
+        ?objectType__id skos:closeMatch ?maoMatch__id .
+        ?objectType__id skos:closeMatch ?maoMatch__prefLabel .
+        ?objectType__id skos:closeMatch ?maoMatch__dataProviderUrl .
+        ?objectType__id skos:hiddenLabel ??objectType__hiddenLabel .
       }
     }
     UNION
     {
-      ?id :facet_object_term ?objectTypeFHAFacet__id .
-      ?objectTypeFHAFacet__id skos:prefLabel ?objectTypeFHAFacet__prefLabel .
-      BIND(CONCAT("/types/page/", REPLACE(STR(?objectTypeFHAFacet__id ), "^.*\\\\/(.+)", "$1")) AS ?objectTypeFHAFacet__dataProviderUrl)
+      ?id ltk-s:sub_category ?subCategory .
     }
     UNION
     {
-      ?id :sub_category ?subCategory .
-    }
-    UNION
-    {
-      ?id :material_literal ?materialLiteral .
+      ?id ltk-s:material ?materialLiteral .
     }
     UNION
     {
@@ -42,38 +40,41 @@ export const findPropertiesInstancePage =
     }
     UNION
     {
-      ?id :period ?period .
+      ?id ltk-s:period ?period .
     }
     UNION
     {
-      ?id :municipality_literal ?municipalityLiteral .
+      ?id ltk-s:municipality ?municipalityLiteral .
     }
     UNION
     {
-      ?id :municipality ?municipality__id .
-      ?municipality__id skos:prefLabel ?municipality__prefLabel .
+      ?id :found_in_municipality ?municipality__id .
+      ?municipality__id skos:exactMatch/skos:prefLabel ?municipality__prefLabel .
     }
     UNION
     {
-      ?id :province ?province__id .
-      ?province__id skos:prefLabel ?province__prefLabel .
+      ?id :found_in_province ?province__id .
+      ?province__id skos:exactMatch/skos:prefLabel ?province__prefLabel .
     }
     UNION
     {
-      ?id :has_time_span/crm:P82a_begin_of_the_begin ?earliestStart .
+      ?id :has_creation_time_span/crm:P82a_begin_of_the_begin ?earliestStart .
       BIND (YEAR(?earliestStart) as ?earliestStartYear) .
     }
     UNION
     {
-      ?id :has_time_span/crm:P82b_end_of_the_end ?latestEnd .
+      ?id :has_creation_time_span/crm:P82b_end_of_the_end ?latestEnd .
       BIND (YEAR(?latestEnd) as ?latestEndYear) .
     }
     UNION
     {
-      ?id :image_url ?image__id .
-      ?id :find_name ?image__title .
-      BIND(?image__id as ?image__url)
-      BIND(CONCAT("Sample description text for image ", ?image__id) as ?image__description)
+      ?image__id a :Picture .
+      ?image__id :documents ?id .
+      ?image__id ltk-s:image_url ?image__url .
+      ?image__id skos:prefLabel ?image__title .
+      ?image__id skos:prefLabel ?image__description .
+      #BIND(?image__id as ?image__url)
+      #BIND(CONCAT("Sample description text for image ", ?image__id) as ?image__description)
     }
     UNION
     {
@@ -81,23 +82,23 @@ export const findPropertiesInstancePage =
       #?id :individual_find_number ?individualNumber .
       #BIND(CONCAT(?setNumber, ':') as ?identifierStart) .
       #BIND(CONCAT(?identifierStart, ?individualNumber) as ?identifierFHA) .
-      ?id :km_number ?kmNumber .
+      ?id ltk-s:identifier ?kmNumber .
     }
     UNION
     {
-      ?id :weight_literal ?weight .
+      ?id ltk-s:weight ?weight .
     }
     UNION
     {
-      ?id :length_literal ?length .
+      ?id ltk-s:length ?length .
     }
     UNION
     {
-      ?id :thickness_literal ?thickness .
+      ?id ltk-s:thickness ?thickness .
     }
     UNION
     {
-      ?id :width_literal ?width .
+      ?id ltk-s:width ?width .
     }
     UNION
     {
@@ -121,22 +122,26 @@ export const findPropertiesFacetResults =
     }
     UNION
     {
-      ?id :specification ?specification .
+      ?id ltk-s:specification ?specification .
     }
     UNION
     {
-      ?id :type ?type .
+      ?id ltk-s:type ?type .
     }
     UNION
     {
-      ?id :sub_category ?subCategory .
+      ?id ltk-s:sub_category ?subCategory .
     }
     UNION
     {
-      ?id :object_type ?objectType__id.
+      ?id :object_type ?objectType__id .
       ?objectType__id skos:prefLabel ?objectType__prefLabel .
+      BIND(CONCAT("/types/page/", REPLACE(STR(?objectType__id ), "^.*\\\\/(.+)", "$1")) AS ?objectType__dataProviderUrl)
       OPTIONAL {
-        ?objectType__id :mao_match ?objectType__dataProviderUrl .
+        ?objectType__id skos:closeMatch ?maoMatch__id .
+        ?objectType__id skos:closeMatch ?maoMatch__prefLabel .
+        ?objectType__id skos:closeMatch ?maoMatch__dataProviderUrl .
+        ?objectType__id skos:hiddenLabel ??objectType__hiddenLabel .
       }
     }
     UNION
@@ -147,7 +152,7 @@ export const findPropertiesFacetResults =
     }
     UNION
     {
-      ?id :material_literal ?materialLiteral .
+      ?id ltk-s:material ?materialLiteral .
     }
     UNION
     {
@@ -156,50 +161,53 @@ export const findPropertiesFacetResults =
     }
     UNION
     {
-      ?id :period ?period .
+      ?id ltk-s:period ?period .
     }
     UNION
     {
-      ?id :start_year ?startYearLiteral .
+      ?id ltk-s:start_year ?startYearLiteral .
     }
     UNION
     {
-      ?id :end_year ?endYearLiteral .
+      ?id ltk-s:end_year ?endYearLiteral .
     }
     UNION
     {
-      ?id :municipality_literal ?municipalityLiteral .
+      ?id ltk-s:municipality ?municipalityLiteral .
     }
     UNION
     {
-      ?id :municipality ?municipality__id .
-      ?municipality__id skos:prefLabel ?municipality__prefLabel .
+      ?id :found_in_municipality ?municipality__id .
+      ?municipality__id skos:exactMatch/skos:prefLabel ?municipality__prefLabel .
     }
     UNION
     {
-      ?id :province_literal ?provinceLiteral .
+      ?id ltk-s:province ?provinceLiteral .
     }
     UNION
     {
-      ?id :province ?province__id .
-      ?province__id skos:prefLabel ?province__prefLabel .
+      ?id :found_in_province ?province__id .
+      ?province__id skos:exactMatch/skos:prefLabel ?province__prefLabel .
     }
     UNION
     {
-      ?id :has_time_span/crm:P82a_begin_of_the_begin ?earliestStart .
+      ?id :has_creation_time_span/crm:P82a_begin_of_the_begin ?earliestStart .
       BIND (YEAR(?earliestStart) as ?earliestStartYear) .
     }
     UNION
     {
-      ?id :has_time_span/crm:P82b_end_of_the_end ?latestEnd .
+      ?id :has_creation_time_span/crm:P82b_end_of_the_end ?latestEnd .
       BIND (YEAR(?latestEnd) as ?latestEndYear) .
     }
     UNION
     {
-      ?id :image_url ?image__id .
-      ?id :find_name ?image__title .
-      BIND(?image__id as ?image__url)
-      BIND(CONCAT("Sample description text for image ", ?image__id) as ?image__description)
+      ?image__id a :Picture .
+      ?image__id :documents ?id .
+      ?image__id ltk-s:image_url ?image__url .
+      ?image__id skos:prefLabel ?image__title .
+      ?image__id skos:prefLabel ?image__description .
+      #BIND(?image__id as ?image__url)
+      #BIND(CONCAT("Sample description text for image ", ?image__id) as ?image__description)
     }
     UNION
     {
@@ -207,7 +215,7 @@ export const findPropertiesFacetResults =
       #?id :individual_find_number ?individualNumber .
       #BIND(CONCAT(?setNumber, ':') as ?identifierStart) .
       #BIND(CONCAT(?identifierStart, ?individualNumber) as ?identifierFHA) .
-      ?id :km_number ?kmNumber .
+      ?id ltk-s:identifier ?kmNumber .
     }
     UNION
     {
@@ -252,11 +260,11 @@ export const findsTimelineQuery = `
 
     <FILTER> # a placeholder for facet filters
 
-    ?find :province/skos:prefLabel ?id  . # ?id = first hierarchy level
+    ?find :found_in_province/skos:exactMatch/skos:prefLabel ?id  . # ?id = first hierarchy level
     BIND (?id as ?group)
-    #?find :find_name ?data__id . # ?data__id = second hierarchy level
+    #?find ltk-s:find_name ?data__id . # ?data__id = second hierarchy level
 
-     ?find :find_name ?lable_temp .
+    ?find ltk-s:find_name ?lable_temp .
     BIND( STRAFTER(STR(?find),'http://ldf.fi/findsampo/finds/' ) AS ?find_num ).
     BIND (CONCAT(str(?lable_temp), str(?find_num)) as ?data__id) .
     BIND (?data__id as ?data__label)
@@ -267,18 +275,18 @@ export const findsTimelineQuery = `
     # make sure that the selected finds have both 'start_year' and 'end_year'
     #?find :start_year [] .
     #?find :end_year [] .
-    ?find :has_time_span/crm:P82a_begin_of_the_begin [] .
-    ?find :has_time_span/crm:P82b_end_of_the_end [] .
+    ?find :has_creation_time_span/crm:P82a_begin_of_the_begin [] .
+    ?find :has_creation_time_span/crm:P82b_end_of_the_end [] .
 
     # Combine 'start_year' and 'end_year' into same variable,
     # so that the result mapper creates an array from these.
-    #?find :start_year|:end_year ?data__data__timeRange .
+    #?find ltk-s:start_year|ltk-s:end_year ?data__data__timeRange .
 
-    #?find :has_time_span/crm:P82a_begin_of_the_begin|:has_time_span/crm:P82b_end_of_the_end ?date .
+    #?find :has_creation_time_span/crm:P82a_begin_of_the_begin|:has_time_span/crm:P82b_end_of_the_end ?date .
     #BIND(CONCAT(str(?date), 'T00:00:00+00:00') AS ?date_wth_ending) .
     #BIND(STRDT(STR(?date_wth_ending), xsd:dateTime) AS ?data__data__timeRange)
 
-    ?find :has_time_span/crm:P82a_begin_of_the_begin|:has_time_span/crm:P82b_end_of_the_end ?date .
+    ?find :has_creation_time_span/crm:P82a_begin_of_the_begin|:has_creation_time_span/crm:P82b_end_of_the_end ?date .
 
     # Ignore missing values in the first hierarchy level
     FILTER (?id != "-")
@@ -293,8 +301,8 @@ export const findsTimelineQuery = `
 export const knowledgeGraphMetadataQuery = `
   SELECT *
   WHERE {
-    ?id a :Portal_configuration ;
-          :featured_find ?featuredFind__id .
+    ?id a ltk-s:Portal_configuration ;
+          ltk-s:featured_find ?featuredFind__id .
     ?featuredFind__id skos:prefLabel ?featuredFind__prefLabel ;
                       :image_url ?featuredFind__imageURL .
     BIND(CONCAT("/${perspectiveID}/page/", REPLACE(STR(?featuredFind__id), "^.*\\\\/(.+)", "$1")) AS ?featuredFind__dataProviderUrl)
@@ -306,7 +314,7 @@ export const findsByProvinceQuery = `
  (COUNT(DISTINCT ?find) as ?instanceCount)
   WHERE {
     <FILTER>
-    ?find :province ?category ;
+    ?find :found_in_province ?category ;
         a :Find .
     ?category skos:prefLabel ?prefLabel .
   }
@@ -342,7 +350,7 @@ export const findsByObjectNameQuery = `
  (COUNT(DISTINCT ?find) as ?instanceCount)
   WHERE {
     <FILTER>
-    ?find :find_name ?category ;  # find_name is literal
+    ?find ltk-s:find_name ?category ;  # find_name is literal
         a :Find .
     BIND(?category as ?prefLabel)
   }
@@ -355,8 +363,8 @@ export const findsByYearQuery = `
   WHERE {
     <FILTER>
     VALUES ?money { "Hopearaha" "Raha" }
-    ?find :find_name ?money .
-    ?find :start_year ?category .
+    ?find ltk-s:find_name ?money .
+    ?find ltk-s:start_year ?category .
     FILTER (?category < 2000)
   }
   GROUP BY ?category
