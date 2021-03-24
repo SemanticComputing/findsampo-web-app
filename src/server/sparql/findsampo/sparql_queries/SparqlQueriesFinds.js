@@ -71,8 +71,12 @@ export const findPropertiesInstancePage =
       ?image__id a :Picture .
       ?image__id :documents ?id .
       ?image__id ltk-s:image_url ?image__url .
-      ?image__id skos:prefLabel ?image__title .
-      ?image__id skos:prefLabel ?image__description .
+      OPTIONAL {
+        ?image__id skos:prefLabel ?image__title .
+      }
+      OPTIONAL {
+        ?image__id skos:prefLabel ?image__description .
+      }
       #BIND(?image__id as ?image__url)
       #BIND(CONCAT("Sample description text for image ", ?image__id) as ?image__description)
     }
@@ -141,7 +145,7 @@ export const findPropertiesFacetResults =
         ?objectType__id skos:closeMatch ?maoMatch__id .
         ?objectType__id skos:closeMatch ?maoMatch__prefLabel .
         ?objectType__id skos:closeMatch ?maoMatch__dataProviderUrl .
-        ?objectType__id skos:hiddenLabel ??objectType__hiddenLabel .
+        ?objectType__id skos:hiddenLabel ?objectType__hiddenLabel .
       }
     }
     UNION
@@ -204,7 +208,9 @@ export const findPropertiesFacetResults =
       ?image__id a :Picture .
       ?image__id :documents ?id .
       ?image__id ltk-s:image_url ?image__url .
-      ?image__id skos:prefLabel ?image__title .
+      OPTIONAL {
+        ?image__id skos:prefLabel ?image__title .
+      }
       ?image__id skos:prefLabel ?image__description .
       #BIND(?image__id as ?image__url)
       #BIND(CONCAT("Sample description text for image ", ?image__id) as ?image__description)
@@ -303,8 +309,9 @@ export const knowledgeGraphMetadataQuery = `
   WHERE {
     ?id a ltk-s:Portal_configuration ;
           ltk-s:featured_find ?featuredFind__id .
-    ?featuredFind__id skos:prefLabel ?featuredFind__prefLabel ;
-                      :image_url ?featuredFind__imageURL .
+    ?featuredFind__id skos:prefLabel ?featuredFind__prefLabel .
+    ?picture :documents ?featuredFind__id .
+    ?picture ltk-s:image_url ?featuredFind__imageURL .
     BIND(CONCAT("/${perspectiveID}/page/", REPLACE(STR(?featuredFind__id), "^.*\\\\/(.+)", "$1")) AS ?featuredFind__dataProviderUrl)
   }
 `
