@@ -31,7 +31,7 @@ export default {
       aboutThePortal: 'About the Portal'
     },
     searchBarPlaceHolder: 'Search all content',
-    searchBarPlaceHolderShort: 'Search',
+    searchBarPlaceHolderShort: '',
     instructions: 'instructions'
   },
   facetBar: {

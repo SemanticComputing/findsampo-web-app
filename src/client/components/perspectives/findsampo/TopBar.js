@@ -75,10 +75,7 @@ const useStyles = makeStyles((theme) => ({
     marginRight: theme.spacing(1)
   },
   mainLogoText: {
-    textTransform: 'none',
-    [theme.breakpoints.down('xs')]: {
-      display: 'none'
-    }
+    textTransform: 'none'
   },
   mainLogoTypography: {
     [theme.breakpoints.down('xs')]: {
