@@ -323,11 +323,11 @@ export default {
           label: 'Image',
           description: 'Image description.'
         },
-        earliestStartYear: {
+        earliestStart: {
           label: 'Earliest date',
           description: 'Earliest possible creation date of the object'
         },
-        latestEndYear: {
+        latestEnd: {
           label: 'Latest date',
           description: 'Latest possible creation date of the object'
         },
