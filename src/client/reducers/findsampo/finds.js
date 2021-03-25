@@ -150,7 +150,7 @@ export const INITIAL_STATE = {
     //   minWidth: 180
     // },
     {
-      id: 'earliestStartYear',
+      id: 'earliestStart',
       valueType: 'string',
       makeLink: false,
       externalLink: false,
@@ -159,7 +159,7 @@ export const INITIAL_STATE = {
       minWidth: 180
     },
     {
-      id: 'latestEndYear',
+      id: 'latestEnd',
       valueType: 'string',
       makeLink: false,
       externalLink: false,

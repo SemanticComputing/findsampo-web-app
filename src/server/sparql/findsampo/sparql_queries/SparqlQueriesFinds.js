@@ -196,12 +196,12 @@ export const findPropertiesFacetResults =
     UNION
     {
       ?id :has_creation_time_span/crm:P82a_begin_of_the_begin ?earliestStart .
-      BIND (YEAR(?earliestStart) as ?earliestStartYear) .
+      #BIND (YEAR(?earliestStart) as ?earliestStartYear) .
     }
     UNION
     {
       ?id :has_creation_time_span/crm:P82b_end_of_the_end ?latestEnd .
-      BIND (YEAR(?latestEnd) as ?latestEndYear) .
+      #BIND (YEAR(?latestEnd) as ?latestEndYear) .
     }
     UNION
     {
@@ -225,19 +225,19 @@ export const findPropertiesFacetResults =
     }
     UNION
     {
-      ?id :weight_literal ?weight .
+      ?id ltk-s:weight ?weight .
     }
     UNION
     {
-      ?id :length_literal ?length .
+      ?id ltk-s:length ?length .
     }
     UNION
     {
-      ?id :thickness_literal ?thickness .
+      ?id ltk-s:thickness ?thickness .
     }
     UNION
     {
-      ?id :width_literal ?width .
+      ?id ltk-s:width ?width .
     }
   `
 
