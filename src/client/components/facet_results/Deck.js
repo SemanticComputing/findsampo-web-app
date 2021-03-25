@@ -53,9 +53,9 @@ const styles = theme => ({
 class Deck extends React.Component {
   state = {
     viewport: {
-      longitude: 10.37,
-      latitude: 22.43,
-      zoom: 2,
+      longitude: 27.314050,
+      latitude: 65.184809,
+      zoom: 4,
       pitch: 0,
       bearing: 0,
       width: 100,
