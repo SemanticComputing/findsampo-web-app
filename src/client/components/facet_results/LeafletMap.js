@@ -217,10 +217,6 @@ class LeafletMap extends React.Component {
       attribution: 'National Land Survey of Finland',
       maxZoom: 18
     })
-    // const airMapNLS = L.tileLayer(`${process.env.API_URL}/nls-wmts?z={z}&x={x}&y={y}&layerID=ortokuva`, {
-    //   attribution: 'National Land Survey of Finland',
-    //   maxZoom: 18
-    // })
     // const googleRoadmap = L.gridLayer.googleMutant({
     //   type: 'roadmap'
     // })
