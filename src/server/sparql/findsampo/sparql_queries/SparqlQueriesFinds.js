@@ -370,8 +370,8 @@ export const findsByYearQuery = `
   WHERE {
     <FILTER>
     VALUES ?money { "Hopearaha" "Raha" }
-    ?find ltk-s:find_name ?money .
-    ?find ltk-s:start_year ?category .
+    ?find ltk-s:find_name ?money ;
+          :earliest_creation_year ?category .
     FILTER (?category < 2000)
   }
   GROUP BY ?category

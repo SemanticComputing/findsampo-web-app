@@ -83,10 +83,10 @@ export const backendSearchConfig = {
     filterTarget: 'find',
     resultMapper: mapLineChart,
     resultMapperConfig: {
-      fillEmptyValues: true,
-      xAxisConverter: value => {
-        return new Date(value, 0)
-      }
+      fillEmptyValues: true
+      // xAxisConverter: value => {
+      //   return new Date(value, 0)
+      // }
     }
   },
   findsByWeight: {
