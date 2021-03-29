@@ -236,14 +236,15 @@ const Finds = props => {
             fetchData={props.fetchResults}
             createChartData={createSingleLineChartData}
             title='Number of coins (find_name = "Raha" or "Hopearaha")'
-            xaxisTitle='Year (using only "start_year")'
-            xaxisType='datetime'
+            xaxisTitle='Year (using only "earliest_creation_year")'
+            xaxisType='category'
+            xaxisTickAmount={20}
             yaxisTitle='Number of coins'
             seriesTitle='Number of coins'
             stroke={{ width: 2 }}
-            tooltip={{
-              x: { format: 'yyyy' }
-            }}
+            // tooltip={{
+            //   x: { format: 'yyyy' }
+            // }}
             resultClass='findsByYear'
             facetClass='finds'
           />}

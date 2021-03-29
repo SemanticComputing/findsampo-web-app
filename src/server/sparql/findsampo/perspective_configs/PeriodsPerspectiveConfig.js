@@ -7,7 +7,7 @@ import { prefixes } from '../sparql_queries/SparqlQueriesPrefixes'
 export const periodsPerspectiveConfig = {
   endpoint: {
     url: 'https://ldf.fi/sualt-fha-finds/sparql',
-    //url: 'http://localhost:3039/ds/sparql',
+    // url: 'http://localhost:3039/ds/sparql',
     prefixes,
     useAuth: true
   },
@@ -27,6 +27,6 @@ export const periodsPerspectiveConfig = {
       labelPath: 'skos:prefLabel',
       type: 'list',
       literal: true
-    },
+    }
   }
 }
