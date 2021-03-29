@@ -217,6 +217,10 @@ class LeafletMap extends React.Component {
       attribution: 'National Land Survey of Finland',
       maxZoom: 18
     })
+    const airMapNLS = L.tileLayer(`${process.env.API_URL}/nls-wmts?z={z}&x={x}&y={y}&layerID=ortokuva`, {
+      attribution: 'National Land Survey of Finland',
+      maxZoom: 18
+    })
     // const googleRoadmap = L.gridLayer.googleMutant({
     //   type: 'roadmap'
     // })
@@ -245,8 +249,8 @@ class LeafletMap extends React.Component {
       const basemaps = {
         [intl.get(`leafletMap.basemaps.mapbox.${MAPBOX_STYLE}`)]: mapboxBaseLayer,
         [intl.get('leafletMap.basemaps.backgroundMapNLS')]: backgroundMapNLS,
-        [intl.get('leafletMap.basemaps.topographicalMapNLS')]: topographicalMapNLS
-        // [intl.get('leafletMap.basemaps.airMapNLS')]: airMapNLS
+        [intl.get('leafletMap.basemaps.topographicalMapNLS')]: topographicalMapNLS,
+        [intl.get('leafletMap.basemaps.airMapNLS')]: airMapNLS
         // [intl.get('leafletMap.basemaps.googleRoadmap')]: googleRoadmap,
       }
       this.initOverLays(basemaps)
