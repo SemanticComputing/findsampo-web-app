@@ -68,7 +68,7 @@ export const findPropertiesInstancePage =
     }
     UNION
     {
-      ?image__id a :Picture .
+      ?image__id a :Image .
       ?image__id :documents ?id .
       ?image__id ltk-s:image_url ?image__url .
       OPTIONAL {
@@ -205,7 +205,7 @@ export const findPropertiesFacetResults =
     }
     UNION
     {
-      ?image__id a :Picture .
+      ?image__id a :Image .
       ?image__id :documents ?id .
       ?image__id ltk-s:image_url ?image__url .
       OPTIONAL {
