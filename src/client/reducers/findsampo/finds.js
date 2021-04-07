@@ -204,6 +204,15 @@ export const INITIAL_STATE = {
       minWidth: 180
     },
     {
+      id: 'description',
+      valueType: 'string',
+      makeLink: false,
+      externalLink: false,
+      sortValues: true,
+      numberedList: false,
+      onlyOnInstancePage: true
+    },
+    {
       id: 'similarInternalFind',
       valueType: 'object',
       makeLink: true,

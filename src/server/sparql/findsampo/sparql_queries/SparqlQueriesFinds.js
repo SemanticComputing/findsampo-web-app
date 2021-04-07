@@ -35,6 +35,10 @@ export const findPropertiesInstancePage =
     }
     UNION
     {
+      ?id ltk-s:description ?description .
+    }
+    UNION
+    {
       ?id :material ?material__id .
       ?material__id skos:prefLabel ?material__prefLabel .
     }

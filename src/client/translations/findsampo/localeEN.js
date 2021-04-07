@@ -219,6 +219,10 @@ export default {
           label: 'FHA identifier',
           description: 'FHA identifier of the find.'
         },
+        description: {
+          label: 'Description',
+          description: 'Decription.'
+        },
         specification: {
           label: 'Specification',
           description: 'Specification.'
