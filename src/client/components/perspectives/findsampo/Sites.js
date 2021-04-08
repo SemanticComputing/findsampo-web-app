@@ -9,7 +9,7 @@ import LeafletMap from '../../facet_results/LeafletMap'
 // import Network from '../../facet_results/Network'
 // import Timeline from '../../facet_results/Timeline'
 // import Export from '../../facet_results/Export'
-// import { MAPBOX_ACCESS_TOKEN, MAPBOX_STYLE } from '../../../configs/sampo/GeneralConfig'
+import { createArchealogicalSitePopUp } from '../../../configs/findsampo/GeneralConfig'
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -67,24 +67,7 @@ const Sites = props => {
               color: '#dd2c00',
               cursor: 'pointer'
             },
-            createPopup: data => {
-              let html = ''
-              const name = data.kohdenimi
-                ? `<b>Kohteen nimi:</b> ${data.kohdenimi}</p>` : ''
-              const type = data.laji ? `<b>Kohteen tyyppi:</b> ${data.laji}</p>` : ''
-              const municipality = data.kunta ? `<b>Kunta:</b> ${data.kunta}</p>` : ''
-              const link = data.mjtunnus
-                ? `<a href="https://www.kyppi.fi/to.aspx?id=112.${data.mjtunnus}" target="_blank">Avaa kohde Muinaisjäännösrekisterissä</a></p>` : ''
-              html += `
-              <div>
-                ${name}
-                ${type}
-                ${municipality}
-                ${link}
-              </div>
-              `
-              return html
-            }
+            createPopup: createArchealogicalSitePopUp
           },
           {
             id: 'arkeologiset_kohteet_piste',
@@ -108,24 +91,7 @@ const Sites = props => {
               opacity: 1,
               fillOpacity: 0.8
             },
-            createPopup: data => {
-              let html = ''
-              const name = data.kohdenimi
-                ? `<b>Kohteen nimi:</b> ${data.kohdenimi}</p>` : ''
-              const type = data.laji ? `<b>Kohteen tyyppi:</b> ${data.laji}</p>` : ''
-              const municipality = data.kunta ? `<b>Kunta:</b> ${data.kunta}</p>` : ''
-              const link = data.mjtunnus
-                ? `<a href="https://www.kyppi.fi/to.aspx?id=112.${data.mjtunnus}" target="_blank">Avaa kohde Muinaisjäännösrekisterissä</a></p>` : ''
-              html += `
-              <div>
-                ${name}
-                ${type}
-                ${municipality}
-                ${link}
-              </div>
-              `
-              return html
-            }
+            createPopup: createArchealogicalSitePopUp
           },
           {
             id: 'fhaLidar',
