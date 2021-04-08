@@ -10,6 +10,7 @@ import {
   findsByYearQuery,
   findsByWeightQuery,
   findsPlacesQuery,
+  findInstancePageMapQuery,
   findsTimelineQuery,
   nearbyFindsQuery,
   knowledgeGraphMetadataQuery
@@ -47,6 +48,11 @@ export const backendSearchConfig = {
       properties: findPropertiesInstancePage,
       relatedInstances: ''
     }
+  },
+  findInstancePageMap: {
+    perspectiveID: 'finds',
+    q: findInstancePageMapQuery,
+    resultMapper: makeObjectList
   },
   findsTimeline: {
     perspectiveID: 'finds', // use endpoint config from finds

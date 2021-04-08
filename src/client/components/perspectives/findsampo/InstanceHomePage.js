@@ -8,7 +8,7 @@ import purple from '@material-ui/core/colors/purple'
 import PerspectiveTabs from '../../main_layout/PerspectiveTabs'
 import InstanceHomePageTable from '../../main_layout/InstanceHomePageTable'
 // import Network from '../../facet_results/Network'
-// import LeafletMap from '../../facet_results/LeafletMap'
+import LeafletMap from '../../facet_results/LeafletMap'
 import Export from '../../facet_results/Export'
 import Recommendations from './Recommendations'
 // import { coseLayout, cytoscapeStyle } from '../../../configs/sampo/Cytoscape.js/NetworkConfig'
@@ -135,6 +135,26 @@ class InstanceHomePage extends React.Component {
                     resultClass={resultClass}
                     data={tableData}
                     properties={this.getVisibleRows(this.props.properties)}
+                  />}
+              />
+              <Route
+                path={`${rootUrl}/${resultClass}/page/${this.state.localID}/map`}
+                render={() =>
+                  <LeafletMap
+                    center={[65.184809, 27.314050]}
+                    zoom={5}
+                    results={this.props.results}
+                    layers={this.props.leafletMapLayers}
+                    pageType='instancePage'
+                    resultClass='findInstancePageMap'
+                    facetClass='finds'
+                    mapMode='cluster'
+                    uri={tableData.id}
+                    fetchResults={this.props.fetchResults}
+                    fetching={isLoading}
+                    fetchData={this.props.fetchResults}
+                    showInstanceCountInClusters={false}
+                    showExternalLayers={false}
                   />}
               />
               <Route

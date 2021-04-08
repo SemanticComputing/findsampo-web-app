@@ -253,6 +253,17 @@ export const findsPlacesQuery = `
         wgs84:long ?long .
   }
 `
+export const findInstancePageMapQuery = `
+  SELECT *
+  WHERE {
+    VALUES ?id { <ID> }
+    ?id wgs84:lat ?lat ;
+        wgs84:long ?long .
+    BIND("red" AS ?markerColor)
+    ${findPropertiesInstancePage}
+  }
+`
+
 export const nearbyFindsQuery = `
   SELECT *
   WHERE {

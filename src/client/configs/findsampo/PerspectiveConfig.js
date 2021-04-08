@@ -17,9 +17,6 @@ import guidesImage from '../../img/findsampo/Museovirasto_043-vaaka.jpg'
 import typesImage from '../../img/findsampo/Museovirasto_067-vaaka.jpg'
 import ilppariImage from '../../img/findsampo/Museovirasto_062_vaaka.jpg'
 
-
-
-
 export const perspectiveConfig = [
   {
     id: 'finds',
@@ -75,13 +72,18 @@ export const perspectiveConfig = [
         icon: <CalendarViewDayIcon />
       },
       {
-        id: 'recommendations',
+        id: 'map',
         value: 1,
+        icon: <AddLocationIcon />
+      },
+      {
+        id: 'recommendations',
+        value: 2,
         icon: <StarIcon />
       },
       {
         id: 'export',
-        value: 2,
+        value: 3,
         icon: <CloudDownloadIcon />
       }
     ]

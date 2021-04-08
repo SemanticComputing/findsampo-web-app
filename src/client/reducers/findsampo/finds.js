@@ -237,6 +237,7 @@ const resultClasses = new Set([
   'finds',
   'findsTimeline',
   'nearbyFinds',
+  'findInstancePageMap',
   'findsByProvince',
   'findsByMaterial',
   'findsByObjectName',
