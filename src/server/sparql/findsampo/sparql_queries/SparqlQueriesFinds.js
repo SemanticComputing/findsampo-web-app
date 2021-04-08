@@ -249,16 +249,16 @@ export const findsPlacesQuery = `
   SELECT ?id ?lat ?long
   WHERE {
     <FILTER>
-    ?id wgs84:lat ?lat ;
-        wgs84:long ?long .
+    ?id :find_coordinates/wgs84:lat ?lat ;
+        :find_coordinates/wgs84:long ?long .
   }
 `
 export const findInstancePageMapQuery = `
   SELECT *
   WHERE {
     VALUES ?id { <ID> }
-    ?id wgs84:lat ?lat ;
-        wgs84:long ?long .
+    ?id :find_coordinates/wgs84:lat ?lat ;
+        :find_coordinates/wgs84:long ?long .
     BIND("red" AS ?markerColor)
     ${findPropertiesInstancePage}
   }
@@ -268,8 +268,8 @@ export const nearbyFindsQuery = `
   SELECT *
   WHERE {
     ?id spatial:nearby (64.791 29.249 50 'km') . # Vuokkijärvi, Suomussalmi
-    ?id wgs84:lat ?lat ;
-        wgs84:long ?long .
+    ?id :find_coordinates/wgs84:lat ?lat ;
+        :find_coordinates/wgs84:long ?long .
     ${findPropertiesInstancePage}
   }
 `
