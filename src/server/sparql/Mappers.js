@@ -115,6 +115,48 @@ export const mapLineChart = ({ sparqlBindings, config }) => {
   }
 }
 
+export const mapMultipleLineChart = ({ sparqlBindings, config }) => {
+  const res = {}
+  sparqlBindings.forEach(b => {
+    for (const p in b) {
+      if (p !== 'category') {
+        res[p] = []
+      }
+    }
+  })
+  const category = sparqlBindings.map(p => parseFloat(p.category.value))
+
+  if (config && config.fillEmptyValues) {
+    //  fill the missing years with zeroes
+    const valmax = Math.max(...category)
+    for (var i = Math.min(...category); i <= valmax; i++) {
+      for (const p in res) {
+        if (p !== 'category') {
+          res[p][i] = 0
+        }
+      }
+    }
+  }
+
+  //  read the known years into the data object
+  sparqlBindings.forEach(b => {
+    for (const p in b) {
+      if (p !== 'category') {
+        res[p][parseFloat(b.category.value)] = parseFloat(b[p].value)
+      }
+    }
+  })
+
+  // sort by year and remove empty sequence at start and end
+  for (const p in res) {
+    var arr = Object.entries(res[p])
+      .map(p => [parseFloat(p[0]), p[1]])
+      .sort((a, b) => ((a[0] < b[0]) ? -1 : ((a[0] > b[0]) ? 1 : 0)))
+    res[p] = trimResult(arr)
+  }
+  return res
+}
+
 export const mapPieChart = sparqlBindings => {
   const results = sparqlBindings.map(b => {
     return {
@@ -126,34 +168,11 @@ export const mapPieChart = sparqlBindings => {
   return results
 }
 
-export const mapMultipleLineChart = sparqlBindings => {
-  const res = {}
-  sparqlBindings.forEach(b => {
-    for (const p in b) {
-      if (p !== 'category') {
-        res[p] = []
-      }
-    }
-  })
-  const category = sparqlBindings.map(p => parseFloat(p.category.value))
-  sparqlBindings.forEach((b, i) => {
-    for (const p in b) {
-      if (p !== 'category') {
-        res[p].push([category[i], parseFloat(b[p].value)])
-      }
-    }
-  })
-  for (const p in res) {
-    res[p] = trimResult(res[p])
-  }
-  return res
-}
-
 export const linearScale = ({ data, config }) => {
   const { variable, minAllowed, maxAllowed } = config
   const length = data.length
   const min = data[length - 1][variable]
-  const max = data[0].[variable]
+  const max = data[0][variable]
   data.forEach(item => {
     if (item[variable]) {
       const unscaledNum = item[variable]
