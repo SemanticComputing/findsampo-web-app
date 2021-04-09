@@ -353,8 +353,8 @@ export const INITIAL_STATE = {
       containerClass: 'ten',
       filterType: 'uriFilter',
       uriFilter: null,
-      priority: 8,
-    },
+      priority: 8
+    }
   }
 }
 

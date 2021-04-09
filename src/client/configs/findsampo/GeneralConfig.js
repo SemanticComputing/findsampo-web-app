@@ -42,3 +42,95 @@ export const createArchealogicalSitePopUp = data => {
   `
   return html
 }
+
+export const leafletLayerConfigs = [
+  {
+    id: 'arkeologiset_kohteet_alue',
+    type: 'GeoJSON',
+    minZoom: 13,
+    buffer: {
+      distance: 200,
+      units: 'metres',
+      style: feature => {
+        if (feature.properties.laji.includes('poistettu kiinteä muinaisjäännös')) {
+          return {
+            fillOpacity: 0,
+            weight: 0
+          }
+        } else {
+          return {
+            color: '#6E6E6E',
+            dashArray: '3, 5'
+          }
+        }
+      }
+    },
+    createGeoJSONPointStyle: feature => null, //  this layer includes only GeoJSON Polygons
+    createGeoJSONPolygonStyle: feature => {
+      // console.log(feature)
+      return {
+        color: '#dd2c00',
+        cursor: 'pointer'
+      }
+    },
+    createPopup: createArchealogicalSitePopUp
+  },
+  {
+    id: 'arkeologiset_kohteet_piste',
+    type: 'GeoJSON',
+    minZoom: 13,
+    buffer: {
+      distance: 200,
+      units: 'metres',
+      style: feature => {
+        if (feature.properties.laji.includes('poistettu kiinteä muinaisjäännös')) {
+          return {
+            fillOpacity: 0,
+            weight: 0
+          }
+        } else {
+          return {
+            color: '#6E6E6E',
+            dashArray: '3, 5'
+          }
+        }
+      }
+    },
+    createGeoJSONPointStyle: feature => {
+      return {
+        radius: 8,
+        fillColor: '#dd2c00',
+        color: '#000',
+        weight: 1,
+        opacity: 1,
+        fillOpacity: 0.8
+      }
+    },
+    createGeoJSONPolygonStyle: feature => null, // this layer includes only GeoJSON points
+    createPopup: createArchealogicalSitePopUp
+  },
+  {
+    id: 'fhaLidar',
+    type: 'WMS',
+    url: `${process.env.API_URL}/fha-wms`,
+    layers: 'NBA:lidar',
+    version: '1.3.0',
+    attribution: 'FHA',
+    minZoom: 13,
+    maxZoom: 16
+  },
+  {
+    id: 'karelianMaps',
+    type: 'WMTS',
+    url: 'https:///mapwarper.onki.fi/mosaics/tile/4/{z}/{x}/{y}.png',
+    opacityControl: true,
+    attribution: 'Semantic Computing Research Group'
+  },
+  {
+    id: 'senateAtlas',
+    type: 'WMTS',
+    url: 'https:///mapwarper.onki.fi/mosaics/tile/5/{z}/{x}/{y}.png',
+    opacityControl: true,
+    attribution: 'Semantic Computing Research Group'
+  }
+]

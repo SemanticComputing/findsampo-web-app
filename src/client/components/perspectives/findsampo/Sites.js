@@ -9,7 +9,7 @@ import LeafletMap from '../../facet_results/LeafletMap'
 // import Network from '../../facet_results/Network'
 // import Timeline from '../../facet_results/Timeline'
 // import Export from '../../facet_results/Export'
-import { createArchealogicalSitePopUp } from '../../../configs/findsampo/GeneralConfig'
+import { leafletLayerConfigs } from '../../../configs/findsampo/GeneralConfig'
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -48,76 +48,7 @@ const Sites = props => {
         showError={props.showError}
         showExternalLayers
         layerControlExpanded={layerControlExpanded}
-        layerConfigs={[
-          {
-            id: 'arkeologiset_kohteet_alue',
-            type: 'GeoJSON',
-            minZoom: 13,
-            buffer: {
-              distance: 200,
-              units: 'metres',
-              style: {
-                color: '#6E6E6E',
-                dashArray: '3, 5',
-                interactive: false
-              }
-            },
-            // this layer includes only GeoJSON Polygons, define style for them
-            geojsonPolygonOptions: {
-              color: '#dd2c00',
-              cursor: 'pointer'
-            },
-            createPopup: createArchealogicalSitePopUp
-          },
-          {
-            id: 'arkeologiset_kohteet_piste',
-            type: 'GeoJSON',
-            minZoom: 13,
-            buffer: {
-              distance: 200,
-              units: 'metres',
-              style: {
-                color: '#6E6E6E',
-                dashArray: '3, 5',
-                interactive: false
-              }
-            },
-            // this layer includes only GeoJSON points, define style for them
-            geojsonMarkerOptions: {
-              radius: 8,
-              fillColor: '#dd2c00',
-              color: '#000',
-              weight: 1,
-              opacity: 1,
-              fillOpacity: 0.8
-            },
-            createPopup: createArchealogicalSitePopUp
-          },
-          {
-            id: 'fhaLidar',
-            type: 'WMS',
-            url: `${process.env.API_URL}/fha-wms`,
-            layers: 'NBA:lidar',
-            version: '1.3.0',
-            attribution: 'FHA',
-            minZoom: 13,
-            maxZoom: 16
-          },
-          {
-            id: 'karelianMaps',
-            type: 'WMTS',
-            url: 'https:///mapwarper.onki.fi/mosaics/tile/4/{z}/{x}/{y}.png',
-            opacityControl: true,
-            attribution: 'Semantic Computing Research Group'
-          },
-          {
-            id: 'senateAtlas',
-            type: 'WMTS',
-            url: 'https:///mapwarper.onki.fi/mosaics/tile/5/{z}/{x}/{y}.png',
-            opacityControl: true,
-            attribution: 'Semantic Computing Research Group'
-          }
-        ]}
+        layerConfigs={leafletLayerConfigs}
         activeLayers={[
           'arkeologiset_kohteet_alue',
           'arkeologiset_kohteet_piste'
