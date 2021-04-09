@@ -24,7 +24,7 @@ export const yasguiParams = {
 
 export const feedbackLink = 'https://link.webropolsurveys.com/'
 
-export const createArchealogicalSitePopUp = data => {
+const createArchealogicalSitePopUp = data => {
   let html = ''
   const name = data.kohdenimi
     ? `<b>Nimi:</b> ${data.kohdenimi}</p>` : ''
@@ -43,6 +43,28 @@ export const createArchealogicalSitePopUp = data => {
   return html
 }
 
+const bufferStyle = feature => {
+  if (feature.properties.laji.includes('poistettu kiinteä muinaisjäännös')) {
+    return {
+      fillOpacity: 0,
+      weight: 0
+    }
+  } else {
+    return {
+      color: '#6E6E6E',
+      dashArray: '3, 5'
+    }
+  }
+}
+
+const createArchealogicalSiteColor = feature => {
+  let color = '#dd2c00'
+  if (feature.properties.laji.includes('poistettu kiinteä muinaisjäännös')) {
+    color = '#000000'
+  }
+  return color
+}
+
 export const leafletLayerConfigs = [
   {
     id: 'arkeologiset_kohteet_alue',
@@ -51,25 +73,12 @@ export const leafletLayerConfigs = [
     buffer: {
       distance: 200,
       units: 'metres',
-      style: feature => {
-        if (feature.properties.laji.includes('poistettu kiinteä muinaisjäännös')) {
-          return {
-            fillOpacity: 0,
-            weight: 0
-          }
-        } else {
-          return {
-            color: '#6E6E6E',
-            dashArray: '3, 5'
-          }
-        }
-      }
+      style: bufferStyle
     },
     createGeoJSONPointStyle: feature => null, //  this layer includes only GeoJSON Polygons
     createGeoJSONPolygonStyle: feature => {
-      // console.log(feature)
       return {
-        color: '#dd2c00',
+        color: createArchealogicalSiteColor(feature),
         cursor: 'pointer'
       }
     },
@@ -82,24 +91,12 @@ export const leafletLayerConfigs = [
     buffer: {
       distance: 200,
       units: 'metres',
-      style: feature => {
-        if (feature.properties.laji.includes('poistettu kiinteä muinaisjäännös')) {
-          return {
-            fillOpacity: 0,
-            weight: 0
-          }
-        } else {
-          return {
-            color: '#6E6E6E',
-            dashArray: '3, 5'
-          }
-        }
-      }
+      style: bufferStyle
     },
     createGeoJSONPointStyle: feature => {
       return {
         radius: 8,
-        fillColor: '#dd2c00',
+        fillColor: createArchealogicalSiteColor(feature),
         color: '#000',
         weight: 1,
         opacity: 1,
