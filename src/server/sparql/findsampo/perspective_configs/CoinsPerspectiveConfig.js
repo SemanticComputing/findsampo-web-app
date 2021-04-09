@@ -13,7 +13,8 @@ export const coinsPerspectiveConfig = {
   },
   facetClass: ':Find',
   defaultConstraint: `
-  <SUBJECT> :object_type* <http://ldf.fi/findsampo/object_types/maksuvaeline> .
+  ?money skos:prefLabel "maksuväline"@fi .
+  <SUBJECT> :object_type/skos:broader* ?money .
   `,
   paginatedResults: {
     properties: coinsPropertiesFacetResults
