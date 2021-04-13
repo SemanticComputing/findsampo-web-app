@@ -213,6 +213,24 @@ export const INITIAL_STATE = {
       onlyOnInstancePage: true
     },
     {
+      id: 'foundAtHeight',
+      valueType: 'string',
+      makeLink: false,
+      externalLink: false,
+      sortValues: true,
+      numberedList: false,
+      onlyOnInstancePage: true
+    },
+    {
+      id: 'archaeologicalSiteUrl',
+      valueType: 'object',
+      makeLink: true,
+      externalLink: true,
+      sortValues: true,
+      numberedList: false,
+      onlyOnInstancePage: true
+    },
+    {
       id: 'similarInternalFind',
       valueType: 'object',
       makeLink: true,

@@ -110,6 +110,16 @@ export const findPropertiesInstancePage =
     }
     UNION
     {
+      ?id ltk-s:z_coordinate ?foundAtHeight .
+    }
+    UNION
+    {
+      ?id ltk-s:archaeological_site_url ?archaeologicalSiteUrl__id .
+      BIND(URI(?archaeologicalSiteUrl__id) AS ?archaeologicalSiteUrl__dataProviderUrl)
+      BIND(URI(?archaeologicalSiteUrl__id) AS ?archaeologicalSiteUrl__prefLabel)
+    }
+    UNION
+    {
       ?id :similar_internal_find ?similarInternalFind__id .
       ?similarInternalFind__id skos:prefLabel ?similarInternalFind__prefLabel .
       BIND(CONCAT("/${perspectiveID}/page/", REPLACE(STR(?similarInternalFind__id), "^.*\\\\/(.+)", "$1")) AS ?similarInternalFind__dataProviderUrl)

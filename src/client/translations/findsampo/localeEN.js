@@ -366,7 +366,15 @@ export default {
         similarExternalFind: {
           label: 'Similar external find',
           description: 'Similar find in PAS'
-        }
+        },
+        foundAtHeight: {
+          label: 'Height',
+          description: 'Height where found in meters'
+        },
+        archaeologicalSiteUrl: {
+          label: 'Archeological site url',
+          description: 'Url of the archeological site in kyppi.fi service'
+        },
       }
     },
     coins: {
