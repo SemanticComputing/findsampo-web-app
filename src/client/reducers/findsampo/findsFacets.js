@@ -23,8 +23,8 @@ export const INITIAL_STATE = {
     //   uriFilter: null,
     //   priority: 1
     // },
-    objectType: {
-      id: 'objectType',
+    facetObjectType: {
+      id: 'facetObjectType',
       // predicate: defined in backend
       distinctValueCount: 0,
       values: [],
@@ -40,8 +40,27 @@ export const INITIAL_STATE = {
       filterType: 'uriFilter',
       uriFilter: null,
       type: 'hierarchical',
-      priority: 6
+      priority: 1
     },
+    // objectType: {
+    //   id: 'objectType',
+    //   // predicate: defined in backend
+    //   distinctValueCount: 0,
+    //   values: [],
+    //   flatValues: [],
+    //   sortBy: 'instanceCount',
+    //   sortDirection: 'desc',
+    //   sortButton: false,
+    //   spatialFilterButton: false,
+    //   pieChartButton: false,
+    //   isFetching: false,
+    //   searchField: true,
+    //   containerClass: 'ten',
+    //   filterType: 'uriFilter',
+    //   uriFilter: null,
+    //   type: 'hierarchical',
+    //   priority: 6
+    // },
     // objectTypeFlat: {
     //   id: 'objectTypeFlat',
     //   // predicate: defined in backend

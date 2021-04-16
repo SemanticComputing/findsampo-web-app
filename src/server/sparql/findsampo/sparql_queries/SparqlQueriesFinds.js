@@ -17,13 +17,15 @@ export const findPropertiesInstancePage =
     {
       ?id :object_type ?objectType__id .
       ?objectType__id skos:prefLabel ?objectType__prefLabel .
-      BIND(CONCAT("/types/page/", REPLACE(STR(?objectType__id ), "^.*\\\\/(.+)", "$1")) AS ?objectType__dataProviderUrl)
-      OPTIONAL {
-        ?objectType__id skos:closeMatch ?maoMatch__id .
-        ?objectType__id skos:closeMatch ?maoMatch__prefLabel .
-        ?objectType__id skos:closeMatch ?maoMatch__dataProviderUrl .
-        ?objectType__id skos:hiddenLabel ??objectType__hiddenLabel .
-      }
+      FILTER (LANG(?objectType__prefLabel) = 'fi')
+      BIND (?objectType__id AS ?objectType__dataProviderUrl)
+      #BIND(CONCAT("/types/page/", REPLACE(STR(?objectType__id ), "^.*\\\\/(.+)", "$1")) AS ?objectType__dataProviderUrl)
+      #OPTIONAL {
+      #  ?objectType__id skos:closeMatch ?maoMatch__id .
+      #  ?objectType__id skos:closeMatch ?maoMatch__prefLabel .
+      #  ?objectType__id skos:closeMatch ?maoMatch__dataProviderUrl .
+      #  ?objectType__id skos:hiddenLabel ??objectType__hiddenLabel .
+      #}
     }
     UNION
     {
@@ -154,13 +156,15 @@ export const findPropertiesFacetResults =
     {
       ?id :object_type ?objectType__id .
       ?objectType__id skos:prefLabel ?objectType__prefLabel .
-      BIND(CONCAT("/types/page/", REPLACE(STR(?objectType__id ), "^.*\\\\/(.+)", "$1")) AS ?objectType__dataProviderUrl)
-      OPTIONAL {
-        ?objectType__id skos:closeMatch ?maoMatch__id .
-        ?objectType__id skos:closeMatch ?maoMatch__prefLabel .
-        ?objectType__id skos:closeMatch ?maoMatch__dataProviderUrl .
-        ?objectType__id skos:hiddenLabel ?objectType__hiddenLabel .
-      }
+      FILTER (LANG(?objectType__prefLabel) = 'fi')
+      BIND (?objectType__id AS ?objectType__dataProviderUrl)
+      #BIND(CONCAT("/types/page/", REPLACE(STR(?objectType__id ), "^.*\\\\/(.+)", "$1")) AS ?objectType__dataProviderUrl)
+      #OPTIONAL {
+      #  ?objectType__id skos:closeMatch ?maoMatch__id .
+      #  ?objectType__id skos:closeMatch ?maoMatch__prefLabel .
+      #  ?objectType__id skos:closeMatch ?maoMatch__dataProviderUrl .
+      #  ?objectType__id skos:hiddenLabel ??objectType__hiddenLabel .
+      #}
     }
     UNION
     {

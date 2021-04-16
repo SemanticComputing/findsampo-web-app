@@ -119,6 +119,15 @@ export const findsPerspectiveConfig = {
       // parentPredicate: ':object_type/skos:broader+',
       parentProperty: 'skos:broader'
     },
+    facetObjectType: {
+      id: 'facetObjectType',
+      facetValueFilter: '',
+      predicate: ':facet_object_type',
+      labelPath: ':facet_object_type/skos:prefLabel',
+      type: 'hierarchical',
+      // parentPredicate: ':object_type/skos:broader+',
+      parentProperty: 'skos:broader'
+    },
     objectTypeFlat: {
       id: 'objectTypeFlat',
       facetValueFilter: '',

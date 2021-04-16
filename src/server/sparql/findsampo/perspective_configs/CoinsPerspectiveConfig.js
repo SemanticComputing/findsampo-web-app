@@ -7,14 +7,14 @@ import { prefixes } from '../sparql_queries/SparqlQueriesPrefixes'
 export const coinsPerspectiveConfig = {
   endpoint: {
     url: 'https://ldf.fi/sualt-fha-finds/sparql',
-    // url: 'http://localhost:3039/ds/sparql',
+    //url: 'http://localhost:3039/ds/sparql',
     prefixes,
     useAuth: true
   },
   facetClass: ':Find',
   defaultConstraint: `
   ?money skos:prefLabel "maksuväline"@fi .
-  <SUBJECT> :object_type/skos:broader* ?money .
+  <SUBJECT> :facet_object_type/skos:broader* ?money .
   `,
   paginatedResults: {
     properties: coinsPropertiesFacetResults

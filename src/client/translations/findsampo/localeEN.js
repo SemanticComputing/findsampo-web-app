@@ -243,7 +243,7 @@ export default {
             Object type .
           `
         },
-        objectTypeFHAFacet: {
+        facetObjectType: {
           label: 'Object type',
           description: `
             Object type of the find using a facet ontology created by the FHA.
@@ -441,7 +441,7 @@ export default {
             Object type in MAO .
           `
         },
-        objectTypeFHAFacet: {
+        facetObjectType: {
           label: 'Object type',
           description: `
             Object type of the find using a facet ontology created by the FHA.
