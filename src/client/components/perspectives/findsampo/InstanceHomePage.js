@@ -164,6 +164,7 @@ class InstanceHomePage extends React.Component {
                     rootUrl={this.props.rootUrl}
                     routeProps={this.props.routeProps}
                     results={this.props.results}
+                    leafletMapLayers={this.props.leafletMapLayers}
                     resultUpdateID={this.props.resultUpdateID}
                     isLoading={isLoading}
                     tableData={tableData}

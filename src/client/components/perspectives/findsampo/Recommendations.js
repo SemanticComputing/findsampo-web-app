@@ -29,7 +29,6 @@ const useStyles = makeStyles((theme) => ({
 }))
 
 const Recommendations = props => {
-  const { tableData, results } = props
   const classes = useStyles()
   return (
     <div className={classes.root}>
@@ -39,24 +38,19 @@ const Recommendations = props => {
             <Typography className={classes.title} variant='h4'>Nearby finds (static example)</Typography>
             <div className={classes.content}>
               <LeafletMap
-                center={[64.921472, 26.809735]}
-                zoom={4}
-                results={results}
-                layers={props.leafletMap}
+                center={[65.184809, 27.314050]}
+                zoom={5}
+                results={props.results}
+                layers={props.leafletMapLayers}
                 pageType='instancePage'
                 resultClass='nearbyFinds'
-                uri={tableData.id}
                 mapMode='cluster'
-                showMapModeControl={false}
-                instance={props.tableData}
+                uri={props.tableData.id}
                 fetchResults={props.fetchResults}
-                fetchGeoJSONLayers={props.fetchGeoJSONLayersBackend}
-                clearGeoJSONLayers={props.clearGeoJSONLayers}
-                fetchByURI={props.fetchByURI}
-                fetching={false}
+                fetching={props.isLoading}
+                fetchData={props.fetchResults}
                 showInstanceCountInClusters={false}
-                showExternalLayers
-                showError={props.showError}
+                showExternalLayers={false}
               />
             </div>
           </Paper>
