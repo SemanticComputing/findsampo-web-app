@@ -9,7 +9,7 @@ import ClearAllIcon from '@material-ui/icons/ClearAll'
 import StarIcon from '@material-ui/icons/Star'
 import LineChartIcon from '@material-ui/icons/ShowChart'
 import findsImage from '../../img/findsampo/sword.jpg'
-import coinsImage from '../../img/findsampo/coin.jpg'
+// import coinsImage from '../../img/findsampo/coin.jpg'
 import periodsImage from '../../img/findsampo/periods_image.jpg'
 import mapImage from '../../img/findsampo/map.jpg'
 import sitesImage from '../../img/findsampo/sites.jpg'
@@ -94,71 +94,36 @@ export const perspectiveConfig = [
     searchMode: 'dummy-internal',
     internalLink: '/finds/faceted-search/map'
   },
-  {
-    id: 'coins',
-    frontPageImage: coinsImage,
-    perspectiveDescHeight: 160,
-    defaultActiveFacets: new Set(['findName']),
-    tabs: [
-      {
-        id: 'table',
-        value: 0,
-        icon: <CalendarViewDayIcon />
-      }
-      // {
-      //   id: 'map',
-      //   value: 1,
-      //   icon: <AddLocationIcon />
-      // },
-      // {
-      //   id: 'heatmap',
-      //   value: 2,
-      //   icon: <AddLocationIcon />
-      // },
-      // {
-      //   id: 'timeline',
-      //   value: 3,
-      //   icon: <ClearAllIcon />
-      // },
-      // {
-      //   id: 'pie_chart',
-      //   value: 4,
-      //   icon: <PieChartIcon />
-      // },
-      // {
-      //   id: 'weights',
-      //   value: 5,
-      //   icon: <LineChartIcon />
-      // },
-      // {
-      //   id: 'coins_by_year',
-      //   value: 6,
-      //   icon: <LineChartIcon />
-      // },
-      // {
-      //   id: 'export',
-      //   value: 7,
-      //   icon: <CloudDownloadIcon />
-      // }
-    ],
-    instancePageTabs: [
-      {
-        id: 'table',
-        value: 0,
-        icon: <CalendarViewDayIcon />
-      },
-      {
-        id: 'recommendations',
-        value: 1,
-        icon: <StarIcon />
-      },
-      {
-        id: 'export',
-        value: 2,
-        icon: <CloudDownloadIcon />
-      }
-    ]
-  },
+  // {
+  //   id: 'coins',
+  //   frontPageImage: coinsImage,
+  //   perspectiveDescHeight: 160,
+  //   defaultActiveFacets: new Set(['findName']),
+  //   tabs: [
+  //     {
+  //       id: 'table',
+  //       value: 0,
+  //       icon: <CalendarViewDayIcon />
+  //     }
+  //   ],
+  //   instancePageTabs: [
+  //     {
+  //       id: 'table',
+  //       value: 0,
+  //       icon: <CalendarViewDayIcon />
+  //     },
+  //     {
+  //       id: 'recommendations',
+  //       value: 1,
+  //       icon: <StarIcon />
+  //     },
+  //     {
+  //       id: 'export',
+  //       value: 2,
+  //       icon: <CloudDownloadIcon />
+  //     }
+  //   ]
+  // },
   {
     id: 'sites',
     frontPageImage: sitesImage,

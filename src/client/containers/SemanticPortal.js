@@ -647,9 +647,9 @@ const mapStateToProps = state => {
     finds: state.finds,
     findsFacets: state.findsFacets,
     findsFacetsConstrainSelf: state.findsFacetsConstrainSelf,
-    coins: state.coins,
-    coinsFacets: state.coinsFacets,
-    coinsFacetsConstrainSelf: state.coinsFacetsConstrainSelf,
+    // coins: state.coins,
+    // coinsFacets: state.coinsFacets,
+    // coinsFacetsConstrainSelf: state.coinsFacetsConstrainSelf,
     types: state.types,
     typesFacets: state.typesFacets,
     typesFacetsConstrainSelf: state.typesFacetsConstrainSelf,
@@ -718,12 +718,11 @@ SemanticPortal.propTypes = {
   findsFacetsConstrainSelf: PropTypes.object.isRequired,
   /**
    * Faceted search configs and results of 'Coins'.
-   */
-  coins: PropTypes.object.isRequired,
-  coinsFacets: PropTypes.object.isRequired,
-  coinsFacetsConstrainSelf: PropTypes.object.isRequired,
+  //  */
+  // coins: PropTypes.object.isRequired,
+  // coinsFacets: PropTypes.object.isRequired,
+  // coinsFacetsConstrainSelf: PropTypes.object.isRequired,
   /**
-
   /**
    * Faceted search configs and results of 'Types'.
    */
