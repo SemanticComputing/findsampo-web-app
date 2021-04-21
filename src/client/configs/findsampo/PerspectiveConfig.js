@@ -127,6 +127,7 @@ export const perspectiveConfig = [
   {
     id: 'sites',
     frontPageImage: sitesImage,
+    perspectiveDescHeight: 160,
     searchMode: 'dummy-internal',
     internalLink: '/sites/map'
   },

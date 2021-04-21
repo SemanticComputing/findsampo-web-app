@@ -542,17 +542,30 @@ const SemanticPortal = props => {
             )}
             <Route
               path={`${rootUrlWithLang}/sites/map`}
-              render={routeProps =>
-                <Sites
-                  leafletMap={props.leafletMap}
-                  fetchGeoJSONLayers={props.fetchGeoJSONLayers}
-                  fetchGeoJSONLayersBackend={props.fetchGeoJSONLayersBackend}
-                  clearGeoJSONLayers={props.clearGeoJSONLayers}
-                  showError={props.showError}
-                  screenSize={screenSize}
-                />}
+              render={routeProps => {
+                const config = perspectiveConfig.find(p => p.id === 'sites')
+                return (
+                  <>
+                    <InfoHeader
+                      resultClass='sites'
+                      pageType='facetResults'
+                      expanded={props.sites.facetedSearchHeaderExpanded}
+                      updateExpanded={props.updatePerspectiveHeaderExpanded}
+                      descriptionHeight={config.perspectiveDescHeight}
+                    />
+                    <Sites
+                      leafletMap={props.leafletMap}
+                      fetchGeoJSONLayers={props.fetchGeoJSONLayers}
+                      fetchGeoJSONLayersBackend={props.fetchGeoJSONLayersBackend}
+                      clearGeoJSONLayers={props.clearGeoJSONLayers}
+                      showError={props.showError}
+                      screenSize={screenSize}
+                      facetedSearchHeaderExpanded={props.sites.facetedSearchHeaderExpanded}
+                    />
+                  </>
+                )
+              }}
             />
-
             {/* <Route
               path={`${rootUrlWithLang}/clientFSPlaces/federated-search`}
               render={routeProps =>
@@ -657,6 +670,7 @@ const mapStateToProps = state => {
     periodsFacets: state.periodsFacets,
     periodsFacetsConstrainSelf: state.periodsFacetsConstrainSelf,
     places: state.places,
+    sites: state.sites,
     leafletMap: state.leafletMap,
     fullTextSearch: state.fullTextSearch,
     // clientFS: state.clientSideFacetedSearch,

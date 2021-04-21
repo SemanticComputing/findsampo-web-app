@@ -234,7 +234,7 @@ export const INITIAL_STATE = {
 }
 
 const resultClasses = new Set([
-  'coins',
+  'coins'
 ])
 
 const coins = (state = INITIAL_STATE, action) => {

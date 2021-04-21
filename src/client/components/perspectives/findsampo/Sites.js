@@ -13,14 +13,31 @@ import { leafletLayerConfigs } from '../../../configs/findsampo/GeneralConfig'
 
 const useStyles = makeStyles(theme => ({
   root: {
+    marginLeft: theme.spacing(1),
+    marginRight: theme.spacing(1),
+    marginBottom: theme.spacing(1),
     width: '100%',
     [theme.breakpoints.down('sm')]: {
-      marginTop: 56, // app bar
-      height: 'calc(100% - 56px)'
+      marginTop: 56 + 67 + theme.spacing(1), // app bar + info header + margin
+      height: 'calc(100% - 140px)' // app bar + info header + 2*margin
     },
     [theme.breakpoints.up('sm')]: {
-      marginTop: 64, // app bar
-      height: 'calc(100% - 64px)'
+      marginTop: 64 + 67 + theme.spacing(1), // app bar + info header + margin
+      height: 'calc(100% - 147px)' // app bar + info header + 2*margin
+    }
+  },
+  rootHeaderExpanded: {
+    marginLeft: theme.spacing(1),
+    marginRight: theme.spacing(1),
+    marginBottom: theme.spacing(1),
+    width: '100%',
+    [theme.breakpoints.down('sm')]: {
+      marginTop: 56 + 252 + theme.spacing(1), // app bar + info header expanded + margin
+      height: 'calc(100% - 316px)' // app bar + info header expanded + 2*margin
+    },
+    [theme.breakpoints.up('sm')]: {
+      marginTop: 64 + 252 + theme.spacing(1), // app bar + info header expanded + margin
+      height: 'calc(100% - 332px)' // app bar + info header expanded + 2*margin
     }
   }
 }))
@@ -32,7 +49,10 @@ const Sites = props => {
     screenSize === 'lg' ||
     screenSize === 'xl'
   return (
-    <div className={classes.root}>
+    <div className={props.facetedSearchHeaderExpanded
+      ? classes.rootHeaderExpanded
+      : classes.root}
+    >
       <LeafletMap
         // center={[60.187, 24.821]}
         // zoom={15}

@@ -683,7 +683,13 @@ export default {
     sites: {
       label: 'Sites',
       mainPageLabel: 'Sites',
-      shortDescription: 'View archaelogical sites and protected areas'
+      shortDescription: 'View archaelogical sites and protected areas',
+      longDescription: `
+        <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
+          [ add instructions for Sites perspective here... ]
+        </p>
+
+    `
     },
     guides: {
       label: 'Guides',
