@@ -95,7 +95,6 @@ export default {
     pie_chart: 'pie chart',
     line_chart: 'line chart'
     // coins_by_year: 'coins by year'
-
   },
   table: {
     rowsPerPage: 'Rows per page',
@@ -373,7 +372,7 @@ export default {
         archaeologicalSiteUrl: {
           label: 'Archeological site url',
           description: 'Url of the archeological site in kyppi.fi service'
-        },
+        }
       }
     },
     coins: {
