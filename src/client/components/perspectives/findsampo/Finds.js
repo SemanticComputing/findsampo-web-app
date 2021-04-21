@@ -125,7 +125,7 @@ const Finds = props => {
             resultClasses={['findsByProvince', 'findsByMaterial', 'findsByObjectName']}
           />}
       />
-      <Route
+      {/* <Route
         path={`${rootUrl}/${perspective.id}/faceted-search/coins_by_year`}
         render={() =>
           <ApexChart
@@ -149,7 +149,7 @@ const Finds = props => {
             resultClass='findsByYear'
             facetClass='finds'
           />}
-      />
+      /> */}
       <Route
         path={`${rootUrl}/${perspective.id}/faceted-search/weights`}
         render={() =>

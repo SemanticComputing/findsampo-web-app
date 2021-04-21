@@ -55,15 +55,15 @@ export const perspectiveConfig = [
         icon: <LineChartIcon />
       },
       {
-        id: 'coins_by_year',
-        value: 6,
-        icon: <LineChartIcon />
-      },
-      {
         id: 'export',
-        value: 7,
+        value: 6,
         icon: <CloudDownloadIcon />
       }
+      // {
+      //   id: 'coins_by_year',
+      //   value: ,
+      //   icon: <LineChartIcon />
+      // }
     ],
     instancePageTabs: [
       {
