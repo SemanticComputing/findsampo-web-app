@@ -151,7 +151,7 @@ const Finds = props => {
           />}
       /> */}
       <Route
-        path={`${rootUrl}/${perspective.id}/faceted-search/weights`}
+        path={`${rootUrl}/${perspective.id}/faceted-search/line_chart`}
         render={() =>
           <ApexChart
             pageType='facetResults'

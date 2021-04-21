@@ -50,7 +50,7 @@ export const perspectiveConfig = [
         icon: <PieChartIcon />
       },
       {
-        id: 'weights',
+        id: 'line_chart',
         value: 5,
         icon: <LineChartIcon />
       },
