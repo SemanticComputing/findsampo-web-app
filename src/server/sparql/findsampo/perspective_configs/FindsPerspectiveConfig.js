@@ -7,7 +7,7 @@ import { prefixes } from '../sparql_queries/SparqlQueriesPrefixes'
 export const findsPerspectiveConfig = {
   endpoint: {
     url: 'https://ldf.fi/sualt-fha-finds/sparql',
-    //url: 'http://localhost:3039/ds/sparql',
+    // url: 'http://localhost:3039/ds/sparql',
     prefixes,
     useAuth: true
   },
@@ -172,7 +172,10 @@ export const findsPerspectiveConfig = {
       facetValueFilter: '',
       labelPath: 'ltk-s:weight',
       predicate: 'ltk-s:weight',
-      type: 'integer'
+      type: 'integer',
+      // the default typecasting is BIND(xsd:integer(?value) as ?valueAsInteger)
+      // use a custom typecasting to convert and round from e.g. "673.39" to "673"^^xsd:integer
+      typecasting: 'BIND(xsd:integer(ROUND(xsd:decimal(?value))) as ?valueAsInteger)'
     },
     thickness: {
       id: 'thickness',
