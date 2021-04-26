@@ -7,7 +7,7 @@ import { prefixes } from '../sparql_queries/SparqlQueriesPrefixes'
 export const findsPerspectiveConfig = {
   endpoint: {
     url: 'https://ldf.fi/sualt-fha-finds/sparql',
-    // url: 'http://localhost:3039/ds/sparql',
+    //url: 'http://localhost:3039/ds/sparql',
     prefixes,
     useAuth: true
   },
@@ -156,33 +156,44 @@ export const findsPerspectiveConfig = {
     length: {
       id: 'lenght',
       facetValueFilter: '',
-      labelPath: 'ltk-s:length',
-      predicate: 'ltk-s:length',
-      type: 'integer'
+      labelPath: ':length',
+      predicate: ':length',
+      type: 'integer',
+      typecasting: 'BIND(xsd:integer(ROUND(xsd:decimal(?value))) as ?valueAsInteger)'
     },
     width: {
       id: 'width',
       facetValueFilter: '',
-      labelPath: 'ltk-s:width',
-      predicate: 'ltk-s:width',
-      type: 'integer'
+      labelPath: ':width',
+      predicate: ':width',
+      type: 'integer',
+      typecasting: 'BIND(xsd:integer(ROUND(xsd:decimal(?value))) as ?valueAsInteger)'
+    },
+    diameter: {
+      id: 'width',
+      facetValueFilter: '',
+      labelPath: ':diameter',
+      predicate: ':diameter',
+      type: 'integer',
+      typecasting: 'BIND(xsd:integer(ROUND(xsd:decimal(?value))) as ?valueAsInteger)'
     },
     weight: {
       id: 'weight',
       facetValueFilter: '',
-      labelPath: 'ltk-s:weight',
-      predicate: 'ltk-s:weight',
+      labelPath: ':weight',
+      predicate: ':weight',
       type: 'integer',
       // the default typecasting is BIND(xsd:integer(?value) as ?valueAsInteger)
       // use a custom typecasting to convert and round from e.g. "673.39" to "673"^^xsd:integer
       typecasting: 'BIND(xsd:integer(ROUND(xsd:decimal(?value))) as ?valueAsInteger)'
     },
-    thickness: {
-      id: 'thickness',
+    max_thickness: {
+      id: 'max_thickness',
       facetValueFilter: '',
-      labelPath: 'ltk-s:thickness_literal',
-      predicate: 'ltk-s:thickness_literal',
-      type: 'integer'
+      labelPath: ':max_thickness',
+      predicate: ':max_thickness',
+      type: 'integer',
+      typecasting: 'BIND(xsd:integer(ROUND(xsd:decimal(?value))) as ?valueAsInteger)'
     }
     // creationTimespan: {
     //   id: 'creationTimespan',

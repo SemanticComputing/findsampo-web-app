@@ -349,13 +349,21 @@ export default {
           label: 'Length',
           description: 'Length'
         },
-        thickness: {
-          label: 'Thickness',
-          description: 'Thickness'
+        max_thickness: {
+          label: 'Maximum thickness',
+          description: 'Maximum thickness'
+        },
+        min_thickness: {
+          label: 'Minimum thickness',
+          description: 'Minimum thickness'
         },
         width: {
           label: 'Width',
           description: 'Width'
+        },
+        diameter: {
+          label: 'Diameter',
+          description: 'Diameter'
         },
         similarInternalFind: {
           label: 'Similar internal find',

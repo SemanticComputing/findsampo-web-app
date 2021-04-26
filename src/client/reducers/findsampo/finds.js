@@ -195,7 +195,25 @@ export const INITIAL_STATE = {
       minWidth: 180
     },
     {
-      id: 'thickness',
+      id: 'max_thickness',
+      valueType: 'string',
+      makeLink: false,
+      externalLink: false,
+      sortValues: true,
+      numberedList: false,
+      minWidth: 180
+    },
+    {
+      id: 'min_thickness',
+      valueType: 'string',
+      makeLink: false,
+      externalLink: false,
+      sortValues: true,
+      numberedList: false,
+      minWidth: 180
+    },
+    {
+      id: 'diameter',
       valueType: 'string',
       makeLink: false,
       externalLink: false,

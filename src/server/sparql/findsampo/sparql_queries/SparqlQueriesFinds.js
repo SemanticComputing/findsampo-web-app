@@ -96,19 +96,27 @@ export const findPropertiesInstancePage =
     }
     UNION
     {
-      ?id ltk-s:weight ?weight .
+      ?id :weight ?weight .
     }
     UNION
     {
-      ?id ltk-s:length ?length .
+      ?id :length ?length .
     }
     UNION
     {
-      ?id ltk-s:thickness ?thickness .
+      ?id :max_thickness ?max_thickness .
     }
     UNION
     {
-      ?id ltk-s:width ?width .
+      ?id :min_thickness ?min_thickness .
+    }
+    UNION
+    {
+      ?id :width ?width .
+    }
+    UNION
+    {
+      ?id :diameter ?diameter .
     }
     UNION
     {
@@ -243,19 +251,27 @@ export const findPropertiesFacetResults =
     }
     UNION
     {
-      ?id ltk-s:weight ?weight .
+      ?id :weight ?weight .
     }
     UNION
     {
-      ?id ltk-s:length ?length .
+      ?id :length ?length .
     }
     UNION
     {
-      ?id ltk-s:thickness ?thickness .
+      ?id :max_thickness ?max_thickness .
     }
     UNION
     {
-      ?id ltk-s:width ?width .
+      ?id :min_thickness ?min_thickness .
+    }
+    UNION
+    {
+      ?id :width ?width .
+    }
+    UNION
+    {
+      ?id :diameter ?diameter .
     }
   `
 
@@ -412,8 +428,10 @@ export const findsByWeightQuery = `
   (COUNT(DISTINCT ?find) as ?count)
   WHERE {
     <FILTER>
-    ?find :weight_rounded ?category ;
-          a :Find .
+    ?find :weight ?weight ;
+              a :Find .
+    BIND(xsd:integer(ROUND(xsd:decimal(?weight))) as ?category)
+
   }
   GROUP BY ?category
   ORDER BY ?category

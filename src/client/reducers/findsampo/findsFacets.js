@@ -343,19 +343,19 @@ export const INITIAL_STATE = {
       unit: 'mm',
       priority: 12
     },
-    thickness: {
-      id: 'thickness',
-      // predicate: defined in backend
-      sortButton: false,
-      spatialFilterButton: false,
-      isFetching: false,
-      containerClass: 'five',
-      type: 'integer',
-      filterType: 'integerFilterRange',
-      integerFilter: null,
-      unit: 'mm',
-      priority: 12
-    },
+    // thickness: {
+    //   id: 'thickness',
+    //   // predicate: defined in backend
+    //   sortButton: false,
+    //   spatialFilterButton: false,
+    //   isFetching: false,
+    //   containerClass: 'five',
+    //   type: 'integer',
+    //   filterType: 'integerFilterRange',
+    //   integerFilter: null,
+    //   unit: 'mm',
+    //   priority: 12
+    // },
     kmNumber: {
       id: 'kmNumber',
       // predicate: defined in backend
