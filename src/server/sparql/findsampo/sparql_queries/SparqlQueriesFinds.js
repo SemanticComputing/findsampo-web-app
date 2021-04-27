@@ -297,10 +297,14 @@ export const findInstancePageMapQuery = `
 export const nearbyFindsQuery = `
   SELECT *
   WHERE {
-    ?id :find_coordinates ?site .
-    ?site spatial:nearby (64.791 29.249 50 'km') ; # Hardcoded test: Vuokkijärvi, Suomussalmi
+    VALUES ?inputID { <ID> }
+    ?inputID :find_coordinates ?inputSite .
+    ?inputSite wgs84:lat ?inputLat ;
+               wgs84:long ?inputLong .
+    ?site spatial:nearby (?inputLat ?inputLong 30 'km') ; 
           wgs84:lat ?lat ;
           wgs84:long ?long .
+    ?id :find_coordinates ?site .
     ${findPropertiesInstancePage}
   }
 `

@@ -94,7 +94,7 @@ export default {
     statistics: 'statistics',
     pie_chart: 'pie chart',
     line_chart: 'line chart'
-    // coins_by_year: 'coins by year'
+    // coins_by_year: 'coins by year',
   },
   table: {
     rowsPerPage: 'Rows per page',
@@ -222,7 +222,11 @@ export default {
           <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
             [ short instructions here... ]
           </p>
-        `
+        `,
+        recommendations: {
+          nearByFinds: 'Nearby finds',
+          similarFinds: 'Similar finds (static example)'
+        }
       },
       properties: {
         uri: {
