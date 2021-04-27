@@ -28,6 +28,13 @@ export const findsPerspectiveConfig = {
       type: 'list',
       literal: true
     },
+    findtext: {
+      id: 'findText',
+      labelPath: 'skos:prefLabel',
+      textQueryPredicate: '',
+      textQueryProperty: '',
+      type: 'text'
+    },
     specification: {
       id: 'specification',
       facetValueFilter: '',
@@ -194,7 +201,7 @@ export const findsPerspectiveConfig = {
       predicate: ':max_thickness',
       type: 'integer',
       typecasting: 'BIND(xsd:integer(ROUND(xsd:decimal(?value))) as ?valueAsInteger)'
-    }
+    },
     // creationTimespan: {
     //   id: 'creationTimespan',
     //   facetValueFilter: '',

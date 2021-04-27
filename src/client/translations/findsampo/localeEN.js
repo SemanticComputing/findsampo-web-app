@@ -213,6 +213,10 @@ export default {
           label: 'Find name',
           description: 'Find name.'
         },
+        findText: {
+          label: 'Text search',
+          description: 'Search with free text based on name, number or description of the find.'
+        },
         identifierFHA: {
           label: 'FHA identifier',
           description: 'FHA identifier of the find.'
@@ -325,12 +329,12 @@ export default {
           label: 'Image',
           description: 'Image description.'
         },
-        earliestStart: {
-          label: 'Earliest date',
+        earliestStartYear: {
+          label: 'Earliest creation time',
           description: 'Earliest possible creation date of the object'
         },
-        latestEnd: {
-          label: 'Latest date',
+        latestEndYear: {
+          label: 'Latest creation time',
           description: 'Latest possible creation date of the object'
         },
         kmNumber: {

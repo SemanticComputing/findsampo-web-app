@@ -50,15 +50,15 @@ export const INITIAL_STATE = {
       numberedList: false,
       minWidth: 180
     },
-    {
-      id: 'kmNumber',
-      valueType: 'string',
-      makeLink: false,
-      externalLink: false,
-      sortValues: true,
-      numberedList: false,
-      minWidth: 180
-    },
+    // {
+    //   id: 'kmNumber',
+    //   valueType: 'string',
+    //   makeLink: false,
+    //   externalLink: false,
+    //   sortValues: true,
+    //   numberedList: false,
+    //   minWidth: 180
+    // },
     {
       id: 'objectType',
       valueType: 'object',
@@ -150,7 +150,7 @@ export const INITIAL_STATE = {
     //   minWidth: 180
     // },
     {
-      id: 'earliestStart',
+      id: 'earliestStartYear',
       valueType: 'string',
       makeLink: false,
       externalLink: false,
@@ -159,7 +159,7 @@ export const INITIAL_STATE = {
       minWidth: 180
     },
     {
-      id: 'latestEnd',
+      id: 'latestEndYear',
       valueType: 'string',
       makeLink: false,
       externalLink: false,

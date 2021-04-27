@@ -23,6 +23,23 @@ export const INITIAL_STATE = {
     //   uriFilter: null,
     //   priority: 1
     // },
+    findText: {
+      id: 'findText',
+      // predicate: defined in backend
+      distinctValueCount: 0,
+      values: [],
+      flatValues: [],
+      sortBy: null,
+      sortDirection: null,
+      sortButton: false,
+      spatialFilterButton: false,
+      isFetching: false,
+      searchField: false,
+      containerClass: 'one',
+      filterType: 'textFilter',
+      textFilter: null,
+      priority: 1
+    },
     facetObjectType: {
       id: 'facetObjectType',
       // predicate: defined in backend
@@ -356,24 +373,24 @@ export const INITIAL_STATE = {
     //   unit: 'mm',
     //   priority: 12
     // },
-    kmNumber: {
-      id: 'kmNumber',
-      // predicate: defined in backend
-      distinctValueCount: 0,
-      values: [],
-      flatValues: [],
-      sortBy: 'instanceCount',
-      sortDirection: 'desc',
-      sortButton: true,
-      spatialFilterButton: false,
-      pieChartButton: true,
-      isFetching: false,
-      searchField: true,
-      containerClass: 'ten',
-      filterType: 'uriFilter',
-      uriFilter: null,
-      priority: 8
-    }
+    // kmNumber: {
+    //   id: 'kmNumber',
+    //   // predicate: defined in backend
+    //   distinctValueCount: 0,
+    //   values: [],
+    //   flatValues: [],
+    //   sortBy: 'instanceCount',
+    //   sortDirection: 'desc',
+    //   sortButton: true,
+    //   spatialFilterButton: false,
+    //   pieChartButton: true,
+    //   isFetching: false,
+    //   searchField: true,
+    //   containerClass: 'ten',
+    //   filterType: 'uriFilter',
+    //   uriFilter: null,
+    //   priority: 8
+    // }
   }
 }
 

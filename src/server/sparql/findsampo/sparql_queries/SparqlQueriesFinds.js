@@ -65,12 +65,12 @@ export const findPropertiesInstancePage =
     UNION
     {
       ?id :has_creation_time_span/crm:P82a_begin_of_the_begin ?earliestStart .
-      BIND (YEAR(?earliestStart) as ?earliestStartYear) .
+      BIND (IF (STRSTARTS(str(?earliestStart), '-'), SUBSTR(STR(?earliestStart), 1, 5), SUBSTR(STR(?earliestStart), 1, 4)) AS ?earliestStartYear) .
     }
     UNION
     {
       ?id :has_creation_time_span/crm:P82b_end_of_the_end ?latestEnd .
-      BIND (YEAR(?latestEnd) as ?latestEndYear) .
+      BIND (IF (STRSTARTS(str(?latestEnd), '-'), SUBSTR(STR(?latestEnd), 1, 5), SUBSTR(STR(?latestEnd), 1, 4)) AS ?latestEndYear) .
     }
     UNION
     {
@@ -222,12 +222,12 @@ export const findPropertiesFacetResults =
     UNION
     {
       ?id :has_creation_time_span/crm:P82a_begin_of_the_begin ?earliestStart .
-      #BIND (YEAR(?earliestStart) as ?earliestStartYear) .
+      BIND (IF (STRSTARTS(str(?earliestStart), '-'), SUBSTR(STR(?earliestStart), 1, 5), SUBSTR(STR(?earliestStart), 1, 4)) AS ?earliestStartYear) .
     }
     UNION
     {
       ?id :has_creation_time_span/crm:P82b_end_of_the_end ?latestEnd .
-      #BIND (YEAR(?latestEnd) as ?latestEndYear) .
+      BIND (IF (STRSTARTS(str(?latestEnd), '-'), SUBSTR(STR(?latestEnd), 1, 5), SUBSTR(STR(?latestEnd), 1, 4)) AS ?latestEndYear) .
     }
     UNION
     {
