@@ -29,17 +29,17 @@ export const INITIAL_STATE = {
       sortValues: false,
       numberedList: false,
       minWidth: 300
+    },
+    {
+      id: 'description',
+      valueType: 'string',
+      makeLink: false,
+      externalLink: false,
+      sortValues: false,
+      numberedList: false,
+      minWidth: 400,
+      collapsedMaxWords: 5
     }
-    // {
-    //   id: 'note',
-    //   valueType: 'string',
-    //   makeLink: false,
-    //   externalLink: false,
-    //   sortValues: false,
-    //   numberedList: false,
-    //   minWidth: 400,
-    //   collapsedMaxWords: 4
-    // }
   ],
   fetching: false
 }

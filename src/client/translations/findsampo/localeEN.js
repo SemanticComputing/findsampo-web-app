@@ -183,8 +183,8 @@ export default {
           label: 'Type',
           description: ''
         },
-        note: {
-          label: 'Note',
+        description: {
+          label: 'Description',
           description: ''
         }
         // source: {
