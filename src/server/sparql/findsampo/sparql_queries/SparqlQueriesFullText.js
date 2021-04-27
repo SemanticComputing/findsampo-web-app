@@ -1,13 +1,26 @@
 export const fullTextSearchProperties = `
 {
-  ?id skos:prefLabel ?prefLabel__id .
-  BIND(?prefLabel__id as ?prefLabel__prefLabel)
+  VALUES ?type__id {
+    :Find 
+    :Object_type
+  }
+  ?id a ?type__id .
+  BIND(?type__id as ?type__prefLabel)
+  # ?type__id skos:prefLabel|rdfs:label ?type__prefLabel . 
 }
 UNION 
 {
-  ?id a ?type__id .
-  # ?type__id skos:prefLabel ?type__prefLabel_ .
-  # BIND(STR(?type__prefLabel_) AS ?type__prefLabel)  # ignore language tags
-  BIND(STR(?type__id) AS ?type__prefLabel) 
+  ?id a :Find ;
+      skos:prefLabel ?prefLabel__id ;
+      ltk-s:description ?description .
+  BIND(?prefLabel__id as ?prefLabel__prefLabel)
+  BIND(CONCAT("/finds/page/", REPLACE(STR(?id), "^.*\\\\/(.+)", "$1")) AS ?prefLabel__dataProviderUrl)
+}
+UNION 
+{
+  ?id a :Object_type ;
+        skos:prefLabel ?prefLabel__id .
+  BIND(?prefLabel__id as ?prefLabel__prefLabel)
+  # BIND(CONCAT("/...../page/", REPLACE(STR(?id), "^.*\\\\/(.+)", "$1")) AS ?prefLabel__dataProviderUrl)
 }
 `

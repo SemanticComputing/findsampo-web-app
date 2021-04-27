@@ -31,14 +31,14 @@ export const INITIAL_STATE = {
       minWidth: 300
     },
     {
-      id: 'note',
+      id: 'description',
       valueType: 'string',
       makeLink: false,
       externalLink: false,
       sortValues: false,
       numberedList: false,
       minWidth: 400,
-      collapsedMaxWords: 4
+      collapsedMaxWords: 5
     }
   ],
   fetching: false

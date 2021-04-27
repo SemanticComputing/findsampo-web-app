@@ -297,9 +297,14 @@ export const findInstancePageMapQuery = `
 export const nearbyFindsQuery = `
   SELECT *
   WHERE {
-    ?id spatial:nearby (64.791 29.249 50 'km') . # Vuokkijärvi, Suomussalmi
-    ?id :find_coordinates/wgs84:lat ?lat ;
-        :find_coordinates/wgs84:long ?long .
+    VALUES ?inputID { <ID> }
+    ?inputID :find_coordinates ?inputSite .
+    ?inputSite wgs84:lat ?inputLat ;
+               wgs84:long ?inputLong .
+    ?site spatial:nearby (?inputLat ?inputLong 30 'km') ; 
+          wgs84:lat ?lat ;
+          wgs84:long ?long .
+    ?id :find_coordinates ?site .
     ${findPropertiesInstancePage}
   }
 `

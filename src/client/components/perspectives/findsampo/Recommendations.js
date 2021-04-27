@@ -6,6 +6,7 @@ import { makeStyles } from '@material-ui/core/styles'
 import Typography from '@material-ui/core/Typography'
 import Paper from '@material-ui/core/Paper'
 import Grid from '@material-ui/core/Grid'
+import intl from 'react-intl-universal'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -35,7 +36,7 @@ const Recommendations = props => {
       <Grid container spacing={3}>
         <Grid item xs={12}>
           <Paper elevation={3} className={classes.gridItem}>
-            <Typography className={classes.title} variant='h4'>Nearby finds (static example)</Typography>
+            <Typography className={classes.title} variant='h4'>{intl.get('perspectives.finds.instancePage.recommendations.nearByFinds')}</Typography>
             <div className={classes.content}>
               <LeafletMap
                 center={[65.184809, 27.314050]}
@@ -57,7 +58,7 @@ const Recommendations = props => {
         </Grid>
         <Grid item xs={12}>
           <Paper elevation={3} className={classes.gridItem}>
-            <Typography className={classes.title} variant='h4'>Similar finds (static example)</Typography>
+            <Typography className={classes.title} variant='h4'>{intl.get('perspectives.finds.instancePage.recommendations.similarFinds')}</Typography>
             <TitleBarGridList />
           </Paper>
         </Grid>
