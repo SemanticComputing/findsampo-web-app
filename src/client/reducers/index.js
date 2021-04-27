@@ -6,7 +6,7 @@ import options from './general/options'
 import animation from './general/animation'
 import leafletMap from './general/leafletMap'
 // portal spefic reducers:
-import fullTextSearch from './sampo/fullTextSearch'
+import fullTextSearch from './findsampo/fullTextSearch'
 import finds from './findsampo/finds'
 import findsFacets from './findsampo/findsFacets'
 import findsFacetsConstrainSelf from './findsampo/findsFacetsConstrainSelf'
