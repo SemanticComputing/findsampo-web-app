@@ -301,10 +301,39 @@ export const nearbyFindsQuery = `
     ?inputID :find_coordinates ?inputSite .
     ?inputSite wgs84:lat ?inputLat ;
                wgs84:long ?inputLong .
-    ?site spatial:nearby (?inputLat ?inputLong 30 'km') ; 
+    ?site spatial:nearby (?inputLat ?inputLong 30 'km') ;
           wgs84:lat ?lat ;
           wgs84:long ?long .
     ?id :find_coordinates ?site .
+    ${findPropertiesInstancePage}
+  }
+`
+
+export const similarFindsQuery = `
+  SELECT *
+  WHERE {
+    VALUES ?inputID { <ID> }
+      {
+        ?inputID :object_type ?objectType .
+        ?id :object_type ?objectType .
+        FILTER (?inputID != ?id)
+        BIND('Saman tyyppinen esine' AS ?similarityDescription )
+      }
+      UNION
+      {
+        ?inputID :material ?material .
+        ?id :material ?material
+        FILTER (?inputID != ?id)
+        BIND('Samasta materiaalista valmistettu esine' AS ?similarityDescription )
+      }
+      UNION
+      {
+        ?inputID :period ?period .
+        ?id :period ?period .
+        FILTER (?inputID != ?id)
+        BIND('Esine samalta aikakaudelta' AS ?similarityDescription )
+      }
+    }
     ${findPropertiesInstancePage}
   }
 `
