@@ -50,15 +50,6 @@ export const INITIAL_STATE = {
       numberedList: false,
       minWidth: 180
     },
-    // {
-    //   id: 'kmNumber',
-    //   valueType: 'string',
-    //   makeLink: false,
-    //   externalLink: false,
-    //   sortValues: true,
-    //   numberedList: false,
-    //   minWidth: 180
-    // },
     {
       id: 'objectType',
       valueType: 'object',
@@ -68,33 +59,6 @@ export const INITIAL_STATE = {
       numberedList: false,
       minWidth: 180
     },
-    // {
-    //   id: 'specification',
-    //   valueType: 'string',
-    //   makeLink: true,
-    //   externalLink: false,
-    //   sortValues: true,
-    //   numberedList: false,
-    //   minWidth: 180
-    // },
-    // {
-    //   id: 'type',
-    //   valueType: 'string',
-    //   makeLink: false,
-    //   externalLink: false,
-    //   sortValues: true,
-    //   numberedList: false,
-    //   minWidth: 180
-    // },
-    // {
-    //   id: 'subCategory',
-    //   valueType: 'string',
-    //   makeLink: false,
-    //   externalLink: false,
-    //   sortValues: true,
-    //   numberedList: false,
-    //   minWidth: 180
-    // },
     {
       id: 'material',
       valueType: 'object',
@@ -131,24 +95,6 @@ export const INITIAL_STATE = {
       numberedList: false,
       minWidth: 180
     },
-    // {
-    //   id: 'earliestStartYear',
-    //   valueType: 'string',
-    //   makeLink: false,
-    //   externalLink: false,
-    //   sortValues: true,
-    //   numberedList: false,
-    //   minWidth: 180
-    // },
-    // {
-    //   id: 'latestEndYear',
-    //   valueType: 'string',
-    //   makeLink: false,
-    //   externalLink: false,
-    //   sortValues: true,
-    //   numberedList: false,
-    //   minWidth: 180
-    // },
     {
       id: 'earliestStartYear',
       valueType: 'string',
@@ -241,24 +187,6 @@ export const INITIAL_STATE = {
     },
     {
       id: 'archaeologicalSiteUrl',
-      valueType: 'object',
-      makeLink: true,
-      externalLink: true,
-      sortValues: true,
-      numberedList: false,
-      onlyOnInstancePage: true
-    },
-    {
-      id: 'similarInternalFind',
-      valueType: 'object',
-      makeLink: true,
-      externalLink: false,
-      sortValues: true,
-      numberedList: false,
-      onlyOnInstancePage: true
-    },
-    {
-      id: 'similarExternalFind',
       valueType: 'object',
       makeLink: true,
       externalLink: true,

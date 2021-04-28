@@ -158,7 +158,7 @@ class InstanceHomePage extends React.Component {
                   />}
               />
               <Route
-                path={`${rootUrl}/${resultClass}/page/${this.state.localID}/recommendations`}
+                path={`${rootUrl}/${resultClass}/page/${this.state.localID}/recommendation_links`}
                 render={() =>
                   <Recommendations
                     rootUrl={this.props.rootUrl}

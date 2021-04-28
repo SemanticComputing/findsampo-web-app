@@ -115,6 +115,7 @@ class InstanceHomePageTable extends React.Component {
           <Table className={classes.instanceTable} size='small'>
             <TableBody>
               {properties.map(row => {
+                console.log(row.id)
                 const label = intl.get(`perspectives.${resultClass}.properties.${row.id}.label`)
                 const description = intl.get(`perspectives.${resultClass}.properties.${row.id}.description`)
                 const {

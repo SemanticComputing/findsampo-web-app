@@ -130,15 +130,33 @@ export const findPropertiesInstancePage =
     }
     UNION
     {
-      ?id :similar_internal_find ?similarInternalFind__id .
-      ?similarInternalFind__id skos:prefLabel ?similarInternalFind__prefLabel .
-      BIND(CONCAT("/${perspectiveID}/page/", REPLACE(STR(?similarInternalFind__id), "^.*\\\\/(.+)", "$1")) AS ?similarInternalFind__dataProviderUrl)
-    }
-    UNION
-    {
       ?id :similar_external_find ?similarExternalFind__id .
       BIND(?similarExternalFind__id AS ?similarExternalFind__prefLabel) .
       BIND(?similarExternalFind__id AS ?similarExternalFind__dataProviderUrl)
+    }
+    UNION
+    {
+      ?id :object_type ?objectType_ .
+      ?similarObjectType__id :object_type ?objectType_ ;
+                           skos:prefLabel ?similarObjectType__prefLabel .
+      BIND(CONCAT("/${perspectiveID}/page/", REPLACE(STR(?similarObjectType__id), "^.*\\\\/(.+)", "$1")) AS ?similarObjectType__dataProviderUrl)                 
+      FILTER (?similarObjectType__id != ?id)
+    }
+    UNION
+    {
+      ?id :material ?material_ .
+      ?similarMaterial__id :material ?material_ ;
+                           skos:prefLabel ?similarMaterial__prefLabel .
+      BIND(CONCAT("/${perspectiveID}/page/", REPLACE(STR(?similarMaterial__id), "^.*\\\\/(.+)", "$1")) AS ?similarMaterial__dataProviderUrl)                 
+      FILTER (?similarMaterial__id != ?id)
+    }
+    UNION
+    {
+      ?id :period ?period_ .
+      ?similarPeriod__id :period ?period_ ;
+                          skos:prefLabel ?similarPeriod__prefLabel .
+      BIND(CONCAT("/${perspectiveID}/page/", REPLACE(STR(?similarPeriod__id), "^.*\\\\/(.+)", "$1")) AS ?similarPeriod__dataProviderUrl)                 
+      FILTER (?similarPeriod__id != ?id)
     }
 `
 
@@ -305,35 +323,6 @@ export const nearbyFindsQuery = `
           wgs84:lat ?lat ;
           wgs84:long ?long .
     ?id :find_coordinates ?site .
-    ${findPropertiesInstancePage}
-  }
-`
-
-export const similarFindsQuery = `
-  SELECT *
-  WHERE {
-    VALUES ?inputID { <ID> }
-      {
-        ?inputID :object_type ?objectType .
-        ?id :object_type ?objectType .
-        FILTER (?inputID != ?id)
-        BIND('Saman tyyppinen esine' AS ?similarityDescription )
-      }
-      UNION
-      {
-        ?inputID :material ?material .
-        ?id :material ?material
-        FILTER (?inputID != ?id)
-        BIND('Samasta materiaalista valmistettu esine' AS ?similarityDescription )
-      }
-      UNION
-      {
-        ?inputID :period ?period .
-        ?id :period ?period .
-        FILTER (?inputID != ?id)
-        BIND('Esine samalta aikakaudelta' AS ?similarityDescription )
-      }
-    }
     ${findPropertiesInstancePage}
   }
 `

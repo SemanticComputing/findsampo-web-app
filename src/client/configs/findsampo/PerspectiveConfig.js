@@ -77,7 +77,7 @@ export const perspectiveConfig = [
         icon: <AddLocationIcon />
       },
       {
-        id: 'recommendations',
+        id: 'recommendation_links',
         value: 2,
         icon: <StarIcon />
       },
