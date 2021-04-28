@@ -28,7 +28,7 @@ export const findsPerspectiveConfig = {
       type: 'list',
       literal: true
     },
-    findtext: {
+    findText: {
       id: 'findText',
       labelPath: 'skos:prefLabel',
       textQueryPredicate: '',
