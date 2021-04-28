@@ -55,21 +55,20 @@ class InstanceHomePage extends React.Component {
     if (!this.hasTableData() && prevPathname !== currentPathname && currentPathname.endsWith('table')) {
       this.fetchTableData()
     }
+    // handle browser's back button
+    const localID = this.getLocalIDFromURL()
+    if (this.state.localID !== localID) {
+      this.fetchTableData()
+    }
   }
 
   hasTableData = () => this.props.tableData !== null && Object.values(this.props.tableData).length >= 1
 
   fetchTableData = () => {
+    const localID = this.getLocalIDFromURL()
+    this.setState({ localID })
     let uri = ''
     const base = 'http://ldf.fi/findsampo/'
-    const locationArr = this.props.routeProps.location.pathname.split('/')
-    let localID = locationArr.pop()
-    this.props.tabs.map(tab => {
-      if (localID === tab.id) {
-        localID = locationArr.pop() // pop again if tab id
-      }
-    })
-    this.setState({ localID: localID })
     switch (this.props.resultClass) {
       case 'finds':
         uri = `${base}finds/${localID}`
@@ -87,6 +86,17 @@ class InstanceHomePage extends React.Component {
       variant: null,
       uri: uri
     })
+  }
+
+  getLocalIDFromURL = () => {
+    const locationArr = this.props.routeProps.location.pathname.split('/')
+    let localID = locationArr.pop()
+    this.props.tabs.map(tab => {
+      if (localID === tab.id) {
+        localID = locationArr.pop() // pop again if tab id
+      }
+    })
+    return localID
   }
 
   getVisibleRows = rows => {
