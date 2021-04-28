@@ -10,7 +10,7 @@ import InstanceHomePageTable from '../../main_layout/InstanceHomePageTable'
 // import Network from '../../facet_results/Network'
 import LeafletMap from '../../facet_results/LeafletMap'
 import Export from '../../facet_results/Export'
-import Recommendations from './Recommendations'
+// import Recommendations from './Recommendations'
 // import { coseLayout, cytoscapeStyle } from '../../../configs/sampo/Cytoscape.js/NetworkConfig'
 import { Route, Redirect } from 'react-router-dom'
 import { has } from 'lodash'
@@ -158,24 +158,56 @@ class InstanceHomePage extends React.Component {
                   />}
               />
               <Route
+                path={`${rootUrl}/${resultClass}/page/${this.state.localID}/nearby_finds`}
+                render={() =>
+                  <LeafletMap
+                    center={[65.184809, 27.314050]}
+                    zoom={5}
+                    results={this.props.results}
+                    layers={this.props.leafletMapLayers}
+                    pageType='instancePage'
+                    resultClass='nearbyFinds'
+                    mapMode='cluster'
+                    uri={tableData.id}
+                    fetchResults={this.props.fetchResults}
+                    fetching={isLoading}
+                    fetchData={this.props.fetchResults}
+                    showInstanceCountInClusters={false}
+                    showExternalLayers={false}
+                  />}
+              />
+              <Route
                 path={`${rootUrl}/${resultClass}/page/${this.state.localID}/recommendation_links`}
                 render={() =>
-                  <Recommendations
-                    rootUrl={this.props.rootUrl}
-                    routeProps={this.props.routeProps}
-                    results={this.props.results}
-                    leafletMapLayers={this.props.leafletMapLayers}
-                    resultUpdateID={this.props.resultUpdateID}
-                    isLoading={isLoading}
-                    tableData={tableData}
-                    properties={this.props.properties}
-                    leafletMap={this.props.leafletMap}
-                    fetchResults={this.props.fetchResults}
-                    fetchGeoJSONLayers={this.props.fetchGeoJSONLayers}
-                    fetchGeoJSONLayersBackend={this.props.fetchGeoJSONLayersBackend}
-                    clearGeoJSONLayers={this.props.clearGeoJSONLayers}
-                    fetchByURI={this.props.fetchByURI}
-                    showError={this.props.showError}
+                  <InstanceHomePageTable
+                    resultClass='finds'
+                    data={tableData}
+                    properties={[
+                      {
+                        id: 'similarObjectType',
+                        valueType: 'object',
+                        makeLink: true,
+                        externalLink: false,
+                        sortValues: true,
+                        numberedList: false
+                      },
+                      {
+                        id: 'similarMaterial',
+                        valueType: 'object',
+                        makeLink: true,
+                        externalLink: false,
+                        sortValues: true,
+                        numberedList: false
+                      },
+                      {
+                        id: 'similarPeriod',
+                        valueType: 'object',
+                        makeLink: true,
+                        externalLink: false,
+                        sortValues: true,
+                        numberedList: false
+                      }
+                    ]}
                   />}
               />
               <Route

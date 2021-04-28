@@ -93,7 +93,8 @@ export default {
     recommendation_links: 'recommendation links',
     statistics: 'statistics',
     pie_chart: 'pie chart',
-    line_chart: 'line chart'
+    line_chart: 'line chart',
+    nearby_finds: 'nearby finds'
     // coins_by_year: 'coins by year',
   },
   table: {

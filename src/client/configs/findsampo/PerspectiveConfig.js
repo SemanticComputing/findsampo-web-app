@@ -77,13 +77,18 @@ export const perspectiveConfig = [
         icon: <AddLocationIcon />
       },
       {
-        id: 'recommendation_links',
+        id: 'nearby_finds',
         value: 2,
+        icon: <AddLocationIcon />
+      },
+      {
+        id: 'recommendation_links',
+        value: 3,
         icon: <StarIcon />
       },
       {
         id: 'export',
-        value: 3,
+        value: 4,
         icon: <CloudDownloadIcon />
       }
     ]
