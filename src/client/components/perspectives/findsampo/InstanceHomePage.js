@@ -180,8 +180,13 @@ class InstanceHomePage extends React.Component {
                 path={`${rootUrl}/${resultClass}/page/${this.state.localID}/recommendation_links`}
                 render={() =>
                   <InstanceHomePageTable
-                    resultClass='finds'
-                    data={tableData}
+                    resultClass={resultClass}
+                    resultClassVariant='similarFinds'
+                    fetchResultsWhenMounted
+                    data={this.props.results ? this.props.results[0] : null}
+                    resultUpdateID={this.props.resultUpdateID}
+                    fetchResults={this.props.fetchResults}
+                    uri={tableData.id}
                     properties={[
                       {
                         id: 'similarObjectType',

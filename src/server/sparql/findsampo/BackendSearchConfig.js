@@ -13,6 +13,7 @@ import {
   findInstancePageMapQuery,
   findsTimelineQuery,
   nearbyFindsQuery,
+  similarFindsQuery,
   knowledgeGraphMetadataQuery
 } from './sparql_queries/SparqlQueriesFinds'
 import {
@@ -63,6 +64,11 @@ export const backendSearchConfig = {
   nearbyFinds: {
     perspectiveID: 'finds', // use endpoint config from finds
     q: nearbyFindsQuery,
+    resultMapper: makeObjectList
+  },
+  similarFinds: {
+    perspectiveID: 'finds', // use endpoint config from finds
+    q: similarFindsQuery,
     resultMapper: makeObjectList
   },
   findsByProvince: {
