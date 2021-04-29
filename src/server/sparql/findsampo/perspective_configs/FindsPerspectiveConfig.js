@@ -90,10 +90,20 @@ export const findsPerspectiveConfig = {
       type: 'timespan'
     },
     earliestStartYear: {
-      labelPath: ':has_creation_time_span/crm:P82a_begin_of_the_begin'
+      orderByPattern: `
+      OPTIONAL { 
+        ?id :has_creation_time_span/crm:P82a_begin_of_the_begin ?orderBy_ .
+        BIND(xsd:date(?orderBy_) as ?orderBy)
+      }
+    `
     },
     latestEndYear: {
-      labelPath: ':has_creation_time_span/crm:P82b_end_of_the_end'
+      orderByPattern: `
+      OPTIONAL { 
+        ?id :has_creation_time_span/crm:P82b_end_of_the_end ?orderBy_ .
+        BIND(xsd:date(?orderBy_) as ?orderBy)
+      }
+    `
     },
     ceramicStyle: {
       id: 'ceramicStyle',
