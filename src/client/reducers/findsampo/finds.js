@@ -46,7 +46,8 @@ export const INITIAL_STATE = {
       makeLink: true,
       externalLink: false,
       sortValues: true,
-      numberedList: false
+      numberedList: false,
+      minWidth: 130
     },
     {
       id: 'objectType',
@@ -54,7 +55,8 @@ export const INITIAL_STATE = {
       makeLink: true,
       externalLink: true,
       sortValues: true,
-      numberedList: false
+      numberedList: false,
+      minWidth: 130
     },
     {
       id: 'material',

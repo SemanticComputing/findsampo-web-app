@@ -22,7 +22,7 @@ export const perspectiveConfig = [
     id: 'finds',
     frontPageImage: findsImage,
     perspectiveDescHeight: 160,
-    defaultActiveFacets: new Set(['findName']),
+    defaultActiveFacets: new Set(['findText']),
     tabs: [
       {
         id: 'table',
