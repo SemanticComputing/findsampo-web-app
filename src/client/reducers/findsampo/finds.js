@@ -38,7 +38,6 @@ export const INITIAL_STATE = {
       externalLink: true,
       sortValues: true,
       numberedList: false,
-      minWidth: 180,
       hideHeader: true
     },
     {
@@ -47,8 +46,7 @@ export const INITIAL_STATE = {
       makeLink: true,
       externalLink: false,
       sortValues: true,
-      numberedList: false,
-      minWidth: 180
+      numberedList: false
     },
     {
       id: 'objectType',
@@ -56,8 +54,7 @@ export const INITIAL_STATE = {
       makeLink: true,
       externalLink: true,
       sortValues: true,
-      numberedList: false,
-      minWidth: 180
+      numberedList: false
     },
     {
       id: 'material',
@@ -66,7 +63,7 @@ export const INITIAL_STATE = {
       externalLink: false,
       sortValues: true,
       numberedList: false,
-      minWidth: 180
+      minWidth: 130
     },
     {
       id: 'province',
@@ -75,7 +72,7 @@ export const INITIAL_STATE = {
       externalLink: false,
       sortValues: true,
       numberedList: false,
-      minWidth: 180
+      minWidth: 130
     },
     {
       id: 'municipality',
@@ -84,7 +81,7 @@ export const INITIAL_STATE = {
       externalLink: false,
       sortValues: true,
       numberedList: false,
-      minWidth: 180
+      minWidth: 130
     },
     {
       id: 'period',
@@ -92,8 +89,7 @@ export const INITIAL_STATE = {
       makeLink: false,
       externalLink: false,
       sortValues: true,
-      numberedList: false,
-      minWidth: 180
+      numberedList: false
     },
     {
       id: 'earliestStartYear',
@@ -120,7 +116,7 @@ export const INITIAL_STATE = {
       externalLink: false,
       sortValues: true,
       numberedList: false,
-      minWidth: 180
+      minWidth: 120
     },
     {
       id: 'width',
@@ -129,7 +125,7 @@ export const INITIAL_STATE = {
       externalLink: false,
       sortValues: true,
       numberedList: false,
-      minWidth: 180
+      minWidth: 120
     },
     {
       id: 'weight',
@@ -138,7 +134,7 @@ export const INITIAL_STATE = {
       externalLink: false,
       sortValues: true,
       numberedList: false,
-      minWidth: 180
+      minWidth: 120
     },
     {
       id: 'max_thickness',
@@ -165,7 +161,7 @@ export const INITIAL_STATE = {
       externalLink: false,
       sortValues: true,
       numberedList: false,
-      minWidth: 180
+      minWidth: 120
     },
     {
       id: 'description',
