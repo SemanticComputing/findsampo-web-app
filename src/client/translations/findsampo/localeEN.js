@@ -378,11 +378,11 @@ export default {
           label: 'Length',
           description: 'Length'
         },
-        max_thickness: {
+        maxThickness: {
           label: 'Maximum thickness',
           description: 'Maximum thickness'
         },
-        min_thickness: {
+        minThickness: {
           label: 'Minimum thickness',
           description: 'Minimum thickness'
         },

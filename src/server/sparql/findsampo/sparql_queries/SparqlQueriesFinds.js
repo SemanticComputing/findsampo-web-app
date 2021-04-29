@@ -104,11 +104,11 @@ export const findPropertiesInstancePage =
     }
     UNION
     {
-      ?id :max_thickness ?max_thickness .
+      ?id :max_thickness ?maxThickness .
     }
     UNION
     {
-      ?id :min_thickness ?min_thickness .
+      ?id :min_thickness ?minThickness .
     }
     UNION
     {
@@ -253,11 +253,11 @@ export const findPropertiesFacetResults =
     }
     UNION
     {
-      ?id :max_thickness ?max_thickness .
+      ?id :max_thickness ?maxThickness .
     }
     UNION
     {
-      ?id :min_thickness ?min_thickness .
+      ?id :min_thickness ?minThickness .
     }
     UNION
     {
