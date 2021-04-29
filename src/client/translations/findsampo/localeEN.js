@@ -413,7 +413,7 @@ export default {
         },
         foundAtHeight: {
           label: 'Height',
-          description: 'Height where found in meters'
+          description: 'Height of the find site above the sea level in meters'
         },
         archaeologicalSiteUrl: {
           label: 'Archeological site url',

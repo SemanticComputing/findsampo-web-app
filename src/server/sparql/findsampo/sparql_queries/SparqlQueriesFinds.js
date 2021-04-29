@@ -311,7 +311,7 @@ export const similarFindsQuery = `
       ?id :object_type ?objectType_ .
       ?similarObjectType__id :object_type ?objectType_ ;
                            skos:prefLabel ?similarObjectType__prefLabel .
-      BIND(CONCAT("/${perspectiveID}/page/", REPLACE(STR(?similarObjectType__id), "^.*\\\\/(.+)", "$1")) AS ?similarObjectType__dataProviderUrl)                 
+      BIND(CONCAT("/${perspectiveID}/page/", REPLACE(STR(?similarObjectType__id), "^.*\\\\/(.+)", "$1")) AS ?similarObjectType__dataProviderUrl)
       FILTER (?similarObjectType__id != ?id)
     }
     UNION
@@ -319,7 +319,7 @@ export const similarFindsQuery = `
       ?id :material ?material_ .
       ?similarMaterial__id :material ?material_ ;
                            skos:prefLabel ?similarMaterial__prefLabel .
-      BIND(CONCAT("/${perspectiveID}/page/", REPLACE(STR(?similarMaterial__id), "^.*\\\\/(.+)", "$1")) AS ?similarMaterial__dataProviderUrl)                 
+      BIND(CONCAT("/${perspectiveID}/page/", REPLACE(STR(?similarMaterial__id), "^.*\\\\/(.+)", "$1")) AS ?similarMaterial__dataProviderUrl)
       FILTER (?similarMaterial__id != ?id)
     }
     UNION
@@ -327,7 +327,7 @@ export const similarFindsQuery = `
       ?id :period ?period_ .
       ?similarPeriod__id :period ?period_ ;
                           skos:prefLabel ?similarPeriod__prefLabel .
-      BIND(CONCAT("/${perspectiveID}/page/", REPLACE(STR(?similarPeriod__id), "^.*\\\\/(.+)", "$1")) AS ?similarPeriod__dataProviderUrl)                 
+      BIND(CONCAT("/${perspectiveID}/page/", REPLACE(STR(?similarPeriod__id), "^.*\\\\/(.+)", "$1")) AS ?similarPeriod__dataProviderUrl)
       FILTER (?similarPeriod__id != ?id)
     }
   }
@@ -391,7 +391,7 @@ export const knowledgeGraphMetadataQuery = `
 `
 
 export const findsCSVQuery = `
-  SELECT ?id ?find_number ?find_name ?MAO_type ?description ?archaeological_site_url ?municipality ?province ?earliest_period ?latest_period ?weight ?length ?width ?diameter (GROUP_CONCAT(?material_label;SEPARATOR=", ") AS ?material)
+  SELECT ?id ?find_number ?find_name ?object_type ?object_type_MAO_URI ?description ?archaeological_site_url ?municipality ?province ?latitude ?longitude ?coordinate_source ?earliest_year ?latest_year ?earliest_period ?latest_period ?weight ?length ?width ?diameter (GROUP_CONCAT(?material_label;SEPARATOR=", ") AS ?material)
   WHERE {
   <FILTER>
     ?id a :Find .
@@ -421,7 +421,11 @@ export const findsCSVQuery = `
       ?id :latest_period/skos:prefLabel ?latest_period .
     }
     OPTIONAL {
-      ?id :object_type ?MAO_type .
+      ?id :object_type/skos:prefLabel ?object_type .
+      FILTER(LANG(?object_type) = 'fi')
+    }
+    OPTIONAL {
+      ?id :object_type ?object_type_MAO_URI .
     }
     OPTIONAL {
       ?id :weight ?weight .
@@ -435,8 +439,21 @@ export const findsCSVQuery = `
     OPTIONAL {
       ?id :diameter ?diameter .
     }
+    OPTIONAL {
+      ?id :find_coordinates/wgs84:lat ?latitude .
+      ?id :find_coordinates/wgs84:long ?longitude .
+      ?id :find_coordinates/dct:source ?coordinate_source
+    }
+    OPTIONAL {
+      ?id :earliest_creation_year ?earliest_year .
+    }
+    OPTIONAL {
+      ?id :latest_creation_year ?latest_year .
+    }
+
   }
-  GROUP BY ?id ?find_number ?find_name ?MAO_type ?description ?archaeological_site_url ?municipality ?province ?earliest_period ?latest_period ?weight ?length ?width ?diameter
+  GROUP BY ?id ?find_number ?find_name ?object_type ?object_type_MAO_URI ?description ?archaeological_site_url ?municipality ?province ?latitude ?longitude ?coordinate_source ?earliest_year ?latest_year ?earliest_period ?latest_period ?weight ?length ?width ?diameter
+  ORDER BY ?id
 `
 
 export const findsByProvinceQuery = `

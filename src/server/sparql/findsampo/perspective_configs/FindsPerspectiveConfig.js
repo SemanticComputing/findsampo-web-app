@@ -7,7 +7,7 @@ import { prefixes } from '../sparql_queries/SparqlQueriesPrefixes'
 export const findsPerspectiveConfig = {
   endpoint: {
     url: 'https://ldf.fi/sualt-fha-finds/sparql',
-    // url: 'http://localhost:3039/ds/sparql',
+    //url: 'http://localhost:3039/ds/sparql',
     prefixes,
     useAuth: true
   },
@@ -91,7 +91,7 @@ export const findsPerspectiveConfig = {
     },
     earliestStartYear: {
       orderByPattern: `
-      OPTIONAL { 
+      OPTIONAL {
         ?id :has_creation_time_span/crm:P82a_begin_of_the_begin ?orderBy_ .
         BIND(xsd:date(?orderBy_) as ?orderBy)
       }
@@ -99,7 +99,7 @@ export const findsPerspectiveConfig = {
     },
     latestEndYear: {
       orderByPattern: `
-      OPTIONAL { 
+      OPTIONAL {
         ?id :has_creation_time_span/crm:P82b_end_of_the_end ?orderBy_ .
         BIND(xsd:date(?orderBy_) as ?orderBy)
       }
