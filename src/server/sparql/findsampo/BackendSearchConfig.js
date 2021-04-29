@@ -13,7 +13,8 @@ import {
   findInstancePageMapQuery,
   findsTimelineQuery,
   nearbyFindsQuery,
-  knowledgeGraphMetadataQuery
+  knowledgeGraphMetadataQuery,
+  findsCSVQuery
 } from './sparql_queries/SparqlQueriesFinds'
 import {
   coinsByYearQuery
@@ -118,5 +119,10 @@ export const backendSearchConfig = {
     q: coinsByYearQuery,
     filterTarget: 'find',
     resultMapper: mapLineChart
-  }
+  },
+  csvFinds: {
+  perspectiveID: 'finds', // use endpoint config from finds
+  q: findsCSVQuery,
+  filterTarget: 'id'
+},
 }

@@ -279,7 +279,8 @@ const resultClasses = new Set([
   'findsByObjectName',
   'findsByYear',
   'findsByWeight',
-  'findsKnowledgeGraphMetadata'
+  'findsKnowledgeGraphMetadata',
+  'csvFinds'
 ])
 
 const finds = (state = INITIAL_STATE, action) => {

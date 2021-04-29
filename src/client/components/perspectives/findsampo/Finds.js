@@ -21,6 +21,7 @@ import {
   createSingleLineChartData
   // createMultipleLineChartData
 } from '../../../configs/findsampo/ApexCharts/LineChartConfig'
+import ExportCSV from '../../facet_results/ExportCSV'
 
 const Finds = props => {
   const { rootUrl, perspective } = props
@@ -186,15 +187,13 @@ const Finds = props => {
           />}
       />
       <Route
-        path={`${rootUrl}/${perspective.id}/faceted-search/export`}
+        path={`${props.rootUrl}/${perspective.id}/faceted-search/csv`}
         render={() =>
-          <Export
-            data={props.facetResults}
-            resultClass='finds'
+          <ExportCSV
+            resultClass='csvFinds'
             facetClass='finds'
-            pageType='facetResults'
-            fetchPaginatedResults={props.fetchPaginatedResults}
-            updatePage={props.updatePage}
+            facetUpdateID={props.facetData.facetUpdateID}
+            facets={props.facetData.facets}
           />}
       />
     </>

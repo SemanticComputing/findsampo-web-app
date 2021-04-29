@@ -55,7 +55,7 @@ export const perspectiveConfig = [
         icon: <LineChartIcon />
       },
       {
-        id: 'export',
+        id: 'csv',
         value: 6,
         icon: <CloudDownloadIcon />
       }

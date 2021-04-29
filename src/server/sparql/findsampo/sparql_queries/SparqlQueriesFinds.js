@@ -395,6 +395,55 @@ export const knowledgeGraphMetadataQuery = `
   }
 `
 
+export const findsCSVQuery = `
+  SELECT ?id ?find_number ?find_name ?MAO_type ?description ?archaeological_site_url ?municipality ?province ?earliest_period ?latest_period ?weight ?length ?width ?diameter (GROUP_CONCAT(?material_label;SEPARATOR=", ") AS ?material)
+  WHERE {
+  <FILTER>
+    ?id a :Find .
+    ?id ltk-s:find_number ?find_number .
+    OPTIONAL {
+      ?id ltk-s:archaeological_site_url ?archaeological_site_url .
+    }
+    OPTIONAL {
+      ?id ltk-s:municipality ?municipality .
+    }
+    OPTIONAL {
+      ?id ltk-s:province ?province .
+    }
+    OPTIONAL {
+      ?id ltk-s:find_name ?find_name .
+    }
+    OPTIONAL {
+      ?id ltk-s:description ?description .
+    }
+    OPTIONAL {
+      ?id :material/skos:prefLabel ?material_label .
+    }
+    OPTIONAL {
+      ?id :earliest_period/skos:prefLabel ?earliest_period .
+    }
+    OPTIONAL {
+      ?id :latest_period/skos:prefLabel ?latest_period .
+    }
+    OPTIONAL {
+      ?id :object_type ?MAO_type .
+    }
+    OPTIONAL {
+      ?id :weight ?weight .
+    }
+    OPTIONAL {
+      ?id :length ?length .
+    }
+    OPTIONAL {
+      ?id :width ?width .
+    }
+    OPTIONAL {
+      ?id :diameter ?diameter .
+    }
+  }
+  GROUP BY ?id ?find_number ?find_name ?MAO_type ?description ?archaeological_site_url ?municipality ?province ?earliest_period ?latest_period ?weight ?length ?width ?diameter
+`
+
 export const findsByProvinceQuery = `
  SELECT ?category ?prefLabel
  (COUNT(DISTINCT ?find) as ?instanceCount)
