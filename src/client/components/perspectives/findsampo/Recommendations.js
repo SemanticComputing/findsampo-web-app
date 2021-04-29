@@ -1,7 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import LeafletMap from '../../facet_results/LeafletMap'
-import TitleBarGridList from './TitleBarGridList'
+// import TitleBarGridList from './TitleBarGridList'
+import InstanceHomePageTable from '../../main_layout/InstanceHomePageTable'
 import { makeStyles } from '@material-ui/core/styles'
 import Typography from '@material-ui/core/Typography'
 import Paper from '@material-ui/core/Paper'
@@ -36,6 +37,41 @@ const Recommendations = props => {
       <Grid container spacing={3}>
         <Grid item xs={12}>
           <Paper elevation={3} className={classes.gridItem}>
+            <Typography className={classes.title} variant='h4'>{intl.get('perspectives.finds.instancePage.recommendations.similarFinds')}</Typography>
+            <InstanceHomePageTable
+              resultClass='finds'
+              data={props.tableData}
+              properties={[
+                {
+                  id: 'similarObjectType',
+                  valueType: 'object',
+                  makeLink: true,
+                  externalLink: false,
+                  sortValues: true,
+                  numberedList: false
+                },
+                {
+                  id: 'similarMaterial',
+                  valueType: 'object',
+                  makeLink: true,
+                  externalLink: false,
+                  sortValues: true,
+                  numberedList: false
+                },
+                {
+                  id: 'similarPeriod',
+                  valueType: 'object',
+                  makeLink: true,
+                  externalLink: false,
+                  sortValues: true,
+                  numberedList: false
+                }
+              ]}
+            />
+          </Paper>
+        </Grid>
+        <Grid item xs={12}>
+          <Paper elevation={3} className={classes.gridItem}>
             <Typography className={classes.title} variant='h4'>{intl.get('perspectives.finds.instancePage.recommendations.nearByFinds')}</Typography>
             <div className={classes.content}>
               <LeafletMap
@@ -54,12 +90,6 @@ const Recommendations = props => {
                 showExternalLayers={false}
               />
             </div>
-          </Paper>
-        </Grid>
-        <Grid item xs={12}>
-          <Paper elevation={3} className={classes.gridItem}>
-            <Typography className={classes.title} variant='h4'>{intl.get('perspectives.finds.instancePage.recommendations.similarFinds')}</Typography>
-            <TitleBarGridList />
           </Paper>
         </Grid>
       </Grid>

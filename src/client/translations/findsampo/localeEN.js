@@ -90,10 +90,11 @@ export default {
     export: 'export',
     'by-period': 'by period',
     timeline: 'timeline',
-    recommendations: 'recommendations',
+    recommendation_links: 'recommendation links',
     statistics: 'statistics',
     pie_chart: 'pie chart',
     line_chart: 'line chart',
+    nearby_finds: 'nearby finds',
     csv: 'csv',
     // coins_by_year: 'coins by year',
   },
@@ -226,7 +227,7 @@ export default {
         `,
         recommendations: {
           nearByFinds: 'Nearby finds',
-          similarFinds: 'Similar finds (static example)'
+          similarFinds: 'Similar finds'
         }
       },
       properties: {
@@ -378,11 +379,11 @@ export default {
           label: 'Length',
           description: 'Length'
         },
-        max_thickness: {
+        maxThickness: {
           label: 'Maximum thickness',
           description: 'Maximum thickness'
         },
-        min_thickness: {
+        minThickness: {
           label: 'Minimum thickness',
           description: 'Minimum thickness'
         },
@@ -394,9 +395,17 @@ export default {
           label: 'Diameter',
           description: 'Diameter'
         },
-        similarInternalFind: {
-          label: 'Similar internal find',
-          description: 'Similar find in FindSampo'
+        similarObjectType: {
+          label: 'Finds with similar object type',
+          description: 'Finds with similar object type'
+        },
+        similarMaterial: {
+          label: 'Finds with similar material',
+          description: 'Finds with similar material'
+        },
+        similarPeriod: {
+          label: 'Finds from the same time period',
+          description: 'Finds from the same time period'
         },
         similarExternalFind: {
           label: 'Similar external find',
@@ -409,196 +418,6 @@ export default {
         archaeologicalSiteUrl: {
           label: 'Archeological site url',
           description: 'Url of the archeological site in kyppi.fi service'
-        }
-      }
-    },
-    coins: {
-      label: 'Coins',
-      facetResultsType: 'coins',
-      shortDescription: 'Faceted search for coins',
-      longDescription: `
-        <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
-           [ short instructions here... ]
-        </p>
-        <ul class="MuiTypography-root MuiTypography-body1">
-          <li>
-            <strong>TABLE</STRONG> tab presents the finds as paginated table
-          </li>
-          <li>
-            ...
-          </li>
-          <li>
-            ...
-          </li>
-          <li>
-            ...
-          </li>
-        </ul>
-      `,
-      instancePage: {
-        label: 'Archaeological find',
-        description: `
-          <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
-            [ short instructions here... ]
-          </p>
-        `
-      },
-      properties: {
-        uri: {
-          label: 'URI',
-          description: 'Uniform Resource Identifier'
-        },
-        findName: {
-          label: 'Find name',
-          description: 'Find name.'
-        },
-        identifierFHA: {
-          label: 'FHA identifier',
-          description: 'FHA identifier of the find.'
-        },
-        specification: {
-          label: 'Specification',
-          description: 'Specification.'
-        },
-        prefLabel: {
-          label: 'Find name',
-          description: 'Find name.'
-        },
-        type: {
-          label: 'Type',
-          description: `
-            Type.
-          `
-        },
-        objectType: {
-          label: 'Type (annotation)',
-          description: `
-            Object type in MAO .
-          `
-        },
-        facetObjectType: {
-          label: 'Object type',
-          description: `
-            Object type of the find using a facet ontology created by the FHA.
-          `
-        },
-        objectTypeFlat: {
-          label: 'Object type MAO annotation term (for testing and development purposes)',
-          description: `
-            Object type without hierarchy using MAO term.
-          `
-        },
-        place: {
-          label: 'Place',
-          description: `
-            Find pace
-          `
-        },
-        subCategory: {
-          label: 'Sub category',
-          description: `
-            Sub category.
-          `
-        },
-        objectSubCategory: {
-          label: 'Sub category ontologized',
-          description: `
-            Sub category using ontology terms.
-          `
-        },
-        material: {
-          label: 'Material',
-          description: `
-            Material.
-          `
-        },
-        materialLiteral: {
-          label: 'Material literal',
-          description: `
-            Material literal.
-          `
-        },
-        period: {
-          label: 'Period',
-          description: 'Ontologized period. May include both earliest and lates periods.'
-        },
-        periodObject: {
-          label: 'Period ontologized',
-          description: 'Ontologized period. May include both earliest and lates periods.'
-        },
-        dateTimespan: {
-          label: 'Date',
-          description: `
-            Date.
-          `
-        },
-        startYear: {
-          label: 'Start year',
-          description: `
-            Start year.
-          `
-        },
-        endYear: {
-          label: 'End year',
-          description: `
-            End year.
-          `
-        },
-        province: {
-          label: 'Province',
-          description: `
-            Province.
-          `
-        },
-        municipality: {
-          label: 'Municipality',
-          description: `
-            Municipality.
-          `
-        },
-        image: {
-          label: 'Image',
-          description: 'Image description.'
-        },
-        earliestStart: {
-          label: 'Earliest date',
-          description: 'Earliest possible creation date of the object'
-        },
-        latestEnd: {
-          label: 'Latest date',
-          description: 'Latest possible creation date of the object'
-        },
-        kmNumber: {
-          label: 'KM number',
-          description: 'accession number of the collections'
-        },
-        ceramicStyle: {
-          label: 'Ceramic style',
-          description: 'Ceramic culture associated with the find'
-        },
-        weight: {
-          label: 'Weight',
-          description: 'Weight'
-        },
-        length: {
-          label: 'Length',
-          description: 'Length'
-        },
-        thickness: {
-          label: 'Thickness',
-          description: 'Thickness'
-        },
-        width: {
-          label: 'Width',
-          description: 'Width'
-        },
-        similarInternalFind: {
-          label: 'Similar internal find',
-          description: 'Similar find in FindSampo'
-        },
-        similarExternalFind: {
-          label: 'Similar external find',
-          description: 'Similar find in PAS'
         }
       }
     },

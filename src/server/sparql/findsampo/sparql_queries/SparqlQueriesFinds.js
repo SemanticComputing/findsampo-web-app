@@ -104,11 +104,11 @@ export const findPropertiesInstancePage =
     }
     UNION
     {
-      ?id :max_thickness ?max_thickness .
+      ?id :max_thickness ?maxThickness .
     }
     UNION
     {
-      ?id :min_thickness ?min_thickness .
+      ?id :min_thickness ?minThickness .
     }
     UNION
     {
@@ -127,12 +127,6 @@ export const findPropertiesInstancePage =
       ?id ltk-s:archaeological_site_url ?archaeologicalSiteUrl__id .
       BIND(URI(?archaeologicalSiteUrl__id) AS ?archaeologicalSiteUrl__dataProviderUrl)
       BIND(URI(?archaeologicalSiteUrl__id) AS ?archaeologicalSiteUrl__prefLabel)
-    }
-    UNION
-    {
-      ?id :similar_internal_find ?similarInternalFind__id .
-      ?similarInternalFind__id skos:prefLabel ?similarInternalFind__prefLabel .
-      BIND(CONCAT("/${perspectiveID}/page/", REPLACE(STR(?similarInternalFind__id), "^.*\\\\/(.+)", "$1")) AS ?similarInternalFind__dataProviderUrl)
     }
     UNION
     {
@@ -259,11 +253,11 @@ export const findPropertiesFacetResults =
     }
     UNION
     {
-      ?id :max_thickness ?max_thickness .
+      ?id :max_thickness ?maxThickness .
     }
     UNION
     {
-      ?id :min_thickness ?min_thickness .
+      ?id :min_thickness ?minThickness .
     }
     UNION
     {
@@ -312,29 +306,30 @@ export const nearbyFindsQuery = `
 export const similarFindsQuery = `
   SELECT *
   WHERE {
-    VALUES ?inputID { <ID> }
-      {
-        ?inputID :object_type ?objectType .
-        ?id :object_type ?objectType .
-        FILTER (?inputID != ?id)
-        BIND('Saman tyyppinen esine' AS ?similarityDescription )
-      }
-      UNION
-      {
-        ?inputID :material ?material .
-        ?id :material ?material
-        FILTER (?inputID != ?id)
-        BIND('Samasta materiaalista valmistettu esine' AS ?similarityDescription )
-      }
-      UNION
-      {
-        ?inputID :period ?period .
-        ?id :period ?period .
-        FILTER (?inputID != ?id)
-        BIND('Esine samalta aikakaudelta' AS ?similarityDescription )
-      }
+    VALUES ?id { <ID> }
+    {
+      ?id :object_type ?objectType_ .
+      ?similarObjectType__id :object_type ?objectType_ ;
+                           skos:prefLabel ?similarObjectType__prefLabel .
+      BIND(CONCAT("/${perspectiveID}/page/", REPLACE(STR(?similarObjectType__id), "^.*\\\\/(.+)", "$1")) AS ?similarObjectType__dataProviderUrl)                 
+      FILTER (?similarObjectType__id != ?id)
     }
-    ${findPropertiesInstancePage}
+    UNION
+    {
+      ?id :material ?material_ .
+      ?similarMaterial__id :material ?material_ ;
+                           skos:prefLabel ?similarMaterial__prefLabel .
+      BIND(CONCAT("/${perspectiveID}/page/", REPLACE(STR(?similarMaterial__id), "^.*\\\\/(.+)", "$1")) AS ?similarMaterial__dataProviderUrl)                 
+      FILTER (?similarMaterial__id != ?id)
+    }
+    UNION
+    {
+      ?id :period ?period_ .
+      ?similarPeriod__id :period ?period_ ;
+                          skos:prefLabel ?similarPeriod__prefLabel .
+      BIND(CONCAT("/${perspectiveID}/page/", REPLACE(STR(?similarPeriod__id), "^.*\\\\/(.+)", "$1")) AS ?similarPeriod__dataProviderUrl)                 
+      FILTER (?similarPeriod__id != ?id)
+    }
   }
 `
 

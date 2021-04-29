@@ -22,7 +22,7 @@ export const perspectiveConfig = [
     id: 'finds',
     frontPageImage: findsImage,
     perspectiveDescHeight: 160,
-    defaultActiveFacets: new Set(['findName']),
+    defaultActiveFacets: new Set(['findText']),
     tabs: [
       {
         id: 'table',
@@ -77,13 +77,18 @@ export const perspectiveConfig = [
         icon: <AddLocationIcon />
       },
       {
-        id: 'recommendations',
+        id: 'nearby_finds',
         value: 2,
+        icon: <AddLocationIcon />
+      },
+      {
+        id: 'recommendation_links',
+        value: 3,
         icon: <StarIcon />
       },
       {
         id: 'export',
-        value: 3,
+        value: 4,
         icon: <CloudDownloadIcon />
       }
     ]

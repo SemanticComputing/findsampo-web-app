@@ -10,7 +10,7 @@ import InstanceHomePageTable from '../../main_layout/InstanceHomePageTable'
 // import Network from '../../facet_results/Network'
 import LeafletMap from '../../facet_results/LeafletMap'
 import Export from '../../facet_results/Export'
-import Recommendations from './Recommendations'
+// import Recommendations from './Recommendations'
 // import { coseLayout, cytoscapeStyle } from '../../../configs/sampo/Cytoscape.js/NetworkConfig'
 import { Route, Redirect } from 'react-router-dom'
 import { has } from 'lodash'
@@ -55,21 +55,20 @@ class InstanceHomePage extends React.Component {
     if (!this.hasTableData() && prevPathname !== currentPathname && currentPathname.endsWith('table')) {
       this.fetchTableData()
     }
+    // handle browser's back button
+    const localID = this.getLocalIDFromURL()
+    if (this.state.localID !== localID) {
+      this.fetchTableData()
+    }
   }
 
   hasTableData = () => this.props.tableData !== null && Object.values(this.props.tableData).length >= 1
 
   fetchTableData = () => {
+    const localID = this.getLocalIDFromURL()
+    this.setState({ localID })
     let uri = ''
     const base = 'http://ldf.fi/findsampo/'
-    const locationArr = this.props.routeProps.location.pathname.split('/')
-    let localID = locationArr.pop()
-    this.props.tabs.map(tab => {
-      if (localID === tab.id) {
-        localID = locationArr.pop() // pop again if tab id
-      }
-    })
-    this.setState({ localID: localID })
     switch (this.props.resultClass) {
       case 'finds':
         uri = `${base}finds/${localID}`
@@ -87,6 +86,17 @@ class InstanceHomePage extends React.Component {
       variant: null,
       uri: uri
     })
+  }
+
+  getLocalIDFromURL = () => {
+    const locationArr = this.props.routeProps.location.pathname.split('/')
+    let localID = locationArr.pop()
+    this.props.tabs.map(tab => {
+      if (localID === tab.id) {
+        localID = locationArr.pop() // pop again if tab id
+      }
+    })
+    return localID
   }
 
   getVisibleRows = rows => {
@@ -158,24 +168,61 @@ class InstanceHomePage extends React.Component {
                   />}
               />
               <Route
-                path={`${rootUrl}/${resultClass}/page/${this.state.localID}/recommendations`}
+                path={`${rootUrl}/${resultClass}/page/${this.state.localID}/nearby_finds`}
                 render={() =>
-                  <Recommendations
-                    rootUrl={this.props.rootUrl}
-                    routeProps={this.props.routeProps}
+                  <LeafletMap
+                    center={[65.184809, 27.314050]}
+                    zoom={5}
                     results={this.props.results}
-                    leafletMapLayers={this.props.leafletMapLayers}
-                    resultUpdateID={this.props.resultUpdateID}
-                    isLoading={isLoading}
-                    tableData={tableData}
-                    properties={this.props.properties}
-                    leafletMap={this.props.leafletMap}
+                    layers={this.props.leafletMapLayers}
+                    pageType='instancePage'
+                    resultClass='nearbyFinds'
+                    mapMode='cluster'
+                    uri={tableData.id}
                     fetchResults={this.props.fetchResults}
-                    fetchGeoJSONLayers={this.props.fetchGeoJSONLayers}
-                    fetchGeoJSONLayersBackend={this.props.fetchGeoJSONLayersBackend}
-                    clearGeoJSONLayers={this.props.clearGeoJSONLayers}
-                    fetchByURI={this.props.fetchByURI}
-                    showError={this.props.showError}
+                    fetching={isLoading}
+                    fetchData={this.props.fetchResults}
+                    showInstanceCountInClusters={false}
+                    showExternalLayers={false}
+                  />}
+              />
+              <Route
+                path={`${rootUrl}/${resultClass}/page/${this.state.localID}/recommendation_links`}
+                render={() =>
+                  <InstanceHomePageTable
+                    resultClass={resultClass}
+                    resultClassVariant='similarFinds'
+                    fetchResultsWhenMounted
+                    data={this.props.results ? this.props.results[0] : null}
+                    resultUpdateID={this.props.resultUpdateID}
+                    fetchResults={this.props.fetchResults}
+                    uri={tableData.id}
+                    properties={[
+                      {
+                        id: 'similarObjectType',
+                        valueType: 'object',
+                        makeLink: true,
+                        externalLink: false,
+                        sortValues: true,
+                        numberedList: false
+                      },
+                      {
+                        id: 'similarMaterial',
+                        valueType: 'object',
+                        makeLink: true,
+                        externalLink: false,
+                        sortValues: true,
+                        numberedList: false
+                      },
+                      {
+                        id: 'similarPeriod',
+                        valueType: 'object',
+                        makeLink: true,
+                        externalLink: false,
+                        sortValues: true,
+                        numberedList: false
+                      }
+                    ]}
                   />}
               />
               <Route

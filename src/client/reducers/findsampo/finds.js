@@ -38,7 +38,6 @@ export const INITIAL_STATE = {
       externalLink: true,
       sortValues: true,
       numberedList: false,
-      minWidth: 180,
       hideHeader: true
     },
     {
@@ -48,17 +47,8 @@ export const INITIAL_STATE = {
       externalLink: false,
       sortValues: true,
       numberedList: false,
-      minWidth: 180
+      minWidth: 130
     },
-    // {
-    //   id: 'kmNumber',
-    //   valueType: 'string',
-    //   makeLink: false,
-    //   externalLink: false,
-    //   sortValues: true,
-    //   numberedList: false,
-    //   minWidth: 180
-    // },
     {
       id: 'objectType',
       valueType: 'object',
@@ -66,35 +56,8 @@ export const INITIAL_STATE = {
       externalLink: true,
       sortValues: true,
       numberedList: false,
-      minWidth: 180
+      minWidth: 130
     },
-    // {
-    //   id: 'specification',
-    //   valueType: 'string',
-    //   makeLink: true,
-    //   externalLink: false,
-    //   sortValues: true,
-    //   numberedList: false,
-    //   minWidth: 180
-    // },
-    // {
-    //   id: 'type',
-    //   valueType: 'string',
-    //   makeLink: false,
-    //   externalLink: false,
-    //   sortValues: true,
-    //   numberedList: false,
-    //   minWidth: 180
-    // },
-    // {
-    //   id: 'subCategory',
-    //   valueType: 'string',
-    //   makeLink: false,
-    //   externalLink: false,
-    //   sortValues: true,
-    //   numberedList: false,
-    //   minWidth: 180
-    // },
     {
       id: 'material',
       valueType: 'object',
@@ -102,7 +65,7 @@ export const INITIAL_STATE = {
       externalLink: false,
       sortValues: true,
       numberedList: false,
-      minWidth: 180
+      minWidth: 130
     },
     {
       id: 'province',
@@ -111,7 +74,7 @@ export const INITIAL_STATE = {
       externalLink: false,
       sortValues: true,
       numberedList: false,
-      minWidth: 180
+      minWidth: 130
     },
     {
       id: 'municipality',
@@ -120,7 +83,7 @@ export const INITIAL_STATE = {
       externalLink: false,
       sortValues: true,
       numberedList: false,
-      minWidth: 180
+      minWidth: 130
     },
     {
       id: 'period',
@@ -128,27 +91,8 @@ export const INITIAL_STATE = {
       makeLink: false,
       externalLink: false,
       sortValues: true,
-      numberedList: false,
-      minWidth: 180
+      numberedList: false
     },
-    // {
-    //   id: 'earliestStartYear',
-    //   valueType: 'string',
-    //   makeLink: false,
-    //   externalLink: false,
-    //   sortValues: true,
-    //   numberedList: false,
-    //   minWidth: 180
-    // },
-    // {
-    //   id: 'latestEndYear',
-    //   valueType: 'string',
-    //   makeLink: false,
-    //   externalLink: false,
-    //   sortValues: true,
-    //   numberedList: false,
-    //   minWidth: 180
-    // },
     {
       id: 'earliestStartYear',
       valueType: 'string',
@@ -174,7 +118,7 @@ export const INITIAL_STATE = {
       externalLink: false,
       sortValues: true,
       numberedList: false,
-      minWidth: 180
+      minWidth: 120
     },
     {
       id: 'width',
@@ -183,7 +127,7 @@ export const INITIAL_STATE = {
       externalLink: false,
       sortValues: true,
       numberedList: false,
-      minWidth: 180
+      minWidth: 120
     },
     {
       id: 'weight',
@@ -192,10 +136,10 @@ export const INITIAL_STATE = {
       externalLink: false,
       sortValues: true,
       numberedList: false,
-      minWidth: 180
+      minWidth: 120
     },
     {
-      id: 'max_thickness',
+      id: 'maxThickness',
       valueType: 'string',
       makeLink: false,
       externalLink: false,
@@ -204,7 +148,7 @@ export const INITIAL_STATE = {
       minWidth: 180
     },
     {
-      id: 'min_thickness',
+      id: 'minThickness',
       valueType: 'string',
       makeLink: false,
       externalLink: false,
@@ -219,7 +163,7 @@ export const INITIAL_STATE = {
       externalLink: false,
       sortValues: true,
       numberedList: false,
-      minWidth: 180
+      minWidth: 120
     },
     {
       id: 'description',
@@ -247,24 +191,6 @@ export const INITIAL_STATE = {
       sortValues: true,
       numberedList: false,
       onlyOnInstancePage: true
-    },
-    {
-      id: 'similarInternalFind',
-      valueType: 'object',
-      makeLink: true,
-      externalLink: false,
-      sortValues: true,
-      numberedList: false,
-      onlyOnInstancePage: true
-    },
-    {
-      id: 'similarExternalFind',
-      valueType: 'object',
-      makeLink: true,
-      externalLink: true,
-      sortValues: true,
-      numberedList: false,
-      onlyOnInstancePage: true
     }
   ]
 }
@@ -273,6 +199,7 @@ const resultClasses = new Set([
   'finds',
   'findsTimeline',
   'nearbyFinds',
+  'similarFinds',
   'findInstancePageMap',
   'findsByProvince',
   'findsByMaterial',

@@ -7,11 +7,12 @@ import { prefixes } from '../sparql_queries/SparqlQueriesPrefixes'
 export const findsPerspectiveConfig = {
   endpoint: {
     url: 'https://ldf.fi/sualt-fha-finds/sparql',
-    //url: 'http://localhost:3039/ds/sparql',
+    // url: 'http://localhost:3039/ds/sparql',
     prefixes,
     useAuth: true
   },
   facetClass: ':Find',
+  langTag: 'fi',
   paginatedResults: {
     properties: findPropertiesFacetResults
   },
@@ -21,12 +22,7 @@ export const findsPerspectiveConfig = {
   },
   facets: {
     prefLabel: {
-      id: 'prefLabel',
-      facetValueFilter: '',
-      predicate: 'skos:prefLabel',
-      labelPath: 'skos:prefLabel',
-      type: 'list',
-      literal: true
+      labelPath: 'skos:prefLabel'
     },
     findText: {
       id: 'findText',
@@ -35,37 +31,22 @@ export const findsPerspectiveConfig = {
       textQueryProperty: '',
       type: 'text'
     },
-    specification: {
-      id: 'specification',
+    facetObjectType: {
+      id: 'facetObjectType',
       facetValueFilter: '',
-      predicate: ':specification',
-      labelPath: ':specification',
-      type: 'list',
-      literal: true
+      predicate: ':facet_object_type',
+      labelPath: ':facet_object_type/skos:prefLabel',
+      type: 'hierarchical',
+      parentProperty: 'skos:broader'
     },
-    type: {
-      id: 'type',
-      facetValueFilter: '',
-      predicate: ':type',
-      labelPath: ':type',
-      type: 'list',
-      literal: true
-    },
-    subCategory: {
-      id: 'subCategory',
-      facetValueFilter: '',
-      predicate: ':sub_category',
-      labelPath: ':sub_category',
-      type: 'list',
-      literal: true
-    },
-    objectSubCategory: {
-      id: 'objectSubCategory',
-      facetValueFilter: '',
-      predicate: ':object_type',
-      labelPath: ':object_type/skos:prefLabel',
-      type: 'list',
-      facetLabelFilter: 'FILTER(LANG(?prefLabel_) = \'fi\')'
+    objectType: { // objectType is used only for sorting results
+      id: 'objectType',
+      orderByPattern: `
+        OPTIONAL {
+          ?id :object_type/skos:prefLabel ?orderBy .
+          FILTER(LANG(?orderBy) = '<LANG>')
+        }
+      `
     },
     material: {
       id: 'material',
@@ -75,13 +56,22 @@ export const findsPerspectiveConfig = {
       type: 'hierarchical',
       parentProperty: 'skos:broader'
     },
-    materialLiteral: {
-      id: 'materialLiteral',
+    place: {
+      id: 'place',
       facetValueFilter: '',
-      predicate: ':material_literal',
-      labelPath: ':material_literal',
-      type: 'list',
-      literal: true
+      predicate: ':found_in_municipality/skos:exactMatch',
+      labelPath: ':found_in_municipality/skos:exactMatch/skos:prefLabel',
+      type: 'hierarchical',
+      parentProperty: 'skos:broader',
+      facetLabelFilter: `
+        FILTER(LANG(?prefLabel_) = '<LANG>')
+      `
+    },
+    province: {
+      labelPath: ':found_in_province/skos:prefLabel'
+    },
+    municipality: {
+      labelPath: ':found_in_municipality/skos:prefLabel'
     },
     period: {
       id: 'period',
@@ -94,63 +84,16 @@ export const findsPerspectiveConfig = {
     dateTimespan: {
       id: 'dateTimespan',
       facetValueFilter: '',
-      sortByAscPredicate: ':has_creation_time_span/crm:P82a_begin_of_the_begin',
-      sortByDescPredicate: ':has_creation_time_span/crm:P82b_end_of_the_end',
       predicate: ':has_creation_time_span',
       startProperty: 'crm:P82a_begin_of_the_begin',
       endProperty: 'crm:P82b_end_of_the_end',
       type: 'timespan'
     },
-    municipality: {
-      id: 'municipality',
-      facetValueFilter: '',
-      predicate: ':found_in_municipality',
-      labelPath: ':found_in_municipality/skos:exactMatch/skos:prefLabel',
-      type: 'list'
+    earliestStartYear: {
+      labelPath: ':has_creation_time_span/crm:P82a_begin_of_the_begin'
     },
-    place: {
-      id: 'place',
-      facetValueFilter: '',
-      predicate: ':found_in_municipality/skos:exactMatch',
-      labelPath: ':found_in_municipality/skos:exactMatch/skos:prefLabel',
-      type: 'hierarchical',
-      parentProperty: 'skos:broader',
-      facetLabelFilter: 'FILTER(LANG(?prefLabel_) = \'fi\')'
-    },
-    objectType: {
-      id: 'objectType',
-      facetValueFilter: '',
-      predicate: ':object_type',
-      labelPath: ':object_type/skos:prefLabel',
-      type: 'hierarchical',
-      // parentPredicate: ':object_type/skos:broader+',
-      parentProperty: 'skos:broader'
-    },
-    facetObjectType: {
-      id: 'facetObjectType',
-      facetValueFilter: '',
-      predicate: ':facet_object_type',
-      labelPath: ':facet_object_type/skos:prefLabel',
-      type: 'hierarchical',
-      // parentPredicate: ':object_type/skos:broader+',
-      parentProperty: 'skos:broader'
-    },
-    objectTypeFlat: {
-      id: 'objectTypeFlat',
-      facetValueFilter: '',
-      predicate: ':object_type',
-      labelPath: ':object_type/skos:prefLabel',
-      // type: 'hierarchical',
-      type: 'list',
-      facetLabelFilter: 'FILTER(LANG(?prefLabel_) = \'fi\')'
-    },
-    kmNumber: {
-      id: 'kmNumber',
-      facetValueFilter: '',
-      predicate: 'ltk-s:identifier',
-      labelPath: 'ltk-s:identifier',
-      type: 'list',
-      literal: true
+    latestEndYear: {
+      labelPath: ':has_creation_time_span/crm:P82b_end_of_the_end'
     },
     ceramicStyle: {
       id: 'ceramicStyle',
@@ -176,14 +119,6 @@ export const findsPerspectiveConfig = {
       type: 'integer',
       typecasting: 'BIND(xsd:integer(ROUND(xsd:decimal(?value))) as ?valueAsInteger)'
     },
-    diameter: {
-      id: 'width',
-      facetValueFilter: '',
-      labelPath: ':diameter',
-      predicate: ':diameter',
-      type: 'integer',
-      typecasting: 'BIND(xsd:integer(ROUND(xsd:decimal(?value))) as ?valueAsInteger)'
-    },
     weight: {
       id: 'weight',
       facetValueFilter: '',
@@ -194,23 +129,26 @@ export const findsPerspectiveConfig = {
       // use a custom typecasting to convert and round from e.g. "673.39" to "673"^^xsd:integer
       typecasting: 'BIND(xsd:integer(ROUND(xsd:decimal(?value))) as ?valueAsInteger)'
     },
-    max_thickness: {
-      id: 'max_thickness',
+    diameter: {
+      facetValueFilter: '',
+      labelPath: ':diameter',
+      predicate: ':diameter',
+      type: 'integer',
+      typecasting: 'BIND(xsd:integer(ROUND(xsd:decimal(?value))) as ?valueAsInteger)'
+    },
+    minThickness: {
+      facetValueFilter: '',
+      labelPath: ':min_thickness',
+      predicate: ':min_thickness',
+      type: 'integer',
+      typecasting: 'BIND(xsd:integer(ROUND(xsd:decimal(?value))) as ?valueAsInteger)'
+    },
+    maxThickness: {
       facetValueFilter: '',
       labelPath: ':max_thickness',
       predicate: ':max_thickness',
       type: 'integer',
       typecasting: 'BIND(xsd:integer(ROUND(xsd:decimal(?value))) as ?valueAsInteger)'
-    },
-    // creationTimespan: {
-    //   id: 'creationTimespan',
-    //   facetValueFilter: '',
-    //   sortByAscPredicate: ':has_time_span/crm:P82a_begin_of_the_begin',
-    //   sortByDescPredicate: ':has_time_Span/crm:P82b_end_of_the_end',
-    //   predicate: ':has_time_Span',
-    //   startProperty: 'crm:P82a_begin_of_the_begin',
-    //   endProperty: 'crm:P82b_end_of_the_end',
-    //   type: 'timespan'
-    // },
+    }
   }
 }
