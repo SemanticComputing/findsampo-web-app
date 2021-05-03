@@ -10,11 +10,11 @@ import StarIcon from '@material-ui/icons/Star'
 import LineChartIcon from '@material-ui/icons/ShowChart'
 import findsImage from '../../img/findsampo/sword.jpg'
 // import coinsImage from '../../img/findsampo/coin.jpg'
-import periodsImage from '../../img/findsampo/periods_image.jpg'
+// import periodsImage from '../../img/findsampo/periods_image.jpg'
 import mapImage from '../../img/findsampo/map.jpg'
 import sitesImage from '../../img/findsampo/sites.jpg'
 import guidesImage from '../../img/findsampo/Museovirasto_043-vaaka.jpg'
-import typesImage from '../../img/findsampo/Museovirasto_067-vaaka.jpg'
+// import typesImage from '../../img/findsampo/Museovirasto_067-vaaka.jpg'
 import ilppariImage from '../../img/findsampo/Museovirasto_062_vaaka.jpg'
 
 export const perspectiveConfig = [
@@ -99,16 +99,28 @@ export const perspectiveConfig = [
     searchMode: 'dummy-internal',
     internalLink: '/finds/faceted-search/map'
   },
+  {
+    id: 'sites',
+    frontPageImage: sitesImage,
+    perspectiveDescHeight: 160,
+    searchMode: 'dummy-internal',
+    internalLink: '/sites/map'
+  },
   // {
-  //   id: 'coins',
-  //   frontPageImage: coinsImage,
+  //   id: 'types',
+  //   frontPageImage: typesImage,
   //   perspectiveDescHeight: 160,
-  //   defaultActiveFacets: new Set(['findName']),
+  //   defaultActiveFacets: new Set(['prefLabel']),
   //   tabs: [
   //     {
   //       id: 'table',
   //       value: 0,
   //       icon: <CalendarViewDayIcon />
+  //     },
+  //     {
+  //       id: 'export',
+  //       value: 1,
+  //       icon: <CloudDownloadIcon />
   //     }
   //   ],
   //   instancePageTabs: [
@@ -118,84 +130,42 @@ export const perspectiveConfig = [
   //       icon: <CalendarViewDayIcon />
   //     },
   //     {
-  //       id: 'recommendations',
-  //       value: 1,
-  //       icon: <StarIcon />
-  //     },
-  //     {
   //       id: 'export',
-  //       value: 2,
+  //       value: 1,
   //       icon: <CloudDownloadIcon />
   //     }
   //   ]
   // },
-  {
-    id: 'sites',
-    frontPageImage: sitesImage,
-    perspectiveDescHeight: 160,
-    searchMode: 'dummy-internal',
-    internalLink: '/sites/map'
-  },
-  {
-    id: 'types',
-    frontPageImage: typesImage,
-    perspectiveDescHeight: 160,
-    defaultActiveFacets: new Set(['prefLabel']),
-    tabs: [
-      {
-        id: 'table',
-        value: 0,
-        icon: <CalendarViewDayIcon />
-      },
-      {
-        id: 'export',
-        value: 1,
-        icon: <CloudDownloadIcon />
-      }
-    ],
-    instancePageTabs: [
-      {
-        id: 'table',
-        value: 0,
-        icon: <CalendarViewDayIcon />
-      },
-      {
-        id: 'export',
-        value: 1,
-        icon: <CloudDownloadIcon />
-      }
-    ]
-  },
-  {
-    id: 'periods',
-    frontPageImage: periodsImage,
-    perspectiveDescHeight: 160,
-    defaultActiveFacets: new Set(['prefLabel']),
-    tabs: [
-      {
-        id: 'table',
-        value: 0,
-        icon: <CalendarViewDayIcon />
-      },
-      {
-        id: 'export',
-        value: 1,
-        icon: <CloudDownloadIcon />
-      }
-    ],
-    instancePageTabs: [
-      {
-        id: 'table',
-        value: 0,
-        icon: <CalendarViewDayIcon />
-      },
-      {
-        id: 'export',
-        value: 1,
-        icon: <CloudDownloadIcon />
-      }
-    ]
-  },
+  // {
+  //   id: 'periods',
+  //   frontPageImage: periodsImage,
+  //   perspectiveDescHeight: 160,
+  //   defaultActiveFacets: new Set(['prefLabel']),
+  //   tabs: [
+  //     {
+  //       id: 'table',
+  //       value: 0,
+  //       icon: <CalendarViewDayIcon />
+  //     },
+  //     {
+  //       id: 'export',
+  //       value: 1,
+  //       icon: <CloudDownloadIcon />
+  //     }
+  //   ],
+  //   instancePageTabs: [
+  //     {
+  //       id: 'table',
+  //       value: 0,
+  //       icon: <CalendarViewDayIcon />
+  //     },
+  //     {
+  //       id: 'export',
+  //       value: 1,
+  //       icon: <CloudDownloadIcon />
+  //     }
+  //   ]
+  // },
   {
     id: 'guides',
     frontPageImage: guidesImage,
