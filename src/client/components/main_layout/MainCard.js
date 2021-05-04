@@ -20,7 +20,7 @@ const useStyles = makeStyles(theme => ({
     [theme.breakpoints.down('xs')]: {
       justifyContent: 'center'
     },
-    height: 150,
+    height: 200,
     [props.perspective.frontPageElement === 'card']: {
       // height: 'inherit',
       // width: 200,
@@ -82,7 +82,7 @@ const MainCard = props => {
     <Grid
       className={classes.gridItem}
       key={perspective.id}
-      item xs={12} sm={6} md={3}
+      item xs={12} sm={6} md={4}
       component={externalPerspective ? 'a' : Link}
       to={link}
       container={xsScreen}

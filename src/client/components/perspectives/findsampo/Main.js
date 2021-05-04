@@ -112,32 +112,32 @@ const Main = props => {
   const classes = useStyles(props)
   let headingVariant = 'h5'
   let subheadingVariant = 'body1'
-  // let descriptionVariant = 'body1'
+  let descriptionVariant = 'body1'
   switch (screenSize) {
     case 'xs':
       headingVariant = 'h5'
       subheadingVariant = 'body1'
-      // descriptionVariant = 'body1'
+      descriptionVariant = 'body1'
       break
     case 'sm':
       headingVariant = 'h4'
       subheadingVariant = 'h6'
-      // descriptionVariant = 'h6'
+      descriptionVariant = 'h6'
       break
     case 'md':
       headingVariant = 'h3'
       subheadingVariant = 'h6'
-      // descriptionVariant = 'h6'
+      descriptionVariant = 'h6'
       break
     case 'lg':
       headingVariant = 'h2'
       subheadingVariant = 'h5'
-      // descriptionVariant = 'h6'
+      descriptionVariant = 'h6'
       break
     case 'xl':
       headingVariant = 'h1'
       subheadingVariant = 'h4'
-      // descriptionVariant = 'h6'
+      descriptionVariant = 'h6'
       break
   }
 
@@ -162,9 +162,9 @@ const Main = props => {
 
       </div>
       <div className={classes.layout}>
-        {/* <Typography className={classes.selectInternalPerspective} variant={descriptionVariant} align='center' color='textPrimary' paragraph>
+        <Typography className={classes.selectInternalPerspective} variant={descriptionVariant} align='center' color='textPrimary' paragraph>
           {intl.get('selectPerspective')}
-        </Typography> */}
+        </Typography>
         <Grid
           container spacing={screenSize === 'sm' ? 2 : 1}
           justify='center'
