@@ -113,24 +113,24 @@ export const INITIAL_STATE = {
       uriFilter: null,
       type: 'hierarchical'
     },
-    ceramicStyle: {
-      id: 'ceramicStyle',
-      // predicate: defined in backend
-      distinctValueCount: 0,
-      values: [],
-      flatValues: [],
-      sortBy: 'instanceCount',
-      sortDirection: 'desc',
-      sortButton: false,
-      spatialFilterButton: false,
-      pieChartButton: false,
-      isFetching: false,
-      searchField: true,
-      containerClass: 'ten',
-      filterType: 'uriFilter',
-      uriFilter: null,
-      type: 'hierarchical'
-    },
+    // ceramicStyle: {
+    //   id: 'ceramicStyle',
+    //   // predicate: defined in backend
+    //   distinctValueCount: 0,
+    //   values: [],
+    //   flatValues: [],
+    //   sortBy: 'instanceCount',
+    //   sortDirection: 'desc',
+    //   sortButton: false,
+    //   spatialFilterButton: false,
+    //   pieChartButton: false,
+    //   isFetching: false,
+    //   searchField: true,
+    //   containerClass: 'ten',
+    //   filterType: 'uriFilter',
+    //   uriFilter: null,
+    //   type: 'hierarchical'
+    // },
     length: {
       id: 'length',
       // predicate: defined in backend
