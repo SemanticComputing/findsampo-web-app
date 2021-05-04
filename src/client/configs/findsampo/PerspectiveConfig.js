@@ -85,12 +85,12 @@ export const perspectiveConfig = [
         id: 'recommendation_links',
         value: 3,
         icon: <StarIcon />
-      },
-      {
-        id: 'export',
-        value: 4,
-        icon: <CloudDownloadIcon />
       }
+      // {
+      //   id: 'export',
+      //   value: 4,
+      //   icon: <CloudDownloadIcon />
+      // }
     ]
   },
   {
