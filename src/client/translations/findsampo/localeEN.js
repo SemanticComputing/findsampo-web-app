@@ -59,42 +59,16 @@ export default {
     max: 'Max',
     facetSearchFieldPlaceholder: 'Search...',
     applyFacetSelection: 'apply',
-    pieChart: {
-      tooltip: 'Pie chart'
-    },
-    barChart: {
-      tooltip: 'Bar chart',
-      language: {
-        title: 'Language',
-        xaxisTitle: 'Language',
-        yaxisTitle: 'Manuscript count',
-        seriesTitle: 'Manuscript count'
-      }
-    },
-    lineChart: {
-      tooltip: 'Line chart',
-      productionTimespan: {
-        title: 'Manuscript production by decade',
-        xaxisTitle: 'Decade',
-        yaxisTitle: 'Manuscript count',
-        seriesTitle: 'Manuscript count'
-      }
-    }
   },
   tabs: {
     table: 'table',
     map: 'map',
     heatmap: 'heatmap',
-    production_places: 'production places',
-    last_known_locations: 'last known locations',
-    migrations: 'migrations',
-    network: 'network',
     export: 'export',
-    'by-period': 'by period',
     timeline: 'timeline',
     recommendation_links: 'recommendation links',
     statistics: 'statistics',
-    pie_chart: 'pie chart',
+    pie_chart: 'pie/bar chart',
     line_chart: 'line chart',
     nearby_finds: 'nearby finds',
     csv: 'csv'
@@ -163,19 +137,6 @@ export default {
     },
     wrongZoomLevelFHA: 'The map zoom level has to be at least 13 in order to show this layer'
   },
-  deckGlMap: {
-    arcColouring: 'Arc colouring:',
-    showMoreInformation: 'Click to show more information.',
-    manuscriptMigrations: {
-      legendTitle: 'Arc colouring',
-      legendFrom: 'Manuscript production place',
-      legendTo: 'Last known location',
-      from: 'Production place:',
-      to: 'Last known location:',
-      listHeadingSingleInstance: 'Manuscript:',
-      listHeadingMultipleInstances: 'Manuscripts:'
-    }
-  },
   perspectives: {
     fullTextSearch: {
       properties: {
@@ -191,10 +152,6 @@ export default {
           label: 'Description',
           description: ''
         }
-        // source: {
-        //   label: 'Source',
-        //   description: ''
-        // }
       }
     },
     finds: {
@@ -251,7 +208,7 @@ export default {
         },
         description: {
           label: 'Description',
-          description: 'Decription.'
+          description: 'Description text of the find.'
         },
         specification: {
           label: 'Specification',
@@ -259,13 +216,7 @@ export default {
         },
         prefLabel: {
           label: 'Find name',
-          description: 'Find name.'
-        },
-        type: {
-          label: 'Type',
-          description: `
-            Type.
-          `
+          description: 'Find name including a broad classification of the object and the accession number.'
         },
         objectType: {
           label: 'Object type',
@@ -279,28 +230,10 @@ export default {
             Object type of the find using a facet ontology created by the FHA.
           `
         },
-        objectTypeFlat: {
-          label: 'Object type MAO annotation term (for testing and development purposes)',
-          description: `
-            Object type without hierarchy using MAO term.
-          `
-        },
         place: {
           label: 'Place',
           description: `
-            Find pace
-          `
-        },
-        subCategory: {
-          label: 'Sub category',
-          description: `
-            Sub category.
-          `
-        },
-        objectSubCategory: {
-          label: 'Sub category ontologized',
-          description: `
-            Sub category using ontology terms.
+            Find place
           `
         },
         material: {
@@ -309,48 +242,38 @@ export default {
             Material.
           `
         },
-        materialLiteral: {
-          label: 'Material literal',
-          description: `
-            Material literal.
-          `
-        },
         period: {
           label: 'Period',
-          description: 'Ontologized period. May include both earliest and lates periods.'
-        },
-        periodObject: {
-          label: 'Period ontologized',
-          description: 'Ontologized period. May include both earliest and lates periods.'
+          description: 'Period when the object was created. May include both earliest and lates periods.'
         },
         dateTimespan: {
-          label: 'Date',
+          label: 'Dating',
           description: `
-            Date.
+            Search based on dating of the find.
           `
         },
         startYear: {
           label: 'Start year',
           description: `
-            Start year.
+            Earliest creation year of the object as determined by an expert.
           `
         },
         endYear: {
           label: 'End year',
           description: `
-            End year.
+            Latest creation year of the object as determined by an expert.
           `
         },
         province: {
           label: 'Province',
           description: `
-            Province.
+            Province where found.
           `
         },
         municipality: {
           label: 'Municipality',
           description: `
-            Municipality.
+            Municipality where found.
           `
         },
         image: {
@@ -359,11 +282,11 @@ export default {
         },
         earliestStartYear: {
           label: 'Earliest creation time',
-          description: 'Earliest possible creation date of the object'
+          description: 'Earliest presumed creation date of the object based on a year determined by an expert or automatically deduced based on period'
         },
         latestEndYear: {
           label: 'Latest creation time',
-          description: 'Latest possible creation date of the object'
+          description: 'Latest presumed creation date of the object  based on a year determined by an expert or automatically deduced based on period'
         },
         kmNumber: {
           label: 'KM number',
@@ -371,31 +294,31 @@ export default {
         },
         ceramicStyle: {
           label: 'Ceramic style',
-          description: 'Ceramic culture associated with the find'
+          description: 'Ceramic culture associated with the object'
         },
         weight: {
           label: 'Weight',
-          description: 'Weight'
+          description: 'Weight of the object in grams'
         },
         length: {
           label: 'Length',
-          description: 'Length'
+          description: 'Length of the object in millimeters'
         },
         maxThickness: {
           label: 'Maximum thickness',
-          description: 'Maximum thickness'
+          description: 'Maximum thickness of the object of the object in millimeters'
         },
         minThickness: {
           label: 'Minimum thickness',
-          description: 'Minimum thickness'
+          description: 'Minimum thickness of the object of the object in millimeters'
         },
         width: {
           label: 'Width',
-          description: 'Width'
+          description: 'Width of the object in millimeters'
         },
         diameter: {
           label: 'Diameter',
-          description: 'Diameter'
+          description: 'Diameter of the object in millimeters'
         },
         similarObjectType: {
           label: 'Finds with similar object type',
@@ -419,8 +342,12 @@ export default {
         },
         archaeologicalSiteUrl: {
           label: 'Archeological site url',
-          description: 'Url of the archeological site in kyppi.fi service'
-        }
+          description: 'URL of the find site in the Ancient Relics Register (muinaisjäännösrekisteri, kyppi-portaali)'
+        },
+        typology: {
+          label: 'Typological description',
+          description: 'Typological description of the find (e.g. comb ware ceramic)'
+        },
       }
     },
     types: {
@@ -468,7 +395,7 @@ export default {
           `
         },
         facetType: {
-          label: 'Catecory in facet ontology',
+          label: 'Category in facet ontology',
           description: `
           `
         }
@@ -486,8 +413,6 @@ export default {
             <strong>TABLE</STRONG> tab presents the periods as a paginated table
           </li>
           <li>
-            <strong>EXPORT</strong> the SPARQL query used to generate the result
-            table into YASGUI query editor.
           </li>
         </ul>
       `,
@@ -506,7 +431,7 @@ export default {
         },
         prefLabel: {
           label: 'Name',
-          description: 'NAme of the period'
+          description: 'Name of the period'
         },
         hiddenLabel: {
           label: 'Alternative terms',
