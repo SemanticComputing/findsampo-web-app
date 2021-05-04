@@ -5,7 +5,7 @@ import { has } from 'lodash'
 import { connect } from 'react-redux'
 import { makeStyles } from '@material-ui/core/styles'
 import { withRouter, Route, Redirect, Switch } from 'react-router-dom'
-import classNames from 'classnames'
+// import classNames from 'classnames'
 import { compose } from '@shakacode/recompose'
 import useMediaQuery from '@material-ui/core/useMediaQuery'
 import { MuiPickersUtilsProvider } from '@material-ui/pickers'
@@ -16,7 +16,7 @@ import Grid from '@material-ui/core/Grid'
 
 // ** General components **
 import InfoHeader from '../components/main_layout/InfoHeader'
-import TextPage from '../components/main_layout/TextPage'
+// import TextPage from '../components/main_layout/TextPage'
 import Message from '../components/main_layout/Message'
 import FacetBar from '../components/facet_bar/FacetBar'
 // ** General components end **
@@ -28,7 +28,7 @@ import FacetedSearchPerspective from '../components/perspectives/findsampo/Facet
 import InstanceHomePage from '../components/perspectives/findsampo/InstanceHomePage'
 import FullTextSearch from '../components/perspectives/findsampo/FullTextSearch'
 import Footer from '../components/perspectives/findsampo/Footer'
-import KnowledgeGraphMetadataTable from '../components/perspectives/findsampo/KnowledgeGraphMetadataTable'
+// import KnowledgeGraphMetadataTable from '../components/perspectives/findsampo/KnowledgeGraphMetadataTable'
 import Sites from '../components/perspectives/findsampo/Sites'
 import InfoCards from '../components/perspectives/findsampo/InfoCards'
 import { perspectiveConfig } from '../configs/findsampo/PerspectiveConfig'
@@ -627,7 +627,7 @@ const SemanticPortal = props => {
               path={`${rootUrlWithLang}/guides`}
               render={() => <InfoCards />}
             />
-            <Route
+            {/* <Route
               path={`${rootUrlWithLang}/about`}
               render={() =>
                 <div className={classNames(classes.mainContainer, classes.textPageContainer)}>
@@ -641,14 +641,14 @@ const SemanticPortal = props => {
                     {intl.getHTML('aboutThePortalPartTwo')}
                   </TextPage>
                 </div>}
-            />
-            <Route
+            /> */}
+            {/* <Route
               path={`${rootUrlWithLang}/instructions`}
               render={() =>
                 <div className={classNames(classes.mainContainer, classes.textPageContainer)}>
                   <TextPage>{intl.getHTML('instructions')}</TextPage>
                 </div>}
-            />
+            /> */}
           </>
         </div>
       </div>
