@@ -12,7 +12,7 @@ import MoreIcon from '@material-ui/icons/MoreVert'
 import Button from '@material-ui/core/Button'
 import { Link, NavLink } from 'react-router-dom'
 import TopBarSearchField from '../../main_layout/TopBarSearchField'
-import TopBarInfoButton from '../../main_layout/TopBarInfoButton'
+import TopBarInfoButton from './TopBarInfoButton'
 import TopBarLanguageButton from '../../main_layout/TopBarLanguageButton'
 import Divider from '@material-ui/core/Divider'
 import { has } from 'lodash'
@@ -144,10 +144,14 @@ const TopBar = props => {
   }
 
   const renderDesktopTopMenuItem = perspective => {
-    if ((has(perspective, 'externalUrl') && perspective.id !== 'feedback') ||
-      perspective.id === 'guides') {
+    if (has(perspective, 'externalUrl') &&
+    (perspective.id !== 'feedback' && perspective.id !== 'instructions')) {
       return
     }
+    if (perspective.id === 'guides') {
+      return
+    }
+
     if (has(perspective, 'externalUrl')) {
       return (
         <a
@@ -259,15 +263,11 @@ const TopBar = props => {
               label: intl.get('topBar.feedback')
             })}
             <TopBarInfoButton rootUrl={props.rootUrl} />
-            <Button
-              className={classes.appBarButton}
-              component={AdapterNavLink}
-              to={`${props.rootUrl}/instructions`}
-              isActive={(match, location) => location.pathname.startsWith(`${props.rootUrl}/instructions`)}
-              activeClassName={classes.appBarButtonActive}
-            >
-              {intl.get('topBar.instructions')}
-            </Button>
+            {renderDesktopTopMenuItem({
+              id: 'instructions',
+              externalUrl: intl.get('topBar.instructionsUrl'),
+              label: intl.get('topBar.instructions')
+            })}
             {showLanguageButton &&
               <TopBarLanguageButton
                 currentLocale={currentLocale}

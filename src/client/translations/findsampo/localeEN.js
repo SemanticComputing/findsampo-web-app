@@ -24,15 +24,17 @@ export default {
   topBar: {
     feedback: 'feedback',
     info: {
-      guides: 'Archaeology guides',
       info: 'Info',
+      aboutFindSampo: 'About FindSampo',
+      aboutFindSampoUrl: 'https://seco.cs.aalto.fi/projects/sualt/',
       blog: 'Project blog',
       blogUrl: 'https://blogs.helsinki.fi/sualt-project',
-      aboutThePortal: 'About the Portal'
+      guides: 'Archaeology guides'
     },
     searchBarPlaceHolder: 'Search all content',
     searchBarPlaceHolderShort: '',
-    instructions: 'instructions'
+    instructions: 'instructions',
+    instructionsUrl: 'https://seco.cs.aalto.fi/projects/sualt/'
   },
   facetBar: {
     results: 'Results',
@@ -95,7 +97,7 @@ export default {
     pie_chart: 'pie chart',
     line_chart: 'line chart',
     nearby_finds: 'nearby finds',
-    csv: 'csv',
+    csv: 'csv'
     // coins_by_year: 'coins by year',
   },
   table: {
