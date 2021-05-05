@@ -9,7 +9,7 @@ import Deck from '../../facet_results/Deck'
 import ApexChart from '../../facet_results/ApexChart'
 // import Network from '../../facet_results/Network'
 import Timeline from '../../facet_results/Timeline'
-import Export from '../../facet_results/Export'
+// import Export from '../../facet_results/Export'
 import {
   MAPBOX_ACCESS_TOKEN,
   MAPBOX_STYLE,
