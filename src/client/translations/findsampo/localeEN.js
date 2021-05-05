@@ -186,8 +186,25 @@ export default {
         label: 'Archaeological find',
         description: `
           <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
-            [ short instructions here... ]
+            This page aggregates information about this archaeological find, including metadata and image from the original database, 
+            but also other related data of interest. The following tabs can used for showing information about the find:
           </p>
+          <ul class="MuiTypography-root MuiTypography-body1">
+          <li>
+            <strong>TABLE</strong> tab shows the original metadata of the find. This is the default tab.
+          </li>
+          <li>
+            <strong>MAP</strong> tab shows location of the find-spot on a map.
+          </li>
+          <li>
+            <strong>NEARBY FINDS</strong> tab shows on a map other finds that have been found nearby.
+          </li>
+          <li>
+            <strong>RECOMMENDATION LINKS</strong> tab shows links to other finds that are semantically related to the find, including 
+            finds with similar object type, made of similar material, and from the same time period. 
+            Such recommendations can be created automatically based on the connections in the underlying linked data.
+          </li>
+        </ul>
         `,
         recommendations: {
           nearByFinds: 'Nearby finds',
