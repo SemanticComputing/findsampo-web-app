@@ -59,7 +59,7 @@ export default {
   },
   tabs: {
     table: 'table',
-    map: 'map',
+    map: 'maps',
     heatmap: 'heatmap',
     export: 'export',
     timeline: 'timeline',
@@ -151,23 +151,34 @@ export default {
     finds: {
       label: 'Finds',
       facetResultsType: 'finds',
-      shortDescription: 'Faceted search for all types of archaelogical finds',
+      shortDescription: 'Faceted search for archaelogical finds',
       longDescription: `
         <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
-           [ short instructions here... ]
+          This perspective is used for searching and browsing archaeological finds using a set of facets on the left. 
+          The results can be viewed on the right using the following tabs:
         </p>
         <ul class="MuiTypography-root MuiTypography-body1">
           <li>
-            <strong>TABLE</STRONG> tab presents the finds as paginated table
+            <strong>TABLE</strong> tab presents the results as paginated table
           </li>
           <li>
-            ...
+            <strong>MAPS</strong> tab shows the results on an interactive map. The base map and additional map layers can be selected using the button on the top right corner of the map.
           </li>
           <li>
-            ...
+            <strong>HEATMAP</strong> tab shows the results set as a heatmap.
           </li>
           <li>
-            ...
+            <strong>TIMELINE</strong> tab shows a timeline visualization of the result set.
+          </li>
+          <li>
+            <strong>PIE & BAR CHART</strong> tab visualizes the result set finds statistically using either 1) a pie chart or 2) a bar chart. The finds 
+            distribution can be based on 1) object type, 2) material or 3) province where the find was made.
+          </li>
+          <li>
+            <strong>LINE CHART</strong> tab visualizes the number of finds (y-axis) of different weights (x-axis).
+          </li>
+          <li>
+            <strong>CSV</strong> tab is used for downloading the current result set as a CSV file for further analysis in an external tool, such as a spreadsheet program.
           </li>
         </ul>
       `,
@@ -423,19 +434,18 @@ export default {
       shortDescription: 'Reporting service for archaelogical finds found in Finland'
     },
     map: {
-      label: 'Map',
-      mainPageLabel: 'Map',
-      shortDescription: 'Interactive map for visualizing the finds'
+      label: 'Maps',
+      mainPageLabel: 'Maps',
+      shortDescription: 'Interactive maps for finding and visualizing finds'
     },
     sites: {
       label: 'Sites',
       mainPageLabel: 'Sites',
-      shortDescription: 'View archaelogical sites and protected areas',
+      shortDescription: 'Search and view archaeological sites and protected areas',
       longDescription: `
         <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
-          [ add instructions for Sites perspective here... ]
+          This perspective first asks permission to locate the user and then shows registered archaeological points and sites around the user where metal detecting is prohibited. 
         </p>
-
     `
     },
     guides: {

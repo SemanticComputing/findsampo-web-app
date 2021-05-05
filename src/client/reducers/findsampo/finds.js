@@ -13,7 +13,7 @@ export const INITIAL_STATE = {
   sortDirection: null,
   fetching: false,
   fetchingResultCount: false,
-  facetedSearchHeaderExpanded: false,
+  facetedSearchHeaderExpanded: true,
   instancePageHeaderExpanded: true,
   instanceTableData: null,
   instanceTableExternalData: null,
