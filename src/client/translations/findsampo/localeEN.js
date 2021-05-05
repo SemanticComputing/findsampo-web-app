@@ -2,7 +2,7 @@ export default {
   languageLabel: 'English',
   html: {
     title: 'FindSampo – Finnish Archaeological Finds on the Semantic Web',
-    description: 'FindSampo is a semantic portal and a Linked Open Data service searching and analyzing archaeological Finds'
+    description: 'FindSampo is a semantic portal and a Linked Open Data service for searching and analyzing archaeological finds'
   },
   appTitle: {
     short: 'FindSampo',
@@ -11,8 +11,7 @@ export default {
       Finnish Archaeological Finds on the Semantic Web
     `
   },
-  appDescription: `
-  `,
+  appDescription: '',
   selectPerspective: 'Select an application perspective to search and browse the data:',
   selectPerspectiveExternal: 'Other applications:',
   mainPageImageLicence: '',
@@ -51,14 +50,12 @@ export default {
     sortingOptions: 'Sorting options',
     sortAlphabetically: 'Sort alphabetically',
     sortByNumberOfSearchResults: 'Sort by number of search results',
-    useDisjunction: 'Use logical OR between selections',
-    useConjuction: 'Use logical AND between selections',
     minYear: 'Min year',
     maxYear: 'Max year',
     min: 'Min',
     max: 'Max',
     facetSearchFieldPlaceholder: 'Search...',
-    applyFacetSelection: 'apply',
+    applyFacetSelection: 'apply'
   },
   tabs: {
     table: 'table',
@@ -72,7 +69,6 @@ export default {
     line_chart: 'line chart',
     nearby_finds: 'nearby finds',
     csv: 'csv'
-    // coins_by_year: 'coins by year',
   },
   table: {
     rowsPerPage: 'Rows per page',
@@ -89,8 +85,6 @@ export default {
       findsByObjectName: 'object name'
     }
   },
-  exportToYasgui: 'open the result table query in yasgui sparql editor',
-  openInLinkedDataBrowser: 'open in linked data browser',
   resultsAsCSV: 'download the search results as a CSV table',
   facets: {
     dateFacet: {
@@ -347,26 +341,10 @@ export default {
         typology: {
           label: 'Typological description',
           description: 'Typological description of the find (e.g. comb ware ceramic)'
-        },
+        }
       }
     },
     types: {
-      label: 'Object Types',
-      facetResultsType: 'types',
-      shortDescription: 'Information about object types',
-      longDescription: `
-        <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
-        </p>
-        <ul class="MuiTypography-root MuiTypography-body1">
-          <li>
-            <strong>TABLE</STRONG> tab presents the object types as a paginated table
-          </li>
-          <li>
-            <strong>EXPORT</strong> the SPARQL query used to generate the result
-            table into YASGUI query editor.
-          </li>
-        </ul>
-      `,
       instancePage: {
         label: 'Object type',
         description: `
@@ -402,20 +380,6 @@ export default {
       }
     },
     periods: {
-      label: 'Periods',
-      facetResultsType: 'periods',
-      shortDescription: 'Information about archaeological periods',
-      longDescription: `
-        <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
-        </p>
-        <ul class="MuiTypography-root MuiTypography-body1">
-          <li>
-            <strong>TABLE</STRONG> tab presents the periods as a paginated table
-          </li>
-          <li>
-          </li>
-        </ul>
-      `,
       instancePage: {
         label: 'Period',
         description: `
@@ -495,161 +459,5 @@ export default {
         link: 'https://www.museovirasto.fi/uploads/Palvelut_ja_ohjeet/Antiquities_and_metal_detectors_guide_2020_final.pdf '
       }
     }
-  },
-  aboutThePortalPartOne: `
-    <h1 class="MuiTypography-root MuiTypography-h2 MuiTypography-gutterBottom">
-      About the Portal
-    </h1>
-    <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
-      Morbi nunc ex, ultrices vitae molestie eu, fringilla quis dolor. Vivamus in enim nibh.
-      Nunc rutrum molestie ex eget dictum. Mauris lectus leo, ultrices in sodales ac, fermentum
-      ut massa. In porta, mauris sed facilisis lacinia, eros magna sollicitudin tortor, quis venenatis
-      nisl ipsum lacinia justo. Duis pretium bibendum consequat.
-    </p>
-    <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
-      Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; In
-      hac habitasse platea dictumst. Curabitur consectetur aliquet est, ac dapibus ante semper vitae.
-      Sed consequat at est ac lobortis. In vitae metus in ligula pretium vehicula. Aliquam maximus
-      ac massa euismod eleifend. Vestibulum vehicula mattis libero at tempus.
-    </p>
-    <h2 class="MuiTypography-root MuiTypography-h4 MuiTypography-gutterBottom">
-      Data
-    </h2>
-    <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
-      Nullam eu blandit ex, quis consectetur enim. Nulla aliquam, enim non euismod tincidunt,
-      neque eros tincidunt urna, eget elementum diam metus vel elit. Donec dui augue, vehicula a cursus ut,
-      efficitur eget velit. Aliquam pellentesque odio vel metus sodales tempor. Donec in lectus magna.
-      Cras at odio a libero laoreet viverra nec sed lorem. In malesuada tempus dolor.
-      Suspendisse et ligula quis nisi facilisis maximus. Sed dictum justo eu condimentum efficitur.
-      Mauris porttitor ante nec auctor vulputate. Phasellus varius, odio sed egestas bibendum,
-      dolor lacus consequat turpis, ac pulvinar libero lorem maximus nunc. Praesent egestas volutpat
-      leo, vel faucibus dui convallis sed. Ut sed libero eu nisi accumsan mollis. Pellentesque
-      ultricies est non porta luctus. Maecenas eget viverra mauris.
-    </p>
-    `,
-  aboutThePortalPartTwo: `
-    <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
-      Mauris porttitor ante nec auctor vulputate. Phasellus varius, odio sed egestas bibendum,
-      dolor lacus consequat turpis, ac pulvinar libero lorem maximus nunc. Praesent egestas volutpat
-      leo, vel faucibus dui convallis sed. Ut sed libero eu nisi accumsan mollis. Pellentesque
-      ultricies est non porta luctus. Maecenas eget viverra mauris.
-      </p>
-    <h2 class="MuiTypography-root MuiTypography-h4 MuiTypography-gutterBottom">
-      Data Reuse
-    </h2>
-    <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
-      Nullam eu blandit ex, quis consectetur enim. Nulla aliquam, enim non euismod tincidunt,
-      neque eros tincidunt urna, eget elementum diam metus vel elit. Donec dui augue, vehicula a cursus ut,
-      efficitur eget velit. Aliquam pellentesque odio vel metus sodales tempor. Donec in lectus magna.
-      Cras at odio a libero laoreet viverra nec sed lorem. In malesuada tempus dolor.
-      Suspendisse et ligula quis nisi facilisis maximus. Sed dictum justo eu condimentum efficitur.
-      Mauris porttitor ante nec auctor vulputate. Phasellus varius, odio sed egestas bibendum,
-      dolor lacus consequat turpis, ac pulvinar libero lorem maximus nunc. Praesent egestas volutpat
-      leo, vel faucibus dui convallis sed. Ut sed libero eu nisi accumsan mollis. Pellentesque
-      ultricies est non porta luctus. Maecenas eget viverra mauris.
-    </p>
-    <h2 class="MuiTypography-root MuiTypography-h4 MuiTypography-gutterBottom">
-      More Information
-    </h2>
-    <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
-      Nullam eu blandit ex, quis consectetur enim. Nulla aliquam, enim non euismod tincidunt,
-      neque eros tincidunt urna, eget elementum diam metus vel elit. Donec dui augue, vehicula a cursus ut,
-      efficitur eget velit. Aliquam pellentesque odio vel metus sodales tempor. Donec in lectus magna.
-      Cras at odio a libero laoreet viverra nec sed lorem. In malesuada tempus dolor.
-      Suspendisse et ligula quis nisi facilisis maximus. Sed dictum justo eu condimentum efficitur.
-      Mauris porttitor ante nec auctor vulputate. Phasellus varius, odio sed egestas bibendum,
-      dolor lacus consequat turpis, ac pulvinar libero lorem maximus nunc. Praesent egestas volutpat
-      leo, vel faucibus dui convallis sed. Ut sed libero eu nisi accumsan mollis. Pellentesque
-      ultricies est non porta luctus. Maecenas eget viverra mauris.
-    </p>
-  `,
-  instructions: `
-    <h1 class="MuiTypography-root MuiTypography-h2 MuiTypography-gutterBottom">
-      Instructions
-    </h1>
-    <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
-      The search functionality of the ...... portal is based on the
-      <a href="https://doi.org/10.2200/S00190ED1V01Y200904ICR005" target='_blank' rel='noopener noreferrer'>
-      faceted search</a> paradigm. By default each perspective displays
-      all results from the corresponding class.
-      This default result set can be narrowed down by using the filters on the left.
-    </p>
-
-    <h2 class="MuiTypography-root MuiTypography-h4 MuiTypography-gutterBottom">
-      Using a single filter
-    </h2>
-
-    <h3 class="MuiTypography-root MuiTypography-h6 MuiTypography-gutterBottom">
-      Selecting values within a filter
-    </h3>
-    <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
-      All possible values for a filter are displayed either as a list or as a hierarchical
-      tree structure (if available). The number of results is shown in brackets for each value.
-      Once a value is selected, the results are automatically updated. To prevent further
-      selections that do not return any results, also the possible values for all
-      other filters are updated at the same time.
-    </p>
-    <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
-      Multiple values can be selected within a single filter. Selecting multiple values
-      generates results that contain any of the selected values. For example, selecting
-      both <i>Saint Augustine</i> and <i>Saint Jerome</i> as an Author returns results that
-      include either <i>Saint Augustine</i> <strong>OR</strong> <i>Saint Jerome</i> as an Author.
-    </p>
-    <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
-      Selected values of a filter appear in the Active filters section at the top of the list
-      of filters. To deselect a filter, click the X mark next to it within the Active filters
-      section. You can also deselect a filter value by unchecking the checkmark in the
-      filter’s value list. The Active filters section only appears if there are filter
-      values currently selected.
-    </p>
-
-    <h3 class="MuiTypography-root MuiTypography-h6 MuiTypography-gutterBottom">
-      Searching within a filter
-    </h3>
-    <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
-      Search within a filter by using the search field at the top of each filter.
-      All possible values of a filter remain visible at all times. The values of
-      the filter that match the search term are indicated by a purple underline.
-    </p>
-    <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
-      Steps for searching within filters:
-    </p>
-    <ol class="MuiTypography-root MuiTypography-body1 MuiTypography-gutterBottom">
-      <li>
-        Type search term into search field. If there are matches, a number
-        will appear to the right of the search field, indicating the number
-        of filter values that match the search term.
-      </li>
-      <li>
-        Click the arrows to the right of the search field to cycle
-        through the results. As you click the arrow, a different filter value
-        will appear at the top of the list. Matched filters are underlined in
-        purple.
-      </li>
-      <li>
-        Click the checkmark next to a filter value to activate it. The results
-        (and also other filters) are automatically updated.
-      </li>
-    </ol>
-
-    <h2 class="MuiTypography-root MuiTypography-h4 MuiTypography-gutterBottom">
-      Using multiple filters simultaneously
-    </h2>
-    <p class="MuiTypography-root MuiTypography-body1 MuiTypography-paragraph">
-      The effectiveness of faceted search is realized when multiple filters are
-      applied at the same time. As in many e-commerce sites, a logical AND is
-      always used between the filters. For example selecting <i>Saint Augustine </i>
-      and <i>Saint Jerome</i> as an Author and <i>Sir Thomas Phillipps</i> and
-      <i> Thomas Thorpe</i> as an Owner, the results are narrowed down as follows:
-    </p>
-    <p class="MuiTypography-root MuiTypography-body1">
-      (Author: <i>Saint Augustine</i> <strong>OR</strong> Author: <i>Saint Jerome</i>)
-    </p>
-    <p class="MuiTypography-root MuiTypography-body1">
-        <strong>AND</strong>
-    </p>
-    <p class="MuiTypography-root MuiTypography-body1">
-      (Owner: <i>Sir Thomas Phillipps</i> <strong>OR</strong> Owner: <i>Thomas Thorpe</i>)
-    </p>
-  `
+  }
 }
