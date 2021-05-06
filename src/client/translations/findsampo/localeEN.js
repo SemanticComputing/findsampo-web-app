@@ -87,15 +87,6 @@ export default {
   },
   resultsAsCSV: 'download the search results as a CSV table',
   facets: {
-    dateFacet: {
-      invalidDate: 'Epäkelpo päivämäärä.',
-      toBeforeFrom: 'Alkupäivämäärän täytyy olla ennen loppupäivämäärää.',
-      minDate: 'Aikaisin sallittu päivämäärä on {minDate}',
-      maxDate: 'Myöhäisin sallittu päivämäärä on {maxDate}',
-      cancel: 'Peruuta',
-      fromLabel: 'Alku',
-      toLabel: 'Loppu'
-    },
     textFacet: {
       inputLabel: 'Etsi nimellä'
     },
@@ -119,15 +110,7 @@ export default {
       arkeologiset_kohteet_piste: 'Register of Archaeological Sites, points (Finnish Heritage Agency)',
       fhaLidar: 'Elevation model (Finnish Heritage Agency)',
       karelianMaps: 'Karelian maps, 1:100 000 topographic (SeCo)',
-      senateAtlas: 'Senate atlas, 1:21 000 topographic (SeCo)',
-      'kotus:pitajat': 'Finnish parishes in 1938 (Institute for the Languages of Finland)',
-      'kotus:rajat-sms-alueet': 'Dialectical regions in Finland (Institute for the Languages of Finland)',
-      'kotus:rajat-sms-alueosat': 'Dialectical subregions in Finland (Institute for the Languages of Finland)',
-      'kotus:rajat-lansi-ita': 'Border between western and eastern dialects in Finland (Institute for the Languages of Finland)'
-    },
-    mapModeButtons: {
-      markers: 'Markers',
-      heatmap: 'Heatmap'
+      senateAtlas: 'Senate atlas, 1:21 000 topographic (SeCo)'
     },
     wrongZoomLevelFHA: 'The map zoom level has to be at least 13 in order to show this layer'
   },
@@ -453,7 +436,7 @@ export default {
     map: {
       label: 'Maps',
       mainPageLabel: 'Maps',
-      shortDescription: 'Interactive maps for finding and visualizing finds'
+      shortDescription: 'Interactive maps for finding and visualizing archaelogical finds'
     },
     sites: {
       label: 'Sites',
