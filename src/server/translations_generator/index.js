@@ -1,7 +1,7 @@
 import { google } from 'googleapis'
 import { /* flatten, */ unflatten } from 'flat'
 import fs from 'fs-extra'
-import { readTranslationsFromGoogleSheets } from '../../../src/client/configs/sampo/GeneralConfig'
+import { readTranslationsFromGoogleSheets } from '../../../src/client/configs/findsampo/GeneralConfig'
 // import localeEN from '../../client/translations/sampo/localeEN'
 import dotenv from 'dotenv'
 
@@ -87,6 +87,6 @@ const sheetValuesToFlatObject = values => {
 if (readTranslationsFromGoogleSheets) {
   readFromGoogleSheet().then(data => {
     const flatObject = sheetValuesToFlatObject(data)
-    writeToFile('src/client/translations/sampo/localeEN.json', unflatten(flatObject))
+    writeToFile('src/client/translations/findsampo/localeEN.json', unflatten(flatObject))
   })
 }

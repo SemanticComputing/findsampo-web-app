@@ -11,9 +11,9 @@ import {
 } from 'rxjs/operators'
 import { combineEpics, ofType } from 'redux-observable'
 import intl from 'react-intl-universal'
-import localeEN from '../translations/findsampo/localeEN'
-import localeFI from '../translations/findsampo/localeFI'
-import localeSV from '../translations/findsampo/localeSV'
+import localeEN from '../translations/findsampo/localeEN.json'
+import localeFI from '../translations/findsampo/localeFI.json'
+// import localeSV from '../translations/findsampo/localeSV'
 import { stateToUrl, pickSelectedDatasets } from '../helpers/helpers'
 import querystring from 'querystring'
 import {
@@ -64,8 +64,8 @@ const apiUrl = process.env.API_URL
 
 export const availableLocales = {
   en: localeEN,
-  fi: localeFI,
-  sv: localeSV
+  fi: localeFI
+  // sv: localeSV
 }
 
 let backendErrorText = null
