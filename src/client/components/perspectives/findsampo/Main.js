@@ -26,7 +26,7 @@ const useStyles = makeStyles(theme => ({
       height: 370
     },
     width: '100%',
-    boxShadow: '0 -15px 15px 0px #bdbdbd inset',
+    // boxShadow: '0 -15px 15px 0px #bdbdbd inset',
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
@@ -69,8 +69,8 @@ const useStyles = makeStyles(theme => ({
     marginBottom: theme.spacing(1)
   },
   selectExternalPerspective: {
-    marginTop: theme.spacing(1),
-    marginBottom: theme.spacing(1)
+    marginTop: theme.spacing(2),
+    marginBottom: theme.spacing(1.5)
   },
   licenceTextContainer: {
     marginTop: theme.spacing(1),
@@ -93,22 +93,21 @@ const useStyles = makeStyles(theme => ({
     fontSize: '1.2rem'
   },
   carouselContainer: {
-    // marginBottom: theme.spacing(2)
+    marginTop: theme.spacing(2)
   }
 }))
 
 const Main = props => {
   const { perspectives, screenSize } = props
-  const internalPerspectives = perspectives
-  // const internalPerspectives = []
-  // const externalPerspectives = []
-  // perspectives.map(perspective => {
-  //   if (perspective.externalUrl) {
-  //     externalPerspectives.push(perspective)
-  //   } else {
-  //     internalPerspectives.push(perspective)
-  //   }
-  // })
+  const actualPerspectives = []
+  const additionalLinks = []
+  perspectives.map(perspective => {
+    if (perspective.externalUrl || perspective.id === 'guides') {
+      additionalLinks.push(perspective)
+    } else {
+      actualPerspectives.push(perspective)
+    }
+  })
   const classes = useStyles(props)
   let headingVariant = 'h5'
   let subheadingVariant = 'body1'
@@ -169,7 +168,7 @@ const Main = props => {
           container spacing={screenSize === 'sm' ? 2 : 1}
           justify='center'
         >
-          {internalPerspectives.map(perspective =>
+          {actualPerspectives.map(perspective =>
             <MainCard
               key={perspective.id}
               perspective={perspective}
@@ -177,21 +176,21 @@ const Main = props => {
               rootUrl={props.rootUrl}
             />)}
         </Grid>
-        {/* <Typography className={classes.selectExternalPerspective} variant={descriptionVariant} align='center' color='textPrimary'>
+        <Typography className={classes.selectExternalPerspective} variant={descriptionVariant} align='center' color='textPrimary'>
           {intl.get('selectPerspectiveExternal')}
         </Typography>
         <Grid
           container spacing={screenSize === 'sm' ? 2 : 1}
           justify='center'
         >
-          {externalPerspectives.map(perspective =>
+          {additionalLinks.map(perspective =>
             <MainCard
               key={perspective.id}
               perspective={perspective}
               cardHeadingVariant='h4'
               rootUrl={props.rootUrl}
             />)}
-        </Grid> */}
+        </Grid>
         <div className={classes.licenceTextContainer}>
           <Typography className={classes.licenceText}>{intl.getHTML('mainPageImageLicence')}</Typography>
         </div>

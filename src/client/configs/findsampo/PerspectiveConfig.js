@@ -13,9 +13,9 @@ import findsImage from '../../img/findsampo/sword.jpg'
 // import periodsImage from '../../img/findsampo/periods_image.jpg'
 import mapImage from '../../img/findsampo/map.jpg'
 import sitesImage from '../../img/findsampo/sites.jpg'
-import guidesImage from '../../img/findsampo/Museovirasto_043-vaaka.jpg'
+// import guidesImage from '../../img/findsampo/Museovirasto_043-vaaka.jpg'
 // import typesImage from '../../img/findsampo/Museovirasto_067-vaaka.jpg'
-import ilppariImage from '../../img/findsampo/Museovirasto_062_vaaka.jpg'
+// import ilppariImage from '../../img/findsampo/Museovirasto_062_vaaka.jpg'
 
 export const perspectiveConfig = [
   {
@@ -168,13 +168,13 @@ export const perspectiveConfig = [
   // },
   {
     id: 'guides',
-    frontPageImage: guidesImage,
+    frontPageImage: null,
     searchMode: 'dummy-internal',
     internalLink: '/guides'
   },
   {
     id: 'ilppari',
-    frontPageImage: ilppariImage,
+    frontPageImage: null,
     externalUrl: 'http://ilppari.fi'
   }
 ]
