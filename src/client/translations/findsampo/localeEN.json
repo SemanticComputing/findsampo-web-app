@@ -10,7 +10,7 @@
     "subheading": "Finnish Archaeological Finds on the Semantic Web"
   },
   "selectPerspective": "Select an application perspective to search and browse the data:",
-  "selectPerspectiveExternal": "Other applications:",
+  "selectPerspectiveExternal": "Related links:",
   "backendErrorText": "One of the backend services is not available at the moment. Please try again later.",
   "mainPage": {
     "carouselHeading": "FEATURED FINDS",
@@ -33,7 +33,7 @@
   "facetBar": {
     "results": "Results",
     "activeFilters": "Active filters:",
-    "defaultMissingValueLabel": "?tieto puuttuu",
+    "defaultMissingValueLabel": "?value missing",
     "removeAllFilters": "Remove all",
     "narrowDownBy": "Narrow down by",
     "filterOptions": "Filter options",
@@ -167,7 +167,7 @@
         },
         "objectType": {
           "label": "Object type",
-          "description": "Object type ."
+          "description": "Object type"
         },
         "facetObjectType": {
           "label": "Object type",
@@ -333,7 +333,7 @@
     },
     "ilppari": {
       "label": "Ilppari",
-      "mainPageLabel": "Case Law Finder",
+      "mainPageLabel": "Ilppari",
       "shortDescription": "Reporting service for archaelogical finds found in Finland"
     },
     "map": {
@@ -350,7 +350,7 @@
     "guides": {
       "label": "Guides",
       "mainPageLabel": "Guides",
-      "shortDescription": "Guides and instructions for conducting archaelogy as a hobby",
+      "shortDescription": "Guides and instructions for conducting archaelogy as a hobby.",
       "whatShoulIDo": {
         "title": "What should I do if I find an antiquity?",
         "link": "https://www.museovirasto.fi/en/collection-and-information-services/item-collections/mitae-teen-kun-loeydaen-muinaisesineen"
