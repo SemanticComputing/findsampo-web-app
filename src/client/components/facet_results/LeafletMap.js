@@ -843,16 +843,10 @@ class LeafletMap extends React.Component {
     headingLink.addEventListener('click', () => history.push(data.dataProviderUrl))
     heading.appendChild(headingLink)
     container.appendChild(heading)
-    if (has(data, 'type')) {
+    if (has(data, 'objectType')) {
       container.appendChild(this.createPopUpElement({
-        label: intl.get('perspectives.finds.properties.type.label'),
-        value: data.type
-      }))
-    }
-    if (has(data, 'subCategory')) {
-      container.appendChild(this.createPopUpElement({
-        label: intl.get('perspectives.finds.properties.subCategory.label'),
-        value: data.subCategory
+        label: intl.get('perspectives.finds.properties.objectType.label'),
+        value: data.objectType.prefLabel
       }))
     }
     if (has(data, 'material')) {
@@ -871,12 +865,6 @@ class LeafletMap extends React.Component {
       container.appendChild(this.createPopUpElement({
         label: intl.get('perspectives.finds.properties.municipality.label'),
         value: data.municipality.prefLabel
-      }))
-    }
-    if (has(data, 'id')) {
-      container.appendChild(this.createPopUpElement({
-        label: intl.get('perspectives.finds.properties.uri.label'),
-        value: data.id
       }))
     }
     return container

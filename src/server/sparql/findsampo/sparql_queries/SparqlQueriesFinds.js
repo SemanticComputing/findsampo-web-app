@@ -17,7 +17,7 @@ export const findPropertiesInstancePage =
     {
       ?id :object_type ?objectType__id .
       ?objectType__id skos:prefLabel ?objectType__prefLabel .
-      FILTER (LANG(?objectType__prefLabel) = 'fi')
+      FILTER (LANG(?objectType__prefLabel) = '<LANG>')
       BIND (?objectType__id AS ?objectType__dataProviderUrl)
       #BIND(CONCAT("/types/page/", REPLACE(STR(?objectType__id ), "^.*\\\\/(.+)", "$1")) AS ?objectType__dataProviderUrl)
       #OPTIONAL {
@@ -56,11 +56,13 @@ export const findPropertiesInstancePage =
     {
       ?id :found_in_municipality ?municipality__id .
       ?municipality__id skos:exactMatch/skos:prefLabel ?municipality__prefLabel .
+      FILTER (LANG(?municipality__prefLabel) = '<LANG>')
     }
     UNION
     {
       ?id :found_in_province ?province__id .
       ?province__id skos:exactMatch/skos:prefLabel ?province__prefLabel .
+      FILTER (LANG(?province__prefLabel) = '<LANG>')
     }
     UNION
     {
@@ -83,15 +85,9 @@ export const findPropertiesInstancePage =
       OPTIONAL {
         ?image__id skos:prefLabel ?image__description .
       }
-      #BIND(?image__id as ?image__url)
-      #BIND(CONCAT("Sample description text for image ", ?image__id) as ?image__description)
     }
     UNION
     {
-      #?id :find_set_number ?setNumber .
-      #?id :individual_find_number ?individualNumber .
-      #BIND(CONCAT(?setNumber, ':') as ?identifierStart) .
-      #BIND(CONCAT(?identifierStart, ?individualNumber) as ?identifierFHA) .
       ?id ltk-s:identifier ?kmNumber .
     }
     UNION
@@ -158,7 +154,7 @@ export const findPropertiesFacetResults =
     {
       ?id :object_type ?objectType__id .
       ?objectType__id skos:prefLabel ?objectType__prefLabel .
-      FILTER (LANG(?objectType__prefLabel) = 'fi')
+      FILTER (LANG(?objectType__prefLabel) = '<LANG>')
       BIND (?objectType__id AS ?objectType__dataProviderUrl)
       #BIND(CONCAT("/types/page/", REPLACE(STR(?objectType__id ), "^.*\\\\/(.+)", "$1")) AS ?objectType__dataProviderUrl)
       #OPTIONAL {
@@ -203,6 +199,7 @@ export const findPropertiesFacetResults =
     {
       ?id :found_in_municipality ?municipality__id .
       ?municipality__id skos:exactMatch/skos:prefLabel ?municipality__prefLabel .
+      FILTER (LANG(?municipality__prefLabel) = '<LANG>')
     }
     UNION
     {
@@ -212,6 +209,7 @@ export const findPropertiesFacetResults =
     {
       ?id :found_in_province ?province__id .
       ?province__id skos:exactMatch/skos:prefLabel ?province__prefLabel .
+      FILTER (LANG(?province__prefLabel) = '<LANG>')
     }
     UNION
     {
@@ -422,7 +420,7 @@ export const findsCSVQuery = `
     }
     OPTIONAL {
       ?id :object_type/skos:prefLabel ?object_type .
-      FILTER(LANG(?object_type) = 'fi')
+      FILTER(LANG(?object_type) = '<LANG>')
     }
     OPTIONAL {
       ?id :object_type ?object_type_MAO_URI .

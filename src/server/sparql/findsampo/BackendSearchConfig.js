@@ -127,8 +127,8 @@ export const backendSearchConfig = {
     resultMapper: mapLineChart
   },
   csvFinds: {
-  perspectiveID: 'finds', // use endpoint config from finds
-  q: findsCSVQuery,
-  filterTarget: 'id'
-},
+    perspectiveID: 'finds', // use endpoint config from finds
+    q: findsCSVQuery,
+    filterTarget: 'id'
+  }
 }
