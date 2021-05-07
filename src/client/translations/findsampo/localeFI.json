@@ -1,13 +1,13 @@
 {
   "languageLabel": "Suomi",
   "html": {
-    "title": "",
-    "description": ""
+    "title": "Löytösampo – Suomalaisset arkeologiset löydöt semanttisessa webissä",
+    "description": "Löytösampo on semanttinen portaali ja linkitetyn avoimen datan palvelu arkeologisten löytöjen hakemiseen ja analysointiin"
   },
   "appTitle": {
-    "short": "",
-    "long": "",
-    "subheading": ""
+    "short": "Löytösampo",
+    "long": "Löytösampo",
+    "subheading": "Suomalaiset arkeologiset löydöt semanttisessa webissä"
   },
   "appDescription": "",
   "selectPerspective": "",

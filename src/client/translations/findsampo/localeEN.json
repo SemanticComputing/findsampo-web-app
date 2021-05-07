@@ -10,7 +10,7 @@
     "subheading": "Finnish Archaeological Finds on the Semantic Web"
   },
   "selectPerspective": "Select an application perspective to search and browse the data:",
-  "selectPerspectiveExternal": "Other applications:",
+  "selectPerspectiveExternal": "Related links:",
   "backendErrorText": "One of the backend services is not available at the moment. Please try again later.",
   "mainPage": {
     "carouselHeading": "FEATURED FINDS",
