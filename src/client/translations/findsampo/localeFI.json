@@ -1,16 +1,382 @@
 {
   "languageLabel": "Suomi",
+  "html": {
+    "title": "",
+    "description": ""
+  },
+  "appTitle": {
+    "short": "",
+    "long": "",
+    "subheading": ""
+  },
+  "appDescription": "",
+  "selectPerspective": "",
+  "selectPerspectiveExternal": "",
+  "mainPageImageLicence": "",
+  "backendErrorText": "",
+  "mainPage": {
+    "carouselHeading": "",
+    "cardLearnMore": ""
+  },
+  "topBar": {
+    "feedback": "",
+    "info": {
+      "info": "",
+      "aboutFindSampo": "",
+      "aboutFindSampoUrl": "",
+      "blog": "",
+      "blogUrl": "",
+      "guides": ""
+    },
+    "searchBarPlaceHolder": "",
+    "searchBarPlaceHolderShort": "",
+    "instructions": "",
+    "instructionsUrl": ""
+  },
+  "facetBar": {
+    "results": "",
+    "activeFilters": "",
+    "defaultMissingValueLabel": "",
+    "removeAllFilters": "",
+    "narrowDownBy": "",
+    "filterOptions": "",
+    "filterByName": "",
+    "filterByBoundingBox": "",
+    "selectionOptions": "",
+    "selectAlsoSubconcepts": "",
+    "doNotSelectSubconcepts": "",
+    "sortingOptions": "",
+    "sortAlphabetically": "",
+    "sortByNumberOfSearchResults": "",
+    "minYear": "",
+    "maxYear": "",
+    "min": "",
+    "max": "",
+    "facetSearchFieldPlaceholder": "",
+    "applyFacetSelection": ""
+  },
+  "tabs": {
+    "table": "",
+    "map": "",
+    "heatmap": "",
+    "export": "",
+    "timeline": "",
+    "recommendation_links": "",
+    "statistics": "",
+    "pie_chart": "",
+    "line_chart": "",
+    "nearby_finds": "",
+    "csv": ""
+  },
+  "table": {
+    "rowsPerPage": "",
+    "of": ""
+  },
+  "pieChart": {
+    "by": "",
+    "chartType": "",
+    "pie": "",
+    "bar": "",
+    "resultClasses": {
+      "findsByProvince": "",
+      "findsByMaterial": "",
+      "findsByObjectName": ""
+    }
+  },
+  "resultsAsCSV": "",
+  "facets": {
+    "textFacet": {
+      "inputLabel": ""
+    },
+    "sliderFacet": {
+      "invalidStartOrEnd": ""
+    }
+  },
   "leafletMap": {
+    "findPopUpHeading": "",
+    "basemaps": {
+      "mapbox": {
+        "light-v10": ""
+      },
+      "googleRoadmap": "",
+      "topographicalMapNLS": "",
+      "backgroundMapNLS": "",
+      "airMapNLS": ""
+    },
     "externalLayers": {
-      "arkeologiset_kohteet_alue": "Register of Archaeological Sites, areas (Finnish Heritage Agency)",
-      "arkeologiset_kohteet_piste": "Register of Archaeological Sites, points (Finnish Heritage Agency)",
-      "fhaLidar": "Elevation model (Finnish Heritage Agency)",
-      "karelianMaps": "Karelian maps, 1:100 000 topographic (SeCo)",
-      "senateAtlas": "Senate atlas, 1:21 000 topographic (SeCo)",
-      "kotus:pitajat": "Finnish parishes in 1938 (Institute for the Languages of Finland)",
-      "kotus:rajat-sms-alueet": "Dialectical regions in Finland (Institute for the Languages of Finland)",
-      "kotus:rajat-sms-alueosat": "Dialectical subregions in Finland (Institute for the Languages of Finland)",
-      "kotus:rajat-lansi-ita": "Border between western and eastern dialects in Finland (Institute for the Languages of Finland)"
+      "arkeologiset_kohteet_alue": "",
+      "arkeologiset_kohteet_piste": "",
+      "fhaLidar": "",
+      "karelianMaps": "",
+      "senateAtlas": ""
+    },
+    "wrongZoomLevelFHA": ""
+  },
+  "perspectives": {
+    "fullTextSearch": {
+      "properties": {
+        "prefLabel": {
+          "label": "",
+          "description": ""
+        },
+        "type": {
+          "label": "",
+          "description": ""
+        },
+        "description": {
+          "label": "",
+          "description": ""
+        }
+      }
+    },
+    "finds": {
+      "label": "",
+      "facetResultsType": "",
+      "shortDescription": "",
+      "longDescription": "",
+      "instancePage": {
+        "label": "",
+        "description": "",
+        "recommendations": {
+          "nearByFinds": "",
+          "similarFinds": ""
+        }
+      },
+      "properties": {
+        "uri": {
+          "label": "",
+          "description": ""
+        },
+        "findName": {
+          "label": "",
+          "description": ""
+        },
+        "findText": {
+          "label": "",
+          "description": ""
+        },
+        "identifierFHA": {
+          "label": "",
+          "description": ""
+        },
+        "description": {
+          "label": "",
+          "description": ""
+        },
+        "specification": {
+          "label": "",
+          "description": ""
+        },
+        "prefLabel": {
+          "label": "",
+          "description": ""
+        },
+        "objectType": {
+          "label": "",
+          "description": ""
+        },
+        "facetObjectType": {
+          "label": "",
+          "description": ""
+        },
+        "place": {
+          "label": "",
+          "description": ""
+        },
+        "material": {
+          "label": "",
+          "description": ""
+        },
+        "period": {
+          "label": "",
+          "description": ""
+        },
+        "dateTimespan": {
+          "label": "",
+          "description": ""
+        },
+        "startYear": {
+          "label": "",
+          "description": ""
+        },
+        "endYear": {
+          "label": "",
+          "description": ""
+        },
+        "province": {
+          "label": "",
+          "description": ""
+        },
+        "municipality": {
+          "label": "",
+          "description": ""
+        },
+        "image": {
+          "label": "",
+          "description": ""
+        },
+        "earliestStartYear": {
+          "label": "",
+          "description": ""
+        },
+        "latestEndYear": {
+          "label": "",
+          "description": ""
+        },
+        "kmNumber": {
+          "label": "",
+          "description": ""
+        },
+        "ceramicStyle": {
+          "label": "",
+          "description": ""
+        },
+        "weight": {
+          "label": "",
+          "description": ""
+        },
+        "length": {
+          "label": "",
+          "description": ""
+        },
+        "maxThickness": {
+          "label": "",
+          "description": ""
+        },
+        "minThickness": {
+          "label": "",
+          "description": ""
+        },
+        "width": {
+          "label": "",
+          "description": ""
+        },
+        "diameter": {
+          "label": "",
+          "description": ""
+        },
+        "similarObjectType": {
+          "label": "",
+          "description": ""
+        },
+        "similarMaterial": {
+          "label": "",
+          "description": ""
+        },
+        "similarPeriod": {
+          "label": "",
+          "description": ""
+        },
+        "similarExternalFind": {
+          "label": "",
+          "description": ""
+        },
+        "foundAtHeight": {
+          "label": "",
+          "description": ""
+        },
+        "archaeologicalSiteUrl": {
+          "label": "",
+          "description": ""
+        },
+        "typology": {
+          "label": "",
+          "description": ""
+        }
+      }
+    },
+    "types": {
+      "instancePage": {
+        "label": "",
+        "description": ""
+      },
+      "properties": {
+        "uri": {
+          "label": "",
+          "description": ""
+        },
+        "prefLabel": {
+          "label": "",
+          "description": ""
+        },
+        "maoMatch": {
+          "label": "",
+          "description": ""
+        },
+        "hiddenLabel": {
+          "label": "",
+          "description": ""
+        },
+        "facetType": {
+          "label": "",
+          "description": ""
+        }
+      }
+    },
+    "periods": {
+      "instancePage": {
+        "label": "",
+        "description": ""
+      },
+      "properties": {
+        "uri": {
+          "label": "",
+          "description": ""
+        },
+        "prefLabel": {
+          "label": "",
+          "description": ""
+        },
+        "hiddenLabel": {
+          "label": "",
+          "description": ""
+        },
+        "earliestBegin": {
+          "label": "",
+          "description": ""
+        },
+        "latestEnd": {
+          "label": "",
+          "description": ""
+        }
+      }
+    },
+    "ilppari": {
+      "label": "",
+      "mainPageLabel": "",
+      "shortDescription": ""
+    },
+    "map": {
+      "label": "",
+      "mainPageLabel": "",
+      "shortDescription": ""
+    },
+    "sites": {
+      "label": "",
+      "mainPageLabel": "",
+      "shortDescription": "",
+      "longDescription": ""
+    },
+    "guides": {
+      "label": "",
+      "mainPageLabel": "",
+      "shortDescription": "",
+      "whatShoulIDo": {
+        "title": "",
+        "link": ""
+      },
+      "reportingADiscovery": {
+        "title": "",
+        "link": ""
+      },
+      "archaelogyAsAHobby": {
+        "title": "",
+        "link": ""
+      },
+      "enthusiastsGuide": {
+        "title": "",
+        "link": ""
+      }
     }
   }
 }
