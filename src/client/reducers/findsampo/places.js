@@ -1,7 +1,7 @@
 import { handleDataFetchingAction } from '../general/results'
 
 export const INITIAL_STATE = {
-  results: [],
+  results: null,
   resultsSparqlQuery: null,
   paginatedResults: [],
   paginatedResultsSparqlQuery: null,
