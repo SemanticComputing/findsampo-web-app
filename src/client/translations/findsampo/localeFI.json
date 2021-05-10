@@ -10,7 +10,7 @@
     "subheading": "Suomalaiset arkeologiset löydöt semanttisessa webissä"
   },
   "selectPerspective": "Valitse näkymä aineiston hakua ja tutkimista varten:",
-  "selectPerspectiveExternal": "Linkkejä",
+  "selectPerspectiveExternal": "Linkkejä:",
   "backendErrorText": "Palvelin ei ole käytettävissä juuri nyt. Kokeile myöhemmin uuudestaan.",
   "mainPage": {
     "carouselHeading": "ESITTELYSSÄ OLEVAT LÖYDÖT",
