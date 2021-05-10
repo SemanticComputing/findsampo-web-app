@@ -316,6 +316,7 @@ const SemanticPortal = props => {
                     screenSize={screenSize}
                     rootUrl={rootUrlWithLang}
                     resultClass='finds'
+                    currentLocale={props.options.currentLocale}
                     fetchKnowledgeGraphMetadata={props.fetchKnowledgeGraphMetadata}
                     knowledgeGraphMetadata={props.finds.knowledgeGraphMetadata}
                   />
