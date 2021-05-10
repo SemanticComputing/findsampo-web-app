@@ -6,10 +6,11 @@ import Typography from '@material-ui/core/Typography'
 import { makeStyles } from '@material-ui/core/styles'
 import MainCard from '../../main_layout/MainCard'
 import bannerImage from '../../../img/findsampo/main-banner.jpg'
-import bannerLogoEN from '../../../img/findsampo/englanti-01.png'
-import bannerLogoFI from '../../../img/findsampo/suomi2-01.png'
+import bannerLogoEN from '../../../img/findsampo/large-logo-transparent-white-en.png'
+import bannerLogoFI from '../../../img/findsampo/large-logo-transparent-white-fi.png'
+// import bannerLogoEN from '../../../img/findsampo/large-logo-transparent-black-en.png'
+// import bannerLogoFI from '../../../img/findsampo/large-logo-transparent-black-fi.png'
 import ImageCarousel from '../../main_layout/ImageCarousel'
-// import InfoCards from './InfoCards'
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -19,7 +20,7 @@ const useStyles = makeStyles(theme => ({
   },
   banner: {
     // background: `linear-gradient( rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.35) ), url(${bannerImage})`,
-    background: `radial-gradient(ellipse at center, rgba(194,194,194,0.35) 30%, rgb(191, 191, 191) 100%), url(${bannerImage})`,
+    background: `radial-gradient(ellipse at center, rgba(194,194,194,0.35) 20%, rgb(191, 191, 191) 100%), url(${bannerImage})`,
     backgroundRepeat: 'no-repeat',
     backgroundSize: 'cover',
     backgroundPosition: 'center',
@@ -48,7 +49,8 @@ const useStyles = makeStyles(theme => ({
   },
   bannerSubheading: {
     width: '100%',
-    color: '#000'
+    color: '#fff'
+    // color: '#000'
   },
   layout: {
     width: 'auto',
@@ -75,7 +77,8 @@ const useStyles = makeStyles(theme => ({
     marginBottom: theme.spacing(1.5)
   },
   licenceTextContainer: {
-    marginTop: theme.spacing(1),
+    marginTop: theme.spacing(2),
+    marginBottom: theme.spacing(2),
     display: 'flex',
     justifyContent: 'center'
   },
@@ -86,8 +89,8 @@ const useStyles = makeStyles(theme => ({
   carouselHeadingContainer: {
     display: 'flex',
     justifyContent: 'center',
-    paddingTop: theme.spacing(1.5),
-    paddingBottom: theme.spacing(1)
+    paddingTop: theme.spacing(1.5)
+    // paddingBottom: theme.spacing(1)
   },
   carouselHeading: {
     color: theme.palette.primary.main,
@@ -95,7 +98,7 @@ const useStyles = makeStyles(theme => ({
     fontSize: '1.2rem'
   },
   carouselContainer: {
-    marginTop: theme.spacing(2)
+    // marginTop: theme.spacing(2)
   }
 }))
 
@@ -185,9 +188,6 @@ const Main = props => {
               rootUrl={props.rootUrl}
             />)}
         </Grid>
-        <div className={classes.licenceTextContainer}>
-          <Typography className={classes.licenceText}>{intl.getHTML('mainPageImageLicence')}</Typography>
-        </div>
       </div>
       <div className={classes.carouselSection}>
         <div className={classes.carouselHeadingContainer}>
@@ -200,7 +200,9 @@ const Main = props => {
             data={props.knowledgeGraphMetadata}
           />
         </div>
-
+      </div>
+      <div className={classes.licenceTextContainer}>
+        <Typography className={classes.licenceText}>{intl.getHTML('mainPageImageLicence')}</Typography>
       </div>
       {/* <InfoCards /> */}
     </div>

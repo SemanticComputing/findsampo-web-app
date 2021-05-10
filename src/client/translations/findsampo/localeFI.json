@@ -11,6 +11,7 @@
   },
   "selectPerspective": "Valitse näkymä aineiston hakua ja tutkimista varten:",
   "selectPerspectiveExternal": "Linkkejä:",
+  "mainPageImageLicence": "Kuvien lisenssi: ...",
   "backendErrorText": "Palvelin ei ole käytettävissä juuri nyt. Kokeile myöhemmin uuudestaan.",
   "mainPage": {
     "carouselHeading": "ESITTELYSSÄ OLEVAT LÖYDÖT",
