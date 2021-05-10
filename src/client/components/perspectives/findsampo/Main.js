@@ -39,7 +39,8 @@ const useStyles = makeStyles(theme => ({
   bannerLogoContainer: {
     display: 'flex',
     alignItems: 'center',
-    height: '80%',
+    height: '73%',
+    marginTop: theme.spacing(2),
     [theme.breakpoints.down('xs')]: {
       height: '70%'
     }
