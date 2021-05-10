@@ -28,7 +28,7 @@
     },
     "searchBarPlaceHolder": "Search all content",
     "instructions": "instructions",
-    "instructionsUrl": "https://seco.cs.aalto.fi/projects/sualt/"
+    "instructionsUrl": "https://seco.cs.aalto.fi/projects/sualt/fs/instructions.pdf"
   },
   "facetBar": {
     "results": "Results",

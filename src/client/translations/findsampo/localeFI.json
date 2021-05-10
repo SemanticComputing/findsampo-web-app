@@ -26,9 +26,9 @@
       "blogUrl": "https://blogs.helsinki.fi/sualt-project",
       "guides": "Arkeologisia oppaita"
     },
-    "searchBarPlaceHolder": "Hakea kaikesta sisällöstä",
+    "searchBarPlaceHolder": "Hae kaikesta sisällöstä",
     "instructions": "ohjeet",
-    "instructionsUrl": "https://seco.cs.aalto.fi/projects/sualt/"
+    "instructionsUrl": "https://seco.cs.aalto.fi/projects/sualt/fs/instructions.pdf"
   },
   "facetBar": {
     "results": "Tulokset",
@@ -123,7 +123,7 @@
     },
     "finds": {
       "label": "Löydöt",
-      "facetResultsType": "löydöä",
+      "facetResultsType": "löytöä",
       "shortDescription": "Arkeologisten löytöjen haku",
       "longDescription": "<p class=\"MuiTypography-root MuiTypography-body1 MuiTypography-paragraph\"> Tätä näkymää voi käyttää arkeologisten löytöjen etsimiseen vasemalla olevien suodattimien avulla. Tuloksia voi selata ja visualisoida välilehdistä: </p> <ul class=\"MuiTypography-root MuiTypography-body1\"> <li> <strong>TAULUKKO</strong>-välilehti esittää tulokset sivutettuna taulukkona </li> <li> <strong>KARTAT</strong>-välilehti näyttää tulokset interaktiivisella kartalla. Peruskartta ja mahdolliset lisäkerrokset voi valita oikealla ylhäällä olevasta valikosta. </li> <li> <strong>LÄMPÖKARTTA</strong>-näyttää tulosjoukon lämpökartalla. </li> <li> <strong>AIKAJANA</strong>-välilehti näyttää tulosjoukosta luodun aikajanavisualisoinnin. </li> <li> <strong>PIIRAKKA/PYLVÄS KAAVIO</strong>-välilehti visualisoi tulosjoukkoa joko 1) piirakkkakaaviona tai 2) pylväskaaviona. Löytöjen jakauman perusteena voi olla joko 1) esineen tyyppi, 2) materiaali tai 3) löytömaakunta. </li> <li> <strong>VIIVAKAAVIO</strong>-välilehti visualisoi löytöjen määrää (y-akseli) eri ominaisuuksien mukaan (x-akseli). </li> <li> <strong>CSV</strong> välilehtestä voi ladata tulosjoukon CSV taulokkona, jonka voit avata esimerkiksi taulukkolaskentaohjelmalla. </li> </ul>",
       "instancePage": {
@@ -224,7 +224,7 @@
           "description": "Keraaminen kulttuuri joka liittyy esineeseen."
         },
         "weight": {
-          "label": "Paiino",
+          "label": "Paino",
           "description": "Esineen paino grammoissa."
         },
         "length": {
@@ -336,7 +336,7 @@
       "shortDescription": "Interaktiivisia karttoja löytöjen hakemiseen ja visualisointiin."
     },
     "sites": {
-      "label": "kohteet",
+      "label": "Kohteet",
       "mainPageLabel": "kohteet",
       "shortDescription": "Etsi ja tarkastele arkeologisia kohteita ja suojeltuja alueita.",
       "longDescription": "<p class=\"MuiTypography-root MuiTypography-body1 MuiTypography-paragraph\"> Tämä näkymä pyytää lupaa paikantaa käyttäjä ja sitten näyttää käyttäjän lähellä olevia rekisteröityjä arkeologisia pisteitä ja kohteita, joilla metallinetsimistä on rajoitettu. </p>"
