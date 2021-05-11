@@ -20,7 +20,7 @@ import findSampoLogo from '../../../img/findsampo/logo.png'
 import secoLogo from '../../../img/logos/seco-logo-48x50.png'
 import { showLanguageButton, feedbackLink } from '../../../configs/findsampo/GeneralConfig'
 
-const mobileMenuBreakPoint = 1450
+const mobileMenuBreakPoint = 1100
 
 const useStyles = makeStyles((theme) => ({
   grow: {
@@ -113,7 +113,7 @@ const TopBar = props => {
   }
 
   const renderMobileMenuItem = perspective => {
-    if (has(perspective, 'externalUrl') && perspective.id !== 'feedback') { return }
+    // if (has(perspective, 'externalUrl') && perspective.id !== 'feedback') { return }
     if (has(perspective, 'externalUrl')) {
       return (
         <a
@@ -197,38 +197,31 @@ const TopBar = props => {
       open={isMobileMenuOpen}
       onClose={handleMobileMenuClose}
     >
-      {perspectives.map(perspective => renderMobileMenuItem(perspective))}
+      {renderMobileMenuItem(perspectives[0])}
+      {renderMobileMenuItem(perspectives[1])}
+      {renderMobileMenuItem(perspectives[2])}
       <Divider />
       {renderMobileMenuItem({
         id: 'feedback',
         externalUrl: feedbackLink,
         label: intl.get('topBar.feedback')
       })}
-      <MenuItem
-        key={0}
-        component={AdapterLink}
-        to={`${props.rootUrl}/about`}
-      >
-        {intl.get('topBar.info.aboutThePortal').toUpperCase()}
-      </MenuItem>
-      <a
-        className={classes.link}
-        key={1}
-        href={intl.get('topBar.info.blogUrl')}
-        target='_blank'
-        rel='noopener noreferrer'
-      >
-        <MenuItem>
-          {intl.get('topBar.info.blog').toUpperCase()}
-        </MenuItem>
-      </a>
-      <MenuItem
-        key='info'
-        component={AdapterLink}
-        to={`${props.rootUrl}/instructions`}
-      >
-        {intl.get('topBar.instructions').toUpperCase()}
-      </MenuItem>
+      {renderMobileMenuItem({
+        id: 'aboutFindSampo',
+        externalUrl: intl.get('topBar.info.aboutFindSampoUrl'),
+        label: intl.get('topBar.info.aboutFindSampo')
+      })}
+      {renderMobileMenuItem({
+        id: 'blog',
+        externalUrl: intl.get('topBar.info.blogUrl'),
+        label: intl.get('topBar.info.blog')
+      })}
+      {renderMobileMenuItem(perspectives[3])}
+      {renderMobileMenuItem({
+        id: 'instructions',
+        externalUrl: intl.get('topBar.instructionsUrl'),
+        label: intl.get('topBar.instructions')
+      })}
     </Menu>
 
   return (
