@@ -22,7 +22,7 @@
     "info": {
       "info": "Info",
       "aboutFindSampo": "Tietoa Löytösammosta",
-      "aboutFindSampoUrl": "https://seco.cs.aalto.fi/projects/sualt/",
+      "aboutFindSampoUrl": "https://seco.cs.aalto.fi/projects/sualt/fs/about-fi.php",
       "blog": "Projektin blogi",
       "blogUrl": "https://blogs.helsinki.fi/sualt-project",
       "guides": "Arkeologisia oppaita"
@@ -40,7 +40,7 @@
     "filterOptions": "Suodatin valinnat",
     "filterByName": "Suodata nimen perusteella",
     "filterByBoundingBox": "Suodata kartasta",
-    "selectionOptions": "Valikoiman valinnat",
+    "selectionOptions": "Hierarkisten valintojen asetukset",
     "selectAlsoSubconcepts": "Valitse kaikki alakäsitteet",
     "doNotSelectSubconcepts": "Älä valitse alakäsitteitä",
     "sortingOptions": "Järjestämisen valinnat",
@@ -97,7 +97,7 @@
       "googleRoadmap": "Google Maps",
       "topographicalMapNLS": "Topografinen kartta (Maanmittauslaitos)",
       "backgroundMapNLS": "Taustakartta (Maanmittauslaitos)",
-      "airMapNLS": "Ilmakartta (Maanmittauslaitos)"
+      "airMapNLS": "Ilmakuva (Maanmittauslaitos)"
     },
     "externalLayers": {
       "arkeologiset_kohteet_alue": "Arkeologiset kohteet, alueet (Museovirasto)",
@@ -106,7 +106,7 @@
       "karelianMaps": "Karjalan kartat 1:100 000 topografinen (SeCo)",
       "senateAtlas": "Senaatin kartat 1:21 000 topografinen (SeCo)"
     },
-    "wrongZoomLevelFHA": "Kartan suurennustason tulee olla vähintään 13 tämän kerroksen näyttämiseksi"
+    "wrongZoomLevelFHA": "Kartan suurennustason tulee olla vähintään 13 tämän karttatason näyttämiseksi"
   },
   "perspectives": {
     "fullTextSearch": {
@@ -126,7 +126,7 @@
       "label": "Löydöt",
       "facetResultsType": "löytöä",
       "shortDescription": "Arkeologisten löytöjen haku",
-      "longDescription": "<p class=\"MuiTypography-root MuiTypography-body1 MuiTypography-paragraph\"> Tätä näkymää voi käyttää arkeologisten löytöjen etsimiseen vasemalla olevien suodattimien avulla. Tuloksia voi selata ja visualisoida välilehdistä: </p> <ul class=\"MuiTypography-root MuiTypography-body1\"> <li> <strong>TAULUKKO</strong>-välilehti esittää tulokset sivutettuna taulukkona </li> <li> <strong>KARTAT</strong>-välilehti näyttää tulokset interaktiivisella kartalla. Peruskartta ja mahdolliset lisäkerrokset voi valita oikealla ylhäällä olevasta valikosta. </li> <li> <strong>LÄMPÖKARTTA</strong>-näyttää tulosjoukon lämpökartalla. </li> <li> <strong>AIKAJANA</strong>-välilehti näyttää tulosjoukosta luodun aikajanavisualisoinnin. </li> <li> <strong>PIIRAKKA/PYLVÄS KAAVIO</strong>-välilehti visualisoi tulosjoukkoa joko 1) piirakkkakaaviona tai 2) pylväskaaviona. Löytöjen jakauman perusteena voi olla joko 1) esineen tyyppi, 2) materiaali tai 3) löytömaakunta. </li> <li> <strong>VIIVAKAAVIO</strong>-välilehti visualisoi löytöjen määrää (y-akseli) eri ominaisuuksien mukaan (x-akseli). </li> <li> <strong>CSV</strong> välilehtestä voi ladata tulosjoukon CSV taulokkona, jonka voit avata esimerkiksi taulukkolaskentaohjelmalla. </li> </ul>",
+      "longDescription": "<p class=\"MuiTypography-root MuiTypography-body1 MuiTypography-paragraph\"> Tätä näkymää voi käyttää arkeologisten löytöjen etsimiseen vasemman laidan suodattimien avulla. Hakutuloksia voi selata ja visualisoida käyttäen seuraavia välilehtiä: </p> <ul class=\"MuiTypography-root MuiTypography-body1\"> <li> <strong>TAULUKKO</strong>-välilehti esittää tulokset sivutettuna taulukkona </li> <li> <strong>KARTAT</strong>-välilehti näyttää tulokset interaktiivisella kartalla. Peruskartta ja mahdolliset lisäkerrokset voi valita oikealla ylhäällä olevasta valikosta. </li> <li> <strong>LÄMPÖKARTTA</strong> näyttää tulosjoukon lämpökartalla. </li> <li> <strong>AIKAJANA</strong>-välilehti näyttää tulosjoukosta luodun aikajanavisualisoinnin. </li> <li> <strong>PIIRAKKA/PYLVÄS KAAVIO</strong>-välilehti visualisoi tulosjoukkoa joko 1) piirakkkakaaviona tai 2) pylväskaaviona. Löytöjen jakauman perusteena voi olla joko 1) esineen tyyppi, 2) materiaali tai 3) löytömaakunta. </li> <li> <strong>VIIVAKAAVIO</strong>-välilehti visualisoi löytöjen määrää (y-akseli) eri ominaisuuksien mukaan (x-akseli). </li> <li> <strong>CSV</strong> välilehtestä voi ladata tulosjoukon CSV taulokkona, jonka voit avata esimerkiksi taulukkolaskentaohjelmalla. </li> </ul>",
       "instancePage": {
         "label": "Arkeologinen löytö",
         "description": "<p class=\"MuiTypography-root MuiTypography-body1 MuiTypography-paragraph\"> Tämä sivu kokoaa tietoa tästä arkeologisesta löydöstä. Seuraavista välilehdistä voi tarkastella löytöön liittyviä tietoja: </p> <ul class=\"MuiTypography-root MuiTypography-body1\"> <li> <strong>TAULUKKO</strong>-välilehti näyttää taulokon metatietoa, on oletusvälilehti. </li> <li> <strong>KARTTA</strong>-välilehti näyttää löytöpaikan sijainnin kartalla. </li> <li> <strong>LÄHELLÄ OLEVAT LÖYDÖT</strong>-välilehti näyttää läheltä samaa paikkaa löytyneitä muita löytöjä kartalla. </li> <li> <strong>SUOSITUSLINKIT</strong>-välilehti näyttää suosituksia muista vastaavista löydöistä. Nämä suositukset on luotu automaattisesti löytöön liittyvän linkitetyn datan yhteyksien perusteella. </li> </ul>",
@@ -329,23 +329,23 @@
     "ilppari": {
       "label": "Ilppari",
       "mainPageLabel": "Ilppari",
-      "shortDescription": "Ilmoituspalvelu arkeologisille löydöille Suomessa"
+      "shortDescription": "Ilmoituspalvelu arkeologisille löydöille"
     },
     "map": {
       "label": "Kartat",
       "mainPageLabel": "kartat",
-      "shortDescription": "Interaktiivisia karttoja löytöjen hakemiseen ja visualisointiin."
+      "shortDescription": "Interaktiivisia karttoja löytöjen hakemiseen ja visualisointiin"
     },
     "sites": {
       "label": "Kohteet",
       "mainPageLabel": "kohteet",
-      "shortDescription": "Etsi ja tarkastele arkeologisia kohteita ja suojeltuja alueita.",
+      "shortDescription": "Etsi ja tarkastele arkeologisia kohteita ja suojeltuja alueita",
       "longDescription": "<p class=\"MuiTypography-root MuiTypography-body1 MuiTypography-paragraph\"> Tämä näkymä pyytää lupaa paikantaa käyttäjä ja sitten näyttää käyttäjän lähellä olevia rekisteröityjä arkeologisia pisteitä ja kohteita, joilla metallinetsimistä on rajoitettu. </p>"
     },
     "guides": {
       "label": "Oppaita",
       "mainPageLabel": "Oppaita",
-      "shortDescription": "Oppaita ja ohjeita arkeologiasta harrastuksena.",
+      "shortDescription": "Oppaita ja ohjeita arkeologiasta harrastuksena",
       "whatShoulIDo": {
         "title": "Mitä tehdä kun löydän muinaisjäännöksen?",
         "link": "https://www.museovirasto.fi/en/collection-and-information-services/item-collections/mitae-teen-kun-loeydaen-muinaisesineen"

@@ -22,7 +22,7 @@
     "info": {
       "info": "Info",
       "aboutFindSampo": "About FindSampo",
-      "aboutFindSampoUrl": "https://seco.cs.aalto.fi/projects/sualt/",
+      "aboutFindSampoUrl": "https://seco.cs.aalto.fi/projects/sualt/fs/about-en.php",
       "blog": "Project blog",
       "blogUrl": "https://blogs.helsinki.fi/sualt-project",
       "guides": "Archaeology guides"
@@ -351,7 +351,7 @@
     "guides": {
       "label": "Guides",
       "mainPageLabel": "Guides",
-      "shortDescription": "Guides and instructions for conducting archaelogy as a hobby.",
+      "shortDescription": "Guides and instructions for conducting archaelogy as a hobby",
       "whatShoulIDo": {
         "title": "What should I do if I find an antiquity?",
         "link": "https://www.museovirasto.fi/en/collection-and-information-services/item-collections/mitae-teen-kun-loeydaen-muinaisesineen"
