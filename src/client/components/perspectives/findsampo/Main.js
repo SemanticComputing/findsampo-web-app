@@ -5,7 +5,8 @@ import Grid from '@material-ui/core/Grid'
 import Typography from '@material-ui/core/Typography'
 import { makeStyles } from '@material-ui/core/styles'
 import MainCard from '../../main_layout/MainCard'
-import bannerImage from '../../../img/findsampo/main-banner.jpg'
+//import bannerImage from '../../../img/findsampo/main-banner.jpg'
+import bannerImage from '../../../img/findsampo/ponsi-banner.jpg'
 import bannerLogoEN from '../../../img/findsampo/large-logo-transparent-white-en.png'
 import bannerLogoFI from '../../../img/findsampo/large-logo-transparent-white-fi.png'
 // import bannerLogoEN from '../../../img/findsampo/large-logo-transparent-black-en.png'
@@ -19,7 +20,7 @@ const useStyles = makeStyles(theme => ({
     backgroundColor: '#ffffff'
   },
   banner: {
-    background: `linear-gradient( rgba(0, 0, 0, 0.50), rgba(0, 0, 0, 0.50) ), url(${bannerImage})`,
+    background: `linear-gradient( rgba(0, 0, 0, 0.30), rgba(0, 0, 0, 0.30) ), url(${bannerImage})`,
     // background: `radial-gradient(ellipse at center, rgba(194,194,194,0.35) 70%, rgb(191, 191, 191) 100%), url(${bannerImage})`,
     backgroundRepeat: 'no-repeat',
     backgroundSize: 'cover',
