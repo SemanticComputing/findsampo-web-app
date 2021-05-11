@@ -146,13 +146,13 @@
           "label": "Find name",
           "description": "Find name."
         },
+        "findNumber": {
+          "label": "Accession number",
+          "description": "Accession number of the find in the FHA records"
+        },
         "findText": {
           "label": "Text search",
           "description": "Search with free text based on name, number or description of the find."
-        },
-        "identifierFHA": {
-          "label": "FHA identifier",
-          "description": "FHA identifier of the find."
         },
         "description": {
           "label": "Description",

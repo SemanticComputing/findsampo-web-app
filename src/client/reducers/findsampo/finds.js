@@ -40,9 +40,27 @@ export const INITIAL_STATE = {
       numberedList: false,
       hideHeader: true
     },
+    // {
+    //   id: 'prefLabel',
+    //   valueType: 'object',
+    //   makeLink: true,
+    //   externalLink: false,
+    //   sortValues: true,
+    //   numberedList: false,
+    //   minWidth: 130
+    // },
     {
-      id: 'prefLabel',
+      id: 'findName',
       valueType: 'object',
+      makeLink: true,
+      externalLink: false,
+      sortValues: true,
+      numberedList: false,
+      minWidth: 130
+    },
+    {
+      id: 'findNumber',
+      valueType: 'string',
       makeLink: true,
       externalLink: false,
       sortValues: true,

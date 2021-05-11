@@ -24,6 +24,12 @@ export const findsPerspectiveConfig = {
     prefLabel: {
       labelPath: 'skos:prefLabel'
     },
+    findName: {
+      labelPath: 'ltk-s:find_name'
+    },
+    findNumber: {
+      labelPath: ':identifier'
+    },
     findText: {
       id: 'findText',
       labelPath: 'skos:prefLabel',

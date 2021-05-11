@@ -11,6 +11,15 @@ export const findPropertiesInstancePage =
     }
     UNION
     {
+      ?id ltk-s:find_name ?findName__id .
+      BIND (?findName__id as ?findName__prefLabel)
+    }
+    UNION
+    {
+      ?id :identifier ?findNumber .
+    }
+    UNION
+    {
       ?id ltk-s:type ?type .
     }
     UNION
@@ -88,7 +97,7 @@ export const findPropertiesInstancePage =
     }
     UNION
     {
-      ?id ltk-s:identifier ?kmNumber .
+      ?id :identifier ?findNumber .
     }
     UNION
     {
@@ -133,10 +142,19 @@ export const findPropertiesInstancePage =
 `
 
 export const findPropertiesFacetResults =
-`   {
-      ?id skos:prefLabel ?prefLabel__id .
-      BIND (?prefLabel__id as ?prefLabel__prefLabel)
-      BIND(CONCAT("/${perspectiveID}/page/", REPLACE(STR(?id), "^.*\\\\/(.+)", "$1")) AS ?prefLabel__dataProviderUrl)
+` # {
+  #    ?id skos:prefLabel ?prefLabel__id .
+  #    BIND (?prefLabel__id as ?prefLabel__prefLabel)
+  #    BIND(CONCAT("/${perspectiveID}/page/", REPLACE(STR(?id), "^.*\\\\/(.+)", "$1")) AS ?prefLabel__dataProviderUrl)
+  #  }
+    {
+      ?id ltk-s:find_name ?findName__id .
+      BIND (?findName__id as ?findName__prefLabel)
+      BIND(CONCAT("/${perspectiveID}/page/", REPLACE(STR(?id), "^.*\\\\/(.+)", "$1")) AS ?findName__dataProviderUrl)
+    }
+    UNION
+    {
+      ?id :identifier ?findNumber .
     }
     UNION
     {
@@ -381,7 +399,7 @@ export const knowledgeGraphMetadataQuery = `
   WHERE {
     ?id a ltk-s:Portal_configuration ;
           ltk-s:featured_find ?featuredFind__id .
-    ?featuredFind__id skos:prefLabel ?featuredFind__prefLabel .
+    ?featuredFind__id ltk-s:find_name ?featuredFind__prefLabel .
     ?picture :documents ?featuredFind__id .
     ?picture ltk-s:image_url ?featuredFind__imageURL .
     BIND(CONCAT("/${perspectiveID}/page/", REPLACE(STR(?featuredFind__id), "^.*\\\\/(.+)", "$1")) AS ?featuredFind__dataProviderUrl)

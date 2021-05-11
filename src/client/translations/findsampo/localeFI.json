@@ -144,13 +144,13 @@
           "label": "Löydön nimi",
           "description": "Löydön nimi"
         },
+        "findNumber": {
+          "label": "Luettelointinumero",
+          "description": "Löydön luettelointinumero. Muostuu löytökokonaisuutta kuvaavasta päänumerosta ja siihen kuuluvan yksittäisen löydön alanumerosta."
+        },
         "findText": {
           "label": "Tekstihaku",
           "description": "Etsi vapaalla tekstillä nlöydön imen, numeron tai kuvauksen perusteella."
-        },
-        "identifierFHA": {
-          "label": "Luettelointinumero (KM-numero)",
-          "description": "Museuoviraston käyttämä luettelointinumero löydölle. Muostuu löytökokonaisuutta kuvaavasta päänumerosta ja siihen kuuluvan yksittäisen löydön alanumerosta."
         },
         "description": {
           "label": "Kuvaus",
