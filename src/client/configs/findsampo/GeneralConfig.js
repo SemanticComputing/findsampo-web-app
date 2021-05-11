@@ -17,12 +17,12 @@ export const yasguiBaseUrl = 'https://yasgui.triply.cc'
 export const yasguiParams = {
   contentTypeConstruct: 'text/turtle',
   contentTypeSelect: 'application/sparql-results+json',
-  endpoint: 'https://ldf.fi/sualt-fha-finds/sparql',
+  endpoint: 'https://ldf.fi/findsampo/sparql',
   requestMethod: 'POST',
   tabTitle: 'Exported query'
 }
 
-export const feedbackLink = 'https://link.webropolsurveys.com/'
+export const feedbackLink = 'https://link.webropolsurveys.com/S/4288C417CBF3AAFB'
 
 const createArchealogicalSitePopUp = data => {
   let html = ''
