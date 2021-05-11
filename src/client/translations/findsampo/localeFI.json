@@ -11,7 +11,7 @@
   },
   "selectPerspective": "Valitse näkymä aineiston hakua ja tutkimista varten:",
   "selectPerspectiveExternal": "Linkkejä:",
-  "mainPageImageLicence": "Kuvien lisenssi: ...",
+  "mainPageImageLicence": "Kuvien lisenssi: Otsikon taustakuva: Akuperäinen <a href=\"https://museovirasto.finna.fi/arkeologia/Record/museovirasto.131CE7C3BCBB48135B08F411230D8460\" target=\"_blank\">kuva</a> (muokattu rajaamalla) Ilari Järvinen <a href=\"https://creativecommons.org/licenses/by/4.0/deed.fi\" target=\"_blank\">CC BY 4.0</a>. ",
   "backendErrorText": "Palvelin ei ole käytettävissä juuri nyt. Kokeile myöhemmin uuudestaan.",
   "mainPage": {
     "carouselHeading": "ESITTELYSSÄ OLEVAT LÖYDÖT",
@@ -34,7 +34,7 @@
   "facetBar": {
     "results": "Tulokset",
     "activeFilters": "Valitut suodattimet",
-    "defaultMissingValueLabel": "?arvo puuttuu",
+    "defaultMissingValueLabel": "\"arvo puuttuu\"",
     "removeAllFilters": "Poista kaikki",
     "narrowDownBy": "Rajoita",
     "filterOptions": "Suodatin valinnat",

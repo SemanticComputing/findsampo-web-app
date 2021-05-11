@@ -11,7 +11,7 @@
   },
   "selectPerspective": "Select an application perspective to search and browse the data:",
   "selectPerspectiveExternal": "Related links:",
-  "mainPageImageLicence": "Images used under license from ...",
+  "mainPageImageLicence": "Images used under license from: Bannerimage: Original <a href=\"https://museovirasto.finna.fi/arkeologia/Record/museovirasto.131CE7C3BCBB48135B08F411230D8460\" target=\"_blank\">picture</a> (muokattu rajaamalla) by Ilari Järvinen <a href=\"https://creativecommons.org/licenses/by/4.0/deed.fi\" target=\"_blank\">CC BY 4.0</a>. ",
   "backendErrorText": "One of the backend services is not available at the moment. Please try again later.",
   "mainPage": {
     "carouselHeading": "FEATURED FINDS",
@@ -34,7 +34,7 @@
   "facetBar": {
     "results": "Results",
     "activeFilters": "Active filters:",
-    "defaultMissingValueLabel": "?value missing",
+    "defaultMissingValueLabel": "\"value missing\"",
     "removeAllFilters": "Remove all",
     "narrowDownBy": "Narrow down by",
     "filterOptions": "Filter options",
