@@ -249,8 +249,8 @@
           "description": "Läpimitta millimetreissä. (Käytetään ympyränmuotoisilla esineillä, kuten kolikoilla.)"
         },
         "similarObjectType": {
-          "label": "Löytöjä joilla saman lainen tyyppi",
-          "description": "Löytöjä joilla saman lainen tyyppi"
+          "label": "Löytöjä joilla samanlainen tyyppi",
+          "description": "Löytöjä joilla samanlainen tyyppi"
         },
         "similarMaterial": {
           "label": "Löytöjä joilla samanlainen materiaali",
