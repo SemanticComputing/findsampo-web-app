@@ -1,13 +1,13 @@
 {
   "languageLabel": "Suomi",
   "html": {
-    "title": "Löytösampo – Suomalaisset arkeologiset löydöt semanttisessa webissä",
+    "title": "Löytösampo – Suomen arkeologiset löydöt semanttisessa webissä",
     "description": "Löytösampo on semanttinen portaali ja linkitetyn avoimen datan palvelu arkeologisten löytöjen hakemiseen ja analysointiin"
   },
   "appTitle": {
     "short": "Löytösampo",
     "long": "Löytösampo",
-    "subheading": "Suomalaiset arkeologiset löydöt semanttisessa webissä"
+    "subheading": "Suomen arkeologiset löydöt semanttisessa webissä"
   },
   "selectPerspective": "Valitse näkymä aineiston hakua ja tutkimista varten:",
   "selectPerspectiveExternal": "Linkkejä:",
@@ -79,7 +79,7 @@
       "findsByObjectName": "esineen nimi"
     }
   },
-  "resultsAsCSV": "Lataa tulokset CSV taulukkona",
+  "resultsAsCSV": "Lataa tulokset CSV-taulukkona",
   "facets": {
     "textFacet": {
       "inputLabel": "Hae nimellä"
@@ -100,8 +100,8 @@
       "airMapNLS": "Ilmakuva (Maanmittauslaitos)"
     },
     "externalLayers": {
-      "arkeologiset_kohteet_alue": "Arkeologiset kohteet, alueet (Museovirasto)",
-      "arkeologiset_kohteet_piste": "Arkeologiset kohteet, pisteet (Museovirasto)",
+      "arkeologiset_kohteet_alue": "Arkeologiset kohteet, alueet (Museovirasto, muinaisjäännösrekisteri)",
+      "arkeologiset_kohteet_piste": "Arkeologiset kohteet, pisteet (Museovirasto, muinaisjäännösrekisteri)",
       "fhaLidar": "Korkeusmalli (Museovirasto)",
       "karelianMaps": "Karjalan kartat 1:100 000 topografinen (SeCo)",
       "senateAtlas": "Senaatin kartat 1:21 000 topografinen (SeCo)"
@@ -129,7 +129,7 @@
       "longDescription": "<p class=\"MuiTypography-root MuiTypography-body1 MuiTypography-paragraph\"> Tätä näkymää voi käyttää arkeologisten löytöjen etsimiseen vasemman laidan suodattimien avulla. Hakutuloksia voi selata ja visualisoida käyttäen seuraavia välilehtiä: </p> <ul class=\"MuiTypography-root MuiTypography-body1\"> <li> <strong>TAULUKKO</strong>-välilehti esittää tulokset sivutettuna taulukkona </li> <li> <strong>KARTAT</strong>-välilehti näyttää tulokset interaktiivisella kartalla. Peruskartta ja mahdolliset lisäkerrokset voi valita oikealla ylhäällä olevasta valikosta. </li> <li> <strong>LÄMPÖKARTTA</strong> näyttää tulosjoukon lämpökartalla. </li> <li> <strong>AIKAJANA</strong>-välilehti näyttää tulosjoukosta luodun aikajanavisualisoinnin. </li> <li> <strong>PIIRAKKA/PYLVÄS KAAVIO</strong>-välilehti visualisoi tulosjoukkoa joko 1) piirakkkakaaviona tai 2) pylväskaaviona. Löytöjen jakauman perusteena voi olla joko 1) esineen tyyppi, 2) materiaali tai 3) löytömaakunta. </li> <li> <strong>VIIVAKAAVIO</strong>-välilehti visualisoi löytöjen määrää (y-akseli) eri ominaisuuksien mukaan (x-akseli). </li> <li> <strong>CSV</strong> välilehtestä voi ladata tulosjoukon CSV taulokkona, jonka voit avata esimerkiksi taulukkolaskentaohjelmalla. </li> </ul>",
       "instancePage": {
         "label": "Arkeologinen löytö",
-        "description": "<p class=\"MuiTypography-root MuiTypography-body1 MuiTypography-paragraph\"> Tämä sivu kokoaa tietoa tästä arkeologisesta löydöstä. Seuraavista välilehdistä voi tarkastella löytöön liittyviä tietoja: </p> <ul class=\"MuiTypography-root MuiTypography-body1\"> <li> <strong>TAULUKKO</strong>-välilehti näyttää taulokon metatietoa, on oletusvälilehti. </li> <li> <strong>KARTTA</strong>-välilehti näyttää löytöpaikan sijainnin kartalla. </li> <li> <strong>LÄHELLÄ OLEVAT LÖYDÖT</strong>-välilehti näyttää läheltä samaa paikkaa löytyneitä muita löytöjä kartalla. </li> <li> <strong>SUOSITUSLINKIT</strong>-välilehti näyttää suosituksia muista vastaavista löydöistä. Nämä suositukset on luotu automaattisesti löytöön liittyvän linkitetyn datan yhteyksien perusteella. </li> </ul>",
+        "description": "<p class=\"MuiTypography-root MuiTypography-body1 MuiTypography-paragraph\"> Tämä sivu kokoaa tietoa valitusta arkeologisesta löydöstä. Seuraavista välilehdistä voi tarkastella löytöön liittyviä tietoja: </p> <ul class=\"MuiTypography-root MuiTypography-body1\"> <li> <strong>TAULUKKO</strong>-välilehti näyttää taulokon metatietoa, on oletusvälilehti. </li> <li> <strong>KARTTA</strong>-välilehti näyttää löytöpaikan sijainnin kartalla. </li> <li> <strong>LÄHELLÄ OLEVAT LÖYDÖT</strong>-välilehti näyttää läheltä samaa paikkaa löytyneitä muita löytöjä kartalla. </li> <li> <strong>SUOSITUSLINKIT</strong>-välilehti näyttää suosituksia muista vastaavista löydöistä. Nämä suositukset on luotu automaattisesti löytöön liittyvän linkitetyn datan yhteyksien perusteella. </li> </ul>",
         "recommendations": {
           "nearByFinds": "Lähellä olevat löydöt",
           "similarFinds": "Samankaltaiset löydöt"
@@ -145,12 +145,12 @@
           "description": "Löydön nimi"
         },
         "findNumber": {
-          "label": "Luettelointinumero",
-          "description": "Löydön luettelointinumero. Muostuu löytökokonaisuutta kuvaavasta päänumerosta ja siihen kuuluvan yksittäisen löydön alanumerosta."
+          "label": "Kokoelmatunnus",
+          "description": "Löydön kokoelmatunnus eli diaarinumero. Muodostuu löytökokonaisuutta kuvaavasta päänumerosta ja siihen kuuluvan yksittäisen löydön alanumerosta."
         },
         "findText": {
           "label": "Tekstihaku",
-          "description": "Etsi vapaalla tekstillä nlöydön imen, numeron tai kuvauksen perusteella."
+          "description": "Etsi vapaalla tekstillä löydön nimen, numeron tai kuvauksen perusteella."
         },
         "description": {
           "label": "Kuvaus",

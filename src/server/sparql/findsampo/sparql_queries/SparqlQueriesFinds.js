@@ -356,31 +356,23 @@ export const findsTimelineQuery = `
 
     <FILTER> # a placeholder for facet filters
 
-    ?find :found_in_province/skos:exactMatch/skos:prefLabel ?id  . # ?id = first hierarchy level
+    ?find :found_in_province/skos:prefLabel ?id  . # ?id = first hierarchy level
     BIND (?id as ?group)
     #?find ltk-s:find_name ?data__id . # ?data__id = second hierarchy level
 
-    ?find ltk-s:find_name ?lable_temp .
+    #BIND (?id AS ?data__id)
+    #BIND (' ' AS ?data__label)
+
+    #BIND (?id as ?data__data__id) # ?data__data__id = third hierarchy level
+    #BIND ('range' as ?data__data__label)
+    #BIND (?data__id as ?data__data__val)
+
+    ?find ltk-s:find_name ?data__label .
     BIND( STRAFTER(STR(?find),'http://ldf.fi/findsampo/finds/' ) AS ?find_num ).
-    BIND (CONCAT(str(?lable_temp), str(?find_num)) as ?data__id) .
-    BIND (?data__id as ?data__label)
+    BIND (?id AS ?data__id)
     BIND (?find_num as ?data__data__id) # ?data__data__id = third hierarchy level
     BIND (?data__id as ?data__data__label)
     BIND (?data__id as ?data__data__val)
-
-    # make sure that the selected finds have both 'start_year' and 'end_year'
-    #?find :start_year [] .
-    #?find :end_year [] .
-    ?find :has_creation_time_span/crm:P82a_begin_of_the_begin [] .
-    ?find :has_creation_time_span/crm:P82b_end_of_the_end [] .
-
-    # Combine 'start_year' and 'end_year' into same variable,
-    # so that the result mapper creates an array from these.
-    #?find ltk-s:start_year|ltk-s:end_year ?data__data__timeRange .
-
-    #?find :has_creation_time_span/crm:P82a_begin_of_the_begin|:has_time_span/crm:P82b_end_of_the_end ?date .
-    #BIND(CONCAT(str(?date), 'T00:00:00+00:00') AS ?date_wth_ending) .
-    #BIND(STRDT(STR(?date_wth_ending), xsd:dateTime) AS ?data__data__timeRange)
 
     ?find :has_creation_time_span/crm:P82a_begin_of_the_begin|:has_creation_time_span/crm:P82b_end_of_the_end ?date .
 
