@@ -211,12 +211,12 @@
           "description": "Image description."
         },
         "earliestStartYear": {
-          "label": "Earliest creation time",
-          "description": "Earliest presumed creation date of the object based on a year determined by an expert or automatically deduced based on period"
+          "label": "Earliest manufacture time",
+          "description": "Earliest presumed manufacture date of the object based on a year determined by an expert or automatically deduced based on period"
         },
         "latestEndYear": {
-          "label": "Latest creation time",
-          "description": "Latest presumed creation date of the object based on a year determined by an expert or automatically deduced based on period"
+          "label": "Latest manufacture time",
+          "description": "Latest presumed manufacture date of the object based on a year determined by an expert or automatically deduced based on period"
         },
         "kmNumber": {
           "label": "KM number",
@@ -271,12 +271,12 @@
           "description": "Height of the find site above the sea level in meters"
         },
         "archaeologicalSiteUrl": {
-          "label": "Archeological site url",
+          "label": "Archeological site URL address",
           "description": "URL of the find site in the Ancient Relics Register (muinaisjäännösrekisteri, kyppi-portaali)"
         },
         "typology": {
           "label": "Typological description",
-          "description": "Typological description of the find (e.g. comb ware ceramic)"
+          "description": "Typological description of the find (e.g. ceramic style)"
         }
       }
     },

@@ -61,7 +61,7 @@
     "timeline": "aikajana",
     "recommendation_links": "suositellut linkit",
     "statistics": "tilastoja",
-    "pie_chart": "piirakka-/pylväskaavio",
+    "pie_chart": "piirakka/pylväskaavio",
     "line_chart": "viivakaavio",
     "nearby_finds": "Lähettyvillä olevia löytöjä",
     "csv": "csv"
@@ -126,7 +126,7 @@
       "label": "Löydöt",
       "facetResultsType": "löytöä",
       "shortDescription": "Arkeologisten löytöjen haku",
-      "longDescription": "<p class=\"MuiTypography-root MuiTypography-body1 MuiTypography-paragraph\"> Tätä näkymää voi käyttää arkeologisten löytöjen etsimiseen vasemman laidan suodattimien avulla. Hakutuloksia voi selata ja visualisoida käyttäen seuraavia välilehtiä: </p> <ul class=\"MuiTypography-root MuiTypography-body1\"> <li> <strong>TAULUKKO</strong>-välilehti esittää tulokset sivutettuna taulukkona </li> <li> <strong>KARTAT</strong>-välilehti näyttää tulokset interaktiivisella kartalla. Peruskartta ja mahdolliset lisäkerrokset voi valita oikealla ylhäällä olevasta valikosta. </li> <li> <strong>LÄMPÖKARTTA</strong> näyttää tulosjoukon lämpökartalla. </li> <li> <strong>AIKAJANA</strong>-välilehti näyttää tulosjoukosta luodun aikajanavisualisoinnin. </li> <li> <strong>PIIRAKKA/PYLVÄS KAAVIO</strong>-välilehti visualisoi tulosjoukkoa joko 1) piirakkkakaaviona tai 2) pylväskaaviona. Löytöjen jakauman perusteena voi olla joko 1) esineen tyyppi, 2) materiaali tai 3) löytömaakunta. </li> <li> <strong>VIIVAKAAVIO</strong>-välilehti visualisoi löytöjen määrää (y-akseli) eri ominaisuuksien mukaan (x-akseli). </li> <li> <strong>CSV</strong> välilehtestä voi ladata tulosjoukon CSV taulokkona, jonka voit avata esimerkiksi taulukkolaskentaohjelmalla. </li> </ul>",
+      "longDescription": "<p class=\"MuiTypography-root MuiTypography-body1 MuiTypography-paragraph\"> Tätä näkymää voi käyttää arkeologisten löytöjen etsimiseen vasemman laidan suodattimien avulla. Hakutuloksia voi selata ja visualisoida käyttäen seuraavia välilehtiä: </p> <ul class=\"MuiTypography-root MuiTypography-body1\"> <li> <strong>TAULUKKO</strong>-välilehti esittää tulokset sivutettuna taulukkona. </li> <li> <strong>KARTAT</strong>-välilehti näyttää tulokset interaktiivisella kartalla. Peruskartta ja mahdolliset lisäkerrokset voi valita oikealla ylhäällä olevasta valikosta. </li> <li> <strong>LÄMPÖKARTTA</strong> näyttää tulosjoukon lämpökartalla. </li> <li> <strong>AIKAJANA</strong>-välilehti näyttää tulosjoukosta luodun visualisoinnin aikajanalla. </li> <li> <strong>PIIRAKKA/PYLVÄSKAAVIO</strong>-välilehti visualisoi tulosjoukkoa joko 1) piirakkakaaviona tai 2) pylväskaaviona. Löytöjen jakauman perusteena voi olla joko 1) esineen tyyppi, 2) materiaali tai 3) löytömaakunta. </li> <li> <strong>VIIVAKAAVIO</strong>-välilehti visualisoi löytöjen määrää (y-akseli) eri ominaisuuksien mukaan (x-akseli). </li> <li> <strong>CSV</strong>-välilehdestä voi ladata tulosjoukon CSV-taulukkona, jonka voi avata esimerkiksi taulukkolaskentaohjelmalla. </li> </ul>",
       "instancePage": {
         "label": "Arkeologinen löytö",
         "description": "<p class=\"MuiTypography-root MuiTypography-body1 MuiTypography-paragraph\"> Tämä sivu kokoaa tietoa valitusta arkeologisesta löydöstä. Seuraavista välilehdistä voi tarkastella löytöön liittyviä tietoja: </p> <ul class=\"MuiTypography-root MuiTypography-body1\"> <li> <strong>TAULUKKO</strong>-välilehti näyttää taulokon metatietoa, on oletusvälilehti. </li> <li> <strong>KARTTA</strong>-välilehti näyttää löytöpaikan sijainnin kartalla. </li> <li> <strong>LÄHELLÄ OLEVAT LÖYDÖT</strong>-välilehti näyttää läheltä samaa paikkaa löytyneitä muita löytöjä kartalla. </li> <li> <strong>SUOSITUSLINKIT</strong>-välilehti näyttää suosituksia muista vastaavista löydöistä. Nämä suositukset on luotu automaattisesti löytöön liittyvän linkitetyn datan yhteyksien perusteella. </li> </ul>",
@@ -150,19 +150,19 @@
         },
         "findText": {
           "label": "Tekstihaku",
-          "description": "Etsi vapaalla tekstillä löydön nimen, numeron tai kuvauksen perusteella."
+          "description": "Etsi vapaalla tekstillä löydön nimen, kokoelmatunnuksen tai kuvauksen perusteella."
         },
         "description": {
           "label": "Kuvaus",
-          "description": "Löydön vapaa kuvaus"
+          "description": "Löydön kuvaus"
         },
         "specification": {
-          "label": "Määrite",
-          "description": "Määrite"
+          "label": "Löytötapa",
+          "description": "Löytötavan tarkenne"
         },
         "prefLabel": {
           "label": "Löydön nimi",
-          "description": "Löydön nimi, jossa mukana esineen tyypin kuvaus ja esineen luettelointinumero."
+          "description": "Löydön nimi, jossa mukana esineen tyypin kuvaus ja esineen luettelointinumero"
         },
         "objectType": {
           "label": "Esineen tyyppi",
@@ -174,15 +174,15 @@
         },
         "place": {
           "label": "Paikka",
-          "description": "Oaikka"
+          "description": "Löytöpaikka"
         },
         "material": {
           "label": "Materiaali",
-          "description": "Esineen valmistusmateriaali."
+          "description": "Esineen valmistusmateriaali"
         },
         "period": {
           "label": "Aikakausi",
-          "description": "Aikakausi jolloin esine on valmistettu."
+          "description": "Aikakausi, jolloin esine on valmistettu."
         },
         "dateTimespan": {
           "label": "Ajoitus",
@@ -190,7 +190,7 @@
         },
         "startYear": {
           "label": "Aikaisin tarkka vuosi",
-          "description": "Aikaisin vuosi jolloin esine on valmistettu asiantuntijan arvion mukaan"
+          "description": "Aikaisin vuosi, jolloin esine on valmistettu asiantuntijan arvion mukaan."
         },
         "endYear": {
           "label": "Myöhäisin tarkka vuosi",
@@ -198,35 +198,35 @@
         },
         "province": {
           "label": "Maakunta",
-          "description": "Maakunta josta löydetty."
+          "description": "Maakunta, josta löydetty"
         },
         "municipality": {
           "label": "Kunta",
-          "description": "Kunta josta löydetty."
+          "description": "Kunta, josta löydetty"
         },
         "image": {
           "label": "Kuva",
           "description": "Kuvan kuvaus"
         },
         "earliestStartYear": {
-          "label": "Aikaisin luomisaika",
-          "description": "Aikaisin oletettu esineen luomisaika, joka on määritelty automaattisesti joko tarkkojen vuosien tai aikakausien perusteella."
+          "label": "Aikaisin valmistusaika",
+          "description": "Aikaisin oletettu esineen valmistusaika, joka on määritelty automaattisesti joko tarkkojen vuosien tai aikakausien perusteella."
         },
         "latestEndYear": {
-          "label": "Myöhäisin luomisaika",
-          "description": "Myöhäisin oletettu esineen luomisaika, joka on määritelty automaattisesti joko tarkkojen vuosien tai aikakausien perusteella."
+          "label": "Myöhäisin valmistusaika",
+          "description": "Myöhäisin oletettu esineen valmistusaika, joka on määritelty automaattisesti joko tarkkojen vuosien tai aikakausien perusteella."
         },
         "kmNumber": {
-          "label": "KM numero",
-          "description": "Löydön luettelointinumero"
+          "label": "KM-numero",
+          "description": "Löydön kokoelmatunnus"
         },
         "ceramicStyle": {
-          "label": "Keraaminen tyyli",
-          "description": "Keraaminen kulttuuri joka liittyy esineeseen."
+          "label": "Keramiikkatyyli",
+          "description": "Keraaminen kulttuuri, joka liittyy esineeseen."
         },
         "weight": {
           "label": "Paino",
-          "description": "Esineen paino grammoissa."
+          "description": "Esineen paino grammoissa"
         },
         "length": {
           "label": "Pituus",
@@ -237,44 +237,44 @@
           "description": "Esineen suurin paksuus millimetreissä"
         },
         "minThickness": {
-          "label": "Penin paksuus",
-          "description": "Esineen pienin paksuus millimetreissä."
+          "label": "Minimipaksuus",
+          "description": "Esineen minimipaksuus millimetreissä"
         },
         "width": {
           "label": "Leveys",
-          "description": "Esineen leveys millimetreissä."
+          "description": "Esineen leveys millimetreissä"
         },
         "diameter": {
-          "label": "Läpimitta",
-          "description": "Läpimitta millimetreissä. (Käytetään ympyränmuotoisilla esineillä, kuten kolikoilla.)"
+          "label": "Halkaisija",
+          "description": "Halkaisija millimetreissä (Käytetään ympyränmuotoisilla esineillä, kuten kolikoilla.)"
         },
         "similarObjectType": {
-          "label": "Löytöjä joilla samanlainen tyyppi",
-          "description": "Löytöjä joilla samanlainen tyyppi"
+          "label": "Samaa esinetyyppiä olevat löydöt",
+          "description": "Samaa esinetyyppiä olevat löydöt"
         },
         "similarMaterial": {
-          "label": "Löytöjä joilla samanlainen materiaali",
-          "description": "Löytöjä joilla samanlainen materiaali"
+          "label": "Samaa materiaalia olevat löydöt",
+          "description": "Samaa materiaalia olevat löydöt"
         },
         "similarPeriod": {
-          "label": "Löytöjä joilla sama aikakausi",
-          "description": "Löytöjä joilla sama aikakausi"
+          "label": "Samaa aikakautta olevat löydöt",
+          "description": "Samaa aikakautta olevat löydöt"
         },
         "similarExternalFind": {
-          "label": "Samankaltaisia löytöjä ulkosessa tietoakannas",
-          "description": "Samankaltainen löyty British Museumin datassa"
+          "label": "Samankaltaisia löytöjä ulkoisessa tietoakannassa",
+          "description": "Samankaltaisia löytöjä British Museumin Portable Antiquities Scheme -datassa"
         },
         "foundAtHeight": {
-          "label": "Löytö korkeus",
-          "description": "Löytöpaikan korkeus metreinä merenpinnasta."
+          "label": "Korkeus (löytö)",
+          "description": "Löytöpaikan korkeus metreinä merenpinnasta"
         },
         "archaeologicalSiteUrl": {
-          "label": "Arkeologisen kohteen url",
-          "description": "Linkki arkeologisen kohteen sivuille Muinaisjäännösrekisterissä."
+          "label": "Arkeologisen kohteen URL-osoite",
+          "description": "Linkki arkeologisen kohteen sivuille Muinaisjäännösrekisterissä"
         },
         "typology": {
           "label": "Typologinen kuvaus",
-          "description": "Esineen typologinen kuvaus (esim. kampakeramiikka)"
+          "description": "Esineen typologinen kuvaus (esim. keramiikkatyyppi)"
         }
       }
     },
@@ -293,7 +293,9 @@
         "maoMatch": {
           "label": "Vastaava termi MAO:ssa"
         },
-        "hiddenLabel": {},
+        "hiddenLabel": {
+          "label": "Vaihtoehtoiset termit"
+        },
         "facetType": {
           "label": "Kategoria fasettiontologiassa"
         }
@@ -318,11 +320,11 @@
         },
         "earliestBegin": {
           "label": "Alku",
-          "description": "Vuosi jolloin aikakausi on alkanut"
+          "description": "Aikakauden alkamisvuosi"
         },
         "latestEnd": {
           "label": "Loppu",
-          "description": "Vuosi jolloin aikakausi on loppunut"
+          "description": "Aikakauden päättymisvuosi"
         }
       }
     },
@@ -347,19 +349,19 @@
       "mainPageLabel": "Oppaita",
       "shortDescription": "Oppaita ja ohjeita arkeologiasta harrastuksena",
       "whatShoulIDo": {
-        "title": "Mitä tehdä kun löydän muinaisjäännöksen?",
-        "link": "https://www.museovirasto.fi/en/collection-and-information-services/item-collections/mitae-teen-kun-loeydaen-muinaisesineen"
+        "title": "Mitä teen kun löydän muinaisesineen?",
+        "link": "https://www.museovirasto.fi/fi/kokoelma-ja-tietopalvelut/esinekokoelmat/mita-teen-kun-loydan-muinaisesineen"
       },
       "reportingADiscovery": {
-        "title": "Löydön ilmoittaminen",
-        "link": "https://www.museovirasto.fi/en/cultural-environment/archaeological-cultural-heritage/reporting-a-discovery"
+        "title": "Löydöstä ilmoittaminen",
+        "link": "https://www.museovirasto.fi/fi/kulttuuriymparisto/arkeologinen-kulttuuriperinto/loydosta-ilmoittaminen"
       },
       "archaelogyAsAHobby": {
         "title": "Arkeologia harrastuksena",
-        "link": "https://www.museovirasto.fi/en/cultural-environment/archaeological-cultural-heritage/archaeology-as-a-hobby"
+        "link": "https://www.museovirasto.fi/fi/kulttuuriymparisto/arkeologinen-kulttuuriperinto/arkeologia-harrastuksena"
       },
       "enthusiastsGuide": {
-        "title": "Muinaisjäännökset ja metallinetsin:\nharrastajan opas ",
+        "title": "Muinaisjäännökset ja metallinetsin: harrastajan opas ",
         "link": "https://www.museovirasto.fi/uploads/Palvelut_ja_ohjeet/Muinaisjaannokset_ja_metallinetsin_opas_2020.pdf"
       }
     }

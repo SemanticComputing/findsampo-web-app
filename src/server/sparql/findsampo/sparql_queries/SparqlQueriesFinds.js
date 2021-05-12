@@ -357,6 +357,8 @@ export const findsTimelineQuery = `
     <FILTER> # a placeholder for facet filters
 
     ?find :found_in_province/skos:prefLabel ?id  . # ?id = first hierarchy level
+    ?find :found_in_province/skos:exactMatch/<http://purl.org/dc/elements/1.1/source> ?source .
+    FILTER (?source = "Maanmittauslaitoksen paikannimirekisteri; tyyppitieto: Maakunta"@fi)
     BIND (?id as ?group)
     #?find ltk-s:find_name ?data__id . # ?data__id = second hierarchy level
 
