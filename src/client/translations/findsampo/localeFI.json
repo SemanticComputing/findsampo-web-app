@@ -71,6 +71,7 @@
     "rowsPerPage": "Riviä sivulla"
   },
   "pieChart": {
+    "grouping": "Lajitteluperuste:",
     "chartType": "Kaavion tyyppi:",
     "pie": "piirakkakaavio",
     "bar": "pylväskaavio",
