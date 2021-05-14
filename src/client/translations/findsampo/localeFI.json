@@ -70,7 +70,7 @@
   "table": {
     "rowsPerPage": "Riviä sivulla"
   },
-  "pieChart": {
+  "apexCharts": {
     "grouping": "Lajitteluperuste:",
     "chartType": "Kaavion tyyppi:",
     "pie": "piirakkakaavio",
@@ -78,7 +78,8 @@
     "resultClasses": {
       "findsByProvince": "maakunta",
       "findsByMaterial": "materiaali",
-      "findsByObjectName": "esineen nimi"
+      "findsByObjectName": "esineen nimi",
+      "findsByWeight": "paino"
     }
   },
   "resultsAsCSV": "Lataa tulokset CSV-taulukkona",

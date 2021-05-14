@@ -71,7 +71,7 @@
     "rowsPerPage": "Rows per page",
     "of": "of"
   },
-  "pieChart": {
+  "apexCharts": {
     "by": "by",
     "chartType": "Chart type:",
     "pie": "pie chart",
@@ -79,7 +79,8 @@
     "resultClasses": {
       "findsByProvince": "province",
       "findsByMaterial": "material",
-      "findsByObjectName": "object name"
+      "findsByObjectName": "object name",
+      "findsByWeight": "weight"
     }
   },
   "resultsAsCSV": "download the search results as a CSV table",
