@@ -2,11 +2,11 @@ export const fullTextSearchProperties = `
 {
   VALUES ?type__id {
     :Find 
-    :Object_type
+    <http://www.yso.fi/onto/mao-meta/Concept>
   }
   ?id a ?type__id .
-  BIND(?type__id as ?type__prefLabel)
-  # ?type__id skos:prefLabel|rdfs:label ?type__prefLabel . 
+  ?type__id skos:prefLabel|rdfs:label ?type__prefLabel .
+  FILTER(LANG(?type__prefLabel) = 'fi')
 }
 UNION 
 {
@@ -18,7 +18,7 @@ UNION
 }
 UNION 
 {
-  ?id a :Object_type ;
+  ?id a <http://www.yso.fi/onto/mao-meta/Concept> ;
         skos:prefLabel ?prefLabel__id .
   BIND(?prefLabel__id as ?prefLabel__prefLabel)
   # BIND(CONCAT("/...../page/", REPLACE(STR(?id), "^.*\\\\/(.+)", "$1")) AS ?prefLabel__dataProviderUrl)
