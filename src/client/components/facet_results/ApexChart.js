@@ -149,11 +149,16 @@ class ApexChart extends React.Component {
       width: '100%',
       height: `calc(100% - ${chartHeightReduction}px)`
     }
+    console.log()
+    const dropdownText = intl.get('pieChart.by') === ''
+      ? intl.get('pieChart.grouping')
+      : `${facetResultsTypeCapitalized} ${intl.get('pieChart.by')}`
+
     return (
       <div style={rootStyle}>
         {dropdownForResultClasses &&
           <div className={classes.selectContainer}>
-            <Typography>{facetResultsTypeCapitalized} {intl.get('pieChart.by')}</Typography>
+            <Typography>{dropdownText}</Typography>
             <FormControl className={classes.formControl}>
               <Select
                 id='select-result-class'

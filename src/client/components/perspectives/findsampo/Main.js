@@ -5,7 +5,7 @@ import Grid from '@material-ui/core/Grid'
 import Typography from '@material-ui/core/Typography'
 import { makeStyles } from '@material-ui/core/styles'
 import MainCard from '../../main_layout/MainCard'
-//import bannerImage from '../../../img/findsampo/main-banner.jpg'
+// import bannerImage from '../../../img/findsampo/main-banner.jpg'
 import bannerImage from '../../../img/findsampo/ponsi-banner.jpg'
 import bannerLogoEN from '../../../img/findsampo/large-logo-transparent-white-en.png'
 import bannerLogoFI from '../../../img/findsampo/large-logo-transparent-white-fi.png'
@@ -80,9 +80,9 @@ const useStyles = makeStyles(theme => ({
   },
   licenceTextContainer: {
     marginTop: theme.spacing(2),
-    marginBottom: theme.spacing(2),
-    display: 'flex',
-    justifyContent: 'center'
+    marginBottom: theme.spacing(2)
+    // display: 'flex',
+    // justifyContent: 'center'
   },
   carouselSection: {
     background: 'rgb(247, 247, 247)',
@@ -191,22 +191,23 @@ const Main = props => {
             />)}
         </Grid>
       </div>
-      <div className={classes.carouselSection}>
-        <div className={classes.carouselHeadingContainer}>
-          <Typography className={classes.carouselHeading}>{intl.get('mainPage.carouselHeading')}</Typography>
-        </div>
-        <div className={classes.carouselContainer}>
-          <ImageCarousel
-            resultClass='findsKnowledgeGraphMetadata'
-            fetchData={props.fetchKnowledgeGraphMetadata}
-            data={props.knowledgeGraphMetadata}
-          />
-        </div>
-      </div>
+      {screenSize !== 'xs' &&
+        <div className={classes.carouselSection}>
+          <div className={classes.carouselHeadingContainer}>
+            <Typography className={classes.carouselHeading}>{intl.get('mainPage.carouselHeading')}</Typography>
+          </div>
+          <div className={classes.carouselContainer}>
+            <ImageCarousel
+              resultClass='findsKnowledgeGraphMetadata'
+              fetchData={props.fetchKnowledgeGraphMetadata}
+              data={props.knowledgeGraphMetadata}
+            />
+          </div>
+        </div>}
       <div className={classes.licenceTextContainer}>
-        <Typography className={classes.licenceText}>{intl.getHTML('mainPageImageLicence')}</Typography>
+        <Typography align='center' gutterBottom={false} className={classes.licenceText}>{intl.getHTML('mainPageImageLicenceTitle')}</Typography>
+        <Typography align='center' className={classes.licenceText}>{intl.getHTML('mainPageImageLicence')}</Typography>
       </div>
-      {/* <InfoCards /> */}
     </div>
   )
 }
