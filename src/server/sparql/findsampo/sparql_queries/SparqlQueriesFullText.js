@@ -11,8 +11,8 @@ export const fullTextSearchProperties = `
 UNION 
 {
   ?id a :Find ;
-      skos:prefLabel ?prefLabel__id ;
-      ltk-s:description ?description .
+      skos:prefLabel ?prefLabel__id .
+  OPTIONAL { ?id ltk-s:description ?description }    
   BIND(?prefLabel__id as ?prefLabel__prefLabel)
   BIND(CONCAT("/finds/page/", REPLACE(STR(?id), "^.*\\\\/(.+)", "$1")) AS ?prefLabel__dataProviderUrl)
 }
