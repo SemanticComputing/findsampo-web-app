@@ -90,9 +90,7 @@ export const findPropertiesInstancePage =
       ?image__id ltk-s:image_url ?image__url .
       OPTIONAL {
         ?image__id skos:prefLabel ?image__title .
-      }
-      OPTIONAL {
-        ?image__id skos:prefLabel ?image__description .
+        BIND(CONCAT(STR(?image__title), ' (kuvan oikeudet: Museovirasto)') AS ?image__description)
       }
     }
     UNION
@@ -246,8 +244,8 @@ export const findPropertiesFacetResults =
       ?image__id ltk-s:image_url ?image__url .
       OPTIONAL {
         ?image__id skos:prefLabel ?image__title .
+        BIND(CONCAT(STR(?image__title), ' (kuvan oikeudet: Museovirasto)') AS ?image__description)
       }
-      ?image__id skos:prefLabel ?image__description .
       #BIND(?image__id as ?image__url)
       #BIND(CONCAT("Sample description text for image ", ?image__id) as ?image__description)
     }
