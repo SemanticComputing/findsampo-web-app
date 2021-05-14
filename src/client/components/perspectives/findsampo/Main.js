@@ -191,18 +191,19 @@ const Main = props => {
             />)}
         </Grid>
       </div>
-      <div className={classes.carouselSection}>
-        <div className={classes.carouselHeadingContainer}>
-          <Typography className={classes.carouselHeading}>{intl.get('mainPage.carouselHeading')}</Typography>
-        </div>
-        <div className={classes.carouselContainer}>
-          <ImageCarousel
-            resultClass='findsKnowledgeGraphMetadata'
-            fetchData={props.fetchKnowledgeGraphMetadata}
-            data={props.knowledgeGraphMetadata}
-          />
-        </div>
-      </div>
+      {screenSize !== 'xs' &&
+        <div className={classes.carouselSection}>
+          <div className={classes.carouselHeadingContainer}>
+            <Typography className={classes.carouselHeading}>{intl.get('mainPage.carouselHeading')}</Typography>
+          </div>
+          <div className={classes.carouselContainer}>
+            <ImageCarousel
+              resultClass='findsKnowledgeGraphMetadata'
+              fetchData={props.fetchKnowledgeGraphMetadata}
+              data={props.knowledgeGraphMetadata}
+            />
+          </div>
+        </div>}
       <div className={classes.licenceTextContainer}>
         <Typography align='center' gutterBottom={false} className={classes.licenceText}>{intl.getHTML('mainPageImageLicenceTitle')}</Typography>
         <Typography align='center' className={classes.licenceText}>{intl.getHTML('mainPageImageLicence')}</Typography>
