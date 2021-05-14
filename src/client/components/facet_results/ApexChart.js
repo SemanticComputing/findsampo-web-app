@@ -88,7 +88,7 @@ class ApexChart extends React.Component {
       this.state.createChartData({
         rawData: this.props.rawData,
         title: this.props.title,
-        xaxisTitle: this.props.xaxisTitle || '',
+        xaxisTitle: this.props.xaxisTitle || intl.get(`apexCharts.${this.state.resultClass}Xaxis`),
         yaxisTitle: this.props.yaxisTitle || '',
         seriesTitle: this.props.seriesTitle || '',
         xaxisType: this.props.xaxisType || null,
@@ -149,11 +149,12 @@ class ApexChart extends React.Component {
       width: '100%',
       height: `calc(100% - ${chartHeightReduction}px)`
     }
-    console.log()
-    const dropdownText = intl.get('apexCharts.by') === ''
+    let dropdownText = intl.get('apexCharts.by') === ''
       ? intl.get('apexCharts.grouping')
       : `${facetResultsTypeCapitalized} ${intl.get('apexCharts.by')}`
-
+    if (this.props.xaxisType === 'numeric') {
+      dropdownText = intl.get('apexCharts.property')
+    }
     return (
       <div style={rootStyle}>
         {dropdownForResultClasses &&

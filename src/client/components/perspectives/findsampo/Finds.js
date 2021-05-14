@@ -162,18 +162,18 @@ const Finds = props => {
             fetching={props.facetResults.fetching}
             fetchData={props.fetchResults}
             createChartData={createSingleLineChartData}
-            title='Weight'
-            xaxisTitle='Weight (g)'
+            title=''
+            // xaxisTitle='Weight (g)'
             xaxisType='numeric'
             xaxisTickAmount={30}
-            yaxisTitle='Number of finds'
-            seriesTitle='Number of finds'
+            yaxisTitle={intl.get('apexCharts.numberOfFinds')}
+            seriesTitle={intl.get('apexCharts.numberOfFinds')}
             stroke={{ width: 2 }}
             resultClass='findsByWeight'
             facetClass='finds'
-            // dropdownForResultClasses
-            // facetResultsType={intl.get(`perspectives.${perspective.id}.facetResultsType`)}
-            // resultClasses={['findsByWeight']}
+            dropdownForResultClasses
+            facetResultsType={intl.get(`perspectives.${perspective.id}.facetResultsType`)}
+            resultClasses={['findsByWeight', 'findsByLength', 'findsByWidth']}
           />}
       />
       <Route

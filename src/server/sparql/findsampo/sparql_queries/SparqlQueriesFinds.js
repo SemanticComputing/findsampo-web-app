@@ -526,15 +526,40 @@ export const findsByYearQuery = `
   ORDER BY ?category
 `
 
+export const findsByLengthQuery = `
+  SELECT ?category
+  (COUNT(DISTINCT ?find) as ?count)
+  WHERE {
+    <FILTER>
+    ?find :length ?decimal_value ;
+              a :Find .
+    BIND(xsd:integer(ROUND(?decimal_value)) as ?category)
+  }
+  GROUP BY ?category
+  ORDER BY ?category
+`
+
+export const findsByWidthQuery = `
+  SELECT ?category
+  (COUNT(DISTINCT ?find) as ?count)
+  WHERE {
+    <FILTER>
+    ?find :width ?decimal_value ;
+              a :Find .
+    BIND(xsd:integer(ROUND(?decimal_value)) as ?category)
+  }
+  GROUP BY ?category
+  ORDER BY ?category
+`
+
 export const findsByWeightQuery = `
   SELECT ?category
   (COUNT(DISTINCT ?find) as ?count)
   WHERE {
     <FILTER>
-    ?find :weight ?weight ;
+    ?find :weight ?decimal_value ;
               a :Find .
-    BIND(xsd:integer(ROUND(xsd:decimal(?weight))) as ?category)
-
+    BIND(xsd:integer(ROUND(?decimal_value)) as ?category)
   }
   GROUP BY ?category
   ORDER BY ?category

@@ -72,6 +72,8 @@
   },
   "apexCharts": {
     "grouping": "Lajitteluperuste:",
+    "property": "Ominaisuus:",
+    "numberOfFinds": "Löytöjen lukumäärä",
     "chartType": "Kaavion tyyppi:",
     "pie": "piirakkakaavio",
     "bar": "pylväskaavio",
@@ -79,8 +81,13 @@
       "findsByProvince": "maakunta",
       "findsByMaterial": "materiaali",
       "findsByObjectName": "esineen nimi",
+      "findsByWidth": "leveys",
+      "findsByLength": "pituus",
       "findsByWeight": "paino"
-    }
+    },
+    "findsByWidthXaxis": "Leveys (mm)",
+    "findsByLengthXaxis": "Pituus (mm)",
+    "findsByWeightXaxis": "Paino (g)"
   },
   "resultsAsCSV": "Lataa tulokset CSV-taulukkona",
   "facets": {

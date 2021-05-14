@@ -73,6 +73,8 @@
   },
   "apexCharts": {
     "by": "by",
+    "property": "Xaxis:",
+    "numberOfFinds": "Number of finds",
     "chartType": "Chart type:",
     "pie": "pie chart",
     "bar": "bar chart",
@@ -80,8 +82,13 @@
       "findsByProvince": "province",
       "findsByMaterial": "material",
       "findsByObjectName": "object name",
+      "findsByWidth": "width",
+      "findsByLength": "length",
       "findsByWeight": "weight"
-    }
+    },
+    "findsByWidthXaxis": "Width (mm)",
+    "findsByLengthXaxis": "Length (mm)",
+    "findsByWeightXaxis": "Weight (g)"
   },
   "resultsAsCSV": "download the search results as a CSV table",
   "facets": {

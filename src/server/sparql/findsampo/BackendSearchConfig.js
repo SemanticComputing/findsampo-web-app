@@ -8,6 +8,8 @@ import {
   findsByMaterialQuery,
   findsByObjectNameQuery,
   findsByYearQuery,
+  findsByLengthQuery,
+  findsByWidthQuery,
   findsByWeightQuery,
   findsPlacesQuery,
   findInstancePageMapQuery,
@@ -100,6 +102,24 @@ export const backendSearchConfig = {
       // xAxisConverter: value => {
       //   return new Date(value, 0)
       // }
+    }
+  },
+  findsByLength: {
+    perspectiveID: 'finds', // use endpoint config from finds
+    q: findsByLengthQuery,
+    filterTarget: 'find',
+    resultMapper: mapLineChart,
+    resultMapperConfig: {
+      fillEmptyValues: true
+    }
+  },
+  findsByWidth: {
+    perspectiveID: 'finds', // use endpoint config from finds
+    q: findsByWidthQuery,
+    filterTarget: 'find',
+    resultMapper: mapLineChart,
+    resultMapperConfig: {
+      fillEmptyValues: true
     }
   },
   findsByWeight: {

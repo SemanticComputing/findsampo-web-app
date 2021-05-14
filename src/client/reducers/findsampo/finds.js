@@ -225,6 +225,8 @@ const resultClasses = new Set([
   'findsByObjectName',
   'findsByYear',
   'findsByWeight',
+  'findsByLength',
+  'findsByWidth',
   'findsKnowledgeGraphMetadata',
   'csvFinds'
 ])
