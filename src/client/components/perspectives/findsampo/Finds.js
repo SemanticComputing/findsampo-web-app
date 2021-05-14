@@ -171,6 +171,9 @@ const Finds = props => {
             stroke={{ width: 2 }}
             resultClass='findsByWeight'
             facetClass='finds'
+            // dropdownForResultClasses
+            // facetResultsType={intl.get(`perspectives.${perspective.id}.facetResultsType`)}
+            // resultClasses={['findsByWeight']}
           />}
       />
       <Route
