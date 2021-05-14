@@ -150,9 +150,9 @@ class ApexChart extends React.Component {
       height: `calc(100% - ${chartHeightReduction}px)`
     }
     console.log()
-    const dropdownText = intl.get('pieChart.by') === ''
-      ? intl.get('pieChart.grouping')
-      : `${facetResultsTypeCapitalized} ${intl.get('pieChart.by')}`
+    const dropdownText = intl.get('apexCharts.by') === ''
+      ? intl.get('apexCharts.grouping')
+      : `${facetResultsTypeCapitalized} ${intl.get('apexCharts.by')}`
 
     return (
       <div style={rootStyle}>
@@ -166,14 +166,14 @@ class ApexChart extends React.Component {
                 onChange={this.handleResultClassOnChanhge}
               >
                 {this.props.resultClasses.map(resultClass =>
-                  <MenuItem key={resultClass} value={resultClass}>{intl.get(`pieChart.resultClasses.${resultClass}`)}</MenuItem>
+                  <MenuItem key={resultClass} value={resultClass}>{intl.get(`apexCharts.resultClasses.${resultClass}`)}</MenuItem>
                 )}
               </Select>
             </FormControl>
           </div>}
         {dropdownForChartTypes &&
           <div className={classes.selectContainer}>
-            <Typography>{intl.get('pieChart.chartType')}</Typography>
+            <Typography>{intl.get('apexCharts.chartType')}</Typography>
             <FormControl className={classes.formControl}>
               <Select
                 id='select-chart-type'
@@ -181,7 +181,7 @@ class ApexChart extends React.Component {
                 onChange={this.handleChartTypeOnChanhge}
               >
                 {this.props.chartTypes.map(chartType =>
-                  <MenuItem key={chartType.id} value={chartType.id}>{intl.get(`pieChart.${chartType.id}`)}</MenuItem>
+                  <MenuItem key={chartType.id} value={chartType.id}>{intl.get(`apexCharts.${chartType.id}`)}</MenuItem>
                 )}
               </Select>
             </FormControl>

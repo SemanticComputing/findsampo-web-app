@@ -56,7 +56,7 @@ export const INITIAL_STATE = {
       externalLink: false,
       sortValues: true,
       numberedList: false,
-      minWidth: 130
+      minWidth: 140
     },
     {
       id: 'findNumber',
@@ -65,7 +65,7 @@ export const INITIAL_STATE = {
       externalLink: false,
       sortValues: true,
       numberedList: false,
-      minWidth: 130
+      minWidth: 180
     },
     {
       id: 'objectType',
@@ -109,7 +109,8 @@ export const INITIAL_STATE = {
       makeLink: false,
       externalLink: false,
       sortValues: true,
-      numberedList: false
+      numberedList: false,
+      minWidth: 130
     },
     {
       id: 'earliestStartYear',
