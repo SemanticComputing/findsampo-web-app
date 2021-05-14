@@ -289,16 +289,16 @@ export const findsPlacesQuery = `
   SELECT ?id ?lat ?long
   WHERE {
     <FILTER>
-    ?id :find_coordinates/wgs84:lat ?lat ;
-        :find_coordinates/wgs84:long ?long .
+    ?id :find_site_coordinates/wgs84:lat ?lat ;
+        :find_site_coordinates/wgs84:long ?long .
   }
 `
 export const findInstancePageMapQuery = `
   SELECT *
   WHERE {
     VALUES ?id { <ID> }
-    ?id :find_coordinates/wgs84:lat ?lat ;
-        :find_coordinates/wgs84:long ?long .
+    ?id :find_site_coordinates/wgs84:lat ?lat ;
+        :find_site_coordinates/wgs84:long ?long .
     BIND("red" AS ?markerColor)
     ${findPropertiesInstancePage}
   }
@@ -308,13 +308,13 @@ export const nearbyFindsQuery = `
   SELECT *
   WHERE {
     VALUES ?inputID { <ID> }
-    ?inputID :find_coordinates ?inputSite .
+    ?inputID :find_site_coordinates ?inputSite .
     ?inputSite wgs84:lat ?inputLat ;
                wgs84:long ?inputLong .
     ?site spatial:nearby (?inputLat ?inputLong 30 'km') ;
           wgs84:lat ?lat ;
           wgs84:long ?long .
-    ?id :find_coordinates ?site .
+    ?id :find_site_coordinates ?site .
     ${findPropertiesInstancePage}
   }
 `
@@ -450,9 +450,9 @@ export const findsCSVQuery = `
       ?id :diameter ?diameter .
     }
     OPTIONAL {
-      ?id :find_coordinates/wgs84:lat ?latitude .
-      ?id :find_coordinates/wgs84:long ?longitude .
-      ?id :find_coordinates/dct:source ?coordinate_source
+      ?id :find_site_coordinates/wgs84:lat ?latitude .
+      ?id :find_site_coordinates/wgs84:long ?longitude .
+      ?id :find_site_coordinates/dct:source ?coordinate_source
     }
     OPTIONAL {
       ?id :earliest_creation_year ?earliest_year .

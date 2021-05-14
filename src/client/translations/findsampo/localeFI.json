@@ -11,7 +11,8 @@
   },
   "selectPerspective": "Valitse näkymä aineiston hakua ja tutkimista varten:",
   "selectPerspectiveExternal": "Linkkejä:",
-  "mainPageImageLicence": "Kuvien lisenssi: Otsikon taustakuva: Akuperäinen <a href=\"https://museovirasto.finna.fi/arkeologia/Record/museovirasto.131CE7C3BCBB48135B08F411230D8460\" target=\"_blank\">kuva</a> (muokattu rajaamalla) Ilari Järvinen <a href=\"https://creativecommons.org/licenses/by/4.0/deed.fi\" target=\"_blank\">CC BY 4.0</a>. ",
+  "mainPageImageLicenceTitle": "Kuvien lisenssi",
+  "mainPageImageLicence": "Otsikon taustakuva: Akuperäinen <a href=\"https://museovirasto.finna.fi/arkeologia/Record/museovirasto.131CE7C3BCBB48135B08F411230D8460\" target=\"_blank\">kuva</a> (muokattu rajaamalla) Ilari Järvinen <a href=\"https://creativecommons.org/licenses/by/4.0/deed.fi\" target=\"_blank\">CC BY 4.0</a>. ",
   "backendErrorText": "Palvelin ei ole käytettävissä juuri nyt. Kokeile myöhemmin uuudestaan.",
   "mainPage": {
     "carouselHeading": "ESITTELYSSÄ OLEVAT LÖYDÖT",
@@ -36,8 +37,8 @@
     "activeFilters": "Valitut suodattimet",
     "defaultMissingValueLabel": "\"arvo puuttuu\"",
     "removeAllFilters": "Poista kaikki",
-    "narrowDownBy": "Rajoita",
-    "filterOptions": "Suodatin valinnat",
+    "narrowDownBy": "Rajaa",
+    "filterOptions": "Suodattimen valinnat",
     "filterByName": "Suodata nimen perusteella",
     "filterByBoundingBox": "Suodata kartasta",
     "selectionOptions": "Hierarkisten valintojen asetukset",
@@ -63,13 +64,14 @@
     "statistics": "tilastoja",
     "pie_chart": "piirakka/pylväskaavio",
     "line_chart": "viivakaavio",
-    "nearby_finds": "Lähettyvillä olevia löytöjä",
+    "nearby_finds": "Lähellä olevat löydöt",
     "csv": "csv"
   },
   "table": {
     "rowsPerPage": "Riviä sivulla"
   },
   "pieChart": {
+    "grouping": "Lajitteluperuste:",
     "chartType": "Kaavion tyyppi:",
     "pie": "piirakkakaavio",
     "bar": "pylväskaavio",
@@ -126,7 +128,7 @@
       "label": "Löydöt",
       "facetResultsType": "löytöä",
       "shortDescription": "Arkeologisten löytöjen haku",
-      "longDescription": "<p class=\"MuiTypography-root MuiTypography-body1 MuiTypography-paragraph\"> Tätä näkymää voi käyttää arkeologisten löytöjen etsimiseen vasemman laidan suodattimien avulla. Hakutuloksia voi selata ja visualisoida käyttäen seuraavia välilehtiä: </p> <ul class=\"MuiTypography-root MuiTypography-body1\"> <li> <strong>TAULUKKO</strong>-välilehti esittää tulokset sivutettuna taulukkona. </li> <li> <strong>KARTAT</strong>-välilehti näyttää tulokset interaktiivisella kartalla. Peruskartta ja mahdolliset lisäkerrokset voi valita oikealla ylhäällä olevasta valikosta. </li> <li> <strong>LÄMPÖKARTTA</strong> näyttää tulosjoukon lämpökartalla. </li> <li> <strong>AIKAJANA</strong>-välilehti näyttää tulosjoukosta luodun visualisoinnin aikajanalla. </li> <li> <strong>PIIRAKKA/PYLVÄSKAAVIO</strong>-välilehti visualisoi tulosjoukkoa joko 1) piirakkakaaviona tai 2) pylväskaaviona. Löytöjen jakauman perusteena voi olla joko 1) esineen tyyppi, 2) materiaali tai 3) löytömaakunta. </li> <li> <strong>VIIVAKAAVIO</strong>-välilehti visualisoi löytöjen määrää (y-akseli) eri ominaisuuksien mukaan (x-akseli). </li> <li> <strong>CSV</strong>-välilehdestä voi ladata tulosjoukon CSV-taulukkona, jonka voi avata esimerkiksi taulukkolaskentaohjelmalla. </li> </ul>",
+      "longDescription": "<p class=\"MuiTypography-root MuiTypography-body1 MuiTypography-paragraph\"> Tätä näkymää voi käyttää arkeologisten löytöjen etsimiseen vasemman laidan suodattimien avulla. Haettavissa on noin 3000 metallinilmaisinlöytöä sekä eräitä muita kansalaisten tekemiä löytöjä Museoviraston Löytötietokannasta. Portaalia on tarkoitus täydentää uusilla löydöillä myöhemmin. Hakutuloksia voi selata ja visualisoida käyttäen seuraavia välilehtiä: </p> <ul class=\"MuiTypography-root MuiTypography-body1\"> <li> <strong>TAULUKKO</strong>-välilehti esittää tulokset sivutettuna taulukkona. </li> <li> <strong>KARTAT</strong>-välilehti näyttää tulokset interaktiivisella kartalla. Taustakartan ja sen päällä näytettävät karttakerrokset voi valita kartan oikean yläkulman valikosta. Museoviraston karttakerroksien näyttämiseksi kartan zoomaustason täytyy olla vähintään 13.</li> <li> <strong>LÄMPÖKARTTA</strong> näyttää tulosjoukon lämpökartalla. </li> <li> <strong>AIKAJANA</strong>-välilehti näyttää tulosjoukosta luodun visualisoinnin aikajanalla. </li> <li> <strong>PIIRAKKA/PYLVÄSKAAVIO</strong>-välilehti visualisoi tulosjoukkoa joko 1) piirakkakaaviona tai 2) pylväskaaviona. Löytöjen jakauman perusteena voi olla joko 1) esineen tyyppi, 2) materiaali tai 3) löytömaakunta. </li> <li> <strong>VIIVAKAAVIO</strong>-välilehti visualisoi löytöjen määrää (y-akseli) eri ominaisuuksien mukaan (x-akseli). </li> <li> <strong>CSV</strong>-välilehdestä voi ladata tulosjoukon CSV-taulukkona, jonka voi avata esimerkiksi taulukkolaskentaohjelmalla. </li> </ul>",
       "instancePage": {
         "label": "Arkeologinen löytö",
         "description": "<p class=\"MuiTypography-root MuiTypography-body1 MuiTypography-paragraph\"> Tämä sivu kokoaa tietoa valitusta arkeologisesta löydöstä. Seuraavista välilehdistä voi tarkastella löytöön liittyviä tietoja: </p> <ul class=\"MuiTypography-root MuiTypography-body1\"> <li> <strong>TAULUKKO</strong>-välilehti näyttää taulokon metatietoa, on oletusvälilehti. </li> <li> <strong>KARTTA</strong>-välilehti näyttää löytöpaikan sijainnin kartalla. </li> <li> <strong>LÄHELLÄ OLEVAT LÖYDÖT</strong>-välilehti näyttää läheltä samaa paikkaa löytyneitä muita löytöjä kartalla. </li> <li> <strong>SUOSITUSLINKIT</strong>-välilehti näyttää suosituksia muista vastaavista löydöistä. Nämä suositukset on luotu automaattisesti löytöön liittyvän linkitetyn datan yhteyksien perusteella. </li> </ul>",
