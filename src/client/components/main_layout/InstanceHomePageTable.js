@@ -35,7 +35,7 @@ const styles = theme => ({
     justifyContent: 'center'
   },
   labelCell: {
-    width: 240
+    width: 250
   },
   tooltip: {
     marginTop: -3
