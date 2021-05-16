@@ -394,11 +394,11 @@ export const findsApexChartsTimelineQuery = `
   WHERE {
     <FILTER>
     VALUES ?id {
-      periods:r2 # Kivikausi (-8850 – -1700)
-      periods:r13 # Pronssikausi (-1700 – -0500)
-      periods:r17 # Rautakausi (-0500 – 1300)
-      periods:r28 # Historiallinen aika (1200 – 2000)
-      periods:r29 # Keskiaika (1200 – 1520)
+      periods:p2 # Kivikausi (-8850 – -1700)
+      periods:p13 # Pronssikausi (-1700 – -0500)
+      periods:p17 # Rautakausi (-0500 – 1300)
+      periods:p28 # Historiallinen aika (1200 – 2000)
+      periods:p29 # Keskiaika (1200 – 1520)
     }
 
     ?find :found_in_province ?data__id ;
