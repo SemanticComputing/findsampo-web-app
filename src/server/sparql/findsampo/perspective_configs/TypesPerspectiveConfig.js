@@ -1,20 +1,20 @@
 import {
-  typesPropertiesFacetResults,
+  // typesPropertiesFacetResults,
   typesPropertiesInstancePage
 } from '../sparql_queries/SparqlQueriesTypes'
 import { prefixes } from '../sparql_queries/SparqlQueriesPrefixes'
 
 export const typesPerspectiveConfig = {
   endpoint: {
-    url: 'https://ldf.fi/sualt-fha-finds/sparql',
-    //url: 'http://localhost:3039/ds/sparql',
+    url: 'https://ldf.fi/findsampo/sparql',
+    // url: 'http://localhost:3039/ds/sparql',
     prefixes,
     useAuth: true
   },
   facetClass: ':Object_type',
-  paginatedResults: {
-    properties: typesPropertiesFacetResults
-  },
+  // paginatedResults: {
+  //   properties: typesPropertiesFacetResults
+  // },
   instance: {
     properties: typesPropertiesInstancePage,
     relatedInstances: ''
@@ -36,13 +36,13 @@ export const typesPerspectiveConfig = {
     //   parentProperty: 'skos:broader',
     //   type: 'hierarchical'
     // },
-    facetType: {
-      id: 'facetType',
-      facetValueFilter: '',
-      predicate: 'skos:broader',
-      labelPath: 'skos:broader/skos:prefLabel',
-      parentProperty: 'skos:broader',
-      type: 'hierarchical'
-    }
+    // facetType: {
+    //   id: 'facetType',
+    //   facetValueFilter: '',
+    //   predicate: 'skos:broader',
+    //   labelPath: 'skos:broader/skos:prefLabel',
+    //   parentProperty: 'skos:broader',
+    //   type: 'hierarchical'
+    // }
   }
 }

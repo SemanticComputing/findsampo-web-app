@@ -26,12 +26,6 @@ import {
   // coinsPlacesQuery,
   // coinsTimelineQuery
 } from './sparql_queries/SparqlQueriesCoins'
-import {
-   typesPropertiesInstancePage
-} from './sparql_queries/SparqlQueriesTypes'
-// import {
-//   periodsPropertiesInstancePage
-// } from './sparql_queries/SparqlQueriesPeriods'
 import { fullTextSearchProperties } from './sparql_queries/SparqlQueriesFullText'
 import { makeObjectList } from '../SparqlObjectMapper'
 import {
@@ -164,14 +158,5 @@ export const backendSearchConfig = {
     perspectiveID: 'finds', // use endpoint config from finds
     q: findsCSVQuery,
     filterTarget: 'id'
-  },
-  types: {
-    perspectiveID: 'finds',  // use endpoint config from finds
-    rdfType: ':Object_type',
-    includeInSitemap: true,
-    instance: {
-      properties: typesPropertiesInstancePage,
-      relatedInstances: ''
-    }
-  },
+  }
 }
