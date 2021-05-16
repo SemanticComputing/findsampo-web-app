@@ -171,8 +171,8 @@ export const findPropertiesFacetResults =
       ?id :object_type ?objectType__id .
       ?objectType__id skos:prefLabel ?objectType__prefLabel .
       FILTER (LANG(?objectType__prefLabel) = '<LANG>')
-      BIND (?objectType__id AS ?objectType__dataProviderUrl)
-      #BIND(CONCAT("/types/page/", REPLACE(STR(?objectType__id ), "^.*\\\\/(.+)", "$1")) AS ?objectType__dataProviderUrl)
+      #BIND (?objectType__id AS ?objectType__dataProviderUrl)
+      BIND(CONCAT("/types/page/", REPLACE(STR(?objectType__id ), "^.*\\\\/(.+)", "$1")) AS ?objectType__dataProviderUrl)
       #OPTIONAL {
       #  ?objectType__id skos:closeMatch ?maoMatch__id .
       #  ?objectType__id skos:closeMatch ?maoMatch__prefLabel .
@@ -393,21 +393,21 @@ export const findsApexChartsTimelineQuery = `
   (?name as ?data__periodLabel)
   WHERE {
     <FILTER>
-    VALUES ?id { 
+    VALUES ?id {
       periods:r2 # Kivikausi (-8850 – -1700)
-      periods:r13 # Pronssikausi (-1700 – -0500) 
+      periods:r13 # Pronssikausi (-1700 – -0500)
       periods:r17 # Rautakausi (-0500 – 1300)
       periods:r28 # Historiallinen aika (1200 – 2000)
       periods:r29 # Keskiaika (1200 – 1520)
     }
 
     ?find :found_in_province ?data__id ;
-          :period/skos:broader* ?id .         
-    ?data__id skos:prefLabel ?data__x ; 
+          :period/skos:broader* ?id .
+    ?data__id skos:prefLabel ?data__x ;
               skos:exactMatch/<http://purl.org/dc/elements/1.1/source> ?source .
     FILTER (?source = "Maanmittauslaitoksen paikannimirekisteri; tyyppitieto: Maakunta"@fi)
-   
-    ?id skos:prefLabel ?name ; 
+
+    ?id skos:prefLabel ?name ;
         crm:P4_has_time-span/crm:P82a_begin_of_the_begin ?begin_date_ ;
         crm:P4_has_time-span/(crm:P82a_begin_of_the_begin|crm:P82b_end_of_the_end) ?date .
 
@@ -419,7 +419,7 @@ export const findsApexChartsTimelineQuery = `
     # fill two extra digits with zeros for BCE dates
     BIND(STRAFTER(str(?begin_date_), '-') AS ?after_begin_date)
     BIND(IF(STRSTARTS(str(?begin_date_), '-'), CONCAT('-00', ?after_begin_date), str(?begin_date_)) AS ?new_begin_date)
-    BIND(STRDT(?new_begin_date, xsd:dateTime) AS ?beginDate)     
+    BIND(STRDT(?new_begin_date, xsd:dateTime) AS ?beginDate)
 
   }
   GROUP BY ?id ?beginDate ?data__id ?name ?data__fillColor ?data__x ?data__y

@@ -301,13 +301,26 @@
           "label": "Termi"
         },
         "maoMatch": {
-          "label": "Vastaava termi MAO:ssa"
+          "label": "Vastaava termi MAO-ontologiassa",
+          "description": "\nVastaava termi Museoalan ja taideteollisuusalan ontologia MAO/TAOssa"
         },
-        "hiddenLabel": {
-          "label": "Vaihtoehtoiset termit"
+        "kokoMatch": {
+          "label": "Vastaava termi KOKO-ontologiassa",
+          "description": "Vastaava termi KOKO-ontologiassa, joka on kokoelma suomalaisia ydinontologioita."
         },
         "facetType": {
           "label": "Kategoria fasettiontologiassa"
+        },
+        "aatTerm": {
+          "label": "Vastaava AAT-termi",
+          "description": "Vastaava termi Getty intituutin AAT-sanastossa"
+        },
+        "ltkName": {
+          "label": "Esineen nimiä",
+          "description": "LTK tietokannan esineen nimiä, jotka on yhdistetty tähän käsitteeseen."
+        },
+        "relatedFind": {
+          "label": "Esineitä joilla tämä tyyppi"
         }
       }
     },

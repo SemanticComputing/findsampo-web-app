@@ -11,9 +11,33 @@ export const typesPropertiesInstancePage =
     }
     UNION
     {
-      ?id skos:closeMatch ?maoMatch__id .
-      ?id skos:hiddenLabel ?maoMatch__prefLabel .
+      ?id skos:exactMatch ?maoMatch__id .
+      BIND(?maoMatch__id as ?maoMatch__prefLabel)
       BIND(?maoMatch__id as ?maoMatch__dataProviderUrl)
+    }
+    UNION
+    {
+      ?id skos:closeMatch ?kokoMatch__id .
+      BIND(?kokoMatch__id as ?kokoMatch__prefLabel)
+      BIND(?kokoMatch__id as ?kokoMatch__dataProviderUrl)
+    }
+    UNION
+    {
+      ?id skos:hiddenLabel ?aatTerm__id .
+      BIND(?aatTerm__id AS ?aatTerm__prefLabel)
+      FILTER(LANG(?aatTerm__prefLabel) = 'en')
+    }
+    UNION
+    {
+      ?id skos:hiddenLabel ?ltkName .
+      FILTER(LANG(?ltkName) = 'fi')
+    }
+    UNION
+    {
+      ?relatedFind__id a :Find .
+      ?relatedFind__id :object_type ?id .
+      ?relatedFind__id skos:prefLabel ?relatedFind__prefLabel .
+      BIND(CONCAT("/finds/page/", REPLACE(STR(?relatedFind__id), "^.*\\\\/(.+)", "$1")) AS ?relatedFind__dataProviderUrl)
     }
   `
 
@@ -25,8 +49,8 @@ export const typesPropertiesInstancePage =
       }
       UNION
       {
-        ?id skos:closeMatch ?maoMatch__id .
-        ?id skos:hiddenLabel ?maoMatch__prefLabel .
+        ?id skos:exactMatch ?maoMatch__id .
+        BIND(?maoMatch__id as ?maoMatch__prefLabel)
         BIND(?maoMatch__id as ?maoMatch__dataProviderUrl)
       }
     `

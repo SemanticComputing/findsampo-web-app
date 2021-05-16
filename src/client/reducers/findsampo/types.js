@@ -48,7 +48,42 @@ export const INITIAL_STATE = {
       numberedList: false,
       minWidth: 180
     },
-
+    {
+      id: 'kokoMatch',
+      valueType: 'object',
+      makeLink: true,
+      externalLink: true,
+      sortValues: true,
+      numberedList: false,
+      minWidth: 180
+    },
+    {
+      id: 'aatTerm',
+      valueType: 'object',
+      makeLink: true,
+      externalLink: true,
+      sortValues: true,
+      numberedList: false,
+      minWidth: 180
+    },
+    {
+      id: 'ltkName',
+      valueType: 'string',
+      makeLink: false,
+      externalLink: true,
+      sortValues: true,
+      numberedList: false,
+      minWidth: 180
+    },
+    {
+      id: 'relatedFind',
+      valueType: 'object',
+      makeLink: true,
+      externalLink: false,
+      sortValues: true,
+      numberedList: false,
+      minWidth: 180
+    },
   ]
 }
 

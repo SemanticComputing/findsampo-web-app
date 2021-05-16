@@ -74,7 +74,7 @@ class InstanceHomePage extends React.Component {
         uri = `${base}finds/${localID}`
         break
       case 'types':
-        uri = `${base}facet_ontologies/object_types/${localID}`
+        uri = `${base}object_types/${localID}`
         break
       case 'periods':
         uri = `${base}periods/${localID}`

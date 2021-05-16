@@ -303,13 +303,26 @@
           "label": "Term"
         },
         "maoMatch": {
-          "label": "Equivalent term in MAO"
+          "label": "Equivalent term in MAO",
+          "description": "Esuivalent term on MAO ontology"
         },
-        "hiddenLabel": {
-          "label": "Alternative terms"
+        "kokoMatch": {
+          "label": "Equivalent term in KOKO",
+          "description": "Equivalent term in KOKO ontology"
         },
         "facetType": {
           "label": "Category in facet ontology"
+        },
+        "aatTerm": {
+          "label": "Matching AAT term",
+          "description": "Matching term in the Art & Architecture Thesaurus of the Getty research Institute"
+        },
+        "ltkName": {
+          "label": "Object names",
+          "description": "Object names from LTK data that are mapped to this term."
+        },
+        "relatedFind": {
+          "label": "Finds with this type"
         }
       }
     },
