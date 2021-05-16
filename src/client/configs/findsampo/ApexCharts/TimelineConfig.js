@@ -16,7 +16,9 @@ export const createApexTimelineChartData = ({
   resultClass,
   facetClass
 }) => {
-  preprocessTimelineData(rawData)
+  if (rawData && rawData.length > 0) {
+    preprocessTimelineData(rawData)
+  }
   const apexChartOptionsWithData = {
     ...timelineOptions,
     chart: {
