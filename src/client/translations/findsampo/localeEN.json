@@ -323,6 +323,14 @@
         },
         "relatedFind": {
           "label": "Finds with this type"
+        },
+        "definition": {
+          "label": "Description",
+          "description": "Description of the object type"
+        },
+        "pasLink": {
+          "label": "Link PAS database",
+          "description": "Objects of similar type in PAS database of the British Museum"
         }
       }
     },

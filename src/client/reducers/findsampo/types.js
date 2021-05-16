@@ -67,6 +67,15 @@ export const INITIAL_STATE = {
       minWidth: 180
     },
     {
+      id: 'definition',
+      valueType: 'string',
+      makeLink: false,
+      externalLink: false,
+      sortValues: true,
+      numberedList: false,
+      minWidth: 180
+    },
+    {
       id: 'ltkName',
       valueType: 'string',
       makeLink: false,
@@ -80,6 +89,15 @@ export const INITIAL_STATE = {
       valueType: 'object',
       makeLink: true,
       externalLink: false,
+      sortValues: true,
+      numberedList: false,
+      minWidth: 180
+    },
+    {
+      id: 'pasLink',
+      valueType: 'object',
+      makeLink: true,
+      externalLink: true,
       sortValues: true,
       numberedList: false,
       minWidth: 180

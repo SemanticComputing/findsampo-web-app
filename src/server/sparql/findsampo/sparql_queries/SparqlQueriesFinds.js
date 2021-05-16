@@ -27,14 +27,7 @@ export const findPropertiesInstancePage =
       ?id :object_type ?objectType__id .
       ?objectType__id skos:prefLabel ?objectType__prefLabel .
       FILTER (LANG(?objectType__prefLabel) = '<LANG>')
-      BIND (?objectType__id AS ?objectType__dataProviderUrl)
-      #BIND(CONCAT("/types/page/", REPLACE(STR(?objectType__id ), "^.*\\\\/(.+)", "$1")) AS ?objectType__dataProviderUrl)
-      #OPTIONAL {
-      #  ?objectType__id skos:closeMatch ?maoMatch__id .
-      #  ?objectType__id skos:closeMatch ?maoMatch__prefLabel .
-      #  ?objectType__id skos:closeMatch ?maoMatch__dataProviderUrl .
-      #  ?objectType__id skos:hiddenLabel ??objectType__hiddenLabel .
-      #}
+      BIND(CONCAT("/types/page/", REPLACE(STR(?objectType__id ), "^.*\\\\/(.+)", "$1")) AS ?objectType__dataProviderUrl)
     }
     UNION
     {
@@ -135,12 +128,6 @@ export const findPropertiesInstancePage =
       BIND(URI(?archaeologicalSiteUrl__id) AS ?archaeologicalSiteUrl__dataProviderUrl)
       BIND(URI(?archaeologicalSiteUrl__id) AS ?archaeologicalSiteUrl__prefLabel)
     }
-    #UNION
-    #{
-    #  ?id extended-s:similar_external_find ?similarExternalFind__id .
-    #  BIND(?similarExternalFind__id AS ?similarExternalFind__prefLabel) .
-    #  BIND(?similarExternalFind__id AS ?similarExternalFind__dataProviderUrl)
-    #}
 `
 
 export const findPropertiesFacetResults =

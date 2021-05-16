@@ -280,7 +280,7 @@
         },
         "archaeologicalSiteUrl": {
           "label": "Arkeologisen kohteen URL-osoite",
-          "description": "Linkki arkeologisen kohteen sivuille Muinaisjäännösrekisterissä"
+          "description": "Linkki arkeologisen kohteen sivulle Muinaisjäännösrekisterissä"
         },
         "typology": {
           "label": "Typologinen kuvaus",
@@ -314,14 +314,22 @@
         },
         "aatTerm": {
           "label": "Vastaava AAT-termi",
-          "description": "Vastaava termi Getty intituutin AAT-sanastossa"
+          "description": "Vastaava termi lähteessä Art & Architecture Thesaurus (AAT), Getty Research Institute"
         },
         "ltkName": {
           "label": "Esineen nimiä",
-          "description": "LTK tietokannan esineen nimiä, jotka on yhdistetty tähän käsitteeseen."
+          "description": "Museoviraston Löytötietokannan esineiden nimiä, jotka on yhdistetty tähän käsitteeseen."
         },
         "relatedFind": {
           "label": "Esineitä joilla tämä tyyppi"
+        },
+        "definition": {
+          "label": "Kuvaus",
+          "description": "Esinetyypin kuvaus (Lähde: Tieteen termipankki)"
+        },
+        "pasLink": {
+          "label": "Linkki PAS-tietokantaan",
+          "description": "Linkki samantyyppisiin esineisiin British Museumin PAS tietokannassa"
         }
       }
     },

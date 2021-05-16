@@ -39,6 +39,18 @@ export const typesPropertiesInstancePage =
       ?relatedFind__id skos:prefLabel ?relatedFind__prefLabel .
       BIND(CONCAT("/finds/page/", REPLACE(STR(?relatedFind__id), "^.*\\\\/(.+)", "$1")) AS ?relatedFind__dataProviderUrl)
     }
+    UNION
+    {
+      ?id extended-s:fishTerm ?fishTerm .
+      BIND(REPLACE(STR(?fishTerm), " ", "+") AS ?modifiedFishTerm)
+      BIND(CONCAT('https://finds.org.uk/database/search/results/q/', ?modifiedFishTerm) AS ?pasLink__id)
+      BIND(?pasLink__id AS ?pasLink__prefLabel)
+      BIND(?pasLink__id AS ?pasLink__dataProviderUrl)
+    }
+    UNION
+    {
+      ?id skos:note ?definition .
+    }
   `
 
 // export const typesPropertiesFacetResults = `
