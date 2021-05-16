@@ -387,7 +387,7 @@ export const findsTimelineQuery = `
 `
 
 export const findsApexChartsTimelineQuery = `
-  SELECT ?id ?beginDate ?data__id ?name ?data__x ?data__y
+  SELECT ?id ?beginDate ?endDate ?data__id ?name ?data__x 
   (COUNT(DISTINCT ?find) as ?data__instanceCount)
   (?id as ?data__period)
   (?name as ?data__periodLabel)
@@ -409,20 +409,17 @@ export const findsApexChartsTimelineQuery = `
 
     ?id skos:prefLabel ?name ;
         crm:P4_has_time-span/crm:P82a_begin_of_the_begin ?begin_date_ ;
-        crm:P4_has_time-span/(crm:P82a_begin_of_the_begin|crm:P82b_end_of_the_end) ?date .
-
-    # fill two extra digits with zeros for BCE dates
-    BIND(STRAFTER(str(?date), '-') AS ?after)
-    BIND(IF(STRSTARTS(str(?date), '-'), CONCAT('-00', ?after), str(?date)) AS ?new_date)
-    BIND(STRDT(?new_date, xsd:dateTime) AS ?data__y)
+        crm:P4_has_time-span/crm:P82b_end_of_the_end ?end_date_ .
 
     # fill two extra digits with zeros for BCE dates
     BIND(STRAFTER(str(?begin_date_), '-') AS ?after_begin_date)
     BIND(IF(STRSTARTS(str(?begin_date_), '-'), CONCAT('-00', ?after_begin_date), str(?begin_date_)) AS ?new_begin_date)
     BIND(STRDT(?new_begin_date, xsd:dateTime) AS ?beginDate)
-
+    BIND(STRAFTER(str(?end_date_), '-') AS ?after_end_date)
+    BIND(IF(STRSTARTS(str(?end_date_), '-'), CONCAT('-00', ?after_end_date), str(?end_date_)) AS ?new_end_date)
+    BIND(STRDT(?new_end_date, xsd:dateTime) AS ?endDate)
   }
-  GROUP BY ?id ?beginDate ?data__id ?name ?data__fillColor ?data__x ?data__y
+  GROUP BY ?id ?beginDate ?endDate ?data__id ?name ?data__fillColor ?data__x ?data__y
 `
 
 export const findsApexChartsTimelineDialogQuery = `

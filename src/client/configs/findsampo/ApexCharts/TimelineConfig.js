@@ -16,8 +16,12 @@ export const createApexTimelineChartData = ({
   resultClass,
   facetClass
 }) => {
+  let min
+  let max
   if (rawData && rawData.length > 0) {
     preprocessTimelineData(rawData)
+    min = new Date(rawData[0].beginDate).getTime()
+    max = new Date(rawData[rawData.length - 1].endDate).getTime()
   }
   const apexChartOptionsWithData = {
     ...timelineOptions,
@@ -36,6 +40,9 @@ export const createApexTimelineChartData = ({
               province: data.id
             })
           }
+        },
+        beforeResetZoom: (chartContext, opts) => {
+          return { xaxis: { min, max } }
         }
       }
     },
@@ -43,7 +50,9 @@ export const createApexTimelineChartData = ({
       ...timelineOptions.xaxis,
       title: {
         text: xaxisTitle
-      }
+      },
+      min,
+      max
     },
     yaxis: { title: { text: yaxisTitle } },
     series: rawData
@@ -73,21 +82,11 @@ const timelineOptions = {
       formatter: value => {
         return new Date(value).getFullYear()
       }
-    },
-    min: new Date('-008850').getTime(),
-    max: new Date('2000').getTime()
+    }
   },
   legend: {
     position: 'top'
   },
-  // tooltip: {
-  //   y: {
-  //     formatter: function (value, opts) {
-  //       console.log(value)
-  //       return value
-  //     }
-  //   }
-  // }
   tooltip: {
     custom: opts => {
       const data = opts.w.globals.initialSeries[opts.seriesIndex].data[opts.dataPointIndex]
@@ -126,13 +125,10 @@ const preprocessTimelineData = rawData => {
   rawData.forEach((obj, index) => {
     if (!Array.isArray(obj.data)) { obj.data = [obj.data] }
     obj.data.forEach(dataObj => {
-      if (dataObj.y == null) {
-        console.log(dataObj)
-      }
       dataObj.y = [
-        new Date(dataObj.y[0]).getTime(),
-        new Date(dataObj.y[1]).getTime()
-      ].sort((a, b) => a - b)
+        new Date(obj.beginDate).getTime(),
+        new Date(obj.endDate).getTime()
+      ]
     })
     obj.data.sort((a, b) => a.x.localeCompare(b.x))
     lengths.push({ index, length: obj.data.length })
