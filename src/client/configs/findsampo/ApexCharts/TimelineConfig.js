@@ -121,7 +121,7 @@ const timelineOptions = {
 
 const preprocessTimelineData = rawData => {
   const lengths = []
-  rawData.sort((a, b) => new Date(a.beginDate) - new Date(b.beginDate))
+  rawData.sort((a, b) => new Date(a.beginDate) - new Date(b.beginDate) || new Date(a.endDate) - new Date(b.endDate))
   rawData.forEach((obj, index) => {
     if (!Array.isArray(obj.data)) { obj.data = [obj.data] }
     obj.data.forEach(dataObj => {
