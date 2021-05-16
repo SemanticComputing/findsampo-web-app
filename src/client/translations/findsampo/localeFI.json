@@ -184,7 +184,7 @@
         },
         "place": {
           "label": "Paikka",
-          "description": "Löytöpaikka"
+          "description": "Löytöpaikka (kunta)"
         },
         "material": {
           "label": "Materiaali",
@@ -290,7 +290,8 @@
     },
     "types": {
       "instancePage": {
-        "label": "Esineen tyyppi"
+        "label": "Esineen tyyppi",
+        "description": "<p class=\"MuiTypography-root MuiTypography-body1 MuiTypography-paragraph\"> Tällä sivulla on esinetyyppiin liittyvää tietoa. </p>"
       },
       "properties": {
         "uri": {
@@ -326,7 +327,8 @@
     },
     "periods": {
       "instancePage": {
-        "label": "Aikakausi"
+        "label": "Aikakausi",
+        "description": "<p class=\"MuiTypography-root MuiTypography-body1 MuiTypography-paragraph\"> Tällä sivulla on aikakauteen liittyvää tietoa. </p>"
       },
       "properties": {
         "uri": {
@@ -342,12 +344,32 @@
           "description": "Mahdollisia vaihtoehtoisia nimiä aikakaudelle"
         },
         "earliestBegin": {
-          "label": "Alku",
-          "description": "Aikakauden alkamisvuosi"
+          "label": "Aikaisin alkuvuosi",
+          "description": "Aikakauden aikaisin alkamisvuosi"
         },
         "latestEnd": {
-          "label": "Loppu",
-          "description": "Aikakauden päättymisvuosi"
+          "label": "Myöhäisin loppuvuosi",
+          "description": "Aikakauden myöhäisin päättymisvuosi"
+        },
+        "latestBegin": {
+          "label": "Myöhäisin alkuvuosi",
+          "description": "Aikakauden myöhäisin alkamisvuosi"
+        },
+        "earliestEnd": {
+          "label": "Aikaisin loppuvuosi",
+          "description": "Aikakauden aikaisin päättymisvuosi"
+        },
+        "relatedFind": {
+          "label": "Liittyviä löytöjä",
+          "description": "Löytöjä jotka on merkitty valmistetuksi tällä aikakaudella"
+        },
+        "broaderPeriod": {
+          "label": "Laajempi aikakausi",
+          "description": "Aikakausi, jonka osa tämä aikakausi on"
+        },
+        "narrowerPeriod": {
+          "label": "Sisältyvä aikakaudet",
+          "description": "Aikakausia, jotka sisältyvät tähän aikakauteen"
         }
       }
     },

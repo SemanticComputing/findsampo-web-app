@@ -185,7 +185,7 @@
         },
         "place": {
           "label": "Place",
-          "description": "Find place"
+          "description": "Find site (municipality)"
         },
         "material": {
           "label": "Material",
@@ -292,7 +292,7 @@
     "types": {
       "instancePage": {
         "label": "Object type",
-        "description": "<p class=\"MuiTypography-root MuiTypography-body1 MuiTypography-paragraph\"> [ short instructions here... ] </p>"
+        "description": "<p class=\"MuiTypography-root MuiTypography-body1 MuiTypography-paragraph\"> This page has information relating to an object type. </p>"
       },
       "properties": {
         "uri": {
@@ -315,7 +315,7 @@
         },
         "aatTerm": {
           "label": "Matching AAT term",
-          "description": "Matching term in the Art & Architecture Thesaurus of the Getty research Institute"
+          "description": "Matching term in the Art & Architecture Thesaurus of the Getty Research Institute"
         },
         "ltkName": {
           "label": "Object names",
@@ -329,7 +329,7 @@
     "periods": {
       "instancePage": {
         "label": "Period",
-        "description": "<p class=\"MuiTypography-root MuiTypography-body1 MuiTypography-paragraph\"> [ short instructions here... ] </p>"
+        "description": "<p class=\"MuiTypography-root MuiTypography-body1 MuiTypography-paragraph\"> This page includes information relating to a period. </p>"
       },
       "properties": {
         "uri": {
@@ -345,12 +345,32 @@
           "description": "possible alternative terms for the period"
         },
         "earliestBegin": {
-          "label": "Period start",
+          "label": "Earliest start year",
           "description": "Earliest year that period started"
         },
         "latestEnd": {
-          "label": "Period end",
-          "description": "latest year that period ended"
+          "label": "Latest end year",
+          "description": "Latest year that period ended"
+        },
+        "latestBegin": {
+          "label": "Latest start year",
+          "description": "Latest year that period started"
+        },
+        "earliestEnd": {
+          "label": "Earliest end year",
+          "description": "Earliest year that period ended"
+        },
+        "relatedFind": {
+          "label": "Related finds",
+          "description": "Finds from this period"
+        },
+        "broaderPeriod": {
+          "label": "Broader period",
+          "description": "Period that this period is part of"
+        },
+        "narrowerPeriod": {
+          "label": "Narrower periods",
+          "description": "Period that this is part of this period"
         }
       }
     },

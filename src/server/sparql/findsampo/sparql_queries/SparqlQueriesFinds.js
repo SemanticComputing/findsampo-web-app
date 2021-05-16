@@ -55,11 +55,11 @@ export const findPropertiesInstancePage =
     }
     UNION
     {
-      ?id ltk-s:period ?period__id .
-      BIND(?period__id AS ?period__prefLabel )
-      #?id :period ?period__id .
-      #?period__id skos:prefLabel ?period__prefLabel .
-      #BIND(CONCAT("/periods/page/", REPLACE(STR(?period__id ), "^.*\\\\/(.+)", "$1")) AS ?period__dataProviderUrl)
+      #?id ltk-s:period ?period__id .
+      #BIND(?period__id AS ?period__prefLabel )
+      ?id :period ?period__id .
+      ?period__id skos:prefLabel ?period__prefLabel .
+      BIND(CONCAT("/periods/page/", REPLACE(STR(?period__id ), "^.*\\\\/(.+)", "$1")) AS ?period__dataProviderUrl)
     }
     UNION
     {
@@ -184,11 +184,11 @@ export const findPropertiesFacetResults =
     }
     UNION
     {
-      ?id ltk-s:period ?period__id .
-      BIND(?period__id AS ?period__prefLabel )
-      #?id :period ?period__id .
-      #?period__id skos:prefLabel ?period__prefLabel .
-      #BIND(CONCAT("/periods/page/", REPLACE(STR(?period__id ), "^.*\\\\/(.+)", "$1")) AS ?period__dataProviderUrl)
+      #?id ltk-s:period ?period__id .
+      #BIND(?period__id AS ?period__prefLabel )
+      ?id :period ?period__id .
+      ?period__id skos:altLabel ?period__prefLabel .
+      BIND(CONCAT("/periods/page/", REPLACE(STR(?period__id ), "^.*\\\\/(.+)", "$1")) AS ?period__dataProviderUrl)
     }
     UNION
     {
@@ -384,7 +384,7 @@ export const findsTimelineQuery = `
 `
 
 export const findsApexChartsTimelineQuery = `
-  SELECT ?id ?beginDate ?endDate ?data__id ?name ?data__x 
+  SELECT ?id ?beginDate ?endDate ?data__id ?name ?data__x
   (COUNT(DISTINCT ?find) as ?data__instanceCount)
   (?id as ?data__period)
   (?name as ?data__periodLabel)

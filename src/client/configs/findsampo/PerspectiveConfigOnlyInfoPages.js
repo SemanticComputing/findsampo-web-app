@@ -14,4 +14,15 @@ export const perspectiveConfigOnlyInfoPages = [
       },
     ]
   },
+  {
+    id: 'periods',
+    perspectiveDescHeight: 160,
+    instancePageTabs: [
+      {
+        id: 'table',
+        value: 0,
+        icon: <CalendarViewDayIcon />
+      },
+    ]
+  },
 ]

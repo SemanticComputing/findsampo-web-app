@@ -106,7 +106,7 @@ export const INITIAL_STATE = {
     {
       id: 'period',
       valueType: 'object',
-      makeLink: false,
+      makeLink: true,
       externalLink: false,
       sortValues: true,
       numberedList: false,

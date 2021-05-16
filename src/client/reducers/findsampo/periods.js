@@ -39,8 +39,17 @@ export const INITIAL_STATE = {
       numberedList: false,
       minWidth: 180
     },
+    // {
+    //   id: 'hiddenLabel',
+    //   valueType: 'string',
+    //   makeLink: false,
+    //   externalLink: false,
+    //   sortValues: true,
+    //   numberedList: false,
+    //   minWidth: 180
+    // },
     {
-      id: 'hiddenLabel',
+      id: 'earliestBegin',
       valueType: 'string',
       makeLink: false,
       externalLink: false,
@@ -49,7 +58,16 @@ export const INITIAL_STATE = {
       minWidth: 180
     },
     {
-      id: 'earliestBegin',
+      id: 'latestBegin',
+      valueType: 'string',
+      makeLink: false,
+      externalLink: false,
+      sortValues: true,
+      numberedList: false,
+      minWidth: 180
+    },
+    {
+      id: 'earliestEnd',
       valueType: 'string',
       makeLink: false,
       externalLink: false,
@@ -61,6 +79,33 @@ export const INITIAL_STATE = {
       id: 'latestEnd',
       valueType: 'string',
       makeLink: false,
+      externalLink: false,
+      sortValues: true,
+      numberedList: false,
+      minWidth: 180
+    },
+    {
+      id: 'broaderPeriod',
+      valueType: 'object',
+      makeLink: true,
+      externalLink: false,
+      sortValues: true,
+      numberedList: false,
+      minWidth: 180
+    },
+    {
+      id: 'narrowerPeriod',
+      valueType: 'object',
+      makeLink: true,
+      externalLink: false,
+      sortValues: true,
+      numberedList: false,
+      minWidth: 180
+    },
+    {
+      id: 'relatedFind',
+      valueType: 'object',
+      makeLink: true,
       externalLink: false,
       sortValues: true,
       numberedList: false,
