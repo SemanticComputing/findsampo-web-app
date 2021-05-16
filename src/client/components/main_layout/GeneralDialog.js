@@ -9,7 +9,8 @@ import { withStyles } from '@material-ui/core/styles'
 
 const styles = theme => ({
   dialogPaper: {
-    height: '100%'
+    height: '100%',
+    padding: theme.spacing(1)
   },
   closeButton: {
     position: 'absolute',
@@ -45,7 +46,7 @@ const GeneralDialog = props => {
       aria-labelledby='simple-dialog-title'
       open={open}
       fullWidth
-      maxWidth='xl'
+      maxWidth={props.maxWidth ? props.maxWidth : 'xl'}
     >
       <DialogTitle id='customized-dialog-title' onClose={onClose}>
         {dialogTitle}
@@ -60,7 +61,8 @@ GeneralDialog.propTypes = {
   open: PropTypes.bool.isRequired,
   onClose: PropTypes.func.isRequired,
   title: PropTypes.string,
-  children: PropTypes.node
+  children: PropTypes.node,
+  maxWidth: PropTypes.string
 }
 
 export default withStyles(styles)(GeneralDialog)

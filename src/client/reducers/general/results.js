@@ -16,7 +16,8 @@ import {
   UPDATE_ROWS_PER_PAGE,
   SORT_RESULTS,
   UPDATE_PERSPECTIVE_HEADER_EXPANDED,
-  UPDATE_KNOWLEDGE_GRAPH_METADATA
+  UPDATE_KNOWLEDGE_GRAPH_METADATA,
+  CLEAR_RESULTS
 } from '../../actions'
 import {
   fetchResults,
@@ -42,6 +43,11 @@ export const handleDataFetchingAction = (state, action) => {
     case FETCH_PAGINATED_RESULTS:
     case FETCH_BY_URI:
       return fetchResults(state, action)
+    case CLEAR_RESULTS:
+      return {
+        ...state,
+        results: null
+      }
     case FETCH_RESULT_COUNT:
       return fetchResultCount(state)
     case FETCH_INSTANCE_ANALYSIS:

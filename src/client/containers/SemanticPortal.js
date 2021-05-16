@@ -406,6 +406,7 @@ const SemanticPortal = props => {
                                   leafletMap={props.leafletMap}
                                   fetchPaginatedResults={props.fetchPaginatedResults}
                                   fetchResults={props.fetchResults}
+                                  clearResults={props.clearResults}
                                   fetchInstanceAnalysis={props.fetchInstanceAnalysis}
                                   fetchFacetConstrainSelf={props.fetchFacetConstrainSelf}
                                   fetchGeoJSONLayers={props.fetchGeoJSONLayers}

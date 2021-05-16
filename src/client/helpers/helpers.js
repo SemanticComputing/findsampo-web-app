@@ -15,7 +15,9 @@ export const stateToUrl = ({
   limit = null,
   optimize = null,
   fromID = null,
-  toID = null
+  toID = null,
+  period = null,
+  province = null
 }) => {
   const params = {}
   if (facetClass !== null) { params.facetClass = facetClass }
@@ -31,6 +33,8 @@ export const stateToUrl = ({
   if (optimize !== null) { params.optimize = optimize }
   if (fromID !== null) { params.fromID = fromID }
   if (toID !== null) { params.toID = toID }
+  if (period !== null) { params.period = period }
+  if (province !== null) { params.province = province }
   if (facets !== null) {
     const constraints = []
     for (const [key, value] of Object.entries(facets)) {

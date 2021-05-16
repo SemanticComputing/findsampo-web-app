@@ -217,6 +217,8 @@ export const INITIAL_STATE = {
 const resultClasses = new Set([
   'finds',
   'findsTimeline',
+  'findsApexChartsTimeline',
+  'findsApexChartsTimelineDialog',
   'nearbyFinds',
   'similarFinds',
   'findInstancePageMap',

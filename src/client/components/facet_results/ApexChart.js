@@ -9,6 +9,8 @@ import MenuItem from '@material-ui/core/MenuItem'
 import FormControl from '@material-ui/core/FormControl'
 import Select from '@material-ui/core/Select'
 import Typography from '@material-ui/core/Typography'
+import GeneralDialog from '../main_layout/GeneralDialog'
+import InstaceList from '../main_layout/InstanceList'
 
 const styles = theme => ({
   selectContainer: {
@@ -31,12 +33,13 @@ class ApexChart extends React.Component {
     this.state = {
       resultClass: props.resultClass,
       createChartData: props.createChartData,
-      chartType: props.dropdownForChartTypes ? props.chartTypes[0].id : null
+      chartType: props.dropdownForChartTypes ? props.chartTypes[0].id : null,
+      dialogData: null
     }
   }
 
   componentDidMount = () => {
-    if (this.props.rawData && this.props.rawData.length > 0) {
+    if (this.props.rawData && this.props.rawData.length > 0 && !this.props.doNotRenderOnMount) {
       this.renderChart()
     }
     this.props.fetchData({
@@ -70,6 +73,11 @@ class ApexChart extends React.Component {
     if (prevState.chartType !== this.state.chartType) {
       this.renderChart()
     }
+    if (prevProps.instanceAnalysisDataUpdateID !== this.props.instanceAnalysisDataUpdateID) {
+      this.setState({
+        dialogData: this.props.instanceAnalysisData
+      })
+    }
   }
 
   componentWillUnmount () {
@@ -96,7 +104,10 @@ class ApexChart extends React.Component {
         xaxisLabels: this.props.xaxisLabels || null,
         stroke: this.props.stroke || null,
         fill: this.props.fill || null,
-        tooltip: this.props.tooltip || null
+        tooltip: this.props.tooltip || null,
+        fetchInstanceAnalysis: this.props.fetchInstanceAnalysis,
+        resultClass: this.props.resultClass,
+        facetClass: this.props.facetClass
       })
     )
     this.chart.render()
@@ -112,6 +123,8 @@ class ApexChart extends React.Component {
       createChartData: chartTypeObj.createChartData
     })
   }
+
+  handleDialogOnClose = event => this.setState({ dialogData: null })
 
   render () {
     const { fetching, pageType, classes, facetResultsType, dropdownForResultClasses, dropdownForChartTypes } = this.props
@@ -195,6 +208,16 @@ class ApexChart extends React.Component {
           <div style={chartContainerStyle}>
             <div ref={this.chartRef} />
           </div>}
+        {this.state.dialogData &&
+          <GeneralDialog open maxWidth='sm' onClose={this.handleDialogOnClose}>
+            <Typography><b>Maakunta:</b> {this.state.dialogData[0].selectedProvinceLabel}</Typography>
+            <Typography><b>Aikakausi:</b> {this.state.dialogData[0].selectedPeriodLabel}</Typography>
+            <InstaceList
+              data={this.state.dialogData}
+              listHeadingSingleInstance={this.props.listHeadingSingleInstance}
+              listHeadingMultipleInstances={this.props.listHeadingMultipleInstances}
+            />
+          </GeneralDialog>}
       </div>
     )
   }

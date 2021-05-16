@@ -14,6 +14,8 @@ import {
   findsPlacesQuery,
   findInstancePageMapQuery,
   findsTimelineQuery,
+  findsApexChartsTimelineQuery,
+  findsApexChartsTimelineDialogQuery,
   nearbyFindsQuery,
   similarFindsQuery,
   knowledgeGraphMetadataQuery,
@@ -62,6 +64,18 @@ export const backendSearchConfig = {
     perspectiveID: 'finds', // use endpoint config from finds
     q: findsTimelineQuery,
     filterTarget: 'find',
+    resultMapper: makeObjectList
+  },
+  findsApexChartsTimeline: {
+    perspectiveID: 'finds', // use endpoint config from finds
+    q: findsApexChartsTimelineQuery,
+    filterTarget: 'find',
+    resultMapper: makeObjectList
+  },
+  findsApexChartsTimelineDialog: {
+    perspectiveID: 'finds', // use endpoint config from finds
+    q: findsApexChartsTimelineDialogQuery,
+    filterTarget: 'id',
     resultMapper: makeObjectList
   },
   nearbyFinds: {

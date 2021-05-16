@@ -386,6 +386,59 @@ export const findsTimelineQuery = `
   }
 `
 
+export const findsApexChartsTimelineQuery = `
+  SELECT ?id ?beginDate ?data__id ?name ?data__x ?data__y
+  (COUNT(DISTINCT ?find) as ?data__instanceCount)
+  (?id as ?data__period)
+  (?name as ?data__periodLabel)
+  WHERE {
+    <FILTER>
+    VALUES ?id { 
+      periods:r2 # Kivikausi (-8850 – -1700)
+      periods:r13 # Pronssikausi (-1700 – -0500) 
+      periods:r17 # Rautakausi (-0500 – 1300)
+      periods:r28 # Historiallinen aika (1200 – 2000)
+      periods:r29 # Keskiaika (1200 – 1520)
+    }
+
+    ?find :found_in_province ?data__id ;
+          :period/skos:broader* ?id .         
+    ?data__id skos:prefLabel ?data__x ; 
+              skos:exactMatch/<http://purl.org/dc/elements/1.1/source> ?source .
+    FILTER (?source = "Maanmittauslaitoksen paikannimirekisteri; tyyppitieto: Maakunta"@fi)
+   
+    ?id skos:prefLabel ?name ; 
+        crm:P4_has_time-span/crm:P82a_begin_of_the_begin ?begin_date_ ;
+        crm:P4_has_time-span/(crm:P82a_begin_of_the_begin|crm:P82b_end_of_the_end) ?date .
+
+    # fill two extra digits with zeros for BCE dates
+    BIND(STRAFTER(str(?date), '-') AS ?after)
+    BIND(IF(STRSTARTS(str(?date), '-'), CONCAT('-00', ?after), str(?date)) AS ?new_date)
+    BIND(STRDT(?new_date, xsd:dateTime) AS ?data__y)
+
+    # fill two extra digits with zeros for BCE dates
+    BIND(STRAFTER(str(?begin_date_), '-') AS ?after_begin_date)
+    BIND(IF(STRSTARTS(str(?begin_date_), '-'), CONCAT('-00', ?after_begin_date), str(?begin_date_)) AS ?new_begin_date)
+    BIND(STRDT(?new_begin_date, xsd:dateTime) AS ?beginDate)     
+
+  }
+  GROUP BY ?id ?beginDate ?data__id ?name ?data__fillColor ?data__x ?data__y
+`
+
+export const findsApexChartsTimelineDialogQuery = `
+  SELECT * {
+    <FILTER>
+    ?id :found_in_province <PROVINCE> ;
+        :period/skos:broader* <PERIOD> ;
+        skos:prefLabel ?prefLabel .
+    <PERIOD> skos:prefLabel ?selectedPeriodLabel .
+    <PROVINCE> skos:prefLabel ?selectedProvinceLabel .
+    BIND(CONCAT("/${perspectiveID}/page/", REPLACE(STR(?id), "^.*\\\\/(.+)", "$1")) AS ?dataProviderUrl)
+    FILTER(LANG(?selectedProvinceLabel) = '<LANG>')
+  }
+  ORDER BY ?prefLabel
+`
+
 export const knowledgeGraphMetadataQuery = `
   SELECT *
   WHERE {

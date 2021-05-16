@@ -17,6 +17,7 @@ import {
 } from '../../../configs/findsampo/GeneralConfig'
 import { createApexPieChartData } from '../../../configs/findsampo/ApexCharts/PieChartConfig'
 import { createApexBarChartData } from '../../../configs/findsampo/ApexCharts/BarChartConfig'
+import { createApexTimelineChartData } from '../../../configs/findsampo/ApexCharts/TimelineConfig'
 import {
   createSingleLineChartData
   // createMultipleLineChartData
@@ -124,6 +125,7 @@ const Finds = props => {
             dropdownForResultClasses
             facetResultsType={intl.get(`perspectives.${perspective.id}.facetResultsType`)}
             resultClasses={['findsByProvince', 'findsByMaterial', 'findsByObjectName']}
+            doNotRenderOnMount
           />}
       />
       {/* <Route
@@ -174,10 +176,11 @@ const Finds = props => {
             dropdownForResultClasses
             facetResultsType={intl.get(`perspectives.${perspective.id}.facetResultsType`)}
             resultClasses={['findsByWeight', 'findsByLength', 'findsByWidth']}
+            doNotRenderOnMount
           />}
       />
       <Route
-        path={`${rootUrl}/${perspective.id}/faceted-search/timeline`}
+        path={`${rootUrl}/${perspective.id}/faceted-search/timeline_old`}
         render={() =>
           <Timeline
             pageType='facetResults'
@@ -187,6 +190,30 @@ const Finds = props => {
             dataUpdateID={props.facetResults.resultUpdateID}
             facetUpdateID={props.facetData.facetUpdateID}
             fetchResults={props.fetchResults}
+            clearResults={props.clearResults}
+          />}
+      />
+      <Route
+        path={`${rootUrl}/${perspective.id}/faceted-search/timeline`}
+        render={() =>
+          <ApexChart
+            pageType='facetResults'
+            rawData={props.facetResults.results}
+            rawDataUpdateID={props.facetResults.resultUpdateID}
+            facetUpdateID={props.facetData.facetUpdateID}
+            fetching={props.facetResults.fetching}
+            fetchData={props.fetchResults}
+            fetchInstanceAnalysis={props.fetchInstanceAnalysis}
+            instanceAnalysisData={props.facetResults.instanceAnalysisData}
+            instanceAnalysisDataUpdateID={props.facetResults.instanceAnalysisDataUpdateID}
+            listHeadingSingleInstance='Löytö:'
+            listHeadingMultipleInstances='Löydöt:'
+            createChartData={createApexTimelineChartData}
+            xaxisTitle='Vuosi'
+            yaxisTitle='Maakunta'
+            resultClass='findsApexChartsTimeline'
+            facetClass='finds'
+            doNotRenderOnMount
           />}
       />
       <Route

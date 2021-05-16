@@ -22,6 +22,7 @@ class Timeline extends React.Component {
   componentWillUnmount = () => {
     // use to remove chart-tooltip, becasue it lingered on the find home page.
     document.querySelectorAll('.chart-tooltip').forEach(e => e.remove())
+    this.props.clearResults({ resultClass: this.props.resultClass })
   }
 
   componentDidMount = () => {

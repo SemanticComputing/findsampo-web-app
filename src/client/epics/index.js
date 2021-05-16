@@ -158,13 +158,15 @@ const fetchInstanceAnalysisEpic = (action$, state$) => action$.pipe(
   ofType(FETCH_INSTANCE_ANALYSIS),
   withLatestFrom(state$),
   mergeMap(([action, state]) => {
-    const { resultClass, facetClass, fromID, toID } = action
+    const { resultClass, facetClass, fromID, toID, period, province } = action
     const params = stateToUrl({
       facets: facetClass ? state[`${facetClass}Facets`].facets : null,
       facetClass,
       uri: action.uri ? action.uri : null,
       fromID,
-      toID
+      toID,
+      period,
+      province
     })
     const requestUrl = `${apiUrl}/faceted-search/${resultClass}/all`
     // https://rxjs-dev.firebaseapp.com/api/ajax/ajax

@@ -94,7 +94,9 @@ export const getAllResults = ({
   optimize,
   limit,
   fromID = null,
-  toID = null
+  toID = null,
+  period = null,
+  province = null
 }) => {
   const config = backendSearchConfig[resultClass]
   let endpoint
@@ -132,6 +134,12 @@ export const getAllResults = ({
   }
   if (toID) {
     q = q.replace(/<TO_ID>/g, `<${toID}>`)
+  }
+  if (period) {
+    q = q.replace(/<PERIOD>/g, `<${period}>`)
+  }
+  if (province) {
+    q = q.replace(/<PROVINCE>/g, `<${province}>`)
   }
   if (has(config, 'useNetworkAPI') && config.useNetworkAPI) {
     return runNetworkQuery({

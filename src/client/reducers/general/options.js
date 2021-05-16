@@ -10,7 +10,8 @@ for (const [key, value] of Object.entries(availableLocales)) {
 
 export const INITIAL_STATE = {
   currentLocale: '',
-  availableLocales: localeArray
+  availableLocales: localeArray,
+  generalDialog: null
 }
 
 const options = (state = INITIAL_STATE, action) => {
