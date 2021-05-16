@@ -20,5 +20,6 @@ export const prefixes = `
   PREFIX : <http://ldf.fi/schema/findsampo/core/>
   PREFIX ltk-s: <http://ldf.fi/schema/findsampo/extended/ltk/>
   PREFIX periods: <http://ldf.fi/findsampo/periods/>
-  
+  PREFIX extended-s: <http://ldf.fi/schema/findsampo/extended/>
+
 `

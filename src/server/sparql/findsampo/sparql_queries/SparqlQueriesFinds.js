@@ -55,7 +55,11 @@ export const findPropertiesInstancePage =
     }
     UNION
     {
-      ?id ltk-s:period ?period .
+      ?id ltk-s:period ?period__id .
+      BIND(?period__id AS ?period__prefLabel )
+      #?id :period ?period__id .
+      #?period__id skos:prefLabel ?period__prefLabel .
+      #BIND(CONCAT("/periods/page/", REPLACE(STR(?period__id ), "^.*\\\\/(.+)", "$1")) AS ?period__dataProviderUrl)
     }
     UNION
     {
@@ -131,12 +135,12 @@ export const findPropertiesInstancePage =
       BIND(URI(?archaeologicalSiteUrl__id) AS ?archaeologicalSiteUrl__dataProviderUrl)
       BIND(URI(?archaeologicalSiteUrl__id) AS ?archaeologicalSiteUrl__prefLabel)
     }
-    UNION
-    {
-      ?id :similar_external_find ?similarExternalFind__id .
-      BIND(?similarExternalFind__id AS ?similarExternalFind__prefLabel) .
-      BIND(?similarExternalFind__id AS ?similarExternalFind__dataProviderUrl)
-    }
+    #UNION
+    #{
+    #  ?id extended-s:similar_external_find ?similarExternalFind__id .
+    #  BIND(?similarExternalFind__id AS ?similarExternalFind__prefLabel) .
+    #  BIND(?similarExternalFind__id AS ?similarExternalFind__dataProviderUrl)
+    #}
 `
 
 export const findPropertiesFacetResults =
@@ -171,24 +175,7 @@ export const findPropertiesFacetResults =
       ?id :object_type ?objectType__id .
       ?objectType__id skos:prefLabel ?objectType__prefLabel .
       FILTER (LANG(?objectType__prefLabel) = '<LANG>')
-      #BIND (?objectType__id AS ?objectType__dataProviderUrl)
       BIND(CONCAT("/types/page/", REPLACE(STR(?objectType__id ), "^.*\\\\/(.+)", "$1")) AS ?objectType__dataProviderUrl)
-      #OPTIONAL {
-      #  ?objectType__id skos:closeMatch ?maoMatch__id .
-      #  ?objectType__id skos:closeMatch ?maoMatch__prefLabel .
-      #  ?objectType__id skos:closeMatch ?maoMatch__dataProviderUrl .
-      #  ?objectType__id skos:hiddenLabel ??objectType__hiddenLabel .
-      #}
-    }
-    UNION
-    {
-      ?id :facet_object_term ?objectTypeFHAFacet__id .
-      ?objectTypeFHAFacet__id skos:prefLabel ?objectTypeFHAFacet__prefLabel .
-      BIND(CONCAT("/types/page/", REPLACE(STR(?objectTypeFHAFacet__id ), "^.*\\\\/(.+)", "$1")) AS ?objectTypeFHAFacet__dataProviderUrl)
-    }
-    UNION
-    {
-      ?id ltk-s:material ?materialLiteral .
     }
     UNION
     {
@@ -197,7 +184,11 @@ export const findPropertiesFacetResults =
     }
     UNION
     {
-      ?id ltk-s:period ?period .
+      ?id ltk-s:period ?period__id .
+      BIND(?period__id AS ?period__prefLabel )
+      #?id :period ?period__id .
+      #?period__id skos:prefLabel ?period__prefLabel .
+      #BIND(CONCAT("/periods/page/", REPLACE(STR(?period__id ), "^.*\\\\/(.+)", "$1")) AS ?period__dataProviderUrl)
     }
     UNION
     {
@@ -344,6 +335,12 @@ export const similarFindsQuery = `
       BIND(CONCAT("/${perspectiveID}/page/", REPLACE(STR(?similarPeriod__id), "^.*\\\\/(.+)", "$1")) AS ?similarPeriod__dataProviderUrl)
       FILTER (?similarPeriod__id != ?id)
     }
+    UNION
+    {
+      ?id extended-s:similar_external_find ?similarExternalFind__id .
+      BIND(?similarExternalFind__id AS ?similarExternalFind__prefLabel) .
+      BIND(?similarExternalFind__id AS ?similarExternalFind__dataProviderUrl)
+    }
   }
 `
 
@@ -394,11 +391,11 @@ export const findsApexChartsTimelineQuery = `
   WHERE {
     <FILTER>
     VALUES ?id {
-      periods:r2 # Kivikausi (-8850 – -1700)
-      periods:r13 # Pronssikausi (-1700 – -0500)
-      periods:r17 # Rautakausi (-0500 – 1300)
-      periods:r28 # Historiallinen aika (1200 – 2000)
-      periods:r29 # Keskiaika (1200 – 1520)
+      periods:p2 # Kivikausi (-8850 – -1700)
+      periods:p13 # Pronssikausi (-1700 – -0500)
+      periods:p17 # Rautakausi (-0500 – 1300)
+      periods:p28 # Historiallinen aika (1200 – 2000)
+      periods:p29 # Keskiaika (1200 – 1520)
     }
 
     ?find :found_in_province ?data__id ;

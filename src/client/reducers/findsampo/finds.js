@@ -105,12 +105,12 @@ export const INITIAL_STATE = {
     },
     {
       id: 'period',
-      valueType: 'string',
+      valueType: 'object',
       makeLink: false,
       externalLink: false,
       sortValues: true,
       numberedList: false,
-      minWidth: 130
+      minWidth: 130,
     },
     {
       id: 'earliestStartYear',

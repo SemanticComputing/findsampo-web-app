@@ -221,7 +221,15 @@ class InstanceHomePage extends React.Component {
                         externalLink: false,
                         sortValues: true,
                         numberedList: false
-                      }
+                      },
+                      {
+                        id: 'similarExternalFind',
+                        valueType: 'object',
+                        makeLink: true,
+                        externalLink: true,
+                        sortValues: true,
+                        numberedList: false
+                      },
                     ]}
                   />}
               />

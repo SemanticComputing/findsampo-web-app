@@ -65,6 +65,14 @@ const Recommendations = props => {
                   externalLink: false,
                   sortValues: true,
                   numberedList: false
+                },
+                {
+                  id: 'similarExternalFind',
+                  valueType: 'object',
+                  makeLink: true,
+                  externalLink: true,
+                  sortValues: true,
+                  numberedList: false
                 }
               ]}
             />
