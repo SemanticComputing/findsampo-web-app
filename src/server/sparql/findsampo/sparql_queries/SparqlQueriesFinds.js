@@ -262,7 +262,7 @@ export const findPropertiesFacetResults =
   `
 
 export const findsPlacesQuery = `
-  SELECT ?id ?lat ?long
+  SELECT DISTINCT ?id ?lat ?long
   WHERE {
     <FILTER>
     ?id :find_site_coordinates/wgs84:lat ?lat ;
