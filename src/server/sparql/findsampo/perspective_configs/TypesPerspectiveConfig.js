@@ -9,7 +9,7 @@ export const typesPerspectiveConfig = {
     url: 'https://ldf.fi/findsampo/sparql',
     //url: 'http://localhost:3039/ds/sparql',
     prefixes,
-    useAuth: true
+    useAuth: false
   },
   facetClass: ':Object_type',
   // paginatedResults: {
