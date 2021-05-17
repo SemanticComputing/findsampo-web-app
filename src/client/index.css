@@ -52,6 +52,15 @@ a, a:visited, a:hover, a:active {
     font-family: "Roboto", "Helvetica", "Arial";
 } 
 
+.leaflet-popup-content p {
+    margin: 0px;
+}
+
+.leaflet-popup-content h3 {
+    margin-top: 3px;
+    margin-bottom: 5px;
+}
+
 .leaflet-control-layers span {
     font-family: "Roboto", "Helvetica", "Arial";
 }
