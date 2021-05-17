@@ -302,11 +302,11 @@
           "label": "Termi"
         },
         "maoMatch": {
-          "label": "Vastaava termi MAO-ontologiassa",
+          "label": "Vastaava MAO-termi",
           "description": "\nVastaava termi Museoalan ja taideteollisuusalan ontologia MAO/TAOssa"
         },
         "kokoMatch": {
-          "label": "Vastaava termi KOKO-ontologiassa",
+          "label": "Vastaava KOKO-termi",
           "description": "Vastaava termi KOKO-ontologiassa, joka on kokoelma suomalaisia ydinontologioita."
         },
         "facetType": {

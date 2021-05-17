@@ -26,6 +26,7 @@ export const typesPropertiesInstancePage =
       ?id skos:hiddenLabel ?aatTerm__id .
       BIND(?aatTerm__id AS ?aatTerm__prefLabel)
       FILTER(LANG(?aatTerm__prefLabel) = 'en')
+      ?id extended-s:aatMatch ?aatTerm__dataProviderUrl .
     }
     UNION
     {

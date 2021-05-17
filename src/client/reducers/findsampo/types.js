@@ -58,15 +58,6 @@ export const INITIAL_STATE = {
       minWidth: 180
     },
     {
-      id: 'aatTerm',
-      valueType: 'object',
-      makeLink: true,
-      externalLink: true,
-      sortValues: true,
-      numberedList: false,
-      minWidth: 180
-    },
-    {
       id: 'definition',
       valueType: 'object',
       makeLink: true,
@@ -89,6 +80,15 @@ export const INITIAL_STATE = {
       valueType: 'object',
       makeLink: true,
       externalLink: false,
+      sortValues: true,
+      numberedList: false,
+      minWidth: 180
+    },
+    {
+      id: 'aatTerm',
+      valueType: 'object',
+      makeLink: true,
+      externalLink: true,
       sortValues: true,
       numberedList: false,
       minWidth: 180
