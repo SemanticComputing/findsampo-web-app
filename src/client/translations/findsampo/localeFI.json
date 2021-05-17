@@ -160,7 +160,7 @@
         },
         "findText": {
           "label": "Tekstihaku",
-          "description": "Etsi vapaalla tekstillä löydön nimen, kokoelmatunnuksen tai kuvauksen perusteella."
+          "description": "Vapaa tekstihaku löydön nimen, kokoelmatunnuksen tai kuvauksen perusteella. Hakeaksesi termeillä joissa völilyöntejä tai löydön koko numerolla, käytä lainausmerkkejä. Osa hausta on mahdollista korvata jokerimerkeillä kuten esimerkiksi miek*."
         },
         "description": {
           "label": "Kuvaus",

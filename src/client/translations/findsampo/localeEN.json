@@ -161,7 +161,7 @@
         },
         "findText": {
           "label": "Text search",
-          "description": "Search with free text based on name, number or description of the find."
+          "description": "Search with free text based on name, number or description of the find. To search with a phrase or the full accession number use quotation marks."
         },
         "description": {
           "label": "Description",

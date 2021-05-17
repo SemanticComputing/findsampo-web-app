@@ -68,9 +68,9 @@ export const INITIAL_STATE = {
     },
     {
       id: 'definition',
-      valueType: 'string',
-      makeLink: false,
-      externalLink: false,
+      valueType: 'object',
+      makeLink: true,
+      externalLink: true,
       sortValues: true,
       numberedList: false,
       minWidth: 180

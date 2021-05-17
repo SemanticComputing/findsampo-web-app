@@ -43,13 +43,15 @@ export const typesPropertiesInstancePage =
     {
       ?id extended-s:fishTerm ?fishTerm .
       BIND(REPLACE(STR(?fishTerm), " ", "+") AS ?modifiedFishTerm)
-      BIND(CONCAT('https://finds.org.uk/database/search/results/q/', ?modifiedFishTerm) AS ?pasLink__id)
+      BIND(CONCAT('https://finds.org.uk/database/search/results/objecttype/', ?modifiedFishTerm) AS ?pasLink__id)
       BIND(?pasLink__id AS ?pasLink__prefLabel)
       BIND(?pasLink__id AS ?pasLink__dataProviderUrl)
     }
     UNION
     {
-      ?id skos:note ?definition .
+      ?id skos:note ?definition__id .
+      ?id skos:note ?definition__prefLabel .
+      ?id rdfs:seeAlso ?definition__dataProviderUrl .
     }
   `
 
