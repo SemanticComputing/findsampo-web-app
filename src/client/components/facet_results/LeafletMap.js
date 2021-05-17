@@ -175,9 +175,7 @@ class LeafletMap extends React.Component {
     if ((this.props.instance !== null) && !isEqual(prevProps.instance, this.props.instance)) {
       this.markers[this.props.instance.id]
         .bindPopup(this.createPopUpContentFindSampo(this.props.instance), {
-          maxHeight: 300,
-          maxWidth: 400,
-          minWidth: 400
+          maxWidth: 'auto'
           // closeButton: false,
         })
         .openPopup()
@@ -836,6 +834,17 @@ class LeafletMap extends React.Component {
 
   createPopUpContentFindSampo = data => {
     const container = document.createElement('div')
+
+    if (has(data, 'image')) {
+      let { image } = data
+      if (Array.isArray(image)) {
+        image = image[0]
+      }
+      const imageElement = document.createElement('img')
+      imageElement.setAttribute('src', image.url)
+      imageElement.style.cssText = 'height: 200px'
+      container.appendChild(imageElement)
+    }
     const heading = document.createElement('h3')
     const headingLink = document.createElement('a')
     headingLink.style.cssText = 'cursor: pointer; text-decoration: underline'
