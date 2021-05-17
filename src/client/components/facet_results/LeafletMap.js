@@ -175,7 +175,7 @@ class LeafletMap extends React.Component {
     if ((this.props.instance !== null) && !isEqual(prevProps.instance, this.props.instance)) {
       this.markers[this.props.instance.id]
         .bindPopup(this.createPopUpContentFindSampo(this.props.instance), {
-          maxWidth: 'auto'
+          // maxWidth: 'auto'
           // closeButton: false,
         })
         .openPopup()
@@ -842,7 +842,7 @@ class LeafletMap extends React.Component {
       }
       const imageElement = document.createElement('img')
       imageElement.setAttribute('src', image.url)
-      imageElement.style.cssText = 'height: 200px'
+      imageElement.style.cssText = 'width: 100%'
       container.appendChild(imageElement)
     }
     const heading = document.createElement('h3')
