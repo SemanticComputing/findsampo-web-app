@@ -856,9 +856,20 @@ class LeafletMap extends React.Component {
       }))
     }
     if (has(data, 'period')) {
+      let periodLabel = ''
+      if (Array.isArray(data.period)) {
+        data.period.map((p, index) => {
+          periodLabel += `${p.prefLabel}`
+          if (index !== data.period.length - 1) {
+            periodLabel += ', '
+          }
+        })
+      } else {
+        periodLabel = data.period.prefLabel
+      }
       container.appendChild(this.createPopUpElement({
         label: intl.get('perspectives.finds.properties.period.label'),
-        value: data.period
+        value: periodLabel
       }))
     }
     if (has(data, 'municipality')) {
