@@ -43,6 +43,8 @@ export const typesPropertiesInstancePage =
     UNION
     {
       ?id extended-s:fishTerm ?fishTerm .
+      ?find :object_type ?id .
+      ?find extended-s:similar_external_find ?externalFind . # Add restriction to avoid types with no actual PAS direct equivalent
       BIND(REPLACE(STR(?fishTerm), " ", "+") AS ?modifiedFishTerm)
       BIND(CONCAT('https://finds.org.uk/database/search/results/objecttype/', ?modifiedFishTerm) AS ?pasLink__id)
       BIND(?pasLink__id AS ?pasLink__prefLabel)
