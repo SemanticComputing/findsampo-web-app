@@ -84,7 +84,8 @@ export const findPropertiesInstancePage =
     {
       ?image__id a :Image .
       ?image__id :documents ?id .
-      ?image__id ltk-s:image_url ?image__url .
+      ?image__id ltk-s:image_url ?image__url_ .
+      BIND(REPLACE(?image__url_, "http", "https") as ?image__url)
       OPTIONAL {
         ?image__id skos:prefLabel ?image__title .
         BIND(CONCAT(STR(?image__title), ' (kuvan oikeudet: Museovirasto)') AS ?image__description)
@@ -219,13 +220,12 @@ export const findPropertiesFacetResults =
     {
       ?image__id a :Image .
       ?image__id :documents ?id .
-      ?image__id ltk-s:image_url ?image__url .
+      ?image__id ltk-s:image_url ?image__url_ .
+      BIND(REPLACE(?image__url_, "http", "https") as ?image__url)
       OPTIONAL {
         ?image__id skos:prefLabel ?image__title .
         BIND(CONCAT(STR(?image__title), ' (kuvan oikeudet: Museovirasto)') AS ?image__description)
       }
-      #BIND(?image__id as ?image__url)
-      #BIND(CONCAT("Sample description text for image ", ?image__id) as ?image__description)
     }
     UNION
     {
