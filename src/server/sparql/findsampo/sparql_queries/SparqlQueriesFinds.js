@@ -427,7 +427,8 @@ export const knowledgeGraphMetadataQuery = `
           ltk-s:featured_find ?featuredFind__id .
     ?featuredFind__id ltk-s:find_name ?featuredFind__prefLabel .
     ?picture :documents ?featuredFind__id .
-    ?picture ltk-s:image_url ?featuredFind__imageURL .
+    ?picture ltk-s:image_url ?featuredFind__imageURL_ .
+    BIND(REPLACE(?featuredFind__imageURL_, "http", "https") as ?featuredFind__imageURL)
     BIND(CONCAT("/${perspectiveID}/page/", REPLACE(STR(?featuredFind__id), "^.*\\\\/(.+)", "$1")) AS ?featuredFind__dataProviderUrl)
   }
 `
