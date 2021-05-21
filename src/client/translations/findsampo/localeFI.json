@@ -395,7 +395,7 @@
       "label": "Kohteet",
       "mainPageLabel": "kohteet",
       "shortDescription": "Etsi ja tarkastele arkeologisia kohteita ja suojeltuja alueita",
-      "longDescription": "<p class=\"MuiTypography-root MuiTypography-body1 MuiTypography-paragraph\"> Tämä näkymä pyytää lupaa paikantaa käyttäjä ja sitten näyttää käyttäjän lähellä olevia rekisteröityjä arkeologisia pisteitä ja kohteita, joilla metallinetsimistä on rajoitettu. Paikannuksen tarkkuus vaihtelee ja riippuu sijainnista ja käytetystä laitteesta. Arkeologisten kohteiden rajapinta saattaa latautua hitaasti, joten niiden tarkastelu toimi parhaiten kun zoom taso on vähintään 13 ja karttaa ei siirrellä liian nopeasti. Punaisella merkittyjen kohteiden ympärille on merkitty harmaalla suuntaa antava varoalue, joka on laskettu automaattisesti.</p>"
+      "longDescription": "<p class=\"MuiTypography-root MuiTypography-body1 MuiTypography-paragraph\"> Tämä näkymä pyytää lupaa paikantaa käyttäjä ja sitten näyttää käyttäjän lähellä olevia rekisteröityjä arkeologisia pisteitä ja kohteita, joilla metallinetsimistä on rajoitettu. Paikannuksen tarkkuus vaihtelee ja riippuu sijainnista ja käytetystä laitteesta. Arkeologisten kohteiden rajapinta saattaa latautua hitaasti, joten niiden tarkastelu toimi parhaiten kun zoom taso on vähintään 13 ja karttaa ei siirrellä liian nopeasti. Punaisella merkittyjen kohteiden ympärille on merkitty harmaalla Museoviraston suosittelemaa 200 metrin varoaluetta vastaava suuntaa antava alue, joka on laskettu automaattisesti.</p>"
     },
     "guides": {
       "label": "Oppaita",

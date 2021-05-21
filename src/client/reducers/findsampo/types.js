@@ -57,15 +57,15 @@ export const INITIAL_STATE = {
       numberedList: false,
       minWidth: 180
     },
-    {
-      id: 'definition',
-      valueType: 'object',
-      makeLink: true,
-      externalLink: true,
-      sortValues: true,
-      numberedList: false,
-      minWidth: 180
-    },
+    // {
+    //   id: 'definition',
+    //   valueType: 'object',
+    //   makeLink: true,
+    //   externalLink: true,
+    //   sortValues: true,
+    //   numberedList: false,
+    //   minWidth: 180
+    // },
     {
       id: 'ltkName',
       valueType: 'string',
