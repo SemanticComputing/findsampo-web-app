@@ -973,12 +973,13 @@ class LeafletMap extends React.Component {
     return (
       <>
         <div className={this.props.classes[`leafletContainer${this.props.pageType}`]}>
-          <div id={this.props.container ? this.props.container : 'map'} className={this.props.classes.mapElement} />
-          {(this.props.fetching ||
+          <div id={this.props.container ? this.props.container : 'map'} className={this.props.classes.mapElement}>
+            {(this.props.fetching ||
             (this.props.showExternalLayers && this.props.layers.fetching)) &&
               <div className={this.props.classes.spinnerContainer}>
                 <CircularProgress style={{ color: purple[500] }} thickness={5} />
               </div>}
+          </div>
         </div>
       </>
     )
