@@ -54,8 +54,8 @@ const Sites = props => {
       : classes.root}
     >
       <LeafletMap
-        // center={[60.187, 24.821]}
-        // zoom={15}
+        center={[65.184809, 27.314050]}
+        zoom={5}
         locateUser
         // results={this.props.results}
         layers={props.leafletMap}

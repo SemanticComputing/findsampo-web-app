@@ -301,7 +301,11 @@ class LeafletMap extends React.Component {
     if (this.props.locateUser) {
       this.leafletMap.on('locationfound', this.onLocationFound)
       this.leafletMap.on('locationerror', this.onLocationError)
-      this.leafletMap.locate({ setView: true, enableHighAccuracy: true })
+      this.leafletMap.locate({
+        setView: true,
+        maxZoom: 14,
+        enableHighAccuracy: true
+      })
     }
   }
 
@@ -319,6 +323,10 @@ class LeafletMap extends React.Component {
   }
 
   onLocationError = e => {
+    this.leafletMap.setView(
+      this.props.center,
+      this.props.zoom
+    )
     // this.props.showError({
     //   title: '',
     //   text: e.message
