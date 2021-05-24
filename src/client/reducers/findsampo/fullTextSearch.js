@@ -19,7 +19,7 @@ export const INITIAL_STATE = {
       externalLink: false,
       sortValues: false,
       numberedList: false,
-      minWidth: 400
+      minWidth: 300
     },
     {
       id: 'type',
@@ -28,7 +28,7 @@ export const INITIAL_STATE = {
       externalLink: false,
       sortValues: false,
       numberedList: false,
-      minWidth: 300
+      minWidth: 250
     },
     {
       id: 'description',

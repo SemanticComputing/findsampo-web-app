@@ -9,7 +9,7 @@ const rootStyle = {
   height: 'calc(100% - 8px)',
   marginTop: 8,
   marginLeft: 8,
-  marginRight: 8
+  marginRight: 0
 }
 
 /**

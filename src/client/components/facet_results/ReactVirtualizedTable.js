@@ -186,7 +186,8 @@ const VirtualizedTable = withStyles(styles)(MuiVirtualizedTable)
 
 const rootStyle = {
   height: 'calc(100% - 80px)',
-  fontFamily: 'Roboto'
+  fontFamily: 'Roboto',
+  overflow: 'auto'
 }
 
 const tableContainer = {
