@@ -19,7 +19,7 @@ const useStyles = makeStyles(theme => ({
   root: props => {
     return {
       marginTop: theme.spacing(1),
-      width: 344,
+      maxWidth: 350,
       height: 600,
       [theme.breakpoints.up('md')]: {
         height: 'calc(100% - 80px)'
@@ -28,7 +28,9 @@ const useStyles = makeStyles(theme => ({
     }
   },
   list: {
-    paddingRight: 4
+    [theme.breakpoints.up('md')]: {
+      paddingRight: 4
+    }
   },
   link: {
     textDecoration: 'none'
