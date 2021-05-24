@@ -4,6 +4,7 @@ import intl from 'react-intl-universal'
 import { Route, Redirect } from 'react-router-dom'
 import PerspectiveTabs from '../../main_layout/PerspectiveTabs'
 import ResultTable from '../../facet_results/ResultTable'
+import ReactVirtualizedList from '../../facet_results/ReactVirtualizedList'
 import LeafletMap from '../../facet_results/LeafletMap'
 import Deck from '../../facet_results/Deck'
 import ApexChart from '../../facet_results/ApexChart'
@@ -51,6 +52,17 @@ const Finds = props => {
             sortResults={props.sortResults}
             routeProps={routeProps}
             rootUrl={rootUrl}
+          />}
+      />
+      <Route
+        path={`${props.rootUrl}/${perspective.id}/faceted-search/list`}
+        render={routeProps =>
+          <ReactVirtualizedList
+            resultClass='findsList'
+            facetClass='finds'
+            fetchResults={props.fetchResults}
+            facetResults={props.facetResults}
+            facetUpdateID={props.facetData.facetUpdateID}
           />}
       />
       <Route

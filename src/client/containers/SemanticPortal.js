@@ -76,7 +76,10 @@ const useStyles = makeStyles(theme => ({
     let height = 'auto'
     const { pathname } = props.location
 
-    if (pathname.includes('/sites/map') || pathname.includes('/full-text-search')) {
+    if (
+      pathname.includes('/sites/map') ||
+      pathname.includes('/full-text-search')
+    ) {
       height = '100%'
     }
     return {

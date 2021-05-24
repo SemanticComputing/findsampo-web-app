@@ -12,6 +12,7 @@ import {
   findsByWidthQuery,
   findsByWeightQuery,
   findsPlacesQuery,
+  findsListQuery,
   findInstancePageMapQuery,
   findsTimelineQuery,
   findsApexChartsTimelineQuery,
@@ -48,6 +49,12 @@ export const backendSearchConfig = {
       properties: findPropertiesInstancePage,
       relatedInstances: ''
     }
+  },
+  findsList: {
+    perspectiveID: 'finds', // use endpoint config from finds
+    q: findsListQuery,
+    filterTarget: 'id',
+    resultMapper: makeObjectList
   },
   findInstancePageMap: {
     perspectiveID: 'finds',

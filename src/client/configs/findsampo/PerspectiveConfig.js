@@ -29,34 +29,39 @@ export const perspectiveConfig = [
         value: 0,
         icon: <CalendarViewDayIcon />
       },
+      // {
+      //   id: 'list',
+      //   value: 1,
+      //   icon: <CalendarViewDayIcon />
+      // },
       {
         id: 'map',
-        value: 1,
-        icon: <AddLocationIcon />
-      },
-      {
-        id: 'heatmap',
         value: 2,
         icon: <AddLocationIcon />
       },
       {
-        id: 'timeline',
+        id: 'heatmap',
         value: 3,
+        icon: <AddLocationIcon />
+      },
+      {
+        id: 'timeline',
+        value: 4,
         icon: <ClearAllIcon />
       },
       {
         id: 'pie_chart',
-        value: 4,
+        value: 5,
         icon: <PieChartIcon />
       },
       {
         id: 'line_chart',
-        value: 5,
+        value: 6,
         icon: <LineChartIcon />
       },
       {
         id: 'csv',
-        value: 6,
+        value: 7,
         icon: <CloudDownloadIcon />
       }
       // {

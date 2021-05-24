@@ -110,7 +110,7 @@ export const INITIAL_STATE = {
       externalLink: false,
       sortValues: true,
       numberedList: false,
-      minWidth: 130,
+      minWidth: 130
     },
     {
       id: 'earliestStartYear',
@@ -216,6 +216,7 @@ export const INITIAL_STATE = {
 
 const resultClasses = new Set([
   'finds',
+  'findsList',
   'findsTimeline',
   'findsApexChartsTimeline',
   'findsApexChartsTimelineDialog',

@@ -269,6 +269,31 @@ export const findsPlacesQuery = `
         :find_site_coordinates/wgs84:long ?long .
   }
 `
+
+export const findsListQuery = `
+  SELECT ?id ?findName ?objectType ?findNumber ?dataProviderUrl ?municipality 
+  (GROUP_CONCAT(DISTINCT ?periods; SEPARATOR=", ") AS ?period) 
+  (GROUP_CONCAT(DISTINCT ?materials; SEPARATOR=", ") AS ?material)
+  (GROUP_CONCAT(DISTINCT ?imageURLs; SEPARATOR=", ") AS ?imageURL)
+  WHERE {
+    <FILTER>
+    ?id a :Find ;
+        ltk-s:find_name ?findName ;
+        :object_type/skos:prefLabel ?objectType ;
+        :identifier ?findNumber .
+    BIND(CONCAT("/${perspectiveID}/page/", REPLACE(STR(?id), "^.*\\\\/(.+)", "$1")) AS ?dataProviderUrl)
+    OPTIONAL { ?id :period/skos:prefLabel ?periods }
+    OPTIONAL { ?id :material/skos:prefLabel ?materials }
+    OPTIONAL { ?id ^:documents/ltk-s:image_url ?imageURLs }
+    OPTIONAL { 
+      ?id :found_in_municipality/skos:prefLabel ?municipality 
+      FILTER(LANG(?municipality) = '<LANG>')
+    }
+  }
+  GROUP BY ?id ?findName ?objectType ?findNumber ?dataProviderUrl ?municipality 
+  ORDER BY ?findNumber
+`
+
 export const findInstancePageMapQuery = `
   SELECT *
   WHERE {
