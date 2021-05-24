@@ -186,6 +186,29 @@ class LeafletMap extends React.Component {
       this.props.layers.layerData.map(layerObj => this.populateOverlay(layerObj))
     }
 
+    if (this.props.showExternalLayers) {
+      if (this.props.layers.fetching) {
+        this.leafletMap.removeControl(this.zoominfoControl)
+        this.leafletMap.dragging.disable()
+        this.leafletMap.touchZoom.disable()
+        this.leafletMap.doubleClickZoom.disable()
+        this.leafletMap.scrollWheelZoom.disable()
+        this.leafletMap.boxZoom.disable()
+        this.leafletMap.keyboard.disable()
+        if (this.leafletMap.tap) this.leafletMap.tap.disable()
+      }
+      if (!this.props.layers.fetching) {
+        this.leafletMap.addControl(this.zoominfoControl)
+        this.leafletMap.dragging.enable()
+        this.leafletMap.touchZoom.enable()
+        this.leafletMap.doubleClickZoom.enable()
+        this.leafletMap.scrollWheelZoom.enable()
+        this.leafletMap.boxZoom.enable()
+        this.leafletMap.keyboard.enable()
+        if (this.leafletMap.tap) this.leafletMap.tap.enable()
+      }
+    }
+
     if (has(prevProps, 'facet') && prevProps.facet.filterType !== this.props.facet.filterType) {
       if (this.props.facet.filterType === 'spatialFilter') {
         this.addDrawButtons()
@@ -241,6 +264,8 @@ class LeafletMap extends React.Component {
       ],
       fullscreenControl: true
     })
+
+    this.zoominfoControl = this.leafletMap.zoominfoControl
 
     // initialize layers from external sources
     if (this.props.showExternalLayers) {
@@ -392,7 +417,7 @@ class LeafletMap extends React.Component {
     })
     // Fired when zooming ends
     this.leafletMap.on('zoomend', () => {
-      if (this.state.activeLayers.length > 0 && this.isSafeToLoadLargeLayersAfterZooming()) {
+      if (!this.props.layers.fetching && this.state.activeLayers.length > 0 && this.isSafeToLoadLargeLayersAfterZooming()) {
         this.props.fetchGeoJSONLayers({
           layerIDs: this.state.activeLayers,
           bounds: this.leafletMap.getBounds()
@@ -401,7 +426,7 @@ class LeafletMap extends React.Component {
     })
     // Fired when dragging ends
     this.leafletMap.on('dragend', () => {
-      if (this.state.activeLayers.length > 0 && this.isSafeToLoadLargeLayers()) {
+      if (!this.props.layers.fetching && this.state.activeLayers.length > 0 && this.isSafeToLoadLargeLayers()) {
         this.props.fetchGeoJSONLayers({
           layerIDs: this.state.activeLayers,
           bounds: this.leafletMap.getBounds()
