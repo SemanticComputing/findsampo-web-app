@@ -113,8 +113,10 @@
       "airMapNLS": "Aerial map (National Land Survey of Finland)"
     },
     "externalLayers": {
-      "arkeologiset_kohteet_alue": "Register of Archaeological Sites, areas (Finnish Heritage Agency)",
-      "arkeologiset_kohteet_piste": "Register of Archaeological Sites, points (Finnish Heritage Agency)",
+      "arkeologiset_kohteet_alue_varoalue": "Register of Archaeological Sites, areas (Finnish Heritage Agency)",
+      "arkeologiset_kohteet_piste_varoalue": "Register of Archaeological Sites, points (Finnish Heritage Agency)",
+      "arkeologiset_kohteet_alue": "Register of Archaeological Sites, areas, without 200 m buffer zones (Finnish Heritage Agency)",
+      "arkeologiset_kohteet_piste": "Register of Archaeological Sites, points, without 200 m buffer zones (Finnish Heritage Agency)",
       "fhaLidar": "Elevation model (Finnish Heritage Agency)",
       "karelianMaps": "Karelian maps, 1:100 000 topographic (SeCo)",
       "senateAtlas": "Senate atlas, 1:21 000 topographic (SeCo)"

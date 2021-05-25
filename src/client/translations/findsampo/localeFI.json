@@ -112,8 +112,10 @@
       "airMapNLS": "Ilmakuva (Maanmittauslaitos)"
     },
     "externalLayers": {
-      "arkeologiset_kohteet_alue": "Arkeologiset kohteet, alueet (Museovirasto, muinaisjäännösrekisteri)",
-      "arkeologiset_kohteet_piste": "Arkeologiset kohteet, pisteet (Museovirasto, muinaisjäännösrekisteri)",
+      "arkeologiset_kohteet_alue_varoalue": "Arkeologiset kohteet, alueet (Museovirasto, muinaisjäännösrekisteri)",
+      "arkeologiset_kohteet_piste_varoalue": "Arkeologiset kohteet, pisteet (Museovirasto, muinaisjäännösrekisteri)",
+      "arkeologiset_kohteet_alue": "Arkeologiset kohteet, alueet, ilman varoalueita (Museovirasto, muinaisjäännösrekisteri)",
+      "arkeologiset_kohteet_piste": "Arkeologiset kohteet, pisteet, ilman varoalueita (Museovirasto, muinaisjäännösrekisteri)",
       "fhaLidar": "Korkeusmalli (Museovirasto)",
       "karelianMaps": "Karjalan kartat 1:100 000 topografinen (SeCo)",
       "senateAtlas": "Senaatin kartat 1:21 000 topografinen (SeCo)"

@@ -67,7 +67,7 @@ const createArchealogicalSiteColor = feature => {
 
 export const leafletLayerConfigs = [
   {
-    id: 'arkeologiset_kohteet_alue',
+    id: 'arkeologiset_kohteet_alue_varoalue',
     type: 'GeoJSON',
     minZoom: 13,
     buffer: {
@@ -85,7 +85,7 @@ export const leafletLayerConfigs = [
     createPopup: createArchealogicalSitePopUp
   },
   {
-    id: 'arkeologiset_kohteet_piste',
+    id: 'arkeologiset_kohteet_piste_varoalue',
     type: 'GeoJSON',
     minZoom: 13,
     buffer: {
@@ -93,6 +93,46 @@ export const leafletLayerConfigs = [
       units: 'metres',
       style: bufferStyle
     },
+    createGeoJSONPointStyle: feature => {
+      return {
+        radius: 8,
+        fillColor: createArchealogicalSiteColor(feature),
+        color: '#000',
+        weight: 1,
+        opacity: 1,
+        fillOpacity: 0.8
+      }
+    },
+    createGeoJSONPolygonStyle: feature => null, // this layer includes only GeoJSON points
+    createPopup: createArchealogicalSitePopUp
+  },
+  {
+    id: 'arkeologiset_kohteet_alue',
+    type: 'GeoJSON',
+    minZoom: 13,
+    // buffer: {
+    //   distance: 200,
+    //   units: 'metres',
+    //   style: bufferStyle
+    // },
+    createGeoJSONPointStyle: feature => null, //  this layer includes only GeoJSON Polygons
+    createGeoJSONPolygonStyle: feature => {
+      return {
+        color: createArchealogicalSiteColor(feature),
+        cursor: 'pointer'
+      }
+    },
+    createPopup: createArchealogicalSitePopUp
+  },
+  {
+    id: 'arkeologiset_kohteet_piste',
+    type: 'GeoJSON',
+    minZoom: 13,
+    // buffer: {
+    //   distance: 200,
+    //   units: 'metres',
+    //   style: bufferStyle
+    // },
     createGeoJSONPointStyle: feature => {
       return {
         radius: 8,
