@@ -103,7 +103,8 @@ class LeafletMap extends React.Component {
     this.state = {
       activeLayers: props.activeLayers ? props.activeLayers : [],
       prevZoomLevel: null,
-      mapMode: props.mapMode
+      mapMode: props.mapMode,
+      showBuffer: true
     }
   }
 
@@ -188,6 +189,7 @@ class LeafletMap extends React.Component {
 
     if (this.props.showExternalLayers) {
       if (this.props.layers.fetching) {
+        this.layerControl._layerControlInputs.forEach(input => { input.disabled = true })
         this.leafletMap.removeControl(this.zoominfoControl)
         this.leafletMap.dragging.disable()
         this.leafletMap.touchZoom.disable()
@@ -198,6 +200,7 @@ class LeafletMap extends React.Component {
         if (this.leafletMap.tap) this.leafletMap.tap.disable()
       }
       if (!this.props.layers.fetching) {
+        this.layerControl._layerControlInputs.forEach(input => { input.disabled = false })
         this.leafletMap.addControl(this.zoominfoControl)
         this.leafletMap.dragging.enable()
         this.leafletMap.touchZoom.enable()
@@ -385,19 +388,21 @@ class LeafletMap extends React.Component {
 
   initMapEventListeners = () => {
     // Fired when an overlay is selected using layer controls
-    this.leafletMap.on('overlayadd', event => {
-      if (event.layer.options.type === 'GeoJSON') {
+    this.leafletMap.on('layeradd', event => {
+      const layerID = event.layer.options.id
+      if (event.layer.options.type === 'GeoJSON' && !this.state.activeLayers.includes(layerID)) {
         this.props.clearGeoJSONLayers()
+        // console.log(`add: ${layerID}`)
         if (this.isSafeToLoadLargeLayers()) {
-          const layerID = event.layer.options.id
+          const currentLayers = this.state.activeLayers
           // https://www.robinwieruch.de/react-state-array-add-update-remove
           this.setState(state => {
             return {
-              activeLayers: [...state.activeLayers, layerID]
+              activeLayers: [...currentLayers, layerID]
             }
           })
           this.props.fetchGeoJSONLayers({
-            layerIDs: this.state.activeLayers,
+            layerIDs: [...currentLayers, layerID],
             bounds: this.leafletMap.getBounds()
           })
         } else {
@@ -408,13 +413,15 @@ class LeafletMap extends React.Component {
         }
       }
     })
-    // Fired when an overlay is selected using layer controls
-    this.leafletMap.on('overlayremove', event => {
+    // Fired when some layer is removed from the map
+    this.leafletMap.on('layerremove', event => {
       if (event.layer.options.type === 'GeoJSON') {
-        const layerIDremoved = event.layer.options.id
-        this.clearOverlay(layerIDremoved)
+        const layerIDToRemove = event.layer.options.id
+        // console.log(`remove: ${layerIDToRemove}`)
+        const leafletOverlayToRemove = this.overlayLayers[intl.get(`leafletMap.externalLayers.${layerIDToRemove}`)]
+        leafletOverlayToRemove.clearLayers()
         this.setState(state => {
-          const activeLayers = state.activeLayers.filter(layerID => layerID !== layerIDremoved)
+          const activeLayers = state.activeLayers.filter(layerID => layerID !== layerIDToRemove)
           return { activeLayers }
         })
       }
@@ -508,7 +515,7 @@ class LeafletMap extends React.Component {
     leafletOverlay.clearLayers()
 
     // Only the layer that is added last is clickable, so add buffer first
-    if (leafletOverlay.options.buffer) {
+    if (this.state.showBuffer) {
       const { distance, units, style } = leafletOverlay.options.buffer
       const bufferedGeoJSON = buffer(layerObj.geoJSON, distance, { units })
       const leafletGeoJSONBufferLayer = L.geoJSON(bufferedGeoJSON, {
@@ -532,11 +539,6 @@ class LeafletMap extends React.Component {
       }
     })
     leafletGeoJSONLayer.addTo(leafletOverlay).addTo(this.leafletMap)
-  }
-
-  clearOverlay = id => {
-    const leafletOverlay = this.overlayLayers[intl.get(`leafletMap.externalLayers.${id}`)]
-    leafletOverlay.clearLayers()
   }
 
   addMapModeControl = () => {

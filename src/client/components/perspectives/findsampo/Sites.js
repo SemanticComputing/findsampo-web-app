@@ -70,8 +70,8 @@ const Sites = props => {
         layerControlExpanded={layerControlExpanded}
         layerConfigs={leafletLayerConfigs}
         activeLayers={[
-          'arkeologiset_kohteet_alue_varoalue',
-          'arkeologiset_kohteet_piste_varoalue'
+          'arkeologiset_kohteet_alue',
+          'arkeologiset_kohteet_piste'
         ]}
       />
     </div>
