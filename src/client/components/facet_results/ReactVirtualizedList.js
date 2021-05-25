@@ -20,7 +20,9 @@ const useStyles = makeStyles(theme => ({
     return {
       marginTop: theme.spacing(1),
       maxWidth: 350,
-      height: 600,
+      [theme.breakpoints.down('md')]: {
+        height: window.innerHeight - 56 - 61 - 48 - 48 - 72 - theme.spacing(5)
+      },
       [theme.breakpoints.up('md')]: {
         height: 'calc(100% - 80px)'
       },
@@ -132,8 +134,16 @@ const ReactVirtualizedList = props => {
     if (data.findName.length > 26) {
       height += 32
     }
-    if (data.period && data.period.length > 33) {
-      height += 20
+    if (data.findName.length > 40) {
+      height += 54
+    }
+    if (data.period) {
+      const limit = window.innerWidth < 328 ? 25 : 34
+      if (data.period.length > limit) {
+        console.log(data.period.length)
+        console.log(limit)
+        height += 20
+      }
     }
     return height
   }

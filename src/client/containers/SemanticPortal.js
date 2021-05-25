@@ -286,6 +286,23 @@ const SemanticPortal = props => {
   const rootUrlWithLang = `${rootUrl}/${props.options.currentLocale}`
   // const noResults = props.clientFS.results == null
 
+  if (xsScreen || smScreen) {
+    perspectiveConfig[0].defaultActiveFacets = new Set([])
+  }
+
+  useEffect(() => {
+    if (window.innerWidth < 600) {
+      props.updatePerspectiveHeaderExpanded({
+        resultClass: 'finds',
+        pageType: 'facetResults'
+      })
+      props.updatePerspectiveHeaderExpanded({
+        resultClass: 'finds',
+        pageType: 'instancePage'
+      })
+    }
+  }, [])
+
   useEffect(() => {
     document.title = intl.get('html.title')
     document.documentElement.lang = props.options.currentLocale
@@ -398,6 +415,7 @@ const SemanticPortal = props => {
                                   showError={props.showError}
                                   defaultActiveFacets={perspective.defaultActiveFacets}
                                   rootUrl={rootUrlWithLang}
+                                  screenSize={screenSize}
                                 />
                               </Grid>
                               <Grid item xs={12} md={9} className={classes.resultsContainer}>

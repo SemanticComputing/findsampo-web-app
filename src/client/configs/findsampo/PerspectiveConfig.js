@@ -6,6 +6,7 @@ import AddLocationIcon from '@material-ui/icons/AddLocation'
 import PieChartIcon from '@material-ui/icons/PieChart'
 import CloudDownloadIcon from '@material-ui/icons/CloudDownload'
 import ClearAllIcon from '@material-ui/icons/ClearAll'
+import FormatAlignJustifyIcon from '@material-ui/icons/FormatAlignJustify'
 import StarIcon from '@material-ui/icons/Star'
 import LineChartIcon from '@material-ui/icons/ShowChart'
 import findsImage from '../../img/findsampo/Museovirasto_063_vaaka.jpg'
@@ -30,33 +31,38 @@ export const perspectiveConfig = [
         icon: <CalendarViewDayIcon />
       },
       {
-        id: 'map',
+        id: 'list',
         value: 1,
-        icon: <AddLocationIcon />
+        icon: <FormatAlignJustifyIcon />
       },
       {
-        id: 'heatmap',
+        id: 'map',
         value: 2,
         icon: <AddLocationIcon />
       },
       {
-        id: 'timeline',
+        id: 'heatmap',
         value: 3,
+        icon: <AddLocationIcon />
+      },
+      {
+        id: 'timeline',
+        value: 4,
         icon: <ClearAllIcon />
       },
       {
         id: 'pie_chart',
-        value: 4,
+        value: 5,
         icon: <PieChartIcon />
       },
       {
         id: 'line_chart',
-        value: 5,
+        value: 6,
         icon: <LineChartIcon />
       },
       {
         id: 'csv',
-        value: 6,
+        value: 7,
         icon: <CloudDownloadIcon />
       }
       // {

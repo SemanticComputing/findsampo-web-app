@@ -26,7 +26,11 @@ import {
 import ExportCSV from '../../facet_results/ExportCSV'
 
 const Finds = props => {
-  const { rootUrl, perspective } = props
+  const { rootUrl, perspective, screenSize } = props
+  let defaultTab = 'table'
+  if (screenSize === 'xs' || screenSize === 'sm') {
+    defaultTab = 'list'
+  }
   return (
     <>
       <PerspectiveTabs
@@ -36,7 +40,7 @@ const Finds = props => {
       />
       <Route
         exact path={`${rootUrl}/${perspective.id}/faceted-search`}
-        render={() => <Redirect to={`${rootUrl}/${perspective.id}/faceted-search/table`} />}
+        render={() => <Redirect to={`${rootUrl}/${perspective.id}/faceted-search/${defaultTab}`} />}
       />
       <Route
         path={`${props.rootUrl}/${perspective.id}/faceted-search/table`}

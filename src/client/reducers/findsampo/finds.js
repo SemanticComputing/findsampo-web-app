@@ -22,15 +22,6 @@ export const INITIAL_STATE = {
   instanceSparqlQuery: null,
   properties: [
     {
-      id: 'uri',
-      valueType: 'object',
-      makeLink: true,
-      externalLink: true,
-      sortValues: true,
-      numberedList: false,
-      onlyOnInstancePage: true
-    },
-    {
       id: 'image',
       valueType: 'image',
       previewImageHeight: 200,
@@ -204,6 +195,15 @@ export const INITIAL_STATE = {
     },
     {
       id: 'archaeologicalSiteUrl',
+      valueType: 'object',
+      makeLink: true,
+      externalLink: true,
+      sortValues: true,
+      numberedList: false,
+      onlyOnInstancePage: true
+    },
+    {
+      id: 'uri',
       valueType: 'object',
       makeLink: true,
       externalLink: true,
