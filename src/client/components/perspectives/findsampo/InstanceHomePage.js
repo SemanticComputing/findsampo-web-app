@@ -145,6 +145,7 @@ class InstanceHomePage extends React.Component {
                     resultClass={resultClass}
                     data={tableData}
                     properties={this.getVisibleRows(this.props.properties)}
+                    screenSize={this.props.screenSize}
                   />}
               />
               <Route
@@ -229,7 +230,7 @@ class InstanceHomePage extends React.Component {
                         externalLink: true,
                         sortValues: true,
                         numberedList: false
-                      },
+                      }
                     ]}
                   />}
               />
