@@ -34,6 +34,7 @@
   },
   "facetBar": {
     "results": "Results",
+    "filters": "Filters",
     "activeFilters": "Active filters:",
     "defaultMissingValueLabel": "\"value missing\"",
     "removeAllFilters": "Remove all",
@@ -56,6 +57,7 @@
   },
   "tabs": {
     "table": "table",
+    "list": "list",
     "map": "maps",
     "heatmap": "heatmap",
     "export": "export",
@@ -73,7 +75,7 @@
   },
   "apexCharts": {
     "by": "by",
-    "property": "Xaxis:",
+    "property": "X-axis:",
     "numberOfFinds": "Number of finds",
     "chartType": "Chart type:",
     "pie": "pie chart",
@@ -93,14 +95,14 @@
   "resultsAsCSV": "download the search results as a CSV table",
   "facets": {
     "textFacet": {
-      "inputLabel": "Etsi nimellä"
+      "inputLabel": "Search by name"
     },
     "sliderFacet": {
       "invalidStartOrEnd": "Min value must be smaller than max value. The smallest value can be {min} and the largest value can be {max}."
     }
   },
   "leafletMap": {
-    "findPopUpHeading": "Archaeological find",
+    "findPopUpHeading": "Find",
     "basemaps": {
       "mapbox": {
         "light-v10": "Mapbox Light (OpenStreetMap)"
@@ -139,7 +141,7 @@
       "shortDescription": "Faceted search for archaelogical finds",
       "longDescription": "<p class=\"MuiTypography-root MuiTypography-body1 MuiTypography-paragraph\"> This perspective is used for searching and browsing archaeological finds using a set of facets on the left. Currenly the are around 3000 metal detecting finds, and some other finds, from the records of the Finnish Heritage Agency available for browsing. More finds will be added to the portal later. The results can be viewed on the right using the following tabs: </p> <ul class=\"MuiTypography-root MuiTypography-body1\"> <li> <strong>TABLE</strong> tab presents the results as paginated table </li> <li> <strong>MAPS</strong> tab shows the results on an interactive map. The base map and additional map layers can be selected using the button on the top right corner of the map. For FHA map layers the zoom level must 13 or greater. </li> <li> <strong>HEATMAP</strong> tab shows the results set as a heatmap. </li> <li> <strong>TIMELINE</strong> tab shows a timeline visualization of the result set. </li> <li> <strong>PIE & BAR CHART</strong> tab visualizes the result set finds statistically using either 1) a pie chart or 2) a bar chart. The finds distribution can be based on 1) object type, 2) material or 3) province where the find was made. </li> <li> <strong>LINE CHART</strong> tab visualizes the number of finds (y-axis) of different weights (x-axis). </li> <li> <strong>CSV</strong> tab is used for downloading the current result set as a CSV file for further analysis in an external tool, such as a spreadsheet program. </li> </ul>",
       "instancePage": {
-        "label": "Archaeological find",
+        "label": "Find",
         "description": "<p class=\"MuiTypography-root MuiTypography-body1 MuiTypography-paragraph\"> This page aggregates information about this archaeological find, including metadata and image from the original database, but also other related data of interest. The following tabs can used for showing information about the find: </p> <ul class=\"MuiTypography-root MuiTypography-body1\"> <li> <strong>TABLE</strong> tab shows the original metadata of the find. This is the default tab. </li> <li> <strong>MAP</strong> tab shows location of the find-spot on a map. </li> <li> <strong>NEARBY FINDS</strong> tab shows on a map other finds that have been found nearby. </li> <li> <strong>RECOMMENDATION LINKS</strong> tab shows links to other finds that are semantically related to the find, including finds with similar object type, made of similar material, and from the same time period. Such recommendations can be created automatically based on the connections in the underlying linked data. </li> </ul>",
         "recommendations": {
           "nearByFinds": "Nearby finds",
@@ -193,19 +195,19 @@
         },
         "period": {
           "label": "Period",
-          "description": "Period when the object was created. May include both earliest and lates periods."
+          "description": "Period when the object was created. May include both earliest and latest periods."
         },
         "dateTimespan": {
           "label": "Dating",
-          "description": "Search based on dating of the find."
+          "description": "Search based on the dating of the find."
         },
         "startYear": {
           "label": "Start year",
-          "description": "Earliest creation year of the object as determined by an expert."
+          "description": "Earliest creation year of the object as determined by a specialist."
         },
         "endYear": {
           "label": "End year",
-          "description": "Latest creation year of the object as determined by an expert."
+          "description": "Latest creation year of the object as determined by a specialist."
         },
         "province": {
           "label": "Province",
@@ -221,11 +223,11 @@
         },
         "earliestStartYear": {
           "label": "Earliest manufacture time",
-          "description": "Earliest presumed manufacture date of the object based on a year determined by an expert or automatically deduced based on period"
+          "description": "Earliest presumed manufacture date of the object based on a year determined by a specialist or automatically deduced based on period"
         },
         "latestEndYear": {
           "label": "Latest manufacture time",
-          "description": "Latest presumed manufacture date of the object based on a year determined by an expert or automatically deduced based on period"
+          "description": "Latest presumed manufacture date of the object based on a year determined by a specialist or automatically deduced based on period"
         },
         "kmNumber": {
           "label": "KM number",
@@ -245,11 +247,11 @@
         },
         "maxThickness": {
           "label": "Maximum thickness",
-          "description": "Maximum thickness of the object of the object in millimeters"
+          "description": "Maximum thickness of the object in millimeters"
         },
         "minThickness": {
           "label": "Minimum thickness",
-          "description": "Minimum thickness of the object of the object in millimeters"
+          "description": "Minimum thickness of the object in millimeters"
         },
         "width": {
           "label": "Width",
@@ -273,7 +275,7 @@
         },
         "similarExternalFind": {
           "label": "Similar external find",
-          "description": "Similar find in PAS"
+          "description": "Similar finds in PAS (Portable Antiquities Scheme)"
         },
         "foundAtHeight": {
           "label": "Height",
@@ -304,7 +306,7 @@
         },
         "maoMatch": {
           "label": "Equivalent term in MAO",
-          "description": "Esuivalent term on MAO ontology"
+          "description": "Equivalent term on MAO ontology"
         },
         "kokoMatch": {
           "label": "Equivalent term in KOKO",
@@ -330,7 +332,7 @@
         },
         "pasLink": {
           "label": "Link PAS database",
-          "description": "Objects of similar type in PAS database of the British Museum"
+          "description": "Objects of similar type in the PAS database, British Museum"
         }
       }
     },
@@ -354,31 +356,31 @@
         },
         "earliestBegin": {
           "label": "Earliest start year",
-          "description": "Earliest year that period started"
+          "description": "Earliest year that the period started"
         },
         "latestEnd": {
           "label": "Latest end year",
-          "description": "Latest year that period ended"
+          "description": "Latest year that the period ended"
         },
         "latestBegin": {
           "label": "Latest start year",
-          "description": "Latest year that period started"
+          "description": "Latest year that the period started"
         },
         "earliestEnd": {
           "label": "Earliest end year",
-          "description": "Earliest year that period ended"
+          "description": "Earliest year that the period ended"
         },
         "relatedFind": {
           "label": "Related finds",
           "description": "Finds from this period"
         },
         "broaderPeriod": {
-          "label": "Broader period",
-          "description": "Period that this period is part of"
+          "label": "Broader period (era)",
+          "description": "Era that this period is part of"
         },
         "narrowerPeriod": {
           "label": "Narrower periods",
-          "description": "Period that this is part of this period"
+          "description": "Periods that are a part of this era"
         }
       }
     },
@@ -401,7 +403,7 @@
     "guides": {
       "label": "Guides",
       "mainPageLabel": "Guides",
-      "shortDescription": "Guides and instructions for conducting archaelogy as a hobby",
+      "shortDescription": "Guides and instructions for archaeology as a hobby",
       "whatShoulIDo": {
         "title": "What should I do if I find an antiquity?",
         "link": "https://www.museovirasto.fi/en/collection-and-information-services/item-collections/mitae-teen-kun-loeydaen-muinaisesineen"
@@ -411,7 +413,7 @@
         "link": "https://www.museovirasto.fi/en/cultural-environment/archaeological-cultural-heritage/reporting-a-discovery"
       },
       "archaelogyAsAHobby": {
-        "title": "Archaeology as hobby",
+        "title": "Archaeology as a hobby",
         "link": "https://www.museovirasto.fi/en/cultural-environment/archaeological-cultural-heritage/archaeology-as-a-hobby"
       },
       "enthusiastsGuide": {
