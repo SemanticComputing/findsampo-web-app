@@ -140,8 +140,6 @@ const ReactVirtualizedList = props => {
     if (data.period) {
       const limit = window.innerWidth < 328 ? 25 : 34
       if (data.period.length > limit) {
-        console.log(data.period.length)
-        console.log(limit)
         height += 20
       }
     }
