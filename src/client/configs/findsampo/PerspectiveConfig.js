@@ -29,46 +29,42 @@ export const perspectiveConfig = [
         value: 0,
         icon: <CalendarViewDayIcon />
       },
+      {
+        id: 'map',
+        value: 1,
+        icon: <AddLocationIcon />
+      },
+      {
+        id: 'heatmap',
+        value: 2,
+        icon: <AddLocationIcon />
+      },
+      {
+        id: 'timeline',
+        value: 3,
+        icon: <ClearAllIcon />
+      },
+      {
+        id: 'pie_chart',
+        value: 4,
+        icon: <PieChartIcon />
+      },
+      {
+        id: 'line_chart',
+        value: 5,
+        icon: <LineChartIcon />
+      },
+      {
+        id: 'csv',
+        value: 6,
+        icon: <CloudDownloadIcon />
+      }
       // {
       //   id: 'list',
       //   value: 1,
       //   icon: <CalendarViewDayIcon />
       // },
-      {
-        id: 'map',
-        value: 2,
-        icon: <AddLocationIcon />
-      },
-      {
-        id: 'heatmap',
-        value: 3,
-        icon: <AddLocationIcon />
-      },
-      {
-        id: 'timeline',
-        value: 4,
-        icon: <ClearAllIcon />
-      },
-      {
-        id: 'pie_chart',
-        value: 5,
-        icon: <PieChartIcon />
-      },
-      {
-        id: 'line_chart',
-        value: 6,
-        icon: <LineChartIcon />
-      },
-      {
-        id: 'csv',
-        value: 7,
-        icon: <CloudDownloadIcon />
-      }
-      // {
-      //   id: 'coins_by_year',
-      //   value: ,
-      //   icon: <LineChartIcon />
-      // }
+
     ],
     instancePageTabs: [
       {
