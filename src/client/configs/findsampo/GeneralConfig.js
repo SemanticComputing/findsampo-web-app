@@ -51,6 +51,7 @@ const bufferStyle = feature => {
     }
   } else {
     return {
+      fillOpacity: 0,
       color: '#6E6E6E',
       dashArray: '3, 5'
     }
