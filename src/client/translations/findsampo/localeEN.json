@@ -119,7 +119,8 @@
       "karelianMaps": "Karelian maps, 1:100 000 topographic (SeCo)",
       "senateAtlas": "Senate atlas, 1:21 000 topographic (SeCo)"
     },
-    "wrongZoomLevelFHA": "The map zoom level has to be at least 13 in order to show this layer"
+    "wrongZoomLevelFHA": "The map zoom level has to be at least 13 in order to show this layer",
+    "showBufferZones": "Show 200 m buffer zones"
   },
   "perspectives": {
     "fullTextSearch": {

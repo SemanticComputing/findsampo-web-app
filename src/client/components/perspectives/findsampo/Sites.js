@@ -67,7 +67,9 @@ const Sites = props => {
         showInstanceCountInClusters={false}
         showError={props.showError}
         showExternalLayers
+        customMapControl
         layerControlExpanded={layerControlExpanded}
+        infoHeaderExpanded={props.facetedSearchHeaderExpanded}
         layerConfigs={leafletLayerConfigs}
         activeLayers={[
           'arkeologiset_kohteet_alue',

@@ -118,7 +118,8 @@
       "karelianMaps": "Karjalan kartat 1:100 000 topografinen (SeCo)",
       "senateAtlas": "Senaatin kartat 1:21 000 topografinen (SeCo)"
     },
-    "wrongZoomLevelFHA": "Kartan suurennustason tulee olla vähintään 13 tämän karttatason näyttämiseksi"
+    "wrongZoomLevelFHA": "Kartan suurennustason tulee olla vähintään 13 tämän karttatason näyttämiseksi",
+    "showBufferZones": "Näytä 200 metrin varoalue"
   },
   "perspectives": {
     "fullTextSearch": {

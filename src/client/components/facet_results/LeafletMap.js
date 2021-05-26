@@ -11,7 +11,6 @@ import history from '../../History'
 import { MAPBOX_ACCESS_TOKEN, MAPBOX_STYLE } from '../../configs/findsampo/GeneralConfig'
 // import { apiUrl } from '../../epics'
 import 'leaflet/dist/leaflet.css' // Official Leaflet styles
-import './LeafletMap.css' // Customizations to Leaflet styles
 
 // Leaflet plugins
 import 'leaflet-fullscreen/dist/fullscreen.png'
@@ -188,7 +187,11 @@ class LeafletMap extends React.Component {
     }
 
     if (this.props.showExternalLayers) {
+      this.setCustomMapControlVisibility()
       if (this.props.layers.fetching) {
+        if (this.props.customMapControl) {
+          document.getElementById('leaflet-control-custom-checkbox-buffer').disabled = true
+        }
         this.layerControl._layerControlInputs.forEach(input => { input.disabled = true })
         this.leafletMap.removeControl(this.zoominfoControl)
         this.leafletMap.dragging.disable()
@@ -200,6 +203,9 @@ class LeafletMap extends React.Component {
         if (this.leafletMap.tap) this.leafletMap.tap.disable()
       }
       if (!this.props.layers.fetching) {
+        if (this.props.customMapControl) {
+          document.getElementById('leaflet-control-custom-checkbox-buffer').disabled = false
+        }
         this.layerControl._layerControlInputs.forEach(input => { input.disabled = false })
         this.leafletMap.addControl(this.zoominfoControl)
         this.leafletMap.dragging.enable()
@@ -218,6 +224,22 @@ class LeafletMap extends React.Component {
       } else {
         this.removeDrawButtons()
       }
+    }
+
+    if (prevState.showBuffer !== this.state.showBuffer) {
+      this.state.activeLayers.map(layerID => {
+        const leafletOverlayToRemove = this.overlayLayers[intl.get(`leafletMap.externalLayers.${layerID}`)]
+        leafletOverlayToRemove.clearLayers()
+      })
+      this.props.clearGeoJSONLayers()
+      this.props.fetchGeoJSONLayers({
+        layerIDs: this.state.activeLayers,
+        bounds: this.leafletMap.getBounds()
+      })
+    }
+
+    if (prevProps.infoHeaderExpanded && (prevProps.infoHeaderExpanded !== this.props.infoHeaderExpanded)) {
+      this.leafletMap.invalidateSize()
     }
   }
 
@@ -293,7 +315,11 @@ class LeafletMap extends React.Component {
       this.addDrawButtons()
     }
 
-    if (this.props.showMapModeControl) { this.addMapModeControl() }
+    if (this.props.customMapControl) {
+      this.addCustomMapControl()
+      this.setCustomMapControlVisibility()
+    }
+
     if (this.props.updateMapBounds) {
       this.props.updateMapBounds(this.boundsToValues())
       this.leafletMap.on('moveend', () => {
@@ -309,6 +335,21 @@ class LeafletMap extends React.Component {
         maxZoom: 14,
         enableHighAccuracy: true
       })
+    }
+  }
+
+  setCustomMapControlVisibility = () => {
+    const { activeLayers } = this.state
+    let hideCustomControl = true
+    activeLayers.map(layerID => {
+      if (layerID === 'arkeologiset_kohteet_alue' || layerID === 'arkeologiset_kohteet_piste') {
+        hideCustomControl = false
+      }
+    })
+    if (hideCustomControl) {
+      document.getElementById('leaflet-control-custom-container-buffer').style.visibility = 'hidden'
+    } else {
+      document.getElementById('leaflet-control-custom-container-buffer').style.visibility = 'visible'
     }
   }
 
@@ -541,32 +582,46 @@ class LeafletMap extends React.Component {
     leafletGeoJSONLayer.addTo(leafletOverlay).addTo(this.leafletMap)
   }
 
-  addMapModeControl = () => {
+  addCustomMapControl = () => {
     L.Control.Mapmode = L.Control.extend({
       onAdd: map => {
-        const container = L.DomUtil.create('div', 'leaflet-control-layers leaflet-control-layers-expanded')
-        const markersInputContainer = L.DomUtil.create('div', 'leaflet-control-mapmode-input-container', container)
-        const heatmapInputContainer = L.DomUtil.create('div', 'leaflet-control-mapmode-input-container', container)
-        const radioMarkers = L.DomUtil.create('input', 'leaflet-control-mapmode-input', markersInputContainer)
-        const radioHeatmap = L.DomUtil.create('input', 'leaflet-control-mapmode-input', heatmapInputContainer)
-        const markersLabel = L.DomUtil.create('label', 'leaflet-control-mapmode-label', markersInputContainer)
-        const heatmapLabel = L.DomUtil.create('label', 'leaflet-control-mapmode-label', heatmapInputContainer)
-        radioMarkers.id = 'leaflet-control-mapmode-markers'
-        radioHeatmap.id = 'leaflet-control-mapmode-heatmap'
-        radioMarkers.type = 'radio'
-        radioHeatmap.type = 'radio'
-        radioMarkers.checked = this.state.mapMode === 'cluster'
-        radioHeatmap.checked = this.state.mapMode === 'heatmap'
-        radioMarkers.name = 'mapmode'
-        radioHeatmap.name = 'mapmode'
-        radioMarkers.value = 'cluster'
-        radioHeatmap.value = 'heatmap'
-        markersLabel.for = 'leaflet-control-mapmode-markers'
-        markersLabel.textContent = intl.get('leafletMap.mapModeButtons.markers')
-        heatmapLabel.for = 'leaflet-control-mapmode-heatmap'
-        heatmapLabel.textContent = intl.get('leafletMap.mapModeButtons.heatmap')
-        L.DomEvent.on(radioMarkers, 'click', event => this.setState({ mapMode: event.target.value }))
-        L.DomEvent.on(radioHeatmap, 'click', event => this.setState({ mapMode: event.target.value }))
+        const container = L.DomUtil.create('div', 'leaflet-control-layers leaflet-control-layers-expanded leaflet-control')
+        container.id = 'leaflet-control-custom-container-buffer'
+        const checkboxOuterContainer = L.DomUtil.create('label', null, container)
+        const checkboxInnerContainer = L.DomUtil.create('div', 'leaflet-control-custom-checkbox-buffer-container', checkboxOuterContainer)
+
+        const checkbox = L.DomUtil.create('input', 'leaflet-control-layers-selector', checkboxInnerContainer)
+        checkbox.type = 'checkbox'
+        checkbox.id = 'leaflet-control-custom-checkbox-buffer'
+        checkbox.checked = this.state.showBuffer
+        const checkboxLabel = L.DomUtil.create('span', null, checkboxInnerContainer)
+        checkboxLabel.textContent = intl.get('leafletMap.showBufferZones')
+        L.DomEvent.on(checkbox, 'click', event => {
+          this.setState({ showBuffer: event.target.checked })
+        })
+
+        // const markersInputContainer = L.DomUtil.create('div', 'leaflet-control-mapmode-input-container', container)
+        // const heatmapInputContainer = L.DomUtil.create('div', 'leaflet-control-mapmode-input-container', container)
+        // const radioMarkers = L.DomUtil.create('input', 'leaflet-control-mapmode-input', markersInputContainer)
+        // const radioHeatmap = L.DomUtil.create('input', 'leaflet-control-mapmode-input', heatmapInputContainer)
+        // const markersLabel = L.DomUtil.create('label', 'leaflet-control-mapmode-label', markersInputContainer)
+        // const heatmapLabel = L.DomUtil.create('label', 'leaflet-control-mapmode-label', heatmapInputContainer)
+        // radioMarkers.id = 'leaflet-control-mapmode-markers'
+        // radioHeatmap.id = 'leaflet-control-mapmode-heatmap'
+        // radioMarkers.type = 'radio'
+        // radioHeatmap.type = 'radio'
+        // radioMarkers.checked = this.state.mapMode === 'cluster'
+        // radioHeatmap.checked = this.state.mapMode === 'heatmap'
+        // radioMarkers.name = 'mapmode'
+        // radioHeatmap.name = 'mapmode'
+        // radioMarkers.value = 'cluster'
+        // radioHeatmap.value = 'heatmap'
+        // markersLabel.for = 'leaflet-control-mapmode-markers'
+        // markersLabel.textContent = intl.get('leafletMap.mapModeButtons.markers')
+        // heatmapLabel.for = 'leaflet-control-mapmode-heatmap'
+        // heatmapLabel.textContent = intl.get('leafletMap.mapModeButtons.heatmap')
+        // L.DomEvent.on(radioMarkers, 'click', event => this.setState({ mapMode: event.target.value }))
+        // L.DomEvent.on(radioHeatmap, 'click', event => this.setState({ mapMode: event.target.value }))
         return container
       },
       onRemove: map => {
@@ -576,7 +631,7 @@ class LeafletMap extends React.Component {
     L.control.mapmode = opts => {
       return new L.Control.Mapmode(opts)
     }
-    L.control.mapmode({ position: 'topleft' }).addTo(this.leafletMap)
+    L.control.mapmode({ position: 'topright' }).addTo(this.leafletMap)
   }
 
   addDrawButtons = () => {

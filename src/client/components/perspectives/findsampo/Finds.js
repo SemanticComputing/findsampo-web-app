@@ -97,7 +97,9 @@ const Finds = props => {
             updateFacetOption={props.updateFacetOption}
             showError={props.showError}
             showExternalLayers
+            customMapControl
             layerConfigs={leafletLayerConfigs}
+            infoHeaderExpanded={props.facetResults.facetedSearchHeaderExpanded}
             // activeLayers={[
             //   'arkeologiset_kohteet_alue',
             //   'arkeologiset_kohteet_piste'
