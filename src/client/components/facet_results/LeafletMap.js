@@ -292,6 +292,11 @@ class LeafletMap extends React.Component {
 
     this.zoominfoControl = this.leafletMap.zoominfoControl
 
+    if (this.props.customMapControl) {
+      this.addCustomMapControl()
+      this.setCustomMapControlVisibility()
+    }
+
     // initialize layers from external sources
     if (this.props.showExternalLayers) {
       const basemaps = {
@@ -313,11 +318,6 @@ class LeafletMap extends React.Component {
     // create layer for bounding boxes
     if (has(this.props, 'facet') && this.props.facet.filterType === 'spatialFilter') {
       this.addDrawButtons()
-    }
-
-    if (this.props.customMapControl) {
-      this.addCustomMapControl()
-      this.setCustomMapControlVisibility()
     }
 
     if (this.props.updateMapBounds) {
@@ -347,9 +347,9 @@ class LeafletMap extends React.Component {
       }
     })
     if (hideCustomControl) {
-      document.getElementById('leaflet-control-custom-container-buffer').style.visibility = 'hidden'
+      document.getElementById('leaflet-control-custom-container-buffer').style.display = 'none'
     } else {
-      document.getElementById('leaflet-control-custom-container-buffer').style.visibility = 'visible'
+      document.getElementById('leaflet-control-custom-container-buffer').style.display = 'block'
     }
   }
 

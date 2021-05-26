@@ -119,7 +119,7 @@
       "senateAtlas": "Senaatin kartat 1:21 000 topografinen (SeCo)"
     },
     "wrongZoomLevelFHA": "Kartan suurennustason tulee olla vähintään 13 tämän karttatason näyttämiseksi",
-    "showBufferZones": "Näytä 200 metrin varoalue"
+    "showBufferZones": "Näytä 200 m varoalue"
   },
   "perspectives": {
     "fullTextSearch": {
