@@ -102,6 +102,7 @@ class LeafletMap extends React.Component {
     this.state = {
       activeLayers: props.activeLayers ? props.activeLayers : [],
       prevZoomLevel: null,
+      enlargedBounds: null,
       mapMode: props.mapMode,
       showBuffer: true
     }
@@ -122,7 +123,7 @@ class LeafletMap extends React.Component {
       this.drawPointData()
     }
     if (this.props.showExternalLayers && !this.props.locateUser) {
-      this.fetchDefaultGeoJSONLayers()
+      this.fetchGeoJSONLayers()
     }
   }
 
@@ -231,11 +232,8 @@ class LeafletMap extends React.Component {
         const leafletOverlayToRemove = this.overlayLayers[intl.get(`leafletMap.externalLayers.${layerID}`)]
         leafletOverlayToRemove.clearLayers()
       })
-      this.props.clearGeoJSONLayers()
-      this.props.fetchGeoJSONLayers({
-        layerIDs: this.state.activeLayers,
-        bounds: this.leafletMap.getBounds()
-      })
+      this.updateEnlargedBounds({ mapInstance: this.leafletMap })
+      this.fetchGeoJSONLayers()
     }
 
     if (prevProps.infoHeaderExpanded && (prevProps.infoHeaderExpanded !== this.props.infoHeaderExpanded)) {
@@ -288,7 +286,7 @@ class LeafletMap extends React.Component {
         this.resultMarkerLayer
       ],
       fullscreenControl: true
-    })
+    }).whenReady(context => this.updateEnlargedBounds({ mapInstance: context.target }))
 
     this.zoominfoControl = this.leafletMap.zoominfoControl
 
@@ -363,7 +361,7 @@ class LeafletMap extends React.Component {
       .bindPopup('You are within ' + e.accuracy + ' meters from this point')
       // .openPopup()
     this.initMapEventListeners()
-    this.fetchDefaultGeoJSONLayers()
+    this.fetchGeoJSONLayers()
   }
 
   onLocationError = e => {
@@ -376,17 +374,7 @@ class LeafletMap extends React.Component {
     //   text: e.message
     // })
     this.initMapEventListeners()
-    this.fetchDefaultGeoJSONLayers()
-  }
-
-  fetchDefaultGeoJSONLayers = () => {
-    this.props.clearGeoJSONLayers()
-    if (this.state.activeLayers.length > 0 && this.isSafeToLoadLargeLayers()) {
-      this.props.fetchGeoJSONLayers({
-        layerIDs: this.state.activeLayers,
-        bounds: this.leafletMap.getBounds()
-      })
-    }
+    this.fetchGeoJSONLayers()
   }
 
   boundsToValues = () => {
@@ -442,10 +430,8 @@ class LeafletMap extends React.Component {
               activeLayers: [...currentLayers, layerID]
             }
           })
-          this.props.fetchGeoJSONLayers({
-            layerIDs: [...currentLayers, layerID],
-            bounds: this.leafletMap.getBounds()
-          })
+          this.updateEnlargedBounds({ mapInstance: this.leafletMap })
+          this.fetchGeoJSONLayers()
         } else {
           this.props.showError({
             title: '',
@@ -454,7 +440,8 @@ class LeafletMap extends React.Component {
         }
       }
     })
-    // Fired when some layer is removed from the map
+
+    // Fired when a layer is removed from the map
     this.leafletMap.on('layerremove', event => {
       if (event.layer.options.type === 'GeoJSON') {
         const layerIDToRemove = event.layer.options.id
@@ -467,36 +454,22 @@ class LeafletMap extends React.Component {
         })
       }
     })
+
     // Fired when zooming starts
     this.leafletMap.on('zoomstart', () => {
       this.setState({ prevZoomLevel: this.leafletMap.getZoom() })
     })
+
     // Fired when zooming ends
     this.leafletMap.on('zoomend', () => {
-      if (!this.props.layers.fetching && this.state.activeLayers.length > 0 && this.isSafeToLoadLargeLayersAfterZooming()) {
-        this.props.fetchGeoJSONLayers({
-          layerIDs: this.state.activeLayers,
-          bounds: this.leafletMap.getBounds()
-        })
-      }
+      this.maybeUpdateEnlargedBoundsAndFetchGeoJSONLayers({ eventType: 'zoomend' })
     })
+
     // Fired when dragging ends
     this.leafletMap.on('dragend', () => {
-      if (!this.props.layers.fetching && this.state.activeLayers.length > 0 && this.isSafeToLoadLargeLayers()) {
-        this.props.fetchGeoJSONLayers({
-          layerIDs: this.state.activeLayers,
-          bounds: this.leafletMap.getBounds()
-        })
-      }
+      this.maybeUpdateEnlargedBoundsAndFetchGeoJSONLayers({ eventType: 'dragend' })
     })
   }
-
-  isSafeToLoadLargeLayersAfterZooming = () => {
-    return (this.leafletMap.getZoom() === 13 ||
-      (this.leafletMap.getZoom() >= 13 && this.state.prevZoomLevel > this.leafletMap.getZoom()))
-  }
-
-  isSafeToLoadLargeLayers = () => this.leafletMap.getZoom() >= 13
 
   initOverLays = basemaps => {
     this.overlayLayers = {}
@@ -546,6 +519,47 @@ class LeafletMap extends React.Component {
     }
   }
 
+  updateEnlargedBounds = ({ mapInstance }) => {
+    const currentBounds = mapInstance.getBounds()
+    const enlargedBounds = currentBounds.pad(1.5)
+    this.setState({ enlargedBounds })
+  }
+
+  maybeUpdateEnlargedBoundsAndFetchGeoJSONLayers = ({ eventType }) => {
+    const safeFunc = eventType === 'zoomend' ? this.isSafeToLoadLargeLayersAfterZooming : this.isSafeToLoadLargeLayers
+    if (this.props.layers.fetching || this.state.activeLayers.length < 0 || !safeFunc()) {
+      return
+    }
+    const currentBounds = this.leafletMap.getBounds()
+    if (this.state.enlargedBounds.contains(this.leafletMap.getBounds())) {
+      return
+    }
+    // console.log('setting new enlarged bounds')
+    const enlargedBounds = currentBounds.pad(1.5)
+    this.setState({ enlargedBounds })
+    // console.log('fetching new GeoJSON layers')
+    this.fetchGeoJSONLayers()
+  }
+
+  fetchGeoJSONLayers = () => {
+    if (this.props.layers.fetching || this.state.activeLayers.length < 0 || !this.isSafeToLoadLargeLayers) {
+      return
+    }
+    this.props.clearGeoJSONLayers()
+    this.props.fetchGeoJSONLayers({
+      layerIDs: this.state.activeLayers,
+      bounds: this.state.enlargedBounds
+    })
+  }
+
+  isSafeToLoadLargeLayers = () => this.leafletMap.getZoom() >= 13
+
+  isSafeToLoadLargeLayersAfterZooming = () => {
+    const currentZoom = this.leafletMap.getZoom()
+    return (currentZoom === 13 ||
+      (currentZoom >= 13 && this.state.prevZoomLevel > currentZoom))
+  }
+
   populateOverlay = layerObj => {
     /*
       The baseLayers and overlays parameters are object literals with layer names as keys
@@ -558,12 +572,16 @@ class LeafletMap extends React.Component {
     // Only the layer that is added last is clickable, so add buffer first
     if (this.state.showBuffer) {
       const { distance, units, style } = leafletOverlay.options.buffer
-      const bufferedGeoJSON = buffer(layerObj.geoJSON, distance, { units })
-      const leafletGeoJSONBufferLayer = L.geoJSON(bufferedGeoJSON, {
-        // style for GeoJSON Polygons
-        style
-      })
-      leafletGeoJSONBufferLayer.addTo(leafletOverlay).addTo(this.leafletMap)
+      try {
+        const bufferedGeoJSON = buffer(layerObj.geoJSON, distance, { units })
+        const leafletGeoJSONBufferLayer = L.geoJSON(bufferedGeoJSON, {
+          // style for GeoJSON Polygons
+          style
+        })
+        leafletGeoJSONBufferLayer.addTo(leafletOverlay).addTo(this.leafletMap)
+      } catch (error) {
+        console.log(error)
+      }
     }
 
     const { createGeoJSONPointStyle, createGeoJSONPolygonStyle, createPopup } = leafletOverlay.options

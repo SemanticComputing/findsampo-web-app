@@ -72,6 +72,7 @@ export const leafletLayerConfigs = [
   {
     id: 'arkeologiset_kohteet_alue',
     type: 'GeoJSON',
+    attribution: 'Museovirasto',
     minZoom: 13,
     buffer: {
       distance: 200,
@@ -90,6 +91,7 @@ export const leafletLayerConfigs = [
   {
     id: 'arkeologiset_kohteet_piste',
     type: 'GeoJSON',
+    attribution: 'Museovirasto',
     minZoom: 13,
     buffer: {
       distance: 200,
@@ -115,9 +117,9 @@ export const leafletLayerConfigs = [
     url: `${process.env.API_URL}/fha-wms`,
     layers: 'NBA:lidar',
     version: '1.3.0',
-    attribution: 'FHA',
+    attribution: 'Museovirasto',
     minZoom: 13,
-    maxZoom: 16
+    maxZoom: 18
   },
   {
     id: 'karelianMaps',
