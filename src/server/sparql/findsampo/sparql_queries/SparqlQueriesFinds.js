@@ -284,7 +284,10 @@ export const findsListQuery = `
     BIND(CONCAT("/${perspectiveID}/page/", REPLACE(STR(?id), "^.*\\\\/(.+)", "$1")) AS ?dataProviderUrl)
     OPTIONAL { ?id :period/skos:prefLabel ?periods }
     OPTIONAL { ?id :material/skos:prefLabel ?materials }
-    OPTIONAL { ?id ^:documents/ltk-s:image_url ?imageURLs }
+    OPTIONAL { 
+      ?id ^:documents/ltk-s:image_url ?imageURLs_ 
+      BIND(REPLACE(?imageURLs_, "http", "https") as ?imageURLs)
+    }
     OPTIONAL { 
       ?id :found_in_municipality/skos:prefLabel ?municipality 
       FILTER(LANG(?municipality) = '<LANG>')
