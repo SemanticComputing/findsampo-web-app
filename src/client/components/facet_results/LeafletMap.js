@@ -123,7 +123,7 @@ class LeafletMap extends React.Component {
       this.drawPointData()
     }
     if (this.props.showExternalLayers && !this.props.locateUser) {
-      this.fetchGeoJSONLayers()
+      this.maybeUpdateEnlargedBoundsAndFetchGeoJSONLayers({ eventType: 'programmatic' })
     }
   }
 
@@ -232,8 +232,7 @@ class LeafletMap extends React.Component {
         const leafletOverlayToRemove = this.overlayLayers[intl.get(`leafletMap.externalLayers.${layerID}`)]
         leafletOverlayToRemove.clearLayers()
       })
-      this.updateEnlargedBounds({ mapInstance: this.leafletMap })
-      this.fetchGeoJSONLayers()
+      this.maybeUpdateEnlargedBoundsAndFetchGeoJSONLayers({ eventType: 'programmatic' })
     }
 
     if (prevProps.infoHeaderExpanded && (prevProps.infoHeaderExpanded !== this.props.infoHeaderExpanded)) {
@@ -295,6 +294,17 @@ class LeafletMap extends React.Component {
       this.setCustomMapControlVisibility()
     }
 
+    if (this.props.locateUser) {
+      this.leafletMap.on('locationfound', this.onLocationFound)
+      this.leafletMap.on('locationerror', this.onLocationError)
+      this.leafletMap.locate({
+        // watch: true,
+        // setView: true,
+        // maxZoom: 14,
+        enableHighAccuracy: true
+      })
+    }
+
     // initialize layers from external sources
     if (this.props.showExternalLayers) {
       const basemaps = {
@@ -324,16 +334,6 @@ class LeafletMap extends React.Component {
         this.props.updateMapBounds(this.boundsToValues())
       })
     }
-
-    if (this.props.locateUser) {
-      this.leafletMap.on('locationfound', this.onLocationFound)
-      this.leafletMap.on('locationerror', this.onLocationError)
-      this.leafletMap.locate({
-        setView: true,
-        maxZoom: 14,
-        enableHighAccuracy: true
-      })
-    }
   }
 
   setCustomMapControlVisibility = () => {
@@ -352,6 +352,8 @@ class LeafletMap extends React.Component {
   }
 
   onLocationFound = e => {
+    this.leafletMap.setView(e.latlng, 13)
+    this.updateEnlargedBounds({ mapInstance: this.leafletMap })
     L.userMarker(e.latlng, {
       pulsing: true,
       accuracy: e.accuracy,
@@ -361,7 +363,7 @@ class LeafletMap extends React.Component {
       .bindPopup('You are within ' + e.accuracy + ' meters from this point')
       // .openPopup()
     this.initMapEventListeners()
-    this.fetchGeoJSONLayers()
+    this.maybeUpdateEnlargedBoundsAndFetchGeoJSONLayers({ eventType: 'programmatic' })
   }
 
   onLocationError = e => {
@@ -374,7 +376,7 @@ class LeafletMap extends React.Component {
     //   text: e.message
     // })
     this.initMapEventListeners()
-    this.fetchGeoJSONLayers()
+    this.maybeUpdateEnlargedBoundsAndFetchGeoJSONLayers({ eventType: 'programmatic' })
   }
 
   boundsToValues = () => {
@@ -430,8 +432,7 @@ class LeafletMap extends React.Component {
               activeLayers: [...currentLayers, layerID]
             }
           })
-          this.updateEnlargedBounds({ mapInstance: this.leafletMap })
-          this.fetchGeoJSONLayers()
+          this.maybeUpdateEnlargedBoundsAndFetchGeoJSONLayers({ eventType: 'programmatic' })
         } else {
           this.props.showError({
             title: '',
@@ -461,7 +462,8 @@ class LeafletMap extends React.Component {
     })
 
     // Fired when zooming ends
-    this.leafletMap.on('zoomend', () => {
+    this.leafletMap.on('zoomend', event => {
+      console.log('zoomend')
       this.maybeUpdateEnlargedBoundsAndFetchGeoJSONLayers({ eventType: 'zoomend' })
     })
 
@@ -526,12 +528,15 @@ class LeafletMap extends React.Component {
   }
 
   maybeUpdateEnlargedBoundsAndFetchGeoJSONLayers = ({ eventType }) => {
-    const safeFunc = eventType === 'zoomend' ? this.isSafeToLoadLargeLayersAfterZooming : this.isSafeToLoadLargeLayers
-    if (this.props.layers.fetching || this.state.activeLayers.length < 0 || !safeFunc()) {
+    const currentBounds = this.leafletMap.getBounds()
+
+    // When user triggers zoom or drag event and map is within enlarged bounds, do nothing
+    if (eventType !== 'programmatic' && this.state.enlargedBounds.contains(currentBounds)) {
       return
     }
-    const currentBounds = this.leafletMap.getBounds()
-    if (this.state.enlargedBounds.contains(this.leafletMap.getBounds())) {
+
+    const safeFunc = eventType === 'zoomend' ? this.isSafeToLoadLargeLayersAfterZooming : this.isSafeToLoadLargeLayers
+    if (this.props.layers.fetching || this.state.activeLayers.length < 0 || !safeFunc()) {
       return
     }
     // console.log('setting new enlarged bounds')
@@ -542,9 +547,6 @@ class LeafletMap extends React.Component {
   }
 
   fetchGeoJSONLayers = () => {
-    if (this.props.layers.fetching || this.state.activeLayers.length < 0 || !this.isSafeToLoadLargeLayers) {
-      return
-    }
     this.props.clearGeoJSONLayers()
     this.props.fetchGeoJSONLayers({
       layerIDs: this.state.activeLayers,
@@ -585,19 +587,23 @@ class LeafletMap extends React.Component {
     }
 
     const { createGeoJSONPointStyle, createGeoJSONPolygonStyle, createPopup } = leafletOverlay.options
-    const leafletGeoJSONLayer = L.geoJSON(layerObj.geoJSON, {
-      // style for GeoJSON Points
-      pointToLayer: (feature, latlng) => {
-        return L.circleMarker(latlng, createGeoJSONPointStyle(feature))
-      },
-      // style for GeoJSON Polygons
-      style: createGeoJSONPolygonStyle,
-      // add popups
-      onEachFeature: (feature, layer) => {
-        layer.bindPopup(createPopup(feature.properties))
-      }
-    })
-    leafletGeoJSONLayer.addTo(leafletOverlay).addTo(this.leafletMap)
+    try {
+      const leafletGeoJSONLayer = L.geoJSON(layerObj.geoJSON, {
+        // style for GeoJSON Points
+        pointToLayer: (feature, latlng) => {
+          return L.circleMarker(latlng, createGeoJSONPointStyle(feature))
+        },
+        // style for GeoJSON Polygons
+        style: createGeoJSONPolygonStyle,
+        // add popups
+        onEachFeature: (feature, layer) => {
+          layer.bindPopup(createPopup(feature.properties))
+        }
+      })
+      leafletGeoJSONLayer.addTo(leafletOverlay).addTo(this.leafletMap)
+    } catch (error) {
+      console.error(error)
+    }
   }
 
   addCustomMapControl = () => {
