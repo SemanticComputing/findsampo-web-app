@@ -47,13 +47,15 @@ const bufferStyle = feature => {
   if (feature.properties.laji.includes('poistettu kiinteä muinaisjäännös')) {
     return {
       fillOpacity: 0,
-      weight: 0
+      weight: 0,
+      interactive: false
     }
   } else {
     return {
       fillOpacity: 0,
       color: '#6E6E6E',
-      dashArray: '3, 5'
+      dashArray: '3, 5',
+      interactive: false
     }
   }
 }
