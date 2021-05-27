@@ -98,6 +98,7 @@ const MainCard = props => {
       container={xsScreen}
       href={externalPerspective ? perspective.externalUrl : null}
       target={externalPerspective ? '_blank' : null}
+      rel={externalPerspective ? 'noreferrer' : null}
     >
       {!card && !simple &&
         <Paper className={classes.perspectiveCardPaper}>
