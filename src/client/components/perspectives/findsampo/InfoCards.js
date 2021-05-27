@@ -10,13 +10,11 @@ import {
   CardActions
 } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'
-import FHA060 from '../../../img/findsampo/Museovirasto_060-vaaka.jpg'
-import FHA043 from '../../../img/findsampo/Museovirasto_043-vaaka.jpg'
-import FHA054 from '../../../img/findsampo/Museovirasto_054-vaaka.jpg'
-import FHA062 from '../../../img/findsampo/Museovirasto_062_vaaka.jpg'
-//import FHA063 from '../../../img/findsampo/Museovirasto_063_vaaka.jpg'
-// import FHA067 from '../../../img/findsampo/Museovirasto_067-vaaka.jpg'
-import FHA056 from '../../../img/findsampo/Museovirasto_056_vaaka.jpg'
+import FHA043 from '../../../img/findsampo/Museovirasto_043-vaaka-compressed.jpg'
+import FHA054 from '../../../img/findsampo/Museovirasto_054-vaaka-compressed.jpg'
+import FHA056 from '../../../img/findsampo/Museovirasto_056_vaaka-compressed.jpg'
+import FHA060 from '../../../img/findsampo/Museovirasto_060-vaaka-compressed.jpg'
+import FHA062 from '../../../img/findsampo/Museovirasto_062_vaaka-compressed-2000x1000px.jpg'
 
 const fourCardsBreakpoint = 1335
 
