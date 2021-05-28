@@ -68,8 +68,8 @@ const createArchealogicalSiteColor = feature => {
   return color
 }
 
-// https://kartta.nba.fi/arcgis/services/WFS/MV_KulttuuriymparistoSuojellut/MapServer/WFSServer?request=getcapabilities&service=wfs&version=2.0.0
-// https://kartta.nba.fi/arcgis/services/WFS/MV_Kulttuuriymparisto/MapServer/WFSServer?request=getcapabilities&service=wfs&version=2.0.0
+// https://kartta.nba.fi/arcgis/rest/services/WFS/MV_KulttuuriymparistoSuojellut/MapServer
+// https://kartta.nba.fi/arcgis/rest/services/WFS/MV_Kulttuuriymparisto/MapServer/
 export const leafletLayerConfigs = [
   {
     // id: 'WFS_MV_KulttuuriymparistoSuojellut:Muinaisjaannokset_alue',
