@@ -72,8 +72,10 @@ const Sites = props => {
         infoHeaderExpanded={props.facetedSearchHeaderExpanded}
         layerConfigs={leafletLayerConfigs}
         activeLayers={[
-          'arkeologiset_kohteet_alue',
-          'arkeologiset_kohteet_piste'
+          // 'WFS_MV_KulttuuriymparistoSuojellut:Muinaisjaannokset_alue',
+          // 'WFS_MV_KulttuuriymparistoSuojellut:Muinaisjaannokset_piste',
+          'WFS_MV_Kulttuuriymparisto:Arkeologiset_kohteet_alue',
+          'WFS_MV_Kulttuuriymparisto:Arkeologiset_kohteet_piste'
         ]}
       />
     </div>

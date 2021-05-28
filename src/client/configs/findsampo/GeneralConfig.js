@@ -68,9 +68,12 @@ const createArchealogicalSiteColor = feature => {
   return color
 }
 
+// https://kartta.nba.fi/arcgis/services/WFS/MV_KulttuuriymparistoSuojellut/MapServer/WFSServer?request=getcapabilities&service=wfs&version=2.0.0
+// https://kartta.nba.fi/arcgis/services/WFS/MV_Kulttuuriymparisto/MapServer/WFSServer?request=getcapabilities&service=wfs&version=2.0.0
 export const leafletLayerConfigs = [
   {
-    id: 'arkeologiset_kohteet_alue',
+    // id: 'WFS_MV_KulttuuriymparistoSuojellut:Muinaisjaannokset_alue',
+    id: 'WFS_MV_Kulttuuriymparisto:Arkeologiset_kohteet_alue',
     type: 'GeoJSON',
     attribution: 'Museovirasto',
     minZoom: 13,
@@ -79,7 +82,6 @@ export const leafletLayerConfigs = [
       units: 'metres',
       style: bufferStyle
     },
-    createGeoJSONPointStyle: feature => null, //  this layer includes only GeoJSON Polygons
     createGeoJSONPolygonStyle: feature => {
       return {
         color: createArchealogicalSiteColor(feature),
@@ -89,7 +91,8 @@ export const leafletLayerConfigs = [
     createPopup: createArchealogicalSitePopUp
   },
   {
-    id: 'arkeologiset_kohteet_piste',
+    // id: 'WFS_MV_KulttuuriymparistoSuojellut:Muinaisjaannokset_piste',
+    id: 'WFS_MV_Kulttuuriymparisto:Arkeologiset_kohteet_piste',
     type: 'GeoJSON',
     attribution: 'Museovirasto',
     minZoom: 13,
@@ -108,7 +111,6 @@ export const leafletLayerConfigs = [
         fillOpacity: 0.8
       }
     },
-    createGeoJSONPolygonStyle: feature => null, // this layer includes only GeoJSON points
     createPopup: createArchealogicalSitePopUp
   },
   {

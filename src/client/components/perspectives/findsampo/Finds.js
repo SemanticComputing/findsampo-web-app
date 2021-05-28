@@ -79,6 +79,7 @@ const Finds = props => {
             zoom={5}
             // center={[60.17, 24.81]}
             // zoom={14}
+            // locateUser
             results={props.placesResults.results}
             layers={props.leafletMapLayers}
             pageType='facetResults'
@@ -101,8 +102,10 @@ const Finds = props => {
             layerConfigs={leafletLayerConfigs}
             infoHeaderExpanded={props.facetResults.facetedSearchHeaderExpanded}
             // activeLayers={[
-            //   'arkeologiset_kohteet_alue',
-            //   'arkeologiset_kohteet_piste'
+            // 'WFS_MV_KulttuuriymparistoSuojellut:Muinaisjaannokset_alue',
+            // 'WFS_MV_KulttuuriymparistoSuojellut:Muinaisjaannokset_piste',
+            // 'WFS_MV_Kulttuuriymparisto:Arkeologiset_kohteet_alue',
+            // 'WFS_MV_Kulttuuriymparisto:Arkeologiset_kohteet_piste'
             // ]}
           />}
       />

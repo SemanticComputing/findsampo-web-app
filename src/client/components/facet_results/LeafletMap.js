@@ -340,7 +340,11 @@ class LeafletMap extends React.Component {
     const { activeLayers } = this.state
     let hideCustomControl = true
     activeLayers.map(layerID => {
-      if (layerID === 'arkeologiset_kohteet_alue' || layerID === 'arkeologiset_kohteet_piste') {
+      if (layerID === 'WFS_MV_KulttuuriymparistoSuojellut:Muinaisjaannokset_alue' ||
+      layerID === 'WFS_MV_KulttuuriymparistoSuojellut:Muinaisjaannokset_piste' ||
+      layerID === 'WFS_MV_Kulttuuriymparisto:Arkeologiset_kohteet_alue' ||
+      layerID === 'WFS_MV_Kulttuuriymparisto:Arkeologiset_kohteet_piste'
+      ) {
         hideCustomControl = false
       }
     })
@@ -422,7 +426,6 @@ class LeafletMap extends React.Component {
     this.leafletMap.on('layeradd', event => {
       const layerID = event.layer.options.id
       if (event.layer.options.type === 'GeoJSON' && !this.state.activeLayers.includes(layerID)) {
-        this.props.clearGeoJSONLayers()
         // console.log(`add: ${layerID}`)
         if (this.isSafeToLoadLargeLayers()) {
           const currentLayers = this.state.activeLayers
@@ -463,7 +466,6 @@ class LeafletMap extends React.Component {
 
     // Fired when zooming ends
     this.leafletMap.on('zoomend', event => {
-      console.log('zoomend')
       this.maybeUpdateEnlargedBoundsAndFetchGeoJSONLayers({ eventType: 'zoomend' })
     })
 
@@ -509,8 +511,9 @@ class LeafletMap extends React.Component {
     })
 
     // Add default active overlays directly to the map
-    this.state.activeLayers.map(overlay =>
-      this.leafletMap.addLayer(this.overlayLayers[intl.get(`leafletMap.externalLayers.${overlay}`)]))
+    this.state.activeLayers.map(overlay => {
+      this.leafletMap.addLayer(this.overlayLayers[intl.get(`leafletMap.externalLayers.${overlay}`)])
+    })
 
     // Add all basemaps and all overlays via the control to the map
     this.layerControl = L.control.layers(basemaps, this.overlayLayers, { collapsed: !this.props.layerControlExpanded }).addTo(this.leafletMap)
@@ -528,6 +531,9 @@ class LeafletMap extends React.Component {
   }
 
   maybeUpdateEnlargedBoundsAndFetchGeoJSONLayers = ({ eventType }) => {
+    if (this.state.activeLayers.length === 0) {
+      return
+    }
     const currentBounds = this.leafletMap.getBounds()
 
     // When user triggers zoom or drag event and map is within enlarged bounds, do nothing
@@ -543,6 +549,8 @@ class LeafletMap extends React.Component {
     const enlargedBounds = currentBounds.pad(1.5)
     this.setState({ enlargedBounds })
     // console.log('fetching new GeoJSON layers')
+    // console.log(enlargedBounds.toBBoxString())
+    // L.rectangle(enlargedBounds).addTo(this.leafletMap)
     this.fetchGeoJSONLayers()
   }
 
@@ -590,11 +598,17 @@ class LeafletMap extends React.Component {
     try {
       const leafletGeoJSONLayer = L.geoJSON(layerObj.geoJSON, {
         // style for GeoJSON Points
-        pointToLayer: (feature, latlng) => {
-          return L.circleMarker(latlng, createGeoJSONPointStyle(feature))
-        },
+        ...(createGeoJSONPointStyle &&
+          {
+            pointToLayer: (feature, latlng) => {
+              return L.circleMarker(latlng, createGeoJSONPointStyle(feature))
+            }
+          }),
         // style for GeoJSON Polygons
-        style: createGeoJSONPolygonStyle,
+        ...(createGeoJSONPolygonStyle &&
+          {
+            style: createGeoJSONPolygonStyle
+          }),
         // add popups
         onEachFeature: (feature, layer) => {
           layer.bindPopup(createPopup(feature.properties))
