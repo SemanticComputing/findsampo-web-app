@@ -583,7 +583,7 @@ class LeafletMap extends React.Component {
     })
 
     // Add all basemaps and all overlays via the control to the map
-    this.layerControl = L.control.layers(basemaps, this.overlayLayers, { collapsed: false }).addTo(this.leafletMap)
+    this.layerControl = L.control.layers(basemaps, this.overlayLayers, { collapsed: !this.props.layerControlExpanded }).addTo(this.leafletMap)
 
     // Create opacity controller if needed
     if (showOpacityController) {
