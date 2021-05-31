@@ -79,6 +79,12 @@ a, a:visited, a:hover, a:active {
     }
 }
 
+@media screen and (max-width: 450px) {
+    .leaflet-bottom .leaflet-control-scale {
+        margin-bottom: 36px;
+    }
+}
+
 .carousel .control-dots {
     position: unset;
     display: flex;
