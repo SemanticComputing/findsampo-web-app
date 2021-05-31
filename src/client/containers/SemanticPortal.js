@@ -420,13 +420,12 @@ const SemanticPortal = props => {
                               </Grid>
                               <Grid item xs={12} md={9} className={classes.resultsContainer}>
                                 <FacetedSearchPerspective
-                                  facetResults={props[`${perspective.id}`]}
-                                  placesResults={props.places}
-                                  facetData={props[`${perspective.id}Facets`]}
-                                  facetDataConstrainSelf={has(props, `${perspective.id}FacetsConstrainSelf`)
+                                  perspectiveState={props[`${perspective.id}`]}
+                                  facetState={props[`${perspective.id}Facets`]}
+                                  facetConstrainSelfState={has(props, `${perspective.id}FacetsConstrainSelf`)
                                     ? props[`${perspective.id}FacetsConstrainSelf`]
                                     : null}
-                                  leafletMap={props.leafletMap}
+                                  leafletMapState={props.leafletMap}
                                   fetchPaginatedResults={props.fetchPaginatedResults}
                                   fetchResults={props.fetchResults}
                                   clearResults={props.clearResults}
@@ -439,6 +438,7 @@ const SemanticPortal = props => {
                                   updatePage={props.updatePage}
                                   updateRowsPerPage={props.updateRowsPerPage}
                                   updateFacetOption={props.updateFacetOption}
+                                  updateMapBounds={props.updateMapBounds}
                                   sortResults={props.sortResults}
                                   showError={props.showError}
                                   routeProps={routeProps}
@@ -499,6 +499,7 @@ const SemanticPortal = props => {
                                     clearGeoJSONLayers={props.clearGeoJSONLayers}
                                     leafletMap={props.leafletMap}
                                     showError={props.showError}
+                                    updateMapBounds={props.updateMapBounds}
                                   />
                                 </Grid>
                               </Grid>
@@ -602,11 +603,11 @@ const SemanticPortal = props => {
                       facetedSearchMode='clientFS'
                       facetClass='clientFSPlaces'
                       resultClass='clientFSPlaces'
-                      facetData={props.clientFS}
+                      facetData={props.clientFSState}
                       clientFSFacetValues={props.clientFSFacetValues}
-                      fetchingResultCount={props.clientFS.textResultsFetching}
-                      resultCount={noResults ? 0 : props.clientFS.results.length}
-                      clientFS={props.clientFS}
+                      fetchingResultCount={props.clientFSState.textResultsFetching}
+                      resultCount={noResults ? 0 : props.clientFSState.results.length}
+                      clientFSState={props.clientFSState}
                       clientFSToggleDataset={props.clientFSToggleDataset}
                       clientFSFetchResults={props.clientFSFetchResults}
                       clientFSClearResults={props.clientFSClearResults}
@@ -627,10 +628,11 @@ const SemanticPortal = props => {
                         routeProps={routeProps}
                         perspective={perspectiveConfig.find(p => p.id === 'clientFSPlaces')}
                         screenSize={screenSize}
-                        clientFS={props.clientFS}
+                        clientFSState={props.clientFSState}
                         clientFSResults={props.clientFSResults}
                         clientFSSortResults={props.clientFSSortResults}
                         leafletMap={props.leafletMap}
+                        updateMapBounds={props.updateMapBounds}
                         fetchGeoJSONLayersBackend={props.fetchGeoJSONLayersBackend}
                         fetchGeoJSONLayers={props.fetchGeoJSONLayers}
                         clearGeoJSONLayers={props.clearGeoJSONLayers}
@@ -700,7 +702,7 @@ const mapStateToProps = state => {
     sites: state.sites,
     leafletMap: state.leafletMap,
     fullTextSearch: state.fullTextSearch,
-    // clientFS: state.clientSideFacetedSearch,
+    // clientFSState: state.clientSideFacetedSearch,
     // clientFSResults,
     // clientFSFacetValues,
     animationValue: state.animation.value,

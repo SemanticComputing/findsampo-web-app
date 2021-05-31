@@ -17,7 +17,7 @@ import {
   SORT_RESULTS,
   UPDATE_PERSPECTIVE_HEADER_EXPANDED,
   UPDATE_KNOWLEDGE_GRAPH_METADATA,
-  CLEAR_RESULTS
+  UPDATE_MAP_BOUNDS
 } from '../../actions'
 import {
   fetchResults,
@@ -34,20 +34,16 @@ import {
   updatePage,
   updateRowsPerPage,
   updateHeaderExpanded,
-  updateKnowledgeGraphMetadata
+  updateKnowledgeGraphMetadata,
+  updateMapBounds
 } from './helpers'
 
-export const handleDataFetchingAction = (state, action) => {
+export const handleDataFetchingAction = (state, action, initialState) => {
   switch (action.type) {
     case FETCH_RESULTS:
     case FETCH_PAGINATED_RESULTS:
     case FETCH_BY_URI:
-      return fetchResults(state, action)
-    case CLEAR_RESULTS:
-      return {
-        ...state,
-        results: null
-      }
+      return fetchResults(state, action, initialState)
     case FETCH_RESULT_COUNT:
       return fetchResultCount(state)
     case FETCH_INSTANCE_ANALYSIS:
@@ -77,6 +73,8 @@ export const handleDataFetchingAction = (state, action) => {
       return updateHeaderExpanded(state, action)
     case UPDATE_KNOWLEDGE_GRAPH_METADATA:
       return updateKnowledgeGraphMetadata(state, action)
+    case UPDATE_MAP_BOUNDS:
+      return updateMapBounds(state, action)
     default:
       return state
   }

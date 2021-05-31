@@ -77,14 +77,16 @@ export const fetchResults = ({
   facetClass,
   uri = null,
   limit = null,
-  optimize = null
+  optimize = null,
+  reason = null
 }) => ({
   type: FETCH_RESULTS,
   resultClass,
   facetClass,
   uri,
   limit,
-  optimize
+  optimize,
+  reason
 })
 export const fetchInstanceAnalysis = ({
   resultClass,
@@ -318,8 +320,9 @@ export const animateMap = value => ({
   type: ANIMATE_MAP,
   value
 })
-export const updateMapBounds = bounds => ({
+export const updateMapBounds = ({ resultClass, bounds }) => ({
   type: UPDATE_MAP_BOUNDS,
+  resultClass,
   bounds
 })
 export const fetchGeoJSONLayers = ({ layerIDs, bounds }) => ({

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { withStyles } from '@material-ui/core/styles'
 import intl from 'react-intl-universal'
 import L from 'leaflet'
-import { has, orderBy, isEqual } from 'lodash'
+import { has, isEqual } from 'lodash'
 import buffer from '@turf/buffer'
 import CircularProgress from '@material-ui/core/CircularProgress'
 import { purple } from '@material-ui/core/colors'
@@ -143,18 +143,24 @@ class LeafletMap extends React.Component {
       this.drawPointData()
     }
     if (this.props.showExternalLayers &&
-      (this.props.layers.updateID !== prevProps.layers.updateID)) {
-      this.props.layers.layerData.map(layerObj => this.populateOverlay(layerObj))
+      (this.props.leafletMapState.updateID !== prevProps.leafletMapState.updateID)) {
+      this.props.leafletMapState.layerData.map(layerObj => this.populateOverlay(layerObj))
     }
   }
 
   serverFScomponentDidUpdate = (prevProps, prevState) => {
+    // check if map center or zoom was modified in Redux state
+    if (!this.componentStateEqualsReduxState()) {
+      this.leafletMap.setView(this.props.center, this.props.zoom)
+    }
+
     // check if filters have changed
     if (has(prevProps, 'facetUpdateID') && prevProps.facetUpdateID !== this.props.facetUpdateID) {
       this.props.fetchResults({
         resultClass: this.props.resultClass,
         facetClass: this.props.facetClass,
-        sortBy: null
+        sortBy: null,
+        reason: 'facetUpdate'
       })
     }
 
@@ -175,16 +181,70 @@ class LeafletMap extends React.Component {
     // check if instance have changed
     if ((this.props.instance !== null) && !isEqual(prevProps.instance, this.props.instance)) {
       this.markers[this.props.instance.id]
-        .bindPopup(this.createPopUpContentFindSampo(this.props.instance), {
-          // maxWidth: 'auto'
-          // closeButton: false,
+        .bindPopup(this.props.createPopUpContent({
+          data: this.props.instance,
+          resultClass: this.props.resultClass
+        }), {
+          ...(this.props.popupMaxHeight && { maxHeight: this.props.popupMaxHeight }),
+          ...(this.props.popupMinWidth && { minWidth: this.props.popupMinWidth })
         })
         .openPopup()
     }
 
     if (this.props.showExternalLayers &&
-      (this.props.layers.updateID !== prevProps.layers.updateID)) {
-      this.props.layers.layerData.map(layerObj => this.populateOverlay(layerObj))
+      (this.props.leafletMapState.updateID !== prevProps.leafletMapState.updateID)) {
+      this.props.leafletMapState.layerData.map(layerObj => this.populateOverlay(layerObj))
+    }
+
+    if (this.props.showExternalLayers) {
+      if (this.props.customMapControl) {
+        this.setCustomMapControlVisibility()
+      }
+      if (this.props.leafletMapState.fetching) {
+        if (this.props.customMapControl) {
+          document.getElementById('leaflet-control-custom-checkbox-buffer').disabled = true
+        }
+        this.layerControl._layerControlInputs.forEach(input => { input.disabled = true })
+        this.leafletMap.removeControl(this.zoominfoControl)
+        this.leafletMap.dragging.disable()
+        this.leafletMap.touchZoom.disable()
+        this.leafletMap.doubleClickZoom.disable()
+        this.leafletMap.scrollWheelZoom.disable()
+        this.leafletMap.boxZoom.disable()
+        this.leafletMap.keyboard.disable()
+        if (this.leafletMap.tap) this.leafletMap.tap.disable()
+      }
+      if (!this.props.leafletMapState.fetching) {
+        if (this.props.customMapControl) {
+          document.getElementById('leaflet-control-custom-checkbox-buffer').disabled = false
+        }
+
+        // Re-enable layer checkboxes only if zoom level is suitable
+        this.layerControl._layerControlInputs.forEach(input => {
+          const leafletID = input.layerId
+          let minZoom = null
+          for (const layer in this.overlayLayers) {
+            if (this.overlayLayers[layer]._leaflet_id === leafletID) {
+              const layerObj = this.overlayLayers[layer]
+              if (layerObj.options.minZoom) {
+                minZoom = layerObj.options.minZoom
+              }
+            }
+          }
+          if (minZoom === null || this.leafletMap.getZoom() >= minZoom) {
+            input.disabled = false
+          }
+        })
+
+        this.leafletMap.addControl(this.zoominfoControl)
+        this.leafletMap.dragging.enable()
+        this.leafletMap.touchZoom.enable()
+        this.leafletMap.doubleClickZoom.enable()
+        this.leafletMap.scrollWheelZoom.enable()
+        this.leafletMap.boxZoom.enable()
+        this.leafletMap.keyboard.enable()
+        if (this.leafletMap.tap) this.leafletMap.tap.enable()
+      }
     }
 
     if (this.props.showExternalLayers) {
@@ -285,7 +345,9 @@ class LeafletMap extends React.Component {
         this.resultMarkerLayer
       ],
       fullscreenControl: true
-    }).whenReady(context => this.updateEnlargedBounds({ mapInstance: context.target }))
+    }).whenReady(context => {
+      this.updateEnlargedBounds({ mapInstance: context.target })
+    })
 
     this.zoominfoControl = this.leafletMap.zoominfoControl
 
@@ -329,11 +391,28 @@ class LeafletMap extends React.Component {
     }
 
     if (this.props.updateMapBounds) {
-      this.props.updateMapBounds(this.boundsToValues())
-      this.leafletMap.on('moveend', () => {
-        this.props.updateMapBounds(this.boundsToValues())
+      this.updateMapBounds()
+      this.leafletMap.on('moveend', () => this.updateMapBounds())
+    }
+  }
+
+  updateMapBounds = () => {
+    if (!this.componentStateEqualsReduxState()) {
+      this.props.updateMapBounds({
+        resultClass: this.props.resultClass,
+        bounds: this.boundsToObject()
       })
     }
+  }
+
+  componentStateEqualsReduxState = () => {
+    const currentZoom = this.leafletMap.getZoom()
+    const currentCenter = this.leafletMap.getCenter()
+    return (
+      currentZoom === this.props.zoom &&
+      currentCenter[0] === this.props.center[0] &&
+      currentCenter[1] === this.props.center[1]
+    )
   }
 
   setCustomMapControlVisibility = () => {
@@ -383,7 +462,7 @@ class LeafletMap extends React.Component {
     this.maybeUpdateEnlargedBoundsAndFetchGeoJSONLayers({ eventType: 'programmatic' })
   }
 
-  boundsToValues = () => {
+  boundsToObject = () => {
     const bounds = this.leafletMap.getBounds()
     const latMin = bounds._southWest.lat
     const longMin = bounds._southWest.lng
@@ -394,6 +473,7 @@ class LeafletMap extends React.Component {
       longMin: longMin,
       latMax: latMax,
       longMax: longMax,
+      center: this.leafletMap.getCenter(),
       zoom: this.leafletMap.getZoom()
     }
   }
@@ -473,6 +553,10 @@ class LeafletMap extends React.Component {
     this.leafletMap.on('dragend', () => {
       this.maybeUpdateEnlargedBoundsAndFetchGeoJSONLayers({ eventType: 'dragend' })
     })
+
+    // Fired when the map is initialized (when its center and zoom are set for the first time).
+    // this.leafletMap.on('load', () => {
+    // })
   }
 
   initOverLays = basemaps => {
@@ -516,7 +600,7 @@ class LeafletMap extends React.Component {
     })
 
     // Add all basemaps and all overlays via the control to the map
-    this.layerControl = L.control.layers(basemaps, this.overlayLayers, { collapsed: !this.props.layerControlExpanded }).addTo(this.leafletMap)
+    this.layerControl = L.control.layers(basemaps, this.overlayLayers, { collapsed: false }).addTo(this.leafletMap)
 
     // Create opacity controller if needed
     if (showOpacityController) {
@@ -542,7 +626,7 @@ class LeafletMap extends React.Component {
     }
 
     const safeFunc = eventType === 'zoomend' ? this.isSafeToLoadLargeLayersAfterZooming : this.isSafeToLoadLargeLayers
-    if (this.props.layers.fetching || this.state.activeLayers.length < 0 || !safeFunc()) {
+    if (this.props.leafletMapState.fetching || this.state.activeLayers.length < 0 || !safeFunc()) {
       return
     }
     // console.log('setting new enlarged bounds')
@@ -859,14 +943,15 @@ class LeafletMap extends React.Component {
           events: result.events ? result.events : null
         })
       }
-      if (this.props.pageType === 'facetResults') {
+      const { pageType } = this.props
+      if (pageType === 'facetResults') {
         marker.on('click', this.markerOnClickFacetResults)
       }
-      if (this.props.pageType === 'instancePage') {
-        marker.bindPopup(this.createPopUpContentFindSampo(result))
-      }
-      if (this.props.pageType === 'clientFSResults') {
-        marker.bindPopup(this.createPopUpContentNameSampo(result))
+      if (pageType === 'instancePage' || pageType === 'clientFSResults') {
+        marker.bindPopup(this.props.createPopUpContent({
+          data: result,
+          resultClass: this.props.resultClass
+        }))
       }
       return marker
     }
@@ -886,174 +971,6 @@ class LeafletMap extends React.Component {
     })
   };
 
-  createPopUpContent = data => {
-    if (Array.isArray(data.prefLabel)) {
-      data.prefLabel = data.prefLabel[0]
-    }
-    const container = document.createElement('div')
-    const h3 = document.createElement('h3')
-    if (has(data.prefLabel, 'dataProviderUrl')) {
-      const link = document.createElement('a')
-      link.addEventListener('click', () => history.push(data.prefLabel.dataProviderUrl))
-      link.textContent = data.prefLabel.prefLabel
-      link.style.cssText = 'cursor: pointer; text-decoration: underline'
-      h3.appendChild(link)
-    } else {
-      h3.textContent = data.prefLabel.prefLabel
-    }
-    container.appendChild(h3)
-    if (this.props.resultClass === 'placesMsProduced') {
-      const p = document.createElement('p')
-      p.textContent = 'Manuscripts produced here:'
-      container.appendChild(p)
-      container.appendChild(this.createInstanceListing(data.related))
-    }
-    if (this.props.resultClass === 'lastKnownLocations') {
-      const p = document.createElement('p')
-      p.textContent = 'Last known location of:'
-      container.appendChild(p)
-      container.appendChild(this.createInstanceListing(data.related))
-    }
-    if (this.props.resultClass === 'placesActors') {
-      const p = document.createElement('p')
-      p.textContent = 'Actors:'
-      container.appendChild(p)
-      container.appendChild(this.createInstanceListing(data.related))
-    }
-    return container
-  }
-
-  createPopUpContentNameSampo = data => {
-    const { perspectiveID } = this.props
-    let popUpTemplate = ''
-    popUpTemplate += `<a href=${data.id} target='_blank'><h3>${data.prefLabel}</h3></a>`
-    if (has(data, 'broaderTypeLabel')) {
-      popUpTemplate += `
-        <p><b>${intl.get(`perspectives.${perspectiveID}.properties.broaderTypeLabel.label`)}</b>: ${data.broaderTypeLabel}</p>`
-    }
-    if (has(data, 'broaderAreaLabel')) {
-      popUpTemplate += `
-        <p><b>${intl.get(`perspectives.${perspectiveID}.properties.broaderAreaLabel.label`)}</b>: ${data.broaderAreaLabel}</p>`
-    }
-    if (has(data, 'modifier')) {
-      popUpTemplate += `
-        <p><b>${intl.get(`perspectives.${perspectiveID}.properties.modifier.label`)}</b>: ${data.modifier}</p>`
-    }
-    if (has(data, 'basicElement')) {
-      popUpTemplate += `
-        <p><b>${intl.get(`perspectives.${perspectiveID}.properties.basicElement.label`)}</b>: ${data.basicElement}</p>`
-    }
-    if (has(data, 'collectionYear')) {
-      popUpTemplate += `
-        <p><b>${intl.get(`perspectives.${perspectiveID}.properties.collectionYear.label`)}</b>: ${data.collectionYear}</p>`
-    }
-    if (has(data, 'source')) {
-      if (data.namesArchiveLink !== '-') {
-        popUpTemplate += `
-        <p><b>${intl.get(`perspectives.${perspectiveID}.properties.source.label`)}</b>:
-          <a href="${data.namesArchiveLink}" target="_blank">${data.source}</a></p>`
-      } else {
-        popUpTemplate += `
-        <p><b>${intl.get(`perspectives.${perspectiveID}.properties.source.label`)}</b>: ${data.source}</p>`
-      }
-    }
-    return popUpTemplate
-  }
-
-  createPopUpContentFindSampo = data => {
-    const container = document.createElement('div')
-
-    if (has(data, 'image')) {
-      let { image } = data
-      if (Array.isArray(image)) {
-        image = image[0]
-      }
-      const imageElement = document.createElement('img')
-      imageElement.setAttribute('src', image.url)
-      imageElement.style.cssText = 'width: 100%'
-      container.appendChild(imageElement)
-    }
-    const heading = document.createElement('h3')
-    const headingLink = document.createElement('a')
-    headingLink.style.cssText = 'cursor: pointer; text-decoration: underline'
-    headingLink.textContent = data.prefLabel.prefLabel
-    headingLink.addEventListener('click', () => history.push(data.dataProviderUrl))
-    heading.appendChild(headingLink)
-    container.appendChild(heading)
-    if (has(data, 'objectType')) {
-      container.appendChild(this.createPopUpElement({
-        label: intl.get('perspectives.finds.properties.objectType.label'),
-        value: data.objectType.prefLabel
-      }))
-    }
-    if (has(data, 'material')) {
-      container.appendChild(this.createPopUpElement({
-        label: intl.get('perspectives.finds.properties.material.label'),
-        value: data.material.prefLabel
-      }))
-    }
-    if (has(data, 'period')) {
-      let periodLabel = ''
-      if (Array.isArray(data.period)) {
-        data.period.map((p, index) => {
-          periodLabel += `${p.prefLabel}`
-          if (index !== data.period.length - 1) {
-            periodLabel += ', '
-          }
-        })
-      } else {
-        periodLabel = data.period.prefLabel
-      }
-      container.appendChild(this.createPopUpElement({
-        label: intl.get('perspectives.finds.properties.period.label'),
-        value: periodLabel
-      }))
-    }
-    if (has(data, 'municipality')) {
-      container.appendChild(this.createPopUpElement({
-        label: intl.get('perspectives.finds.properties.municipality.label'),
-        value: data.municipality.prefLabel
-      }))
-    }
-    return container
-  }
-
-  createPopUpElement = ({ label, value }) => {
-    const p = document.createElement('p')
-    const b = document.createElement('b')
-    const span = document.createElement('span')
-    b.textContent = (`${label}: `)
-    span.textContent = value
-    p.appendChild(b)
-    p.appendChild(span)
-    return p
-  }
-
-  createInstanceListing = instances => {
-    let root
-    if (Array.isArray(instances)) {
-      root = document.createElement('ul')
-      instances = orderBy(instances, 'prefLabel')
-      instances.forEach(i => {
-        const li = document.createElement('li')
-        const link = document.createElement('a')
-        link.addEventListener('click', () => history.push(i.dataProviderUrl))
-        link.textContent = i.prefLabel
-        link.style.cssText = 'cursor: pointer; text-decoration: underline'
-        li.appendChild(link)
-        root.appendChild(li)
-      })
-    } else {
-      root = document.createElement('p')
-      const link = document.createElement('a')
-      link.addEventListener('click', () => history.push(instances.dataProviderUrl))
-      link.textContent = instances.prefLabel
-      link.style.cssText = 'cursor: pointer; text-decoration: underline'
-      root.appendChild(link)
-    }
-    return root
-  }
-
   createOpacitySlider = overlayLayers => {
     L.control.opacity(
       overlayLayers,
@@ -1070,7 +987,7 @@ class LeafletMap extends React.Component {
         <div className={this.props.classes[`leafletContainer${this.props.pageType}`]}>
           <div id={this.props.container ? this.props.container : 'map'} className={this.props.classes.mapElement}>
             {(this.props.fetching ||
-            (this.props.showExternalLayers && this.props.layers.fetching)) &&
+            (this.props.showExternalLayers && this.props.leafletMapState.fetching)) &&
               <div className={this.props.classes.spinnerContainer}>
                 <CircularProgress style={{ color: purple[500] }} thickness={5} />
               </div>}
@@ -1085,7 +1002,7 @@ LeafletMap.propTypes = {
   classes: PropTypes.object.isRequired,
   pageType: PropTypes.string.isRequired,
   results: PropTypes.array,
-  layers: PropTypes.object,
+  leafletMapState: PropTypes.object,
   facetID: PropTypes.string,
   facet: PropTypes.object,
   instance: PropTypes.object,
