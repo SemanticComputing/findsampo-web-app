@@ -13,8 +13,7 @@ import Timeline from '../../facet_results/Timeline'
 // import Export from '../../facet_results/Export'
 import {
   MAPBOX_ACCESS_TOKEN,
-  MAPBOX_STYLE,
-  leafletLayerConfigs
+  MAPBOX_STYLE
 } from '../../../configs/findsampo/GeneralConfig'
 import { createApexPieChartData } from '../../../configs/findsampo/ApexCharts/PieChartConfig'
 import { createApexBarChartData } from '../../../configs/findsampo/ApexCharts/BarChartConfig'
@@ -23,6 +22,7 @@ import {
   createSingleLineChartData
   // createMultipleLineChartData
 } from '../../../configs/findsampo/ApexCharts/LineChartConfig'
+import { layerConfigs, createPopUpContentFindSampo } from '../../../configs/findsampo/Leaflet/LeafletConfig'
 import ExportCSV from '../../facet_results/ExportCSV'
 
 const Finds = props => {
@@ -46,8 +46,8 @@ const Finds = props => {
         path={`${props.rootUrl}/${perspective.id}/faceted-search/table`}
         render={routeProps =>
           <ResultTable
-            data={props.facetResults}
-            facetUpdateID={props.facetData.facetUpdateID}
+            data={props.perspectiveState}
+            facetUpdateID={props.facetState.facetUpdateID}
             resultClass='finds'
             facetClass='finds'
             fetchPaginatedResults={props.fetchPaginatedResults}
@@ -65,42 +65,39 @@ const Finds = props => {
             resultClass='findsList'
             facetClass='finds'
             fetchResults={props.fetchResults}
-            facetResults={props.facetResults}
-            facetUpdateID={props.facetData.facetUpdateID}
+            perspectiveState={props.perspectiveState}
+            facetUpdateID={props.facetState.facetUpdateID}
           />}
       />
       <Route
         path={`${rootUrl}/${perspective.id}/faceted-search/map`}
         render={() =>
           <LeafletMap
-            // center={[22.43, 10.37]}
-            // zoom={2}
-            center={[65.184809, 27.314050]}
-            zoom={5}
-            // center={[60.17, 24.81]}
-            // zoom={14}
-            // locateUser
-            results={props.placesResults.results}
-            layers={props.leafletMapLayers}
+            center={props.perspectiveState.maps.findsPlaces.center}
+            zoom={props.perspectiveState.maps.findsPlaces.zoom}
+            results={props.perspectiveState.results}
+            leafletMapState={props.leafletMapState}
             pageType='facetResults'
-            facetUpdateID={props.facetData.facetUpdateID}
+            facetUpdateID={props.facetState.facetUpdateID}
             resultClass='findsPlaces'
             facetClass='finds'
             mapMode='cluster'
             showMapModeControl={false}
-            instance={props.placesResults.instanceTableData}
+            instance={props.perspectiveState.instanceTableData}
+            createPopUpContent={createPopUpContentFindSampo}
             fetchResults={props.fetchResults}
             fetchGeoJSONLayers={props.fetchGeoJSONLayers}
             clearGeoJSONLayers={props.clearGeoJSONLayers}
             fetchByURI={props.fetchByURI}
-            fetching={props.placesResults.fetching}
+            fetching={props.perspectiveState.fetching}
             showInstanceCountInClusters={false}
             updateFacetOption={props.updateFacetOption}
+            updateMapBounds={props.updateMapBounds}
             showError={props.showError}
             showExternalLayers
             customMapControl
-            layerConfigs={leafletLayerConfigs}
-            infoHeaderExpanded={props.facetResults.facetedSearchHeaderExpanded}
+            layerConfigs={layerConfigs}
+            infoHeaderExpanded={props.perspectiveState.facetedSearchHeaderExpanded}
             // activeLayers={[
             // 'WFS_MV_KulttuuriymparistoSuojellut:Muinaisjaannokset_alue',
             // 'WFS_MV_KulttuuriymparistoSuojellut:Muinaisjaannokset_piste',
@@ -113,12 +110,12 @@ const Finds = props => {
         path={`${rootUrl}/${perspective.id}/faceted-search/heatmap`}
         render={() =>
           <Deck
-            results={props.placesResults.results}
-            facetUpdateID={props.facetData.facetUpdateID}
+            results={props.perspectiveState.results}
+            facetUpdateID={props.facetState.facetUpdateID}
             resultClass='findsPlaces'
             facetClass='finds'
             fetchResults={props.fetchResults}
-            fetching={props.placesResults.fetching}
+            fetching={props.perspectiveState.fetching}
             layerType='heatmapLayer'
             mapBoxAccessToken={MAPBOX_ACCESS_TOKEN}
             mapBoxStyle={MAPBOX_STYLE}
@@ -128,11 +125,11 @@ const Finds = props => {
         path={`${rootUrl}/${perspective.id}/faceted-search/pie_chart`}
         render={() =>
           <ApexChart
-            pageType='facetResults'
-            rawData={props.facetResults.results}
-            rawDataUpdateID={props.facetResults.resultUpdateID}
-            facetUpdateID={props.facetData.facetUpdateID}
-            fetching={props.facetResults.fetching}
+            pageType='perspectiveState'
+            rawData={props.perspectiveState.results}
+            rawDataUpdateID={props.perspectiveState.resultUpdateID}
+            facetUpdateID={props.facetState.facetUpdateID}
+            fetching={props.perspectiveState.fetching}
             fetchData={props.fetchResults}
             createChartData={createApexPieChartData}
             dropdownForChartTypes
@@ -144,7 +141,7 @@ const Finds = props => {
             resultClass='findsByProvince'
             facetClass='finds'
             dropdownForResultClasses
-            facetResultsType={intl.get(`perspectives.${perspective.id}.facetResultsType`)}
+            perspectiveStateType={intl.get(`perspectives.${perspective.id}.perspectiveStateType`)}
             resultClasses={['findsByProvince', 'findsByMaterial', 'findsByObjectName']}
             doNotRenderOnMount
           />}
@@ -153,11 +150,11 @@ const Finds = props => {
         path={`${rootUrl}/${perspective.id}/faceted-search/coins_by_year`}
         render={() =>
           <ApexChart
-            pageType='facetResults'
-            rawData={props.facetResults.results}
-            rawDataUpdateID={props.facetResults.resultUpdateID}
-            facetUpdateID={props.facetData.facetUpdateID}
-            fetching={props.facetResults.fetching}
+            pageType='perspectiveState'
+            rawData={props.perspectiveState.results}
+            rawDataUpdateID={props.perspectiveState.resultUpdateID}
+            facetUpdateID={props.facetState.facetUpdateID}
+            fetching={props.perspectiveState.fetching}
             fetchData={props.fetchResults}
             createChartData={createSingleLineChartData}
             title='Number of coins (find_name = "Raha" or "Hopearaha")'
@@ -178,11 +175,11 @@ const Finds = props => {
         path={`${rootUrl}/${perspective.id}/faceted-search/line_chart`}
         render={() =>
           <ApexChart
-            pageType='facetResults'
-            rawData={props.facetResults.results}
-            rawDataUpdateID={props.facetResults.resultUpdateID}
-            facetUpdateID={props.facetData.facetUpdateID}
-            fetching={props.facetResults.fetching}
+            pageType='perspectiveState'
+            rawData={props.perspectiveState.results}
+            rawDataUpdateID={props.perspectiveState.resultUpdateID}
+            facetUpdateID={props.facetState.facetUpdateID}
+            fetching={props.perspectiveState.fetching}
             fetchData={props.fetchResults}
             createChartData={createSingleLineChartData}
             title=''
@@ -195,7 +192,7 @@ const Finds = props => {
             resultClass='findsByWeight'
             facetClass='finds'
             dropdownForResultClasses
-            facetResultsType={intl.get(`perspectives.${perspective.id}.facetResultsType`)}
+            perspectiveStateType={intl.get(`perspectives.${perspective.id}.perspectiveStateType`)}
             resultClasses={['findsByWeight', 'findsByLength', 'findsByWidth']}
             doNotRenderOnMount
           />}
@@ -204,12 +201,12 @@ const Finds = props => {
         path={`${rootUrl}/${perspective.id}/faceted-search/timeline_old`}
         render={() =>
           <Timeline
-            pageType='facetResults'
+            pageType='perspectiveState'
             resultClass='findsTimeline'
             facetClass='finds'
-            data={props.facetResults.results}
-            dataUpdateID={props.facetResults.resultUpdateID}
-            facetUpdateID={props.facetData.facetUpdateID}
+            data={props.perspectiveState.results}
+            dataUpdateID={props.perspectiveState.resultUpdateID}
+            facetUpdateID={props.facetState.facetUpdateID}
             fetchResults={props.fetchResults}
             clearResults={props.clearResults}
           />}
@@ -218,15 +215,15 @@ const Finds = props => {
         path={`${rootUrl}/${perspective.id}/faceted-search/timeline`}
         render={() =>
           <ApexChart
-            pageType='facetResults'
-            rawData={props.facetResults.results}
-            rawDataUpdateID={props.facetResults.resultUpdateID}
-            facetUpdateID={props.facetData.facetUpdateID}
-            fetching={props.facetResults.fetching}
+            pageType='perspectiveState'
+            rawData={props.perspectiveState.results}
+            rawDataUpdateID={props.perspectiveState.resultUpdateID}
+            facetUpdateID={props.facetState.facetUpdateID}
+            fetching={props.perspectiveState.fetching}
             fetchData={props.fetchResults}
             fetchInstanceAnalysis={props.fetchInstanceAnalysis}
-            instanceAnalysisData={props.facetResults.instanceAnalysisData}
-            instanceAnalysisDataUpdateID={props.facetResults.instanceAnalysisDataUpdateID}
+            instanceAnalysisData={props.perspectiveState.instanceAnalysisData}
+            instanceAnalysisDataUpdateID={props.perspectiveState.instanceAnalysisDataUpdateID}
             listHeadingSingleInstance='Löytö:'
             listHeadingMultipleInstances='Löydöt:'
             createChartData={createApexTimelineChartData}
@@ -243,8 +240,8 @@ const Finds = props => {
           <ExportCSV
             resultClass='csvFinds'
             facetClass='finds'
-            facetUpdateID={props.facetData.facetUpdateID}
-            facets={props.facetData.facets}
+            facetUpdateID={props.facetState.facetUpdateID}
+            facets={props.facetState.facets}
           />}
       />
     </>
@@ -252,26 +249,94 @@ const Finds = props => {
 }
 
 Finds.propTypes = {
-  facetResults: PropTypes.object.isRequired,
-  placesResults: PropTypes.object.isRequired,
-  leafletMapLayers: PropTypes.object.isRequired,
-  facetData: PropTypes.object.isRequired,
-  fetchResults: PropTypes.func.isRequired,
-  fetchGeoJSONLayers: PropTypes.func.isRequired,
-  clearGeoJSONLayers: PropTypes.func.isRequired,
+  /**
+   * Faceted search configs and results of this perspective.
+   */
+  perspectiveState: PropTypes.object.isRequired,
+  /**
+    * Facet configs and values.
+    */
+  facetState: PropTypes.object.isRequired,
+  /**
+    * Facet values where facets constrain themselves, used for statistics.
+    */
+  facetConstrainSelfState: PropTypes.object.isRequired,
+  /**
+    * Leaflet map config and external layers.
+    */
+  leafletMapState: PropTypes.object.isRequired,
+  /**
+    * Redux action for fetching paginated results.
+    */
   fetchPaginatedResults: PropTypes.func.isRequired,
+  /**
+    * Redux action for fetching all results.
+    */
+  fetchResults: PropTypes.func.isRequired,
+  /**
+    * Redux action for fetching facet values for statistics.
+    */
+  fetchFacetConstrainSelf: PropTypes.func.isRequired,
+  /**
+    * Redux action for loading external GeoJSON layers.
+    */
+  fetchGeoJSONLayers: PropTypes.func.isRequired,
+  /**
+    * Redux action for loading external GeoJSON layers via backend.
+    */
+  fetchGeoJSONLayersBackend: PropTypes.func.isRequired,
+  /**
+    * Redux action for clearing external GeoJSON layers.
+    */
+  clearGeoJSONLayers: PropTypes.func.isRequired,
+  /**
+    * Redux action for fetching information about a single entity.
+    */
   fetchByURI: PropTypes.func.isRequired,
+  /**
+    * Redux action for updating the page of paginated results.
+    */
   updatePage: PropTypes.func.isRequired,
+  /**
+    * Redux action for updating the rows per page of paginated results.
+    */
   updateRowsPerPage: PropTypes.func.isRequired,
+  /**
+    * Redux action for sorting the paginated results.
+    */
   sortResults: PropTypes.func.isRequired,
-  routeProps: PropTypes.object.isRequired,
+  /**
+    * Redux action for updating the active selection or config of a facet.
+    */
+  showError: PropTypes.func.isRequired,
+  /**
+    * Redux action for showing an error
+    */
   updateFacetOption: PropTypes.func.isRequired,
+  /**
+    * Routing information from React Router.
+    */
+  routeProps: PropTypes.object.isRequired,
+  /**
+    * Perspective config.
+    */
   perspective: PropTypes.object.isRequired,
+  /**
+    * State of the animation, used by TemporalMap.
+    */
   animationValue: PropTypes.array.isRequired,
+  /**
+    * Redux action for animating TemporalMap.
+    */
   animateMap: PropTypes.func.isRequired,
+  /**
+    * Current screen size.
+    */
   screenSize: PropTypes.string.isRequired,
-  rootUrl: PropTypes.string.isRequired,
-  showError: PropTypes.func.isRequired
+  /**
+    * Root url of the application.
+    */
+  rootUrl: PropTypes.string.isRequired
 }
 
 export default Finds

@@ -14,6 +14,7 @@ import Export from '../../facet_results/Export'
 // import { coseLayout, cytoscapeStyle } from '../../../configs/sampo/Cytoscape.js/NetworkConfig'
 import { Route, Redirect } from 'react-router-dom'
 import { has } from 'lodash'
+import { createPopUpContentFindSampo } from '../../../configs/findsampo/Leaflet/LeafletConfig'
 
 const styles = () => ({
   root: {
@@ -161,6 +162,7 @@ class InstanceHomePage extends React.Component {
                     facetClass='finds'
                     mapMode='cluster'
                     uri={tableData.id}
+                    createPopUpContent={createPopUpContentFindSampo}
                     fetchResults={this.props.fetchResults}
                     fetching={isLoading}
                     fetchData={this.props.fetchResults}

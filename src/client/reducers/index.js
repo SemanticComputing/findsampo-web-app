@@ -19,7 +19,6 @@ import typesFacetsConstrainSelf from './findsampo/typesFacetsConstrainSelf'
 import periods from './findsampo/periods'
 import periodsFacets from './findsampo/periodsFacets'
 import periodsFacetsConstrainSelf from './findsampo/periodsFacetsConstrainSelf'
-import places from './findsampo/places'
 import sites from './findsampo/sites'
 
 const reducer = combineReducers({
@@ -35,7 +34,6 @@ const reducer = combineReducers({
   periods,
   periodsFacets,
   periodsFacetsConstrainSelf,
-  places,
   sites,
   leafletMap,
   animation,

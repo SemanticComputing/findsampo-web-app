@@ -122,6 +122,9 @@ class LeafletMap extends React.Component {
     if (this.props.mapMode && this.props.pageType === 'clientFSResults') {
       this.drawPointData()
     }
+    if (this.props.showExternalLayers) {
+      this.props.clearGeoJSONLayers()
+    }
     if (this.props.showExternalLayers && !this.props.locateUser) {
       this.maybeUpdateEnlargedBoundsAndFetchGeoJSONLayers({ eventType: 'programmatic' })
     }
@@ -150,7 +153,7 @@ class LeafletMap extends React.Component {
 
   serverFScomponentDidUpdate = (prevProps, prevState) => {
     // check if map center or zoom was modified in Redux state
-    if (!this.componentStateEqualsReduxState()) {
+    if (!this.locateUser() && !this.componentStateEqualsReduxState()) {
       this.leafletMap.setView(this.props.center, this.props.zoom)
     }
 
@@ -247,38 +250,6 @@ class LeafletMap extends React.Component {
       }
     }
 
-    if (this.props.showExternalLayers) {
-      this.setCustomMapControlVisibility()
-      if (this.props.layers.fetching) {
-        if (this.props.customMapControl) {
-          document.getElementById('leaflet-control-custom-checkbox-buffer').disabled = true
-        }
-        this.layerControl._layerControlInputs.forEach(input => { input.disabled = true })
-        this.leafletMap.removeControl(this.zoominfoControl)
-        this.leafletMap.dragging.disable()
-        this.leafletMap.touchZoom.disable()
-        this.leafletMap.doubleClickZoom.disable()
-        this.leafletMap.scrollWheelZoom.disable()
-        this.leafletMap.boxZoom.disable()
-        this.leafletMap.keyboard.disable()
-        if (this.leafletMap.tap) this.leafletMap.tap.disable()
-      }
-      if (!this.props.layers.fetching) {
-        if (this.props.customMapControl) {
-          document.getElementById('leaflet-control-custom-checkbox-buffer').disabled = false
-        }
-        this.layerControl._layerControlInputs.forEach(input => { input.disabled = false })
-        this.leafletMap.addControl(this.zoominfoControl)
-        this.leafletMap.dragging.enable()
-        this.leafletMap.touchZoom.enable()
-        this.leafletMap.doubleClickZoom.enable()
-        this.leafletMap.scrollWheelZoom.enable()
-        this.leafletMap.boxZoom.enable()
-        this.leafletMap.keyboard.enable()
-        if (this.leafletMap.tap) this.leafletMap.tap.enable()
-      }
-    }
-
     if (has(prevProps, 'facet') && prevProps.facet.filterType !== this.props.facet.filterType) {
       if (this.props.facet.filterType === 'spatialFilter') {
         this.addDrawButtons()
@@ -333,8 +304,10 @@ class LeafletMap extends React.Component {
 
     const container = this.props.container ? this.props.container : 'map'
 
+    const locateUser = this.locateUser()
+
     this.leafletMap = L.map(container, {
-      ...(!this.props.locateUser && {
+      ...(!locateUser && {
         center: this.props.center,
         zoom: this.props.zoom
       }),
@@ -390,9 +363,8 @@ class LeafletMap extends React.Component {
       this.addDrawButtons()
     }
 
-    if (this.props.updateMapBounds) {
+    if (this.props.updateMapBounds && !locateUser) {
       this.updateMapBounds()
-      this.leafletMap.on('moveend', () => this.updateMapBounds())
     }
   }
 
@@ -406,6 +378,7 @@ class LeafletMap extends React.Component {
   }
 
   componentStateEqualsReduxState = () => {
+    if (this.leafletMap.getZoom() == null) { return true }
     const currentZoom = this.leafletMap.getZoom()
     const currentCenter = this.leafletMap.getCenter()
     return (
@@ -434,6 +407,13 @@ class LeafletMap extends React.Component {
     }
   }
 
+  locateUser = () => {
+    if (this.props.locateUser && this.props.locateUser === true) {
+      return true
+    }
+    return false
+  }
+
   onLocationFound = e => {
     this.leafletMap.setView(e.latlng, 13)
     this.updateEnlargedBounds({ mapInstance: this.leafletMap })
@@ -447,6 +427,7 @@ class LeafletMap extends React.Component {
       // .openPopup()
     this.initMapEventListeners()
     this.maybeUpdateEnlargedBoundsAndFetchGeoJSONLayers({ eventType: 'programmatic' })
+    this.updateMapBounds()
   }
 
   onLocationError = e => {
@@ -454,12 +435,13 @@ class LeafletMap extends React.Component {
       this.props.center,
       this.props.zoom
     )
+    this.updateMapBounds()
+    this.initMapEventListeners()
+    this.maybeUpdateEnlargedBoundsAndFetchGeoJSONLayers({ eventType: 'programmatic' })
     // this.props.showError({
     //   title: '',
     //   text: e.message
     // })
-    this.initMapEventListeners()
-    this.maybeUpdateEnlargedBoundsAndFetchGeoJSONLayers({ eventType: 'programmatic' })
   }
 
   boundsToObject = () => {
@@ -501,6 +483,7 @@ class LeafletMap extends React.Component {
     return results.map(result => [+result.lat, +result.long])
   }
 
+  // event listeners, only used when this.props.showExternalLayers
   initMapEventListeners = () => {
     // Fired when an overlay is selected using layer controls
     this.leafletMap.on('layeradd', event => {
@@ -541,22 +524,22 @@ class LeafletMap extends React.Component {
 
     // Fired when zooming starts
     this.leafletMap.on('zoomstart', () => {
-      this.setState({ prevZoomLevel: this.leafletMap.getZoom() })
+      if (this.props.showExternalLayers) {
+        this.setState({ prevZoomLevel: this.leafletMap.getZoom() })
+      }
     })
 
     // Fired when zooming ends
     this.leafletMap.on('zoomend', event => {
+      if (this.props.updateMapBounds) { this.updateMapBounds() }
       this.maybeUpdateEnlargedBoundsAndFetchGeoJSONLayers({ eventType: 'zoomend' })
     })
 
     // Fired when dragging ends
     this.leafletMap.on('dragend', () => {
+      if (this.props.updateMapBounds) { this.updateMapBounds() }
       this.maybeUpdateEnlargedBoundsAndFetchGeoJSONLayers({ eventType: 'dragend' })
     })
-
-    // Fired when the map is initialized (when its center and zoom are set for the first time).
-    // this.leafletMap.on('load', () => {
-    // })
   }
 
   initOverLays = basemaps => {
@@ -621,7 +604,7 @@ class LeafletMap extends React.Component {
     const currentBounds = this.leafletMap.getBounds()
 
     // When user triggers zoom or drag event and map is within enlarged bounds, do nothing
-    if (eventType !== 'programmatic' && this.state.enlargedBounds.contains(currentBounds)) {
+    if (eventType !== 'programmatic' && this.props.leafletMapState.updateID > 0 && this.state.enlargedBounds.contains(currentBounds)) {
       return
     }
 

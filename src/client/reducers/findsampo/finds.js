@@ -20,6 +20,12 @@ export const INITIAL_STATE = {
   instanceAnalysisData: null,
   instanceAnalysisDataUpdateID: 0,
   instanceSparqlQuery: null,
+  maps: {
+    findsPlaces: {
+      center: [65.184809, 27.314050],
+      zoom: 5
+    }
+  },
   properties: [
     {
       id: 'image',
@@ -216,6 +222,7 @@ export const INITIAL_STATE = {
 
 const resultClasses = new Set([
   'finds',
+  'findsPlaces',
   'findsList',
   'findsTimeline',
   'findsApexChartsTimeline',
@@ -236,7 +243,7 @@ const resultClasses = new Set([
 
 const finds = (state = INITIAL_STATE, action) => {
   if (resultClasses.has(action.resultClass)) {
-    return handleDataFetchingAction(state, action)
+    return handleDataFetchingAction(state, action, INITIAL_STATE)
   } else return state
 }
 

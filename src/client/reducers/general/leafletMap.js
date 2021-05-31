@@ -33,10 +33,7 @@ const leafletMap = (state = INITIAL_STATE, action) => {
         fetching: false
       }
     case CLEAR_GEOJSON_LAYERS:
-      return {
-        ...state,
-        layerData: []
-      }
+      return INITIAL_STATE
     default:
       return state
   }

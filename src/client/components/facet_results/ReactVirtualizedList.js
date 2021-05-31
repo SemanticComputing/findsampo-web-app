@@ -51,7 +51,7 @@ const useStyles = makeStyles(theme => ({
 
 const ReactVirtualizedList = props => {
   const classes = useStyles(props)
-  const { results } = props.facetResults
+  const { results } = props.perspectiveState
 
   useEffect(() => {
     props.fetchResults({
@@ -77,7 +77,7 @@ const ReactVirtualizedList = props => {
     isVisible, // This row is visible within the List (eg it is not an overscanned row)
     style // Style object to be applied to row (to position it)
   }) => {
-    const data = props.facetResults.results[index]
+    const data = props.perspectiveState.results[index]
     let image = null
     if (data.imageURL) {
       const { imageURL } = data
@@ -126,7 +126,7 @@ const ReactVirtualizedList = props => {
   }
 
   const getRowHeight = ({ index }) => {
-    const data = props.facetResults.results[index]
+    const data = props.perspectiveState.results[index]
     let height = 300
     if (!data.imageURL) {
       height -= 140
@@ -146,8 +146,16 @@ const ReactVirtualizedList = props => {
     return height
   }
 
-  // if (props.facetResults.results) {
-  //   props.facetResults.results.map(r => {
+  const validResults = () => {
+    const { results } = props.perspectiveState
+    if (results == null) { return false }
+    if (results.length < 1) { return false }
+    if (!results[0].findName) { return false }
+    return true
+  }
+
+  // if (props.perspectiveState.results) {
+  //   props.perspectiveState.results.map(r => {
   //     if (r.period && r.period.length > 33) {
   //       console.log(r)
   //     }
@@ -156,7 +164,7 @@ const ReactVirtualizedList = props => {
 
   return (
     <div className={classes.root}>
-      {(!results || props.facetResults.results.fetching)
+      {(!validResults() || props.perspectiveState.results.fetching)
         ? (
           <div className={classes.progressContainer}>
             <CircularProgress style={{ color: purple[500] }} thickness={5} />

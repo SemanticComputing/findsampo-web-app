@@ -582,13 +582,14 @@ const SemanticPortal = props => {
                       descriptionHeight={config.perspectiveDescHeight}
                     />
                     <Sites
-                      leafletMap={props.leafletMap}
+                      perspectiveState={props.sites}
+                      leafletMapState={props.leafletMap}
                       fetchGeoJSONLayers={props.fetchGeoJSONLayers}
                       fetchGeoJSONLayersBackend={props.fetchGeoJSONLayersBackend}
                       clearGeoJSONLayers={props.clearGeoJSONLayers}
                       showError={props.showError}
+                      updateMapBounds={props.updateMapBounds}
                       screenSize={screenSize}
-                      facetedSearchHeaderExpanded={props.sites.facetedSearchHeaderExpanded}
                     />
                   </>
                 )
@@ -698,7 +699,6 @@ const mapStateToProps = state => {
     periods: state.periods,
     periodsFacets: state.periodsFacets,
     periodsFacetsConstrainSelf: state.periodsFacetsConstrainSelf,
-    places: state.places,
     sites: state.sites,
     leafletMap: state.leafletMap,
     fullTextSearch: state.fullTextSearch,
@@ -779,10 +779,6 @@ SemanticPortal.propTypes = {
   periods: PropTypes.object.isRequired,
   periodsFacets: PropTypes.object.isRequired,
   periodsFacetsConstrainSelf: PropTypes.object.isRequired,
-  /**
-   * Faceted search configs and results of 'Places'.
-   */
-  places: PropTypes.object.isRequired,
   /**
    * Leaflet map config and external layers.
    */

@@ -9,7 +9,7 @@ import LeafletMap from '../../facet_results/LeafletMap'
 // import Network from '../../facet_results/Network'
 // import Timeline from '../../facet_results/Timeline'
 // import Export from '../../facet_results/Export'
-import { leafletLayerConfigs } from '../../../configs/findsampo/GeneralConfig'
+import { layerConfigs } from '../../../configs/findsampo/Leaflet/LeafletConfig'
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -49,28 +49,30 @@ const Sites = props => {
     screenSize === 'lg' ||
     screenSize === 'xl'
   return (
-    <div className={props.facetedSearchHeaderExpanded
+    <div className={props.perspectiveState.facetedSearchHeaderExpanded
       ? classes.rootHeaderExpanded
       : classes.root}
     >
       <LeafletMap
-        center={[65.184809, 27.314050]}
-        zoom={5}
+        center={props.perspectiveState.maps.sitesMap.center}
+        zoom={props.perspectiveState.maps.sitesMap.zoom}
         locateUser
         // results={this.props.results}
-        layers={props.leafletMap}
+        leafletMapState={props.leafletMapState}
         pageType='mobileMapPage'
+        resultClass='sitesMap'
         fetchGeoJSONLayers={props.fetchGeoJSONLayers}
         clearGeoJSONLayers={props.clearGeoJSONLayers}
         fetching={false}
         // fetchData={this.props.fetchResults}
         showInstanceCountInClusters={false}
         showError={props.showError}
+        updateMapBounds={props.updateMapBounds}
         showExternalLayers
         customMapControl
         layerControlExpanded={layerControlExpanded}
-        infoHeaderExpanded={props.facetedSearchHeaderExpanded}
-        layerConfigs={leafletLayerConfigs}
+        infoHeaderExpanded={props.perspectiveState.facetedSearchHeaderExpanded}
+        layerConfigs={layerConfigs}
         activeLayers={[
           // 'WFS_MV_KulttuuriymparistoSuojellut:Muinaisjaannokset_alue',
           // 'WFS_MV_KulttuuriymparistoSuojellut:Muinaisjaannokset_piste',
