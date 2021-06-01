@@ -177,7 +177,7 @@ const Finds = props => {
         path={`${rootUrl}/${perspective.id}/faceted-search/timeline_old`}
         render={() =>
           <Timeline
-            pageType='perspectiveState'
+            pageType='facetResults'
             resultClass='findsTimeline'
             facetClass='finds'
             data={props.perspectiveState.results}
@@ -191,7 +191,7 @@ const Finds = props => {
         path={`${rootUrl}/${perspective.id}/faceted-search/timeline`}
         render={() =>
           <ApexChart
-            pageType='perspectiveState'
+            pageType='facetResults'
             rawData={props.perspectiveState.results}
             rawDataUpdateID={props.perspectiveState.resultUpdateID}
             facetUpdateID={props.facetState.facetUpdateID}
