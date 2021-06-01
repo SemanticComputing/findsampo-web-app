@@ -303,9 +303,7 @@ class LeafletMap extends React.Component {
     this.resultMarkerLayer = L.layerGroup()
 
     const container = this.props.container ? this.props.container : 'map'
-
     const locateUser = this.locateUser()
-
     this.leafletMap = L.map(container, {
       ...(!locateUser && {
         center: this.props.center,
