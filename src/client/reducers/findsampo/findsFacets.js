@@ -49,7 +49,7 @@ export const INITIAL_STATE = {
       sortDirection: 'desc',
       sortButton: false,
       spatialFilterButton: false,
-      pieChartButton: true,
+      pieChartButton: false,
       isFetching: false,
       searchField: true,
       containerClass: 'ten',
