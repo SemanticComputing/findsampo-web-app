@@ -73,6 +73,9 @@ class ApexChart extends React.Component {
     if (prevState.chartType !== this.state.chartType) {
       this.renderChart()
     }
+    if (prevProps.screenSize !== this.props.screenSize) {
+      this.renderChart()
+    }
     if (prevProps.instanceAnalysisDataUpdateID !== this.props.instanceAnalysisDataUpdateID) {
       this.setState({
         dialogData: this.props.instanceAnalysisData
@@ -107,7 +110,8 @@ class ApexChart extends React.Component {
         tooltip: this.props.tooltip || null,
         fetchInstanceAnalysis: this.props.fetchInstanceAnalysis,
         resultClass: this.props.resultClass,
-        facetClass: this.props.facetClass
+        facetClass: this.props.facetClass,
+        screenSize: this.props.screenSize
       })
     )
     this.chart.render()
@@ -126,27 +130,53 @@ class ApexChart extends React.Component {
 
   handleDialogOnClose = event => this.setState({ dialogData: null })
 
-  render () {
-    const { fetching, pageType, classes, facetResultsType, dropdownForResultClasses, dropdownForChartTypes } = this.props
+  isSmallScreen = () => {
+    const { screenSize } = this.props
+    return screenSize === 'xs' || screenSize === 'sm'
+  }
+
+  getHeightForRootContainer = () => {
+    if (this.isSmallScreen()) {
+      return 'auto'
+    }
     const rootHeightReduction = 136 // tabs + padding
+    return `calc(100% - ${rootHeightReduction}px)`
+  }
+
+  getHeightForChartContainer = () => {
+    const { dropdownForResultClasses, dropdownForChartTypes } = this.props
+    if (this.isSmallScreen()) {
+      return 600
+    }
     let chartHeightReduction = 0
-    let facetResultsTypeCapitalized
     if (dropdownForResultClasses) {
-      facetResultsTypeCapitalized = facetResultsType[0].toUpperCase() + facetResultsType.substring(1).toLowerCase()
       chartHeightReduction += 40 // dropdown height
     }
     if (dropdownForChartTypes) {
       chartHeightReduction += 40 // dropdown height
+    }
+    return `calc(100% - ${chartHeightReduction}px)`
+  }
+
+  render () {
+    const {
+      fetching, pageType, classes, dropdownForResultClasses,
+      dropdownForChartTypes, facetResultsType
+    } = this.props
+    let facetResultsTypeCapitalized = ''
+    if (facetResultsType) {
+      facetResultsTypeCapitalized = facetResultsType[0].toUpperCase() + facetResultsType.substring(1).toLowerCase()
     }
     let rootStyle = {
       width: '100%',
       height: '100%'
     }
     if (pageType === 'facetResults' || pageType === 'instancePage') {
+      const padding = this.isSmallScreen() ? 8 : 32
       rootStyle = {
-        height: `calc(100% - ${rootHeightReduction}px)`,
-        width: 'calc(100% - 64px)',
-        padding: 32,
+        height: this.getHeightForRootContainer(),
+        width: `calc(100% - ${2 * padding}px)`,
+        padding: padding,
         backgroundColor: '#fff',
         borderTop: '1px solid rgba(224, 224, 224, 1)'
       }
@@ -160,7 +190,7 @@ class ApexChart extends React.Component {
     }
     const chartContainerStyle = {
       width: '100%',
-      height: `calc(100% - ${chartHeightReduction}px)`
+      height: this.getHeightForChartContainer()
     }
     let dropdownText = intl.get('apexCharts.by') === ''
       ? intl.get('apexCharts.grouping')
