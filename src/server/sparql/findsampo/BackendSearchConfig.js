@@ -50,6 +50,12 @@ export const backendSearchConfig = {
       relatedInstances: ''
     }
   },
+  findsPlacesHeatmap: {
+    perspectiveID: 'finds', // use endpoint config from finds
+    q: findsPlacesQuery,
+    filterTarget: 'id',
+    resultMapper: mapPlaces
+  },
   findsList: {
     perspectiveID: 'finds', // use endpoint config from finds
     q: findsListQuery,

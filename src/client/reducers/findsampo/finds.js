@@ -25,6 +25,10 @@ export const INITIAL_STATE = {
       center: [65.184809, 27.314050],
       zoom: 5
     },
+    findsPlacesHeatmap: {
+      center: [65.184809, 27.314050],
+      zoom: 4
+    },
     findInstancePageMap: {
       center: [65.184809, 27.314050],
       zoom: 5
@@ -231,6 +235,7 @@ export const INITIAL_STATE = {
 const resultClasses = new Set([
   'finds',
   'findsPlaces',
+  'findsPlacesHeatmap',
   'findsList',
   'findsTimeline',
   'findsApexChartsTimeline',

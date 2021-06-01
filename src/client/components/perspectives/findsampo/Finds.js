@@ -110,9 +110,11 @@ const Finds = props => {
         path={`${rootUrl}/${perspective.id}/faceted-search/heatmap`}
         render={() =>
           <Deck
+            center={props.perspectiveState.maps.findsPlacesHeatmap.center}
+            zoom={props.perspectiveState.maps.findsPlacesHeatmap.zoom}
             results={props.perspectiveState.results}
             facetUpdateID={props.facetState.facetUpdateID}
-            resultClass='findsPlaces'
+            resultClass='findsPlacesHeatmap'
             facetClass='finds'
             fetchResults={props.fetchResults}
             fetching={props.perspectiveState.fetching}
