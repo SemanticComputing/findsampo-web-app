@@ -24,6 +24,14 @@ export const INITIAL_STATE = {
     findsPlaces: {
       center: [65.184809, 27.314050],
       zoom: 5
+    },
+    findInstancePageMap: {
+      center: [65.184809, 27.314050],
+      zoom: 5
+    },
+    nearbyFinds: {
+      center: [65.184809, 27.314050],
+      zoom: 5
     }
   },
   properties: [

@@ -63,14 +63,19 @@ class InstanceHomePage extends React.Component {
     }
   }
 
-  hasTableData = () => this.props.tableData !== null && Object.values(this.props.tableData).length >= 1
+  hasTableData = () => {
+    const { instanceTableData } = this.props.perspectiveState
+    return instanceTableData !== null && Object.values(instanceTableData).length >= 1
+  }
 
   fetchTableData = () => {
+    const { perspectiveConfig } = this.props
     const localID = this.getLocalIDFromURL()
     this.setState({ localID })
     let uri = ''
     const base = 'http://ldf.fi/findsampo/'
-    switch (this.props.resultClass) {
+    const resultClass = perspectiveConfig.id
+    switch (resultClass) {
       case 'finds':
         uri = `${base}finds/${localID}`
         break
@@ -82,7 +87,7 @@ class InstanceHomePage extends React.Component {
         break
     }
     this.props.fetchByURI({
-      resultClass: this.props.resultClass,
+      resultClass,
       facetClass: null,
       variant: null,
       uri: uri
@@ -92,7 +97,7 @@ class InstanceHomePage extends React.Component {
   getLocalIDFromURL = () => {
     const locationArr = this.props.routeProps.location.pathname.split('/')
     let localID = locationArr.pop()
-    this.props.tabs.map(tab => {
+    this.props.perspectiveConfig.instancePageTabs.map(tab => {
       if (localID === tab.id) {
         localID = locationArr.pop() // pop again if tab id
       }
@@ -101,8 +106,9 @@ class InstanceHomePage extends React.Component {
   }
 
   getVisibleRows = rows => {
+    const { instanceTableData } = this.props.perspectiveState
     const visibleRows = []
-    const instanceClass = this.props.tableData.type ? this.props.tableData.type.id : ''
+    const instanceClass = instanceTableData.type ? instanceTableData.type.id : ''
     rows.map(row => {
       if ((has(row, 'onlyForClass') && row.onlyForClass === instanceClass) ||
        !has(row, 'onlyForClass')) {
@@ -113,26 +119,29 @@ class InstanceHomePage extends React.Component {
   }
 
   render = () => {
-    const { classes, tableData, isLoading, resultClass, rootUrl } = this.props
+    const { classes, perspectiveState, perspectiveConfig, rootUrl, screenSize } = this.props
+    const { instanceTableData, results, fetching } = perspectiveState
+    const resultClass = perspectiveConfig.id
     const hasTableData = this.hasTableData()
     return (
       <div className={classes.root}>
         <PerspectiveTabs
           routeProps={this.props.routeProps}
-          tabs={this.props.tabs}
-          screenSize={this.props.screenSize}
+          tabs={perspectiveConfig.instancePageTabs}
+          screenSize={screenSize}
         />
         <Paper square className={classes.content}>
-          {isLoading &&
+          {fetching && !hasTableData &&
             <div className={classes.spinnerContainer}>
               <CircularProgress style={{ color: purple[500] }} thickness={5} />
             </div>}
           {!hasTableData &&
-            <>
+            <div className={classes.spinnerContainer}>
               <Typography variant='h6'>
                 No data found for id: <span style={{ fontStyle: 'italic' }}>{this.state.localID}</span>
               </Typography>
-            </>}
+            </div>}
+          {/* make sure that tableData exists before rendering any components */}
           {hasTableData &&
             <>
               <Route
@@ -144,49 +153,51 @@ class InstanceHomePage extends React.Component {
                 render={() =>
                   <InstanceHomePageTable
                     resultClass={resultClass}
-                    data={tableData}
-                    properties={this.getVisibleRows(this.props.properties)}
-                    screenSize={this.props.screenSize}
+                    data={instanceTableData}
+                    properties={this.getVisibleRows(perspectiveState.properties)}
                   />}
               />
               <Route
                 path={`${rootUrl}/${resultClass}/page/${this.state.localID}/map`}
                 render={() =>
                   <LeafletMap
-                    center={[65.184809, 27.314050]}
-                    zoom={5}
-                    results={this.props.results}
-                    layers={this.props.leafletMapLayers}
+                    center={perspectiveState.maps.findInstancePageMap.center}
+                    zoom={perspectiveState.maps.findInstancePageMap.zoom}
+                    results={results}
+                    leafletMapState={this.props.leafletMapState}
                     pageType='instancePage'
                     resultClass='findInstancePageMap'
                     facetClass='finds'
                     mapMode='cluster'
-                    uri={tableData.id}
+                    uri={instanceTableData.id}
                     createPopUpContent={createPopUpContentFindSampo}
                     fetchResults={this.props.fetchResults}
-                    fetching={isLoading}
+                    fetching={fetching}
                     fetchData={this.props.fetchResults}
                     showInstanceCountInClusters={false}
                     showExternalLayers={false}
+                    updateMapBounds={this.props.updateMapBounds}
                   />}
               />
               <Route
                 path={`${rootUrl}/${resultClass}/page/${this.state.localID}/nearby_finds`}
                 render={() =>
                   <LeafletMap
-                    center={[65.184809, 27.314050]}
-                    zoom={5}
-                    results={this.props.results}
-                    layers={this.props.leafletMapLayers}
+                    center={perspectiveState.maps.nearbyFinds.center}
+                    zoom={perspectiveState.maps.nearbyFinds.zoom}
+                    results={results}
+                    leafletMapState={this.props.leafletMapState}
                     pageType='instancePage'
                     resultClass='nearbyFinds'
                     mapMode='cluster'
-                    uri={tableData.id}
+                    uri={instanceTableData.id}
+                    createPopUpContent={createPopUpContentFindSampo}
                     fetchResults={this.props.fetchResults}
-                    fetching={isLoading}
+                    fetching={fetching}
                     fetchData={this.props.fetchResults}
                     showInstanceCountInClusters={false}
                     showExternalLayers={false}
+                    updateMapBounds={this.props.updateMapBounds}
                   />}
               />
               <Route
@@ -196,10 +207,10 @@ class InstanceHomePage extends React.Component {
                     resultClass={resultClass}
                     resultClassVariant='similarFinds'
                     fetchResultsWhenMounted
-                    data={this.props.results ? this.props.results[0] : null}
-                    resultUpdateID={this.props.resultUpdateID}
+                    data={results ? results[0] : null}
+                    resultUpdateID={perspectiveState.resultUpdateID}
                     fetchResults={this.props.fetchResults}
-                    uri={tableData.id}
+                    uri={instanceTableData.id}
                     properties={[
                       {
                         id: 'similarObjectType',
@@ -242,7 +253,7 @@ class InstanceHomePage extends React.Component {
                   <Export
                     sparqlQuery={this.props.sparqlQuery}
                     pageType='instancePage'
-                    id={tableData.id}
+                    id={instanceTableData.id}
                   />}
               />
             </>}
@@ -253,17 +264,85 @@ class InstanceHomePage extends React.Component {
 }
 
 InstanceHomePage.propTypes = {
-  classes: PropTypes.object.isRequired,
+  /**
+   * Faceted search configs and results of this perspective.
+   */
+  perspectiveState: PropTypes.object.isRequired,
+  /**
+    * Leaflet map config and external layers.
+    */
+  leafletMapState: PropTypes.object.isRequired,
+  /**
+    * Redux action for fetching paginated results.
+    */
+  fetchPaginatedResults: PropTypes.func.isRequired,
+  /**
+    * Redux action for fetching all results.
+    */
+  fetchResults: PropTypes.func.isRequired,
+  /**
+    * Redux action for fetching facet values for statistics.
+    */
+  fetchFacetConstrainSelf: PropTypes.func.isRequired,
+  /**
+    * Redux action for loading external GeoJSON layers.
+    */
+  fetchGeoJSONLayers: PropTypes.func.isRequired,
+  /**
+    * Redux action for loading external GeoJSON layers via backend.
+    */
+  fetchGeoJSONLayersBackend: PropTypes.func.isRequired,
+  /**
+    * Redux action for clearing external GeoJSON layers.
+    */
+  clearGeoJSONLayers: PropTypes.func.isRequired,
+  /**
+    * Redux action for fetching information about a single entity.
+    */
   fetchByURI: PropTypes.func.isRequired,
-  resultClass: PropTypes.string.isRequired,
-  data: PropTypes.object,
-  networkData: PropTypes.object,
-  sparqlQuery: PropTypes.string,
-  properties: PropTypes.array.isRequired,
-  tabs: PropTypes.array.isRequired,
-  isLoading: PropTypes.bool.isRequired,
+  /**
+    * Redux action for updating the page of paginated results.
+    */
+  updatePage: PropTypes.func.isRequired,
+  /**
+    * Redux action for updating the rows per page of paginated results.
+    */
+  updateRowsPerPage: PropTypes.func.isRequired,
+  /**
+    * Redux action for sorting the paginated results.
+    */
+  sortResults: PropTypes.func.isRequired,
+  /**
+    * Redux action for updating the active selection or config of a facet.
+    */
+  showError: PropTypes.func.isRequired,
+  /**
+    * Redux action for showing an error
+    */
+  updateFacetOption: PropTypes.func.isRequired,
+  /**
+    * Routing information from React Router.
+    */
   routeProps: PropTypes.object.isRequired,
+  /**
+    * Perspective config.
+    */
+  perspective: PropTypes.object.isRequired,
+  /**
+    * State of the animation, used by TemporalMap.
+    */
+  animationValue: PropTypes.array.isRequired,
+  /**
+    * Redux action for animating TemporalMap.
+    */
+  animateMap: PropTypes.func.isRequired,
+  /**
+    * Current screen size.
+    */
   screenSize: PropTypes.string.isRequired,
+  /**
+    * Root url of the application.
+    */
   rootUrl: PropTypes.string.isRequired
 }
 
