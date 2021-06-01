@@ -147,10 +147,10 @@ const ReactVirtualizedList = props => {
   }
 
   const validResults = () => {
-    const { results } = props.perspectiveState
+    const { results, resultClass } = props.perspectiveState
+    if (resultClass !== props.resultClass) { return false }
     if (results == null) { return false }
     if (results.length < 1) { return false }
-    if (!results[0].findName) { return false }
     return true
   }
 
