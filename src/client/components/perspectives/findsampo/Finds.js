@@ -125,7 +125,7 @@ const Finds = props => {
         path={`${rootUrl}/${perspective.id}/faceted-search/pie_chart`}
         render={() =>
           <ApexChart
-            pageType='perspectiveState'
+            pageType='facetResults'
             rawData={props.perspectiveState.results}
             rawDataUpdateID={props.perspectiveState.resultUpdateID}
             facetUpdateID={props.facetState.facetUpdateID}
@@ -141,9 +141,9 @@ const Finds = props => {
             resultClass='findsByProvince'
             facetClass='finds'
             dropdownForResultClasses
-            perspectiveStateType={intl.get(`perspectives.${perspective.id}.perspectiveStateType`)}
             resultClasses={['findsByProvince', 'findsByMaterial', 'findsByObjectName']}
             doNotRenderOnMount
+            screenSize={props.screenSize}
           />}
       />
       {/* <Route
@@ -195,6 +195,7 @@ const Finds = props => {
             perspectiveStateType={intl.get(`perspectives.${perspective.id}.perspectiveStateType`)}
             resultClasses={['findsByWeight', 'findsByLength', 'findsByWidth']}
             doNotRenderOnMount
+            screenSize={props.screenSize}
           />}
       />
       <Route
