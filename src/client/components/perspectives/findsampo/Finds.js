@@ -146,36 +146,11 @@ const Finds = props => {
             screenSize={props.screenSize}
           />}
       />
-      {/* <Route
-        path={`${rootUrl}/${perspective.id}/faceted-search/coins_by_year`}
-        render={() =>
-          <ApexChart
-            pageType='perspectiveState'
-            rawData={props.perspectiveState.results}
-            rawDataUpdateID={props.perspectiveState.resultUpdateID}
-            facetUpdateID={props.facetState.facetUpdateID}
-            fetching={props.perspectiveState.fetching}
-            fetchData={props.fetchResults}
-            createChartData={createSingleLineChartData}
-            title='Number of coins (find_name = "Raha" or "Hopearaha")'
-            xaxisTitle='Year (using only "earliest_creation_year")'
-            xaxisType='category'
-            xaxisTickAmount={20}
-            yaxisTitle='Number of coins'
-            seriesTitle='Number of coins'
-            stroke={{ width: 2 }}
-            // tooltip={{
-            //   x: { format: 'yyyy' }
-            // }}
-            resultClass='findsByYear'
-            facetClass='finds'
-          />}
-      /> */}
       <Route
         path={`${rootUrl}/${perspective.id}/faceted-search/line_chart`}
         render={() =>
           <ApexChart
-            pageType='perspectiveState'
+            pageType='facetResults'
             rawData={props.perspectiveState.results}
             rawDataUpdateID={props.perspectiveState.resultUpdateID}
             facetUpdateID={props.facetState.facetUpdateID}
