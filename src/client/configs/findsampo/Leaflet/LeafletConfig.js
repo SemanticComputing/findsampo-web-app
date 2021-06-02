@@ -192,16 +192,16 @@ export const layerConfigs = [
     },
     createPopup: createArchealogicalSitePopUp
   },
-  // {
-  //   id: 'fhaLidar',
-  //   type: 'WMS',
-  //   url: `${process.env.API_URL}/fha-wms`,
-  //   layers: 'NBA:lidar',
-  //   version: '1.3.0',
-  //   attribution: 'Museovirasto',
-  //   minZoom: 13,
-  //   maxZoom: 18
-  // },
+  {
+    id: 'fhaLidar',
+    type: 'WMS',
+    url: `${process.env.API_URL}/fha-wms`,
+    layers: 'NBA:lidar',
+    version: '1.3.0',
+    attribution: 'Museovirasto',
+    minZoom: 13,
+    maxZoom: 18
+  },
   {
     id: 'karelianMaps',
     type: 'WMTS',
