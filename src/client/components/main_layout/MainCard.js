@@ -20,7 +20,11 @@ const useStyles = makeStyles(theme => ({
     [theme.breakpoints.down('xs')]: {
       justifyContent: 'center'
     },
-    height: props.perspective.frontPageImage ? 200 : 150,
+    height: 228,
+    [theme.breakpoints.down('sm')]: {
+      height: 170,
+      maxWidth: 300
+    },
     [props.perspective.frontPageElement === 'card']: {
       // height: 'inherit',
       // width: 200,
@@ -32,26 +36,7 @@ const useStyles = makeStyles(theme => ({
     padding: theme.spacing(1.5),
     boxSizing: 'border-box',
     height: '100%',
-    width: '100%',
-    [theme.breakpoints.down('xs')]: {
-      width: '75%'
-    },
-    '&:hover': {
-      background: 'linear-gradient( rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1) )'
-    },
-    ...(props.perspective.frontPageImage && {
-      color: '#fff',
-      background: `linear-gradient( rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4) ), url(${props.perspective.frontPageImage})`,
-      backgroundRepeat: 'no-repeat',
-      backgroundSize: 'cover',
-      backgroundPosition: 'center',
-      '&:hover': {
-        background: `linear-gradient( rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8) ), url(${props.perspective.frontPageImage})`,
-        backgroundRepeat: 'no-repeat',
-        backgroundSize: 'cover',
-        backgroundPosition: 'center'
-      }
-    })
+    width: '100%'
   }),
   cardMedia: {
     height: 100
