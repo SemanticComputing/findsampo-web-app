@@ -4,9 +4,7 @@ import intl from 'react-intl-universal'
 import Grid from '@material-ui/core/Grid'
 import Typography from '@material-ui/core/Typography'
 import { makeStyles } from '@material-ui/core/styles'
-import MainCard from '../../main_layout/MainCard'
-// import bannerImage from '../../../img/findsampo/main-banner.jpg'
-import bannerImage from '../../../img/findsampo/ponsi-banner-compressed.jpg'
+import MainCard from './MainCard'
 import bannerLogoEN from '../../../img/findsampo/large-logo-transparent-white-en.png'
 import bannerLogoFI from '../../../img/findsampo/large-logo-transparent-white-fi.png'
 // import bannerLogoEN from '../../../img/findsampo/large-logo-transparent-black-en.png'
@@ -14,40 +12,49 @@ import bannerLogoFI from '../../../img/findsampo/large-logo-transparent-white-fi
 import ImageCarousel from '../../main_layout/ImageCarousel'
 
 const useStyles = makeStyles(theme => ({
-  root: {
-    width: '100%',
-    minHeight: 'calc(100% - 74px)',
-    backgroundColor: '#ffffff'
-  },
-  banner: {
-    background: `linear-gradient( rgba(0, 0, 0, 0.30), rgba(0, 0, 0, 0.30) ), url(${bannerImage})`,
-    // background: `radial-gradient(ellipse at center, rgba(194,194,194,0.35) 70%, rgb(191, 191, 191) 100%), url(${bannerImage})`,
+  root: props => ({
+    backgroundColor: '#ffffff',
+    [theme.breakpoints.up(props.layoutConfig.hundredPercentHeightBreakPoint)]: {
+      overflow: 'auto',
+      height: `calc(100% - ${props.layoutConfig.topBar.reducedHeight + props.layoutConfig.footer.height}px)`
+    },
+    [theme.breakpoints.up(props.layoutConfig.reducedHeightBreakpoint)]: {
+      overflow: 'auto',
+      height: `calc(100% - ${props.layoutConfig.topBar.defaultHeight + props.layoutConfig.footer.height}px)`
+    },
+    [theme.breakpoints.up(1100)]: {
+      overflow: 'auto',
+      height: `calc(100% - ${props.layoutConfig.topBar.defaultHeight + props.layoutConfig.footer.height}px)`
+    }
+    // marginBottom: theme.spacing(4)
+  }),
+  banner: props => ({
+    background: props.layoutConfig.mainPage.bannerBackround,
     backgroundRepeat: 'no-repeat',
     backgroundSize: 'cover',
     backgroundPosition: 'center',
-    height: 225,
+    height: props.layoutConfig.mainPage.bannerReducedHeight,
     [theme.breakpoints.up('xl')]: {
-      height: 370
+      height: props.layoutConfig.mainPage.bannerDefaultHeight
     },
-    width: '100%',
-    // boxShadow: '0 -15px 15px 0px #bdbdbd inset',
+    // boxShadow: '0 -15px 15px 0px #ffffff inset',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center'
+  }),
+  bannerLogoContainer: {
+    height: '100%',
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
-    // justifyContent: 'center',
-    marginBottom: theme.spacing(2)
-  },
-  bannerLogoContainer: {
-    display: 'flex',
-    alignItems: 'center',
-    height: '73%',
-    marginTop: theme.spacing(2),
-    [theme.breakpoints.down('xs')]: {
-      height: '70%'
-    }
+    justifyContent: 'center'
   },
   bannerLogo: {
-    maxHeight: '100%'
+    height: '60%',
+    [theme.breakpoints.down('lg')]: {
+      height: '40%'
+    },
+    marginBottom: theme.spacing(1)
   },
   bannerSubheading: {
     width: '100%',
@@ -56,8 +63,8 @@ const useStyles = makeStyles(theme => ({
   },
   layout: {
     width: 'auto',
-    marginLeft: theme.spacing(3),
-    marginRight: theme.spacing(3),
+    marginLeft: theme.spacing(1),
+    marginRight: theme.spacing(1),
     [theme.breakpoints.up(1100 + theme.spacing(6))]: {
       width: 1100,
       marginLeft: 'auto',
@@ -72,6 +79,7 @@ const useStyles = makeStyles(theme => ({
     marginTop: theme.spacing(1)
   },
   selectInternalPerspective: {
+    marginTop: theme.spacing(0.5),
     marginBottom: theme.spacing(1)
   },
   selectExternalPerspective: {
@@ -79,8 +87,8 @@ const useStyles = makeStyles(theme => ({
     marginBottom: theme.spacing(1.5)
   },
   licenceTextContainer: {
-    marginTop: theme.spacing(2),
-    marginBottom: theme.spacing(2)
+    paddingTop: theme.spacing(2),
+    paddingBottom: theme.spacing(2)
     // display: 'flex',
     // justifyContent: 'center'
   },
@@ -152,11 +160,11 @@ const Main = props => {
       <div className={classes.banner}>
         <div className={classes.bannerLogoContainer}>
           <img className={classes.bannerLogo} src={props.currentLocale === 'en' ? bannerLogoEN : bannerLogoFI} />
-        </div>
-        <div className={classes.bannerSubheading}>
-          <Typography component='h2' variant={subheadingVariant} align='center'>
-            {intl.getHTML('appTitle.subheading')}
-          </Typography>
+          <div className={classes.bannerSubheading}>
+            <Typography component='h2' variant={subheadingVariant} align='center'>
+              {intl.getHTML('appTitle.subheading')}
+            </Typography>
+          </div>
         </div>
       </div>
       <div className={classes.layout}>

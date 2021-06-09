@@ -42,7 +42,7 @@ export const INITIAL_STATE = {
     {
       id: 'image',
       valueType: 'image',
-      previewImageHeight: 200,
+      previewImageHeight: 150,
       makeLink: true,
       externalLink: true,
       sortValues: true,

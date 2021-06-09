@@ -20,11 +20,18 @@ const useStyles = makeStyles(theme => ({
     return {
       marginTop: theme.spacing(1),
       maxWidth: 350,
-      [theme.breakpoints.down('md')]: {
-        height: window.innerHeight - 56 - 61 - 48 - 48 - 72 - theme.spacing(5)
+      height: window.innerHeight - props.layoutConfig.topBar.reducedHeight - props.layoutConfig.tabHeight - 139,
+      [theme.breakpoints.up(600)]: {
+        height: window.innerHeight - props.layoutConfig.topBar.reducedHeight - props.layoutConfig.tabHeight - 256
       },
-      [theme.breakpoints.up('md')]: {
-        height: 'calc(100% - 80px)'
+      [theme.breakpoints.up(props.layoutConfig.hundredPercentHeightBreakPoint)]: {
+        height: window.innerHeight - props.layoutConfig.topBar.reducedHeight - props.layoutConfig.tabHeight - 178
+      },
+      [theme.breakpoints.up(1100)]: {
+        height: window.innerHeight - props.layoutConfig.topBar.reducedHeight - props.layoutConfig.tabHeight - 196
+      },
+      [theme.breakpoints.up(props.layoutConfig.reducedHeightBreakpoint)]: {
+        height: window.innerHeight - props.layoutConfig.topBar.reducedHeight - props.layoutConfig.tabHeight - 265
       },
       fontFamily: 'Roboto'
     }

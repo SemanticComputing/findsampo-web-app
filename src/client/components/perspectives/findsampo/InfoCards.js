@@ -16,25 +16,17 @@ import FHA056 from '../../../img/findsampo/Museovirasto_056_vaaka-compressed.jpg
 import FHA060 from '../../../img/findsampo/Museovirasto_060-vaaka-compressed.jpg'
 import FHA062 from '../../../img/findsampo/Museovirasto_062_vaaka-compressed-2000x1000px.jpg'
 
-const fourCardsBreakpoint = 1335
+const fourCardsBreakpoint = 1385
 
 const useStyles = makeStyles(theme => ({
   root: {
-    width: '100%',
+    height: '100%',
     display: 'flex',
     flexWrap: 'wrap',
     justifyContent: 'center',
-    [theme.breakpoints.down(fourCardsBreakpoint)]: {
-      alignItems: 'flex-start'
-    },
+    alignItems: 'flex-start',
     [theme.breakpoints.up(fourCardsBreakpoint)]: {
       alignItems: 'center'
-    },
-    [theme.breakpoints.down('sm')]: {
-      marginTop: 56 // app bar
-    },
-    [theme.breakpoints.up('sm')]: {
-      marginTop: 64 // app bar
     },
     overflow: 'auto',
     backgroundImage: `radial-gradient(ellipse at center, rgba(194,194,194,0.50) 15%, rgb(191, 191, 191) 100%), url(${FHA062})`,

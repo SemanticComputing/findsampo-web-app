@@ -1,7 +1,7 @@
 import { google } from 'googleapis'
 import { /* flatten, */ unflatten } from 'flat'
 import fs from 'fs-extra'
-import { readTranslationsFromGoogleSheets } from '../../../src/client/configs/findsampo/GeneralConfig'
+import { backendSearchConfig } from '../sparql/sampo/BackendSearchConfig'
 // import localeEN from '../../client/translations/findsampo/localeEN'
 import dotenv from 'dotenv'
 
@@ -84,7 +84,7 @@ const sheetValueRangesToFlatObject = valueRanges => {
 // console.log(values)
 // writeToGoogleSheet(values)
 
-if (readTranslationsFromGoogleSheets) {
+if (backendSearchConfig.readTranslationsFromGoogleSheets) {
   const spreadsheetId = process.env.SHEETS_API_SHEET_ID
   readFromGoogleSheet({ spreadsheetId, ranges: ['Taulukko1!A:A', 'Taulukko1!B:B'] })
     .then(data => {

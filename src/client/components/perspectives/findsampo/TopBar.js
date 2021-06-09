@@ -18,33 +18,34 @@ import Divider from '@material-ui/core/Divider'
 import { has } from 'lodash'
 import findSampoLogo from '../../../img/findsampo/logo.png'
 import secoLogo from '../../../img/logos/seco-logo-48x50.png'
-import { showLanguageButton, feedbackLink } from '../../../configs/findsampo/GeneralConfig'
 
-const mobileMenuBreakPoint = 1100
-
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(theme => ({
   grow: {
     flexGrow: 1
   },
-  toolbar: {
+  topBarToolbar: props => ({
+    minHeight: props.layoutConfig.topBar.reducedHeight,
+    [theme.breakpoints.up(props.layoutConfig.reducedHeightBreakpoint)]: {
+      minHeight: props.layoutConfig.topBar.defaultHeight
+    },
     paddingLeft: theme.spacing(1.5),
     paddingRight: theme.spacing(1.5)
-  },
-  sectionDesktop: {
+  }),
+  sectionDesktop: props => ({
     display: 'none',
-    [theme.breakpoints.up(mobileMenuBreakPoint)]: {
+    [theme.breakpoints.up(props.layoutConfig.topBar.mobileMenuBreakpoint)]: {
       display: 'flex'
     }
-  },
+  }),
   link: {
     textDecoration: 'none'
   },
-  sectionMobile: {
+  sectionMobile: props => ({
     display: 'flex',
-    [theme.breakpoints.up(mobileMenuBreakPoint)]: {
+    [theme.breakpoints.up(props.layoutConfig.topBar.mobileMenuBreakpoint)]: {
       display: 'none'
     }
-  },
+  }),
   homeButtonText: {
     whiteSpace: 'nowrap',
     [theme.breakpoints.down('sm')]: {
@@ -64,17 +65,26 @@ const useStyles = makeStyles((theme) => ({
     marginRight: theme.spacing(1),
     borderLeft: '2px solid white'
   },
-  secoLogo: {
+  secoLogo: props => ({
     marginLeft: theme.spacing(1),
-    [theme.breakpoints.down('md')]: {
+    [theme.breakpoints.down(props.layoutConfig.topBar.mobileMenuBreakpoint)]: {
       display: 'none'
     }
-  },
-  mainLogo: {
-    height: 40,
+  }),
+  mainLogo: props => ({
+    height: 23,
+    [theme.breakpoints.up(props.layoutConfig.reducedHeightBreakpoint)]: {
+      height: 40
+    },
     marginRight: theme.spacing(1)
+  }),
+  mainLogoButtonRoot: {
+    [theme.breakpoints.down('xs')]: {
+      minWidth: 48
+    }
   },
-  mainLogoText: {
+  mainLogoButtonText: {
+    padding: 0,
     textTransform: 'none'
   },
   mainLogoTypography: {
@@ -92,7 +102,7 @@ const TopBar = props => {
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null)
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl)
   const { perspectives, currentLocale, availableLocales, rootUrl } = props
-  const classes = useStyles()
+  const classes = useStyles(props)
   const handleMobileMenuOpen = event => setMobileMoreAnchorEl(event.currentTarget)
   const handleMobileMenuClose = () => setMobileMoreAnchorEl(null)
 
@@ -136,6 +146,7 @@ const TopBar = props => {
           key={perspective.id}
           component={AdapterLink}
           to={getInternalLink(perspective)}
+          onClick={handleMobileMenuClose}
         >
           {intl.get(`perspectives.${perspective.id}.label`).toUpperCase()}
         </MenuItem>
@@ -203,7 +214,7 @@ const TopBar = props => {
       <Divider />
       {renderMobileMenuItem({
         id: 'feedback',
-        externalUrl: feedbackLink,
+        externalUrl: props.layoutConfig.topBar.feedbackLink,
         label: intl.get('topBar.feedback')
       })}
       {renderMobileMenuItem({
@@ -229,12 +240,13 @@ const TopBar = props => {
       {/* Add an empty Typography element to ensure that that the MuiTypography class is loaded for
          any lower level components that use MuiTypography class only in translation files */}
       <Typography />
-      <AppBar position='absolute'>
-        <Toolbar className={classes.toolbar}>
+      <AppBar position='static'>
+        <Toolbar className={classes.topBarToolbar}>
           <Button
             component={AdapterLink} to='/'
             classes={{
-              text: classes.mainLogoText
+              root: classes.mainLogoButtonRoot,
+              text: classes.mainLogoButtonText
             }}
           >
             <img className={classes.mainLogo} src={findSampoLogo} />
@@ -252,7 +264,7 @@ const TopBar = props => {
             <div className={classes.appBarDivider} />
             {renderDesktopTopMenuItem({
               id: 'feedback',
-              externalUrl: feedbackLink,
+              externalUrl: props.layoutConfig.topBar.feedbackLink,
               label: intl.get('topBar.feedback')
             })}
             <TopBarInfoButton rootUrl={props.rootUrl} />
@@ -261,7 +273,7 @@ const TopBar = props => {
               externalUrl: intl.get('topBar.instructionsUrl'),
               label: intl.get('topBar.instructions')
             })}
-            {showLanguageButton &&
+            {props.layoutConfig.topBar.showLanguageButton &&
               <TopBarLanguageButton
                 currentLocale={currentLocale}
                 availableLocales={availableLocales}
@@ -278,7 +290,7 @@ const TopBar = props => {
             <Button><img src={secoLogo} /></Button>
           </a>
           <div className={classes.sectionMobile}>
-            {showLanguageButton &&
+            {props.layoutConfig.topBar.showLanguageButton &&
               <TopBarLanguageButton
                 currentLocale={currentLocale}
                 availableLocales={availableLocales}

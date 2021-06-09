@@ -40,6 +40,7 @@ export const backendSearchConfig = {
   types: typesPerspectiveConfig,
   periods: periodsPerspectiveConfig,
   coins: coinsPerspectiveConfig,
+  readTranslationsFromGoogleSheets: true,
   findsPlaces: {
     perspectiveID: 'finds', // use endpoint config from finds
     q: findsPlacesQuery,

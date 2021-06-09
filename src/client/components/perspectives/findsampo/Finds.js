@@ -37,6 +37,7 @@ const Finds = props => {
         routeProps={props.routeProps}
         tabs={props.perspective.tabs}
         screenSize={props.screenSize}
+        layoutConfig={props.layoutConfig}
       />
       <Route
         exact path={`${rootUrl}/${perspective.id}/faceted-search`}
@@ -56,6 +57,7 @@ const Finds = props => {
             sortResults={props.sortResults}
             routeProps={routeProps}
             rootUrl={rootUrl}
+            layoutConfig={props.layoutConfig}
           />}
       />
       <Route
@@ -67,12 +69,15 @@ const Finds = props => {
             fetchResults={props.fetchResults}
             perspectiveState={props.perspectiveState}
             facetUpdateID={props.facetState.facetUpdateID}
+            layoutConfig={props.layoutConfig}
           />}
       />
       <Route
         path={`${rootUrl}/${perspective.id}/faceted-search/map`}
         render={() =>
           <LeafletMap
+            mapBoxAccessToken={MAPBOX_ACCESS_TOKEN}
+            mapBoxStyle={MAPBOX_STYLE}
             center={props.perspectiveState.maps.findsPlaces.center}
             zoom={props.perspectiveState.maps.findsPlaces.zoom}
             results={props.perspectiveState.results}
@@ -98,6 +103,7 @@ const Finds = props => {
             customMapControl
             layerConfigs={layerConfigs}
             infoHeaderExpanded={props.perspectiveState.facetedSearchHeaderExpanded}
+            layoutConfig={props.layoutConfig}
             // activeLayers={[
             // 'WFS_MV_KulttuuriymparistoSuojellut:Muinaisjaannokset_alue',
             // 'WFS_MV_KulttuuriymparistoSuojellut:Muinaisjaannokset_piste',
@@ -121,6 +127,7 @@ const Finds = props => {
             layerType='heatmapLayer'
             mapBoxAccessToken={MAPBOX_ACCESS_TOKEN}
             mapBoxStyle={MAPBOX_STYLE}
+            layoutConfig={props.layoutConfig}
           />}
       />
       <Route
@@ -146,6 +153,7 @@ const Finds = props => {
             resultClasses={['findsByProvince', 'findsByMaterial', 'findsByObjectName']}
             doNotRenderOnMount
             screenSize={props.screenSize}
+            layoutConfig={props.layoutConfig}
           />}
       />
       <Route
@@ -173,6 +181,7 @@ const Finds = props => {
             resultClasses={['findsByWeight', 'findsByLength', 'findsByWidth']}
             doNotRenderOnMount
             screenSize={props.screenSize}
+            layoutConfig={props.layoutConfig}
           />}
       />
       <Route
@@ -187,6 +196,7 @@ const Finds = props => {
             facetUpdateID={props.facetState.facetUpdateID}
             fetchResults={props.fetchResults}
             clearResults={props.clearResults}
+            layoutConfig={props.layoutConfig}
           />}
       />
       <Route
@@ -210,6 +220,7 @@ const Finds = props => {
             resultClass='findsApexChartsTimeline'
             facetClass='finds'
             doNotRenderOnMount
+            layoutConfig={props.layoutConfig}
           />}
       />
       <Route
@@ -220,6 +231,7 @@ const Finds = props => {
             facetClass='finds'
             facetUpdateID={props.facetState.facetUpdateID}
             facets={props.facetState.facets}
+            layoutConfig={props.layoutConfig}
           />}
       />
     </>

@@ -11,6 +11,10 @@ import InstanceHomePageTable from '../../main_layout/InstanceHomePageTable'
 import LeafletMap from '../../facet_results/LeafletMap'
 import Export from '../../facet_results/Export'
 // import Recommendations from './Recommendations'
+import {
+  MAPBOX_ACCESS_TOKEN,
+  MAPBOX_STYLE
+} from '../../../configs/findsampo/GeneralConfig'
 // import { coseLayout, cytoscapeStyle } from '../../../configs/sampo/Cytoscape.js/NetworkConfig'
 import { Route, Redirect } from 'react-router-dom'
 import { has } from 'lodash'
@@ -21,11 +25,12 @@ const styles = () => ({
     width: '100%',
     height: '100%'
   },
-  content: {
+  content: props => ({
+    padding: 0,
     width: '100%',
-    height: 'calc(100% - 72px)',
+    height: `calc(100% - ${props.layoutConfig.tabHeight}px)`,
     overflow: 'auto'
-  },
+  }),
   spinnerContainer: {
     display: 'flex',
     width: '100%',
@@ -119,7 +124,7 @@ class InstanceHomePage extends React.Component {
   }
 
   render = () => {
-    const { classes, perspectiveState, perspectiveConfig, rootUrl, screenSize } = this.props
+    const { classes, perspectiveState, perspectiveConfig, rootUrl, screenSize, layoutConfig } = this.props
     const { instanceTableData, results, fetching } = perspectiveState
     const resultClass = perspectiveConfig.id
     const hasTableData = this.hasTableData()
@@ -129,6 +134,7 @@ class InstanceHomePage extends React.Component {
           routeProps={this.props.routeProps}
           tabs={perspectiveConfig.instancePageTabs}
           screenSize={screenSize}
+          layoutConfig={layoutConfig}
         />
         <Paper square className={classes.content}>
           {fetching && !hasTableData &&
@@ -156,12 +162,15 @@ class InstanceHomePage extends React.Component {
                     data={instanceTableData}
                     properties={this.getVisibleRows(perspectiveState.properties)}
                     screenSize={screenSize}
+                    layoutConfig={layoutConfig}
                   />}
               />
               <Route
                 path={`${rootUrl}/${resultClass}/page/${this.state.localID}/map`}
                 render={() =>
                   <LeafletMap
+                    mapBoxAccessToken={MAPBOX_ACCESS_TOKEN}
+                    mapBoxStyle={MAPBOX_STYLE}
                     center={perspectiveState.maps.findInstancePageMap.center}
                     zoom={perspectiveState.maps.findInstancePageMap.zoom}
                     results={results}
@@ -178,12 +187,15 @@ class InstanceHomePage extends React.Component {
                     showInstanceCountInClusters={false}
                     showExternalLayers={false}
                     updateMapBounds={this.props.updateMapBounds}
+                    layoutConfig={layoutConfig}
                   />}
               />
               <Route
                 path={`${rootUrl}/${resultClass}/page/${this.state.localID}/nearby_finds`}
                 render={() =>
                   <LeafletMap
+                    mapBoxAccessToken={MAPBOX_ACCESS_TOKEN}
+                    mapBoxStyle={MAPBOX_STYLE}
                     center={perspectiveState.maps.nearbyFinds.center}
                     zoom={perspectiveState.maps.nearbyFinds.zoom}
                     results={results}
@@ -199,6 +211,7 @@ class InstanceHomePage extends React.Component {
                     showInstanceCountInClusters={false}
                     showExternalLayers={false}
                     updateMapBounds={this.props.updateMapBounds}
+                    layoutConfig={layoutConfig}
                   />}
               />
               <Route
@@ -212,6 +225,8 @@ class InstanceHomePage extends React.Component {
                     resultUpdateID={perspectiveState.resultUpdateID}
                     fetchResults={this.props.fetchResults}
                     uri={instanceTableData.id}
+                    screenSize={screenSize}
+                    layoutConfig={layoutConfig}
                     properties={[
                       {
                         id: 'similarObjectType',
@@ -255,6 +270,8 @@ class InstanceHomePage extends React.Component {
                     sparqlQuery={this.props.sparqlQuery}
                     pageType='instancePage'
                     id={instanceTableData.id}
+                    screenSize={screenSize}
+                    layoutConfig={layoutConfig}
                   />}
               />
             </>}

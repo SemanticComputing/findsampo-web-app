@@ -2,32 +2,27 @@ import React from 'react'
 import Paper from '@material-ui/core/Paper'
 import PropTypes from 'prop-types'
 import Grid from '@material-ui/core/Grid'
-import { withStyles } from '@material-ui/core/styles'
+import { makeStyles } from '@material-ui/core/styles'
 import aaltoLogo from '../../../img/findsampo/logo_aalto-compressor.png'
 import hyLogo from '../../../img/findsampo/logo_helsinki-compressor.png'
 import heldigLogo from '../../../img/findsampo/logo_heldig-compressor.png'
 import fhaLogo from '../../../img/findsampo/logo_fha-compressor.png'
 
-const styles = theme => ({
-  root: {
-    height: 74,
-    // marginTop: theme.spacing(3),
+const useStyles = makeStyles(theme => ({
+  root: props => ({
+    boxShadow: '0 -20px 20px -20px #333 inset',
+    borderRadius: 0,
     backgroundColor: theme.palette.primary.main,
-    // position: 'absolute',
-    [theme.breakpoints.down('sm')]: {
-      display: 'none'
-    },
-    // bottom: 0,
-    // left: 0,
-    boxShadow: '0 -20px 20px -20px #333',
-    width: '100%',
-    borderRadius: 0
+    [theme.breakpoints.up(props.layoutConfig.hundredPercentHeightBreakPoint)]: {
+      minHeight: props.layoutConfig.footer.height
+      // height: 115, for two row footer
+    }
+  }),
+  gridContainer: {
+    marginTop: 0,
+    marginBottom: 0
   },
-  layout: {
-    width: 'auto',
-    // height: 115,
-    marginTop: theme.spacing(2),
-    // marginBottom: theme.spacing(1),
+  layout: props => ({
     marginLeft: theme.spacing(2),
     marginRight: theme.spacing(2),
     [theme.breakpoints.up(1500 + theme.spacing(6))]: {
@@ -35,11 +30,17 @@ const styles = theme => ({
       marginLeft: 'auto',
       marginRight: 'auto'
     }
-  },
-  logoContainer: {
+  }),
+  gridItem: {
     display: 'flex',
     alignItems: 'center',
-    justifyContent: 'center'
+    justifyContent: 'center',
+    paddingTop: '6px !important',
+    paddingBottom: '6px !important',
+    [theme.breakpoints.down('sm')]: {
+      paddingTop: '12px !important',
+      paddingBottom: '12px !important'
+    }
   },
   logo: {
     height: 40
@@ -53,30 +54,30 @@ const styles = theme => ({
   heldigLogo: {
     height: 33
   }
-})
+}))
 
 const Footer = props => {
-  const { classes } = props
+  const classes = useStyles(props)
   return (
     <Paper className={classes.root}>
       <div className={classes.layout}>
-        <Grid container spacing={0} item xs={12}>
-          <Grid item xs className={classes.logoContainer}>
+        <Grid className={classes.gridContainer} container spacing={3}>
+          <Grid item xs className={classes.gridItem}>
             <a href='https://www.aalto.fi/en/school-of-science' target='_blank' rel='noopener noreferrer'>
               <img className={classes.aaltoLogo} src={aaltoLogo} alt='logo' />
             </a>
           </Grid>
-          <Grid item xs className={classes.logoContainer}>
+          <Grid item xs className={classes.gridItem}>
             <a href='https://www.helsinki.fi/en' target='_blank' rel='noopener noreferrer'>
               <img className={classes.hyLogo} src={hyLogo} alt='logo' />
             </a>
           </Grid>
-          <Grid item xs className={classes.logoContainer}>
+          <Grid item xs className={classes.gridItem}>
             <a href='https://www.helsinki.fi/en/helsinki-centre-for-digital-humanities' target='_blank' rel='noopener noreferrer'>
               <img className={classes.heldigLogo} src={heldigLogo} alt='logo' />
             </a>
           </Grid>
-          <Grid item xs className={classes.logoContainer}>
+          <Grid item xs className={classes.gridItem}>
             <a href='https://www.museovirasto.fi/en' target='_blank' rel='noopener noreferrer'>
               <img className={classes.logo} src={fhaLogo} alt='logo' />
             </a>
@@ -88,7 +89,7 @@ const Footer = props => {
 }
 
 Footer.propTypes = {
-  classes: PropTypes.object.isRequired
+  layoutConfig: PropTypes.object.isRequired
 }
 
-export default withStyles(styles)(Footer)
+export default Footer

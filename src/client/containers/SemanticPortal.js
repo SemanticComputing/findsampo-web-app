@@ -31,6 +31,8 @@ import FullTextSearch from '../components/perspectives/findsampo/FullTextSearch'
 import InstanceHomePage from '../components/perspectives/findsampo/InstanceHomePage'
 import Footer from '../components/perspectives/findsampo/Footer'
 // import KnowledgeGraphMetadataTable from '../components/perspectives/findsampo/KnowledgeGraphMetadataTable'
+import Sites from '../components/perspectives/findsampo/Sites'
+import InfoCards from '../components/perspectives/findsampo/InfoCards'
 import { perspectiveConfig } from '../configs/findsampo/PerspectiveConfig'
 import { perspectiveConfigOnlyInfoPages } from '../configs/findsampo/PerspectiveConfigOnlyInfoPages'
 import { rootUrl, layoutConfig } from '../configs/findsampo/GeneralConfig'
@@ -72,15 +74,24 @@ import {
 // import { filterResults } from '../selectors'
 
 const useStyles = makeStyles(theme => ({
-  root: {
-    /* Background color of the app.
-       In order to use both 'auto' and '100%' heights, bg-color
-       needs to be defined also in index.html (for #app and #root elements)
-    */
-    backgroundColor: '#bdbdbd',
-    [theme.breakpoints.up(layoutConfig.hundredPercentHeightBreakPoint)]: {
-      overflow: 'hidden',
-      height: '100%'
+  root: props => {
+    let height = null
+    const { pathname } = props.location
+    if (
+      pathname.includes('/sites/map') ||
+      pathname.includes('/guides') ||
+      pathname.includes('/list') ||
+      pathname.includes('/full-text-search')
+    ) {
+      height = '100%'
+    }
+    return {
+      ...(height && { height }),
+      backgroundColor: '#bdbdbd',
+      [theme.breakpoints.up(layoutConfig.hundredPercentHeightBreakPoint)]: {
+        overflow: 'hidden',
+        height: '100%'
+      }
     }
   },
   mainContainerClientFS: {
@@ -106,7 +117,10 @@ const useStyles = makeStyles(theme => ({
     }
   },
   perspectiveContainer: {
-    margin: theme.spacing(0.5),
+    marginTop: theme.spacing(0.5),
+    marginRight: theme.spacing(0.5),
+    marginLeft: theme.spacing(0.5),
+    marginBottom: 0,
     width: `calc(100% - ${theme.spacing(1)}px)`,
     [theme.breakpoints.up(layoutConfig.hundredPercentHeightBreakPoint)]: {
       height: `calc(100% - ${layoutConfig.topBar.reducedHeight + layoutConfig.infoHeader.reducedHeight.height + theme.spacing(1.5)}px)`
@@ -168,7 +182,7 @@ const useStyles = makeStyles(theme => ({
     paddingRight: '0px !important',
     [theme.breakpoints.down('sm')]: {
       paddingLeft: '0px !important',
-      marginBottom: theme.spacing(1),
+      // marginBottom: theme.spacing(1),
       marginTop: theme.spacing(0.5)
     }
   },
@@ -264,6 +278,20 @@ const SemanticPortal = props => {
     document.documentElement.lang = props.options.currentLocale
     document.querySelector('meta[name="description"]').setAttribute('content', intl.get('html.description'))
   }, [props.options.currentLocale])
+
+  // useEffect(() => {
+  //   const { pathname } = props.location
+  //   if (
+  //     pathname.includes('/sites/map') ||
+  //     pathname.includes('/full-text-search')
+  //   ) {
+  //     document.documentElement.style.height = '100%'
+  //     document.body.style.height = '100%'
+  //     document.getElementById('root').style.height = '100%'
+  //     document.getElementById('app').style.height = '100%'
+  //   }
+  // }, [])
+
   return (
     <MuiPickersUtilsProvider libInstance={moment} utils={MomentUtils} locale={props.options.currentLocale}>
       <div className={classes.root}>
@@ -294,6 +322,10 @@ const SemanticPortal = props => {
                   screenSize={screenSize}
                   rootUrl={rootUrlWithLang}
                   layoutConfig={layoutConfig}
+                  resultClass='finds'
+                  currentLocale={props.options.currentLocale}
+                  fetchKnowledgeGraphMetadata={props.fetchKnowledgeGraphMetadata}
+                  knowledgeGraphMetadata={props.finds.knowledgeGraphMetadata}
                 />
                 <Footer layoutConfig={layoutConfig} />
               </>}
@@ -312,18 +344,14 @@ const SemanticPortal = props => {
           <Route
             path={`${rootUrlWithLang}/full-text-search`}
             render={routeProps =>
-              <Grid container spacing={1} className={classes.mainContainer}>
-                <Grid item xs={12} className={classes.resultsContainer}>
-                  <FullTextSearch
-                    fullTextSearch={props.fullTextSearch}
-                    sortFullTextResults={props.sortFullTextResults}
-                    routeProps={routeProps}
-                    screenSize={screenSize}
-                    rootUrl={rootUrlWithLang}
-                    layoutConfig={layoutConfig}
-                  />
-                </Grid>
-              </Grid>}
+              <FullTextSearch
+                fullTextSearch={props.fullTextSearch}
+                sortFullTextResults={props.sortFullTextResults}
+                routeProps={routeProps}
+                screenSize={screenSize}
+                rootUrl={rootUrlWithLang}
+                layoutConfig={layoutConfig}
+              />}
           />
           {/* routes for faceted search perspectives */}
           {perspectiveConfig.map(perspective => {
@@ -535,6 +563,41 @@ const SemanticPortal = props => {
               />
             </Switch>
           )}
+          <Route
+            path={`${rootUrlWithLang}/sites/map`}
+            render={routeProps => {
+              const config = perspectiveConfig.find(p => p.id === 'sites')
+              return (
+                <>
+                  <InfoHeader
+                    resultClass='sites'
+                    pageType='facetResults'
+                    expanded={props.sites.facetedSearchHeaderExpanded}
+                    updateExpanded={props.updatePerspectiveHeaderExpanded}
+                    descriptionHeight={config.perspectiveDescHeight}
+                    screenSize={screenSize}
+                    layoutConfig={layoutConfig}
+                  />
+                  <Sites
+                    perspectiveState={props.sites}
+                    leafletMapState={props.leafletMap}
+                    fetchGeoJSONLayers={props.fetchGeoJSONLayers}
+                    fetchGeoJSONLayersBackend={props.fetchGeoJSONLayersBackend}
+                    clearGeoJSONLayers={props.clearGeoJSONLayers}
+                    showError={props.showError}
+                    updateMapBounds={props.updateMapBounds}
+                    screenSize={screenSize}
+                    layoutConfig={layoutConfig}
+                  />
+
+                </>
+              )
+            }}
+          />
+          <Route
+            path={`${rootUrlWithLang}/guides`}
+            render={() => <InfoCards />}
+          />
           {/* <Route
             path={`${rootUrlWithLang}/clientFSPlaces/federated-search`}
             render={routeProps =>

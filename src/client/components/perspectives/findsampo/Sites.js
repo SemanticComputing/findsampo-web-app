@@ -9,41 +9,46 @@ import LeafletMap from '../../facet_results/LeafletMap'
 // import Network from '../../facet_results/Network'
 // import Timeline from '../../facet_results/Timeline'
 // import Export from '../../facet_results/Export'
+import {
+  MAPBOX_ACCESS_TOKEN,
+  MAPBOX_STYLE
+} from '../../../configs/findsampo/GeneralConfig'
 import { layerConfigs } from '../../../configs/findsampo/Leaflet/LeafletConfig'
 
 const useStyles = makeStyles(theme => ({
-  root: {
-    marginLeft: theme.spacing(1),
-    marginRight: theme.spacing(1),
-    marginBottom: theme.spacing(1),
-    width: '100%',
-    [theme.breakpoints.down('sm')]: {
-      marginTop: 56 + 67 + theme.spacing(1), // app bar + info header + margin
-      height: 'calc(100% - 140px)' // app bar + info header + 2*margin
-    },
-    [theme.breakpoints.up('sm')]: {
-      marginTop: 64 + 67 + theme.spacing(1), // app bar + info header + margin
-      height: 'calc(100% - 147px)' // app bar + info header + 2*margin
+  root: props => ({
+    margin: theme.spacing(0.5),
+    width: `calc(100% - ${theme.spacing(1)}px)`,
+    // [theme.breakpoints.up(props.layoutConfig.hundredPercentHeightBreakPoint)]: {
+    height: `calc(100% - ${props.layoutConfig.topBar.reducedHeight + props.layoutConfig.infoHeader.reducedHeight.height + theme.spacing(1.5)}px)`,
+    // },
+    [theme.breakpoints.up(props.layoutConfig.reducedHeightBreakpoint)]: {
+      height: `calc(100% - ${props.layoutConfig.topBar.defaultHeight + props.layoutConfig.infoHeader.default.height + theme.spacing(1.5)}px)`
     }
-  },
-  rootHeaderExpanded: {
-    marginLeft: theme.spacing(1),
-    marginRight: theme.spacing(1),
-    marginBottom: theme.spacing(1),
-    width: '100%',
-    [theme.breakpoints.down('sm')]: {
-      marginTop: 56 + 252 + theme.spacing(1), // app bar + info header expanded + margin
-      height: 'calc(100% - 316px)' // app bar + info header expanded + 2*margin
-    },
-    [theme.breakpoints.up('sm')]: {
-      marginTop: 64 + 252 + theme.spacing(1), // app bar + info header expanded + margin
-      height: 'calc(100% - 332px)' // app bar + info header expanded + 2*margin
+  }),
+  rootHeaderExpanded: props => ({
+    margin: theme.spacing(0.5),
+    width: `calc(100% - ${theme.spacing(1)}px)`,
+    // [theme.breakpoints.up(props.layoutConfig.hundredPercentHeightBreakPoint)]: {
+    height: `calc(100% - ${
+        props.layoutConfig.topBar.reducedHeight +
+        props.layoutConfig.infoHeader.reducedHeight.height +
+        props.layoutConfig.infoHeader.reducedHeight.expandedContentHeight +
+        theme.spacing(3.5)}px)`,
+    // },
+    [theme.breakpoints.up(props.layoutConfig.reducedHeightBreakpoint)]: {
+      height: `calc(100% - ${
+        props.layoutConfig.topBar.defaultHeight +
+        props.layoutConfig.infoHeader.default.height +
+        props.layoutConfig.infoHeader.default.expandedContentHeight +
+        theme.spacing(3.5)
+      }px)`
     }
-  }
+  })
 }))
 
 const Sites = props => {
-  const classes = useStyles()
+  const classes = useStyles(props)
   const { screenSize } = props
   const layerControlExpanded = screenSize === 'md' ||
     screenSize === 'lg' ||
@@ -54,6 +59,8 @@ const Sites = props => {
       : classes.root}
     >
       <LeafletMap
+        mapBoxAccessToken={MAPBOX_ACCESS_TOKEN}
+        mapBoxStyle={MAPBOX_STYLE}
         center={props.perspectiveState.maps.sitesMap.center}
         zoom={props.perspectiveState.maps.sitesMap.zoom}
         locateUser
@@ -72,6 +79,7 @@ const Sites = props => {
         customMapControl
         layerControlExpanded={layerControlExpanded}
         infoHeaderExpanded={props.perspectiveState.facetedSearchHeaderExpanded}
+        layoutConfig={props.layoutConfig}
         layerConfigs={layerConfigs}
         activeLayers={[
           // 'WFS_MV_KulttuuriymparistoSuojellut:Muinaisjaannokset_alue',
