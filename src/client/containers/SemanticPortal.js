@@ -95,15 +95,13 @@ const useStyles = makeStyles(theme => ({
     }
   },
   mainContainerClientFS: {
-    marginTop: theme.spacing(1),
-    marginBottom: theme.spacing(3),
+    marginTop: theme.spacing(0.5),
+    marginBottom: theme.spacing(0.5),
     [theme.breakpoints.up(layoutConfig.hundredPercentHeightBreakPoint)]: {
-      height: `calc(100% - ${layoutConfig.topBar.reducedHeight + layoutConfig.footer.height + theme.spacing(0.5)}px)`,
-      marginBottom: theme.spacing(1)
+      height: `calc(100% - ${layoutConfig.topBar.reducedHeight + layoutConfig.footer.reducedHeight + theme.spacing(1)}px)`
     },
     [theme.breakpoints.up(layoutConfig.reducedHeightBreakpoint)]: {
-      height: `calc(100% - ${layoutConfig.topBar.defaultHeight + layoutConfig.footer.height + theme.spacing(0.5)}px)`,
-      marginBottom: theme.spacing(1)
+      height: `calc(100% - ${layoutConfig.topBar.defaultHeight + layoutConfig.footer.defaultHeight + theme.spacing(1)}px)`
     }
   },
   textPageContainer: {
