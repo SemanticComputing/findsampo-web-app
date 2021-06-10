@@ -108,11 +108,11 @@ const Footer = props => {
               <img className={classes.heldigLogo} src={heldigLogo} alt='logo' />
             </a>
           </Grid>
-        </Grid>
-        <Grid item xs className={classes.gridItem}>
-          <a className={classes.link} href='https://www.museovirasto.fi/en' target='_blank' rel='noopener noreferrer'>
-            <img className={classes.logo} src={fhaLogo} alt='logo' />
-          </a>
+          <Grid item xs className={classes.gridItem}>
+            <a className={classes.link} href='https://www.museovirasto.fi/en' target='_blank' rel='noopener noreferrer'>
+              <img className={classes.logo} src={fhaLogo} alt='logo' />
+            </a>
+          </Grid>
         </Grid>
       </div>
     </Paper>
