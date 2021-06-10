@@ -16,24 +16,27 @@ const useStyles = makeStyles(theme => ({
     backgroundColor: '#ffffff',
     [theme.breakpoints.up(props.layoutConfig.hundredPercentHeightBreakPoint)]: {
       overflow: 'auto',
-      height: `calc(100% - ${props.layoutConfig.topBar.reducedHeight + props.layoutConfig.footer.height}px)`
+      height: `calc(100% - ${props.layoutConfig.topBar.reducedHeight + props.layoutConfig.footer.reducedHeight}px)`
     },
     [theme.breakpoints.up(props.layoutConfig.reducedHeightBreakpoint)]: {
       overflow: 'auto',
-      height: `calc(100% - ${props.layoutConfig.topBar.defaultHeight + props.layoutConfig.footer.height}px)`
+      height: `calc(100% - ${props.layoutConfig.topBar.defaultHeight + props.layoutConfig.footer.defaultHeight}px)`
     },
     [theme.breakpoints.up(1100)]: {
       overflow: 'auto',
       height: `calc(100% - ${props.layoutConfig.topBar.defaultHeight + props.layoutConfig.footer.height}px)`
     }
-    // marginBottom: theme.spacing(4)
+    // marginBottom: theme.spacing(1)
   }),
   banner: props => ({
     background: props.layoutConfig.mainPage.bannerBackround,
     backgroundRepeat: 'no-repeat',
     backgroundSize: 'cover',
     backgroundPosition: 'center',
-    height: props.layoutConfig.mainPage.bannerReducedHeight,
+    height: props.layoutConfig.mainPage.bannerMobileHeight,
+    [theme.breakpoints.up('md')]: {
+      height: props.layoutConfig.mainPage.bannerReducedHeight
+    },
     [theme.breakpoints.up('xl')]: {
       height: props.layoutConfig.mainPage.bannerDefaultHeight
     },
@@ -58,13 +61,22 @@ const useStyles = makeStyles(theme => ({
   },
   bannerSubheading: {
     width: '100%',
-    color: '#fff'
+    color: '#fff',
+    [theme.breakpoints.down('sm')]: {
+      '& span': {
+        fontSize: '0.875rem'
+      }
+    }
     // color: '#000'
   },
   layout: {
     width: 'auto',
     marginLeft: theme.spacing(1),
     marginRight: theme.spacing(1),
+    [theme.breakpoints.down('xs')]: {
+      marginLeft: theme.spacing(3),
+      marginRight: theme.spacing(3)
+    },
     [theme.breakpoints.up(1100 + theme.spacing(6))]: {
       width: 1100,
       marginLeft: 'auto',

@@ -46,12 +46,6 @@ const useStyles = makeStyles(theme => ({
       display: 'none'
     }
   }),
-  homeButtonText: {
-    whiteSpace: 'nowrap',
-    [theme.breakpoints.down('sm')]: {
-      fontSize: '1rem'
-    }
-  },
   appBarButton: {
     whiteSpace: 'nowrap',
     color: 'white !important',
@@ -71,6 +65,12 @@ const useStyles = makeStyles(theme => ({
       display: 'none'
     }
   }),
+  secoLogoImage: props => ({
+    height: 32,
+    [theme.breakpoints.up(props.layoutConfig.reducedHeightBreakpoint)]: {
+      height: 50
+    }
+  }),
   mainLogo: props => ({
     height: 23,
     [theme.breakpoints.up(props.layoutConfig.reducedHeightBreakpoint)]: {
@@ -79,15 +79,20 @@ const useStyles = makeStyles(theme => ({
     marginRight: theme.spacing(1)
   }),
   mainLogoButtonRoot: {
+    paddingLeft: 0,
     [theme.breakpoints.down('xs')]: {
       minWidth: 48
     }
   },
-  mainLogoButtonText: {
-    padding: 0,
-    textTransform: 'none'
+  mainLogoButtonLabel: {
+    justifyContent: 'left'
   },
   mainLogoTypography: {
+    whiteSpace: 'nowrap',
+    textTransform: 'none',
+    [theme.breakpoints.down('sm')]: {
+      fontSize: '1rem'
+    },
     [theme.breakpoints.down('xs')]: {
       display: 'none'
     }
@@ -246,11 +251,13 @@ const TopBar = props => {
             component={AdapterLink} to='/'
             classes={{
               root: classes.mainLogoButtonRoot,
-              text: classes.mainLogoButtonText
+              label: classes.mainLogoButtonLabel
             }}
           >
             <img className={classes.mainLogo} src={findSampoLogo} />
-            <Typography className={classes.mainLogoTypography} variant='h5'>{intl.get('appTitle.short')}</Typography>
+            <Typography className={classes.mainLogoTypography} variant='h5'>
+              {intl.get('appTitle.short')}
+            </Typography>
           </Button>
           <TopBarSearchField
             fetchFullTextResults={props.fetchFullTextResults}
@@ -287,7 +294,7 @@ const TopBar = props => {
             target='_blank'
             rel='noopener noreferrer'
           >
-            <Button><img src={secoLogo} /></Button>
+            <Button><img className={classes.secoLogoImage} src={secoLogo} /></Button>
           </a>
           <div className={classes.sectionMobile}>
             {props.layoutConfig.topBar.showLanguageButton &&
@@ -344,7 +351,8 @@ TopBar.propTypes = {
   /**
    * Root url of the application.
    */
-  rootUrl: PropTypes.string.isRequired
+  rootUrl: PropTypes.string.isRequired,
+  layoutConfig: PropTypes.object.isRequired
 }
 
 export default TopBar

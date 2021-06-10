@@ -24,7 +24,7 @@ export const feedbackLink = ''
 
 export const layoutConfig = {
   hundredPercentHeightBreakPoint: 'md',
-  reducedHeightBreakpoint: 'lg',
+  reducedHeightBreakpoint: 'xl',
   tabHeight: 58,
   paginationToolbarHeight: 37,
   tableFontSize: '0.8rem',
@@ -37,8 +37,9 @@ export const layoutConfig = {
   },
   mainPage: {
     bannerBackround: `linear-gradient( rgba(0, 0, 0, 0.30), rgba(0, 0, 0, 0.30) ), url(${bannerImage})`,
-    bannerDefaultHeight: 370,
-    bannerReducedHeight: 225
+    bannerMobileHeight: 150,
+    bannerReducedHeight: 225,
+    bannerDefaultHeight: 370
   },
   infoHeader: {
     default: {
@@ -55,6 +56,7 @@ export const layoutConfig = {
     }
   },
   footer: {
-    height: 61
+    reducedHeight: 44,
+    defaultHeight: 64
   }
 }
