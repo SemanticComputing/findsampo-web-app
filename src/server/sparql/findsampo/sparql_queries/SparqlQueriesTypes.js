@@ -52,8 +52,8 @@ export const typesPropertiesInstancePage =
     }
     UNION
     {
-      ?id skos:note ?definition__id .
-      ?id skos:note ?definition__prefLabel .
+      ?id rdfs:seeAlso ?definition__id .
+      ?id rdfs:seeAlso ?definition__prefLabel .
       ?id rdfs:seeAlso ?definition__dataProviderUrl .
     }
   `

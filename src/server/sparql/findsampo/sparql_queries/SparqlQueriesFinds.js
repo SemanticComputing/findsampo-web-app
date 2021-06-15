@@ -84,8 +84,8 @@ export const findPropertiesInstancePage =
     {
       ?image__id a :Image .
       ?image__id :documents ?id .
-      ?image__id ltk-s:image_url ?image__url_ .
-      BIND(REPLACE(?image__url_, "http", "https") as ?image__url)
+      ?image__id ltk-s:image_url ?image__url .
+      # BIND(REPLACE(?image__url_, "http", "https") as ?image__url)
       OPTIONAL {
         ?image__id skos:prefLabel ?image__title .
         BIND(CONCAT(STR(?image__title), ' (kuvan oikeudet: Museovirasto)') AS ?image__description)
@@ -220,8 +220,8 @@ export const findPropertiesFacetResults =
     {
       ?image__id a :Image .
       ?image__id :documents ?id .
-      ?image__id ltk-s:image_url ?image__url_ .
-      BIND(REPLACE(?image__url_, "http", "https") as ?image__url)
+      ?image__id ltk-s:image_url ?image__url .
+      # BIND(REPLACE(?image__url_, "http", "https") as ?image__url)
       OPTIONAL {
         ?image__id skos:prefLabel ?image__title .
         BIND(CONCAT(STR(?image__title), ' (kuvan oikeudet: Museovirasto)') AS ?image__description)
@@ -271,8 +271,8 @@ export const findsPlacesQuery = `
 `
 
 export const findsListQuery = `
-  SELECT ?id ?findName ?objectType ?findNumber ?dataProviderUrl ?municipality 
-  (GROUP_CONCAT(DISTINCT ?periods; SEPARATOR=", ") AS ?period) 
+  SELECT ?id ?findName ?objectType ?findNumber ?dataProviderUrl ?municipality
+  (GROUP_CONCAT(DISTINCT ?periods; SEPARATOR=", ") AS ?period)
   (GROUP_CONCAT(DISTINCT ?materials; SEPARATOR=", ") AS ?material)
   (GROUP_CONCAT(DISTINCT ?imageURLs; SEPARATOR=", ") AS ?imageURL)
   WHERE {
@@ -284,16 +284,16 @@ export const findsListQuery = `
     BIND(CONCAT("/${perspectiveID}/page/", REPLACE(STR(?id), "^.*\\\\/(.+)", "$1")) AS ?dataProviderUrl)
     OPTIONAL { ?id :period/skos:prefLabel ?periods }
     OPTIONAL { ?id :material/skos:prefLabel ?materials }
-    OPTIONAL { 
-      ?id ^:documents/ltk-s:image_url ?imageURLs_ 
-      BIND(REPLACE(?imageURLs_, "http", "https") as ?imageURLs)
+    OPTIONAL {
+      ?id ^:documents/ltk-s:image_url ?imageURLs
+      # BIND(REPLACE(?imageURLs_, "http", "https") as ?imageURLs)
     }
-    OPTIONAL { 
-      ?id :found_in_municipality/skos:prefLabel ?municipality 
+    OPTIONAL {
+      ?id :found_in_municipality/skos:prefLabel ?municipality
       FILTER(LANG(?municipality) = '<LANG>')
     }
   }
-  GROUP BY ?id ?findName ?objectType ?findNumber ?dataProviderUrl ?municipality 
+  GROUP BY ?id ?findName ?objectType ?findNumber ?dataProviderUrl ?municipality
   ORDER BY ?findNumber
 `
 
@@ -455,8 +455,8 @@ export const knowledgeGraphMetadataQuery = `
           ltk-s:featured_find ?featuredFind__id .
     ?featuredFind__id ltk-s:find_name ?featuredFind__prefLabel .
     ?picture :documents ?featuredFind__id .
-    ?picture ltk-s:image_url ?featuredFind__imageURL_ .
-    BIND(REPLACE(?featuredFind__imageURL_, "http", "https") as ?featuredFind__imageURL)
+    ?picture ltk-s:image_url ?featuredFind__imageURL .
+     # BIND(REPLACE(?featuredFind__imageURL_, "http", "https") as ?featuredFind__imageURL)
     BIND(CONCAT("/${perspectiveID}/page/", REPLACE(STR(?featuredFind__id), "^.*\\\\/(.+)", "$1")) AS ?featuredFind__dataProviderUrl)
   }
 `
