@@ -1,10 +1,9 @@
-import React from 'react'
+import React, { lazy } from 'react'
 import PropTypes from 'prop-types'
 import { withStyles } from '@material-ui/core/styles'
 import intl from 'react-intl-universal'
 import L from 'leaflet'
 import { has, isEqual } from 'lodash'
-import buffer from '@turf/buffer'
 import CircularProgress from '@material-ui/core/CircularProgress'
 import { purple } from '@material-ui/core/colors'
 import history from '../../History'
@@ -38,6 +37,8 @@ import markerIconGreen from '../../img/markers/marker-icon-green.png'
 import markerIconRed from '../../img/markers/marker-icon-red.png'
 import markerIconOrange from '../../img/markers/marker-icon-orange.png'
 import markerIconYellow from '../../img/markers/marker-icon-yellow.png'
+
+const buffer = lazy(() => import('@turf/buffer'))
 
 const styles = theme => ({
   leafletContainerfacetResults: props => ({
@@ -273,7 +274,7 @@ class LeafletMap extends React.Component {
   initMap = () => {
     // Base layer(s)
     const mapboxBaseLayer = L.tileLayer(`https://api.mapbox.com/styles/v1/mapbox/${this.props.mapBoxStyle}/tiles/{z}/{x}/{y}?access_token=${this.props.mapBoxAccessToken}`, {
-      attribution: '&copy; <a href="https://www.mapbox.com/map-feedback/">Mapbox</a> &copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
+      attribution: '&copy; <a href="https://www.mapbox.com/map-feedback/" target="_blank" rel="noopener">Mapbox</a> &copy; <a href="http://osm.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a> contributors',
       tileSize: 512,
       zoomOffset: -1
     })

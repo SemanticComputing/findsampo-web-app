@@ -257,8 +257,8 @@ class FacetBar extends React.Component {
           }}
           expandIcon={<ExpandMoreIcon />}
           IconButtonProps={{ onClick: this.handleExpandButtonOnClick(facetID) }}
-          aria-controls='panel1a-content'
-          id='panel1a-header'
+          aria-controls={`${facetID}-content`}
+          id={`${facetID}-header`}
         >
           <FacetHeader
             facetID={facetID}
@@ -370,6 +370,7 @@ class FacetBar extends React.Component {
             updateMapBounds={this.props.updateMapBounds}
             showError={this.props.showError}
             perspectiveID={facetClass}
+            layoutConfig={this.props.layoutConfig}
           />}
         {(facetedSearchMode === 'serverFS' || facetData.results !== null) &&
           <Paper className={classes.facetInfoContainer}>
