@@ -1,16 +1,17 @@
-import React from 'react'
+import React, { lazy } from 'react'
 import PropTypes from 'prop-types'
 import intl from 'react-intl-universal'
 import { Route, Redirect } from 'react-router-dom'
 import PerspectiveTabs from '../../main_layout/PerspectiveTabs'
-import ResultTable from '../../facet_results/ResultTable'
-import ReactVirtualizedList from '../../facet_results/ReactVirtualizedList'
-import LeafletMap from '../../facet_results/LeafletMap'
-import Deck from '../../facet_results/Deck'
-import ApexChart from '../../facet_results/ApexChart'
+// import ResultTable from '../../facet_results/ResultTable'
+// import ReactVirtualizedList from '../../facet_results/ReactVirtualizedList'
+// import LeafletMap from '../../facet_results/LeafletMap'
+// import Deck from '../../facet_results/Deck'
+// import ApexChart from '../../facet_results/ApexChart'
 // import Network from '../../facet_results/Network'
-import Timeline from '../../facet_results/Timeline'
+// import Timeline from '../../facet_results/Timeline'
 // import Export from '../../facet_results/Export'
+// import ExportCSV from '../../facet_results/ExportCSV'
 import {
   MAPBOX_ACCESS_TOKEN,
   MAPBOX_STYLE
@@ -23,7 +24,13 @@ import {
   // createMultipleLineChartData
 } from '../../../configs/findsampo/ApexCharts/LineChartConfig'
 import { layerConfigs, createPopUpContentFindSampo } from '../../../configs/findsampo/Leaflet/LeafletConfig'
-import ExportCSV from '../../facet_results/ExportCSV'
+const ResultTable = lazy(() => import('../../facet_results/ResultTable'))
+const ReactVirtualizedList = lazy(() => import('../../facet_results/ReactVirtualizedList'))
+const LeafletMap = lazy(() => import('../../facet_results/LeafletMap'))
+const Deck = lazy(() => import('../../facet_results/Deck'))
+const ApexChart = lazy(() => import('../../facet_results/ApexChart'))
+const Timeline = lazy(() => import('../../facet_results/Timeline'))
+const ExportCSV = lazy(() => import('../../facet_results/ExportCSV'))
 
 const Finds = props => {
   const { rootUrl, perspective, screenSize } = props

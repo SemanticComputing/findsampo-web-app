@@ -47,9 +47,9 @@ import {
   fetchKnowledgeGraphMetadata
 } from '../actions'
 // import { filterResults } from '../selectors'
-import { perspectiveConfig } from '../configs/sampo/PerspectiveConfig'
-import { perspectiveConfigOnlyInfoPages } from '../configs/sampo/PerspectiveConfigOnlyInfoPages'
-import { rootUrl, layoutConfig } from '../configs/sampo/GeneralConfig'
+import { perspectiveConfig } from '../configs/findsampo/PerspectiveConfig'
+import { perspectiveConfigOnlyInfoPages } from '../configs/findsampo/PerspectiveConfigOnlyInfoPages'
+import { rootUrl, layoutConfig } from '../configs/findsampo/GeneralConfig'
 
 // ** General components **
 // import InfoHeader from '../components/main_layout/InfoHeader'

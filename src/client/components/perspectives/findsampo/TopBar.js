@@ -88,6 +88,9 @@ const useStyles = makeStyles(theme => ({
     justifyContent: 'left'
   },
   mainLogoTypography: {
+    // set color and background explicitly to keep Google Lighthouse happy
+    color: '#fff',
+    background: theme.palette.primary.main,
     whiteSpace: 'nowrap',
     textTransform: 'none',
     [theme.breakpoints.down('sm')]: {
@@ -96,6 +99,9 @@ const useStyles = makeStyles(theme => ({
     [theme.breakpoints.down('xs')]: {
       display: 'none'
     }
+  },
+  mobileMenuButton: {
+    padding: 12
   }
 }))
 
@@ -254,7 +260,7 @@ const TopBar = props => {
               label: classes.mainLogoButtonLabel
             }}
           >
-            <img className={classes.mainLogo} src={findSampoLogo} />
+            <img className={classes.mainLogo} src={findSampoLogo} alt='FindSampo logo' />
             <Typography className={classes.mainLogoTypography} variant='h5'>
               {intl.get('appTitle.short')}
             </Typography>
@@ -294,7 +300,13 @@ const TopBar = props => {
             target='_blank'
             rel='noopener noreferrer'
           >
-            <Button><img className={classes.secoLogoImage} src={secoLogo} /></Button>
+            <Button aria-label='link to Semantic Computing research group homepage'>
+              <img
+                className={classes.secoLogoImage}
+                src={secoLogo}
+                alt='Semantic Computing research group logo'
+              />
+            </Button>
           </a>
           <div className={classes.sectionMobile}>
             {props.layoutConfig.topBar.showLanguageButton &&
@@ -304,7 +316,11 @@ const TopBar = props => {
                 loadLocales={props.loadLocales}
                 location={props.location}
               />}
-            <IconButton aria-haspopup='true' onClick={handleMobileMenuOpen} color='inherit'>
+            <IconButton
+              aria-label='display more actions' color='inherit'
+              className={classes.mobileMenuButton}
+              onClick={handleMobileMenuOpen}
+            >
               <MoreIcon />
             </IconButton>
           </div>

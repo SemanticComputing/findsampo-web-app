@@ -106,13 +106,13 @@ const useStyles = makeStyles(theme => ({
   },
   carouselSection: {
     background: 'rgb(247, 247, 247)',
-    paddingBottom: theme.spacing(3)
+    paddingBottom: theme.spacing(2)
   },
   carouselHeadingContainer: {
     display: 'flex',
     justifyContent: 'center',
-    paddingTop: theme.spacing(1.5)
-    // paddingBottom: theme.spacing(1)
+    paddingTop: theme.spacing(1.5),
+    paddingBottom: theme.spacing(1.5)
   },
   carouselHeading: {
     color: theme.palette.primary.main,
@@ -171,7 +171,7 @@ const Main = props => {
     <div className={classes.root}>
       <div className={classes.banner}>
         <div className={classes.bannerLogoContainer}>
-          <img className={classes.bannerLogo} src={props.currentLocale === 'en' ? bannerLogoEN : bannerLogoFI} />
+          <img className={classes.bannerLogo} src={props.currentLocale === 'en' ? bannerLogoEN : bannerLogoFI} alt='FindSampo logo' />
           <div className={classes.bannerSubheading}>
             <Typography component='h2' variant={subheadingVariant} align='center'>
               {intl.getHTML('appTitle.subheading')}
@@ -180,7 +180,7 @@ const Main = props => {
         </div>
       </div>
       <div className={classes.layout}>
-        <Typography className={classes.selectInternalPerspective} variant={descriptionVariant} align='center' color='textPrimary' paragraph>
+        <Typography component='h3' className={classes.selectInternalPerspective} variant={descriptionVariant} align='center' color='textPrimary' paragraph>
           {intl.get('selectPerspective')}
         </Typography>
         <Grid
@@ -195,7 +195,7 @@ const Main = props => {
               rootUrl={props.rootUrl}
             />)}
         </Grid>
-        <Typography className={classes.selectExternalPerspective} variant={descriptionVariant} align='center' color='textPrimary'>
+        <Typography component='h3' className={classes.selectExternalPerspective} variant={descriptionVariant} align='center' color='textPrimary'>
           {intl.get('selectPerspectiveExternal')}
         </Typography>
         <Grid
