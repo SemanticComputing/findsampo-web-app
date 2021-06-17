@@ -13,7 +13,7 @@ const useStyles = makeStyles(theme => ({
   itemContainer: {
     background: 'rgb(247, 247, 247)',
     transition: 'transform 420ms cubic-bezier(0.165, 0.84, 0.44, 1)',
-    height: 230,
+    height: 270,
     cursor: 'pointer'
   },
   carouselImage: {
@@ -57,6 +57,7 @@ const ImageCarousel = props => {
             <img
               className={classes.carouselImage}
               src={Array.isArray(item.imageURL) ? item.imageURL[0] : item.imageURL}
+              alt={item.prefLabel}
             />
             <Typography className={classes.carouselImageCaption}>{item.prefLabel}</Typography>
           </div>
