@@ -185,7 +185,7 @@ MuiVirtualizedTable.propTypes = {
 const VirtualizedTable = withStyles(styles)(MuiVirtualizedTable)
 
 const rootStyle = {
-  height: 'calc(100% - 80px)',
+  height: '100%',
   fontFamily: 'Roboto',
   overflow: 'auto'
 }

@@ -99,7 +99,8 @@ const useStyles = makeStyles(theme => ({
       height: '100%'
     },
     ...((props.location.pathname.includes('/sites/map') ||
-     props.location.pathname.includes('/guides')) &&
+     props.location.pathname.includes('/guides') ||
+     props.location.pathname.includes('/full-text-search')) &&
     { height: '100%' })
   }),
   mainContainerClientFS: {

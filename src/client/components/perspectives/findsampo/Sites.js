@@ -34,14 +34,14 @@ const useStyles = makeStyles(theme => ({
         props.layoutConfig.topBar.reducedHeight +
         props.layoutConfig.infoHeader.reducedHeight.height +
         props.layoutConfig.infoHeader.reducedHeight.expandedContentHeight +
-        theme.spacing(3.5)}px)`,
+        theme.spacing(4)}px)`,
     // },
     [theme.breakpoints.up(props.layoutConfig.reducedHeightBreakpoint)]: {
       height: `calc(100% - ${
         props.layoutConfig.topBar.defaultHeight +
         props.layoutConfig.infoHeader.default.height +
         props.layoutConfig.infoHeader.default.expandedContentHeight +
-        theme.spacing(3.5)
+        theme.spacing(4)
       }px)`
     }
   })

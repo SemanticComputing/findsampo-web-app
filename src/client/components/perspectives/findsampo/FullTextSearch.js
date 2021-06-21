@@ -1,15 +1,15 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Route, Redirect } from 'react-router-dom'
+import { Route } from 'react-router-dom'
 import { makeStyles } from '@material-ui/core/styles'
-import PerspectiveTabs from '../../main_layout/PerspectiveTabs'
+// import PerspectiveTabs from '../../main_layout/PerspectiveTabs'
 import ReactVirtualizedTable from '../../facet_results/ReactVirtualizedTable'
-import CalendarViewDayIcon from '@material-ui/icons/CalendarViewDay'
+// import CalendarViewDayIcon from '@material-ui/icons/CalendarViewDay'
 
 const useStyles = makeStyles(theme => ({
   root: props => ({
     marginTop: theme.spacing(0.5),
-    height: `calc(100% - ${props.layoutConfig.tabHeight - 18}px)`
+    height: `calc(100% - ${props.layoutConfig.topBar.reducedHeight + theme.spacing(1)}px)`
   })
 }))
 /**
@@ -21,7 +21,7 @@ const FullTextSearch = props => {
   const perspectiveUrl = `${rootUrl}/full-text-search`
   return (
     <div className={classes.root}>
-      <PerspectiveTabs
+      {/* <PerspectiveTabs
         routeProps={props.routeProps}
         screenSize={props.screenSize}
         layoutConfig={props.layoutConfig}
@@ -35,9 +35,9 @@ const FullTextSearch = props => {
       <Route
         exact path={perspectiveUrl}
         render={() => <Redirect to={`${perspectiveUrl}/table`} />}
-      />
+      /> */}
       <Route
-        path={`${perspectiveUrl}/table`}
+        path={`${perspectiveUrl}`}
         render={() => {
           return (
             <ReactVirtualizedTable
