@@ -41,6 +41,8 @@ import markerIconYellow from '../../img/markers/marker-icon-yellow.png'
 // const buffer = lazy(() => import('@turf/buffer'))
 import buffer from '@turf/buffer'
 
+// import { fhaLegend } from '../../configs/findsampo/Leaflet/LeafletConfig'
+
 const styles = theme => ({
   leafletContainerfacetResults: props => ({
     height: 400,
@@ -704,9 +706,18 @@ class LeafletMap extends React.Component {
       onAdd: map => {
         const container = L.DomUtil.create('div', 'leaflet-control-layers leaflet-control-layers-expanded leaflet-control')
         container.id = 'leaflet-control-custom-container-buffer'
-        const checkboxOuterContainer = L.DomUtil.create('label', null, container)
-        const checkboxInnerContainer = L.DomUtil.create('div', 'leaflet-control-custom-checkbox-buffer-container', checkboxOuterContainer)
 
+        // const heading = L.DomUtil.create('p', null, container)
+        // heading.textContent = 'Muinasjäännösrekisteri'
+        // heading.style.cssText = `
+        //   font-weight: bold;
+        //   margin-top: 0px;
+        //   margin-bottom: 8px;
+        // `
+
+        const checkboxOuterContainer = L.DomUtil.create('label', null, container)
+        // checkboxOuterContainer.style.cssText = 'margin-bottom: 8px;'
+        const checkboxInnerContainer = L.DomUtil.create('div', 'leaflet-control-custom-checkbox-buffer-container', checkboxOuterContainer)
         const checkbox = L.DomUtil.create('input', 'leaflet-control-layers-selector', checkboxInnerContainer)
         checkbox.type = 'checkbox'
         checkbox.id = 'leaflet-control-custom-checkbox-buffer'
@@ -716,7 +727,11 @@ class LeafletMap extends React.Component {
         L.DomEvent.on(checkbox, 'click', event => {
           this.setState({ showBuffer: event.target.checked })
         })
-
+        // fhaLegend.map(entry => this.createLegendElement({
+        //   color: entry.color,
+        //   text: entry.key,
+        //   container
+        // }))
         // const markersInputContainer = L.DomUtil.create('div', 'leaflet-control-mapmode-input-container', container)
         // const heatmapInputContainer = L.DomUtil.create('div', 'leaflet-control-mapmode-input-container', container)
         // const radioMarkers = L.DomUtil.create('input', 'leaflet-control-mapmode-input', markersInputContainer)
@@ -748,7 +763,28 @@ class LeafletMap extends React.Component {
     L.control.mapmode = opts => {
       return new L.Control.Mapmode(opts)
     }
-    L.control.mapmode({ position: 'topright' }).addTo(this.leafletMap)
+    L.control.mapmode({ position: 'topright', collapsed: true }).addTo(this.leafletMap)
+  }
+
+  createLegendElement = ({ color, text, container }) => {
+    const div = L.DomUtil.create('div', null, container)
+    div.style.cssText = `
+      display: flex;
+      align-items: center;
+    `
+    const dot = L.DomUtil.create('span', null, div)
+    dot.style.cssText = `
+      color: ${color};
+      background: ${color};
+      height: 14px;
+      width: 14px;
+      border-radius: 14px;
+      border: 1px solid black;
+      margin-top: -1px;
+      margin-right: 5px;
+    `
+    const textSpan = L.DomUtil.create('span', null, div)
+    textSpan.textContent = text
   }
 
   addDrawButtons = () => {

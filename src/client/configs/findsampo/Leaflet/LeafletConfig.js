@@ -133,12 +133,19 @@ const bufferStyle = feature => {
 }
 
 const createArchealogicalSiteColor = feature => {
-  let color = '#dd2c00'
-  if (feature.properties.laji.includes('poistettu kiinteä muinaisjäännös')) {
-    color = '#000000'
-  }
-  return color
+  const entry = fhaLegend.find(el => el.key === feature.properties.laji.trim())
+  return entry.color
 }
+
+export const fhaLegend = [
+  { key: 'kiinteä muinaisjäännös', color: '#f00501' },
+  { key: 'luonnonmuodostuma', color: '#00cafb' },
+  { key: 'löytöpaikka', color: '#ffb202' },
+  { key: 'mahdollinen muinaisjäännös', color: '#fc01e2' },
+  { key: 'muu kohde', color: '#ffffff' },
+  { key: 'muu kulttuuriperintökohde', color: '#b57b3b' },
+  { key: 'poistettu kiinteä muinaisjäännös (ei rauhoitettu)', color: '#8b928b' }
+]
 
 /*
   FHA WFS services:
