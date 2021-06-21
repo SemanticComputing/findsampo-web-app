@@ -38,6 +38,9 @@ const Finds = props => {
   if (screenSize === 'xs' || screenSize === 'sm') {
     defaultTab = 'list'
   }
+  const layerControlExpanded = screenSize === 'md' ||
+    screenSize === 'lg' ||
+    screenSize === 'xl'
   return (
     <>
       <PerspectiveTabs
@@ -108,6 +111,7 @@ const Finds = props => {
             showError={props.showError}
             showExternalLayers
             customMapControl
+            layerControlExpanded={layerControlExpanded}
             layerConfigs={layerConfigs}
             infoHeaderExpanded={props.perspectiveState.facetedSearchHeaderExpanded}
             layoutConfig={props.layoutConfig}
