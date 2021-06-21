@@ -87,7 +87,7 @@ const InfoCards = lazy(() => import('../components/perspectives/' + portalID + '
 // ** Portal specific components and configs end **
 
 const useStyles = makeStyles(theme => ({
-  root: {
+  root: props => ({
     /* Background color of the app.
        In order to use both 'auto' and '100%' heights, bg-color
        needs to be defined also in index.html (for #app and #root elements)
@@ -97,8 +97,11 @@ const useStyles = makeStyles(theme => ({
     [theme.breakpoints.up(layoutConfig.hundredPercentHeightBreakPoint)]: {
       overflow: 'hidden',
       height: '100%'
-    }
-  },
+    },
+    ...((props.location.pathname.includes('/sites/map') ||
+     props.location.pathname.includes('/guides')) &&
+    { height: '100%' })
+  }),
   mainContainerClientFS: {
     marginTop: theme.spacing(0.5),
     marginBottom: theme.spacing(0.5),
