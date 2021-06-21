@@ -305,6 +305,7 @@ const SemanticPortal = props => {
             search={props.fullTextSearch}
             fetchFullTextResults={props.fetchFullTextResults}
             clearResults={props.clearResults}
+            clientFSClearResults={props.clientFSClearResults}
             perspectives={perspectiveConfig}
             currentLocale={props.options.currentLocale}
             availableLocales={props.options.availableLocales}
@@ -617,7 +618,7 @@ const SemanticPortal = props => {
                       facetData={props.clientFSState}
                       clientFSFacetValues={props.clientFSFacetValues}
                       fetchingResultCount={props.clientFSState.textResultsFetching}
-                      resultCount={noResults ? 0 : props.clientFSState.results.length}
+                      resultCount={noClientFSResults ? 0 : props.clientFSState.results.length}
                       clientFSState={props.clientFSState}
                       clientFSToggleDataset={props.clientFSToggleDataset}
                       clientFSFetchResults={props.clientFSFetchResults}
@@ -634,8 +635,8 @@ const SemanticPortal = props => {
                     />
                   </Grid>
                   <Grid item sm={12} md={8} lg={9} className={classes.resultsContainerClientFS}>
-                    {noResults && <ClientFSMain />}
-                    {!noResults &&
+                    {noClientFSResults && <ClientFSMain />}
+                    {!noClientFSResults &&
                       <ClientFSPerspective
                         routeProps={routeProps}
                         perspective={perspectiveConfig.find(p => p.id === 'clientFSPlaces')}
