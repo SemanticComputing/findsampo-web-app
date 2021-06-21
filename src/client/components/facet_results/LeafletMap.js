@@ -702,6 +702,7 @@ class LeafletMap extends React.Component {
   }
 
   addCustomMapControl = self => {
+    // https://github.com/Leaflet/Leaflet/blob/master/src/control/Control.Layers.js
     // http://embed.plnkr.co/Je7c0m/
     L.Control.Custom = L.Control.Layers.extend({
       onAdd: function (map) {
