@@ -53,7 +53,7 @@ a, a:visited, a:hover, a:active {
 } 
 
 .leaflet-popup-content p {
-    margin: 0px;
+    margin: 0px !important;
 }
 
 .leaflet-popup-content h3 {
@@ -67,6 +67,11 @@ a, a:visited, a:hover, a:active {
 
 .leaflet-control-custom-checkbox-buffer-container span {
     margin-left: 3px;
+}
+
+.leaflet-popup-scrolled {
+    border-top: none !important;
+    border-bottom: none !important;
 }
 
 .leaflet-control-layers-list {
