@@ -11,8 +11,8 @@ export const createPopUpContentFindSampo = ({ data }) => {
       image = image[0]
     }
     const imageElement = document.createElement('img')
+    imageElement.className = 'leaflet-popup-content-image'
     imageElement.setAttribute('src', image.url)
-    imageElement.style.cssText = 'width: 100%'
     container.appendChild(imageElement)
   }
   const heading = document.createElement('h3')
@@ -62,6 +62,7 @@ export const createPopUpContentFindSampo = ({ data }) => {
 
 const createPopUpElement = ({ label, value }) => {
   const p = document.createElement('p')
+  p.style.cssText = 'margin: 0px'
   const b = document.createElement('b')
   const span = document.createElement('span')
   b.textContent = (`${label}: `)

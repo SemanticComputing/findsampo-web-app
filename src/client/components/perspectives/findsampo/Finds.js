@@ -35,12 +35,17 @@ const ExportCSV = lazy(() => import('../../facet_results/ExportCSV'))
 const Finds = props => {
   const { rootUrl, perspective, screenSize } = props
   let defaultTab = 'table'
+  let popupMaxHeight = null
+  let popupMaxWidth = 280
   if (screenSize === 'xs' || screenSize === 'sm') {
     defaultTab = 'list'
+    popupMaxHeight = 170
+    popupMaxWidth = 150
   }
   const layerControlExpanded = screenSize === 'md' ||
     screenSize === 'lg' ||
     screenSize === 'xl'
+
   return (
     <>
       <PerspectiveTabs
@@ -100,6 +105,8 @@ const Finds = props => {
             showMapModeControl={false}
             instance={props.perspectiveState.instanceTableData}
             createPopUpContent={createPopUpContentFindSampo}
+            popupMaxWidth={popupMaxWidth}
+            popupMaxHeight={popupMaxHeight}
             fetchResults={props.fetchResults}
             fetchGeoJSONLayers={props.fetchGeoJSONLayers}
             clearGeoJSONLayers={props.clearGeoJSONLayers}
@@ -115,12 +122,6 @@ const Finds = props => {
             layerConfigs={layerConfigs}
             infoHeaderExpanded={props.perspectiveState.facetedSearchHeaderExpanded}
             layoutConfig={props.layoutConfig}
-            // activeLayers={[
-            // 'WFS_MV_KulttuuriymparistoSuojellut:Muinaisjaannokset_alue',
-            // 'WFS_MV_KulttuuriymparistoSuojellut:Muinaisjaannokset_piste',
-            // 'WFS_MV_Kulttuuriymparisto:Arkeologiset_kohteet_alue',
-            // 'WFS_MV_Kulttuuriymparisto:Arkeologiset_kohteet_piste'
-            // ]}
           />}
       />
       <Route
