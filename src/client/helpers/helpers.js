@@ -1,5 +1,6 @@
 import querystring from 'querystring'
 import { has } from 'lodash'
+import intl from 'react-intl-universal'
 
 export const stateToUrl = ({
   facets,
@@ -156,12 +157,8 @@ export const arrayToObject = ({ array, keyField }) =>
     return obj
   }, {})
 
-// source: https://dev.to/monaye/refactor-davidwalsh-s-debounce-function-5afc
-export const debounce = (func, delay) => {
-  let timerId
-  return (...args) => {
-    const boundFunc = func.bind(this, ...args)
-    clearTimeout(timerId)
-    timerId = setTimeout(boundFunc, delay)
-  }
+export const generateLabelForMissingValue = ({ facetClass, facetID }) => {
+  // Check if there is a translated label for missing value, or use defaults
+  return intl.get(`perspectives.${facetClass}.properties.${facetID}.missingValueLabel`) ||
+   intl.get('facetBar.defaultMissingValueLabel') || 'Unknown'
 }

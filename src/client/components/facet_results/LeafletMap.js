@@ -29,7 +29,8 @@ import 'leaflet.zoominfo/dist/L.Control.Zoominfo'
 import 'leaflet.zoominfo/dist/L.Control.Zoominfo.css'
 import 'leaflet-usermarker/src/leaflet.usermarker.js'
 import 'leaflet-usermarker/src/leaflet.usermarker.css'
-// import 'leaflet.gridlayer.googlemutant/Leaflet.GoogleMutant.js'
+// import 'leaflet.gridlayer.googlemutant/Leaflet.GoogleMutant.js' // used for Google Maps basemap
+// import 'mapbox-gl-leaflet/leaflet-mapbox-gl.js' // used for National Land Survey of Finland's vectortiles background map
 
 import markerShadowIcon from '../../img/markers/marker-shadow.png'
 import markerIconViolet from '../../img/markers/marker-icon-violet.png'
@@ -301,7 +302,7 @@ class LeafletMap extends React.Component {
     })
 
     /*
-      Password protected base layers from https://www.maanmittauslaitos.fi/karttakuvapalvelu/tekninen-kuvaus-wmts
+      Base layers from https://www.maanmittauslaitos.fi/karttakuvapalvelu/tekninen-kuvaus-wmts
       Routed via backend.
     */
     const backgroundMapNLS = L.tileLayer(`${process.env.API_URL}/nls-wmts?z={z}&x={x}&y={y}&layerID=taustakartta`, {
@@ -403,8 +404,8 @@ class LeafletMap extends React.Component {
     const currentCenter = this.leafletMap.getCenter()
     return (
       currentZoom === this.props.zoom &&
-      currentCenter[0] === this.props.center[0] &&
-      currentCenter[1] === this.props.center[1]
+      currentCenter.lat === this.props.center[0] &&
+      currentCenter.lng === this.props.center[1]
     )
   }
 
