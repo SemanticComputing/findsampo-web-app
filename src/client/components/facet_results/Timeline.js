@@ -5,8 +5,17 @@ import purple from '@material-ui/core/colors/purple'
 import CircularProgress from '@material-ui/core/CircularProgress'
 import { has } from 'lodash'
 import history from '../../History'
-import { debounce } from '../../helpers/helpers'
 // import getRandomData from './TimelineTestData'
+
+// source: https://dev.to/monaye/refactor-davidwalsh-s-debounce-function-5afc
+const debounce = (func, delay) => {
+  let timerId
+  return (...args) => {
+    const boundFunc = func.bind(this, ...args)
+    clearTimeout(timerId)
+    timerId = setTimeout(boundFunc, delay)
+  }
+}
 
 /**
  * A component for creating timelines with Timelines Chart.
