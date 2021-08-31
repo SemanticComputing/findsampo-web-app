@@ -54,7 +54,7 @@ export const periodsPropertiesInstancePage =
     }
   `
 
-  export const periodsPropertiesFacetResults =
+export const periodsPropertiesFacetResults =
   `   {
         ?id skos:prefLabel ?prefLabel__id .
         BIND (?prefLabel__id as ?prefLabel__prefLabel)

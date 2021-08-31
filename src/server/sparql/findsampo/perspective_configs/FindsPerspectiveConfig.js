@@ -7,7 +7,7 @@ import { prefixes } from '../sparql_queries/SparqlQueriesPrefixes'
 export const findsPerspectiveConfig = {
   endpoint: {
     url: 'https://ldf.fi/findsampo/sparql',
-    //url: 'http://localhost:3039/ds/sparql',
+    // url: 'http://localhost:3039/ds/sparql',
     prefixes,
     useAuth: false
   },
