@@ -142,7 +142,7 @@ const preprocessTimelineData = rawData => {
     */
     rawData[indexOfLongestArr].data.forEach((obj, index) => {
       if (!rawData[0].data.find(x => x.id === obj.id)) {
-        rawData.[0].data.push({
+        rawData[0].data.push({
           id: obj.id,
           x: obj.x,
           y: [null, null],

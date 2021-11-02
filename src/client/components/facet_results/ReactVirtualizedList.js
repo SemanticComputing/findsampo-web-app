@@ -88,7 +88,7 @@ const ReactVirtualizedList = props => {
     let image = null
     if (data.imageURL) {
       const { imageURL } = data
-      image = imageURL.includes(', ') ? imageURL.split(', ').[0] : imageURL
+      image = imageURL.includes(', ') ? imageURL.split(', ')[0] : imageURL
     }
     return (
       <div className={classes.rowRoot} key={key} style={style}>
@@ -176,7 +176,8 @@ const ReactVirtualizedList = props => {
           <div className={classes.progressContainer}>
             <CircularProgress style={{ color: purple[500] }} thickness={5} />
           </div>
-        ) : (
+          )
+        : (
           <AutoSizer>
             {({ height, width }) => (
               <List
@@ -189,7 +190,7 @@ const ReactVirtualizedList = props => {
               />
             )}
           </AutoSizer>
-        )}
+          )}
     </div>
   )
 }
