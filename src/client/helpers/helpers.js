@@ -23,7 +23,7 @@ export const stateToUrl = ({
   const params = {}
   if (facetClass !== null) { params.facetClass = facetClass }
   if (page !== null) { params.page = page }
-  if (pagesize !== null) { params.pagesize = pagesize }
+  if (pagesize !== null) { params.pagesize = parseInt(pagesize) }
   if (sortBy !== null) { params.sortBy = sortBy }
   if (sortDirection !== null) { params.sortDirection = sortDirection }
   if (resultFormat !== null) { params.resultFormat = resultFormat }
@@ -127,7 +127,7 @@ export const handleAxiosError = error => {
 
 export const pickSelectedDatasets = datasets => {
   const selected = []
-  Object.keys(datasets).map(key => {
+  Object.keys(datasets).forEach(key => {
     if (datasets[key].selected) {
       selected.push(key)
     }
