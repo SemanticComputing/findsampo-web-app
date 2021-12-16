@@ -320,7 +320,7 @@ const SemanticPortal = props => {
                   layoutConfig={layoutConfig}
                   resultClass='finds'
                   currentLocale={props.options.currentLocale}
-                  fetchKnowledgeGraphMetadata={props.fetchKnowledgeGraphMetadata}
+                  // fetchKnowledgeGraphMetadata={props.fetchKnowledgeGraphMetadata}
                   // knowledgeGraphMetadata={props.finds.knowledgeGraphMetadata}
                 />
                 <Footer
