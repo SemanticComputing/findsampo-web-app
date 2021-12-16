@@ -1,5 +1,5 @@
 {
-    "portalID": "sampo",
+    "portalID": "findsampo",
     "rootUrl": "",
     "perspectives": {
         "searchPerspectives": [
@@ -8,7 +8,7 @@
         "onlyInstancePages": []
     },
     "localeConfig": {
-        "defaultLocale": "en",
+        "defaultLocale": "fi",
         "readTranslationsFromGoogleSheets": "false",
         "availableLocales": [
             {
@@ -39,17 +39,17 @@
         "tableFontSize": "0.8rem",
         "topBar": {
             "showLanguageButton": true,
-            "feedbackLink": "https://link.webropolsurveys.com/...",
+            "feedbackLink": "https://link.webropolsurveys.com/S/4288C417CBF3AAFB",
             "reducedHeight": 48,
             "defaultHeight": 64,
             "mobileMenuBreakpoint": 1360
         },
         "mainPage": {
-            "bannerImage": "main_page/mmm-banner.jpg",
-            "bannerBackround": "linear-gradient( rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.45) ), url(<BANNER_IMAGE_URL)",
+            "bannerImage": "findsampo/ponsi-banner-compressed.jpg",
+            "bannerBackround": "linear-gradient( rgba(0, 0, 0, 0.30), rgba(0, 0, 0, 0.30) ), url(<BANNER_IMAGE_URL)",
             "bannerMobileHeight": 150,
-            "bannerReducedHeight": 220,
-            "bannerDefaultHeight": 300
+            "bannerReducedHeight": 225,
+            "bannerDefaultHeight": 370
         },
         "infoHeader": {
             "default": {

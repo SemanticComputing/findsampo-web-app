@@ -1,8 +1,101 @@
-import { has } from 'lodash'
+import { has, orderBy } from 'lodash'
 import history from '../../../History'
 import intl from 'react-intl-universal'
 
-export const createPopUpContentFindSampo = ({ data }) => {
+export const createPopUpContentDefault = ({ data, resultClass }) => {
+  if (Array.isArray(data.prefLabel)) {
+    data.prefLabel = data.prefLabel[0]
+  }
+  const container = document.createElement('div')
+  const h3 = document.createElement('h3')
+  if (has(data.prefLabel, 'dataProviderUrl')) {
+    const link = document.createElement('a')
+    link.addEventListener('click', () => history.push(data.prefLabel.dataProviderUrl))
+    link.textContent = data.prefLabel.prefLabel
+    link.style.cssText = 'cursor: pointer; text-decoration: underline'
+    h3.appendChild(link)
+  } else {
+    h3.textContent = data.prefLabel.prefLabel
+  }
+  container.appendChild(h3)
+  return container
+}
+
+export const createPopUpContentMMM = ({ data, resultClass }) => {
+  if (Array.isArray(data.prefLabel)) {
+    data.prefLabel = data.prefLabel[0]
+  }
+  const container = document.createElement('div')
+  const h3 = document.createElement('h3')
+  if (has(data.prefLabel, 'dataProviderUrl')) {
+    const link = document.createElement('a')
+    link.addEventListener('click', () => history.push(data.prefLabel.dataProviderUrl))
+    link.textContent = data.prefLabel.prefLabel
+    link.style.cssText = 'cursor: pointer; text-decoration: underline'
+    h3.appendChild(link)
+  } else {
+    h3.textContent = data.prefLabel.prefLabel
+  }
+  container.appendChild(h3)
+  if (resultClass === 'placesMsProduced') {
+    const p = document.createElement('p')
+    p.textContent = 'Manuscripts produced here:'
+    container.appendChild(p)
+    container.appendChild(createInstanceListing(data.related))
+  }
+  if (resultClass === 'lastKnownLocations') {
+    const p = document.createElement('p')
+    p.textContent = 'Last known location of:'
+    container.appendChild(p)
+    container.appendChild(createInstanceListing(data.related))
+  }
+  if (resultClass === 'placesActors') {
+    const p = document.createElement('p')
+    p.textContent = 'Actors:'
+    container.appendChild(p)
+    container.appendChild(createInstanceListing(data.related))
+  }
+  return container
+}
+
+export const createPopUpContentNameSampo = ({ data }) => {
+  const perspectiveID = 'perspective4'
+  let popUpTemplate = ''
+  popUpTemplate += `<a href=${data.id} target='_blank'><h3>${data.prefLabel}</h3></a>`
+  if (has(data, 'broaderTypeLabel')) {
+    popUpTemplate += `
+      <p><b>${intl.get(`perspectives.${perspectiveID}.properties.broaderTypeLabel.label`)}</b>: ${data.broaderTypeLabel}</p>`
+  }
+  if (has(data, 'broaderAreaLabel')) {
+    popUpTemplate += `
+      <p><b>${intl.get(`perspectives.${perspectiveID}.properties.broaderAreaLabel.label`)}</b>: ${data.broaderAreaLabel}</p>`
+  }
+  if (has(data, 'modifier')) {
+    popUpTemplate += `
+      <p><b>${intl.get(`perspectives.${perspectiveID}.properties.modifier.label`)}</b>: ${data.modifier}</p>`
+  }
+  if (has(data, 'basicElement')) {
+    popUpTemplate += `
+      <p><b>${intl.get(`perspectives.${perspectiveID}.properties.basicElement.label`)}</b>: ${data.basicElement}</p>`
+  }
+  if (has(data, 'collectionYear')) {
+    popUpTemplate += `
+      <p><b>${intl.get(`perspectives.${perspectiveID}.properties.collectionYear.label`)}</b>: ${data.collectionYear}</p>`
+  }
+  if (has(data, 'source')) {
+    if (data.namesArchiveLink !== '-') {
+      popUpTemplate += `
+      <p><b>${intl.get(`perspectives.${perspectiveID}.properties.source.label`)}</b>:
+        <a href="${data.namesArchiveLink}" target="_blank">${data.source}</a></p>`
+    } else {
+      popUpTemplate += `
+      <p><b>${intl.get(`perspectives.${perspectiveID}.properties.source.label`)}</b>: ${data.source}</p>`
+    }
+  }
+  return popUpTemplate
+}
+
+export const createPopUpContentFindSampo = data => {
   const container = document.createElement('div')
 
   if (has(data, 'image')) {
@@ -11,8 +104,8 @@ export const createPopUpContentFindSampo = ({ data }) => {
       image = image[0]
     }
     const imageElement = document.createElement('img')
-    imageElement.className = 'leaflet-popup-content-image'
     imageElement.setAttribute('src', image.url)
+    imageElement.style.cssText = 'width: 100%'
     container.appendChild(imageElement)
   }
   const heading = document.createElement('h3')
@@ -23,13 +116,13 @@ export const createPopUpContentFindSampo = ({ data }) => {
   heading.appendChild(headingLink)
   container.appendChild(heading)
   if (has(data, 'objectType')) {
-    container.appendChild(createPopUpElement({
+    container.appendChild(this.createPopUpElement({
       label: intl.get('perspectives.finds.properties.objectType.label'),
       value: data.objectType.prefLabel
     }))
   }
   if (has(data, 'material')) {
-    container.appendChild(createPopUpElement({
+    container.appendChild(this.createPopUpElement({
       label: intl.get('perspectives.finds.properties.material.label'),
       value: data.material.prefLabel
     }))
@@ -37,7 +130,7 @@ export const createPopUpContentFindSampo = ({ data }) => {
   if (has(data, 'period')) {
     let periodLabel = ''
     if (Array.isArray(data.period)) {
-      data.period.map((p, index) => {
+      data.period.forEach((p, index) => {
         periodLabel += `${p.prefLabel}`
         if (index !== data.period.length - 1) {
           periodLabel += ', '
@@ -62,7 +155,6 @@ export const createPopUpContentFindSampo = ({ data }) => {
 
 const createPopUpElement = ({ label, value }) => {
   const p = document.createElement('p')
-  p.style.cssText = 'margin: 0px'
   const b = document.createElement('b')
   const span = document.createElement('span')
   b.textContent = (`${label}: `)
@@ -72,39 +164,41 @@ const createPopUpElement = ({ label, value }) => {
   return p
 }
 
-// const createInstanceListing = instances => {
-//   let root
-//   if (Array.isArray(instances)) {
-//     root = document.createElement('ul')
-//     instances = orderBy(instances, 'prefLabel')
-//     instances.forEach(i => {
-//       const li = document.createElement('li')
-//       const link = document.createElement('a')
-//       link.addEventListener('click', () => history.push(i.dataProviderUrl))
-//       link.textContent = i.prefLabel
-//       link.style.cssText = 'cursor: pointer; text-decoration: underline'
-//       li.appendChild(link)
-//       root.appendChild(li)
-//     })
-//   } else {
-//     root = document.createElement('p')
-//     const link = document.createElement('a')
-//     link.addEventListener('click', () => history.push(instances.dataProviderUrl))
-//     link.textContent = instances.prefLabel
-//     link.style.cssText = 'cursor: pointer; text-decoration: underline'
-//     root.appendChild(link)
-//   }
-//   return root
-// }
+const createInstanceListing = instances => {
+  let root
+  if (Array.isArray(instances)) {
+    root = document.createElement('ul')
+    instances = orderBy(instances, 'prefLabel')
+    instances.forEach(i => {
+      const li = document.createElement('li')
+      const link = document.createElement('a')
+      link.addEventListener('click', () => history.push(i.dataProviderUrl))
+      link.textContent = i.prefLabel
+      link.style.cssText = 'cursor: pointer; text-decoration: underline'
+      li.appendChild(link)
+      root.appendChild(li)
+    })
+  } else {
+    root = document.createElement('p')
+    const link = document.createElement('a')
+    link.addEventListener('click', () => history.push(instances.dataProviderUrl))
+    link.textContent = instances.prefLabel
+    link.style.cssText = 'cursor: pointer; text-decoration: underline'
+    root.appendChild(link)
+  }
+  return root
+}
 
 const createArchealogicalSitePopUp = data => {
   let html = ''
   const name = data.kohdenimi
-    ? `<b>Nimi:</b> ${data.kohdenimi}</p>` : ''
+    ? `<b>Nimi:</b> ${data.kohdenimi}</p>`
+    : ''
   const classification = data.laji ? `<h3>${data.laji.charAt(0).toUpperCase() + data.laji.slice(1)}</b></h3>` : ''
   const municipality = data.kunta ? `<b>Kunta:</b> ${data.kunta}</p>` : ''
   const link = data.mjtunnus
-    ? `<a href="https://www.kyppi.fi/to.aspx?id=112.${data.mjtunnus}" target="_blank">Avaa kohde Muinaisjäännösrekisterissä</a></p>` : ''
+    ? `<a href="https://www.kyppi.fi/to.aspx?id=112.${data.mjtunnus}" target="_blank">Avaa kohde Muinaisjäännösrekisterissä</a></p>`
+    : ''
   html += `
     <div>
       ${classification}
@@ -134,21 +228,17 @@ const bufferStyle = feature => {
 }
 
 const createArchealogicalSiteColor = feature => {
-  const entry = fhaLegend.find(el => el.key === feature.properties.laji.trim())
-  return entry.color
+  let color = '#dd2c00'
+  if (feature.properties.laji.includes('poistettu kiinteä muinaisjäännös')) {
+    color = '#000000'
+  }
+  return color
 }
 
-export const fhaLegend = [
-  { key: 'kiinteä muinaisjäännös', color: '#f00501' },
-  { key: 'luonnonmuodostuma', color: '#00cafb' },
-  { key: 'löytöpaikka', color: '#ffb202' },
-  { key: 'mahdollinen muinaisjäännös', color: '#fc01e2' },
-  { key: 'muu kohde', color: '#ffffff' },
-  { key: 'muu kulttuuriperintökohde', color: '#b57b3b' },
-  { key: 'poistettu kiinteä muinaisjäännös (ei rauhoitettu)', color: '#8b928b' }
-]
-
 /*
+  FHA spatial data general documentation:
+    https://www.museovirasto.fi/en/services-and-guidelines/data-systems/kulttuuriympaeristoen-tietojaerjestelmae/kulttuuriympaeristoen-paikkatietoaineistot
+
   FHA WFS services:
     https://kartta.nba.fi/arcgis/rest/services/WFS/MV_KulttuuriymparistoSuojellut/MapServer
     https://kartta.nba.fi/arcgis/rest/services/WFS/MV_Kulttuuriymparisto/MapServer/
@@ -200,16 +290,16 @@ export const layerConfigs = [
     },
     createPopup: createArchealogicalSitePopUp
   },
-  {
-    id: 'fhaLidar',
-    type: 'WMS',
-    url: `${process.env.API_URL}/fha-wms`,
-    layers: 'NBA:lidar',
-    version: '1.3.0',
-    attribution: 'Museovirasto',
-    minZoom: 13,
-    maxZoom: 18
-  },
+  // {
+  //   id: 'fhaLidar',
+  //   type: 'WMS',
+  //   url: `${process.env.API_URL}/fha-wms`,
+  //   layers: 'NBA:lidar',
+  //   version: '1.3.0',
+  //   attribution: 'Museovirasto',
+  //   minZoom: 13,
+  //   maxZoom: 18
+  // },
   {
     id: 'karelianMaps',
     type: 'WMTS',
