@@ -1,18 +1,18 @@
 {
     "id": "finds",
     "endpoint": {
-        "url": "https://ldf.fi/mmm/sparql",
+        "url": "https://ldf.fi/findsampo/sparql",
         "useAuth": false,
         "prefixesFile": "SparqlQueriesPrefixes.js"
     },
     "sparqlQueriesFile": "SparqlQueriesFinds.js",
-    "baseURI": "http://ldf.fi/mmm",
-    "URITemplate": "<BASE_URI>/work/<LOCAL_ID>",
-    "facetClass": "frbroo:F1_Work",
-    "frontPageImage": "main_page/works-452x262.jpg",
+    "baseURI": "http://ldf.fi/findsampo",
+    "URITemplate": "<BASE_URI>/finds/<LOCAL_ID>",
+    "facetClass": ":Find",
+    "frontPageImage": "findsampo/Museovirasto_063_vaaka_compressed.jpg",
     "searchMode": "faceted-search",
     "defaultActiveFacets": [
-        "prefLabel"
+        "findText"
     ],
     "defaultTab": "table",
     "defaultInstancePageTab": "table",
@@ -23,40 +23,374 @@
                 "component": "ResultTable",
                 "tabPath": "table",
                 "tabIcon": "CalendarViewDay",
-                "propertiesQueryBlock": "workProperties",
+                "propertiesQueryBlock": "findPropertiesFacetResults",
                 "pagesize": 10,
                 "sortBy": null,
                 "sortDirection": null
             },
             "instanceConfig": {
-                "propertiesQueryBlock": "workProperties",
+                "propertiesQueryBlock": "findPropertiesInstancePage",
                 "instancePageResultClasses": {
                     "instancePageTable": {
                         "tabID": 0,
                         "component": "InstancePageTable",
                         "tabPath": "table",
                         "tabIcon": "CalendarViewDay"
-                    },
-                    "instancePageExport": {
-                        "tabID": 1,
-                        "component": "Export",
-                        "tabPath": "export",
-                        "tabIcon": "CloudDownload",
-                        "pageType": "instancePage"
                     }
                 }
             }
         },
-        "export": {
+        "findsPlaces": {
+            "tabID": 2,
+            "tabPath": "map",
+            "tabIcon": "AddLocation",
+            "component": "LeafletMap",
+            "showInstanceCountInClusters": false,
+            "showExternalLayers": true,
+            "sparqlQuery": "findsPlacesQuery",
+            "facetClass": "finds",
+            "filterTarget": "id",
+            "resultMapper": "mapPlaces",
+            "instanceConfig": {
+                "propertiesQueryBlock": "findPropertiesInstancePage",
+                "createPopUpContent": "createPopUpContentFindSampo"
+            }
+        },
+        "findsPlacesHeatmap": {
+            "tabID": 3,
+            "tabPath": "heatmap",
+            "tabIcon": "AddLocation",
+            "component": "Deck",
+            "layerType": "heatmapLayer",
+            "sparqlQuery": "findsPlacesQuery",
+            "facetClass": "finds",
+            "filterTarget": "id",
+            "resultMapper": "mapPlaces"
+        },
+        "findsList": {
             "tabID": 1,
-            "component": "Export",
-            "tabPath": "export",
-            "tabIcon": "CloudDownload",
-            "resultClass": "perspective2",
-            "facetClass": "perspective2"
+            "tabPath": "list",
+            "tabIcon": "FormatAlignJustify",
+            "sparqlQuery": "findsListQuery",
+            "filterTarget": "id",
+            "resultMapper": "makeObjectList"
+        },
+        "findInstancePageMap": {
+            "sparqlQuery": "findInstancePageMapQuery",
+            "resultMapper": "makeObjectList"
+        },
+        "findsApexChartsTimeline": {
+            "tabID": 4,
+            "component": "ApexCharts",
+            "createChartData": "createApexTimelineChartData",
+            "doNotRenderOnMount": true,
+            "tabPath": "timeline",
+            "tabIcon": "ClearAll",
+            "sparqlQuery": "findsApexChartsTimelineQuery",
+            "facetClass": "finds",
+            "filterTarget": "find",
+            "resultMapper": "makeObjectList"
+        },
+        "findsTimeline": {
+            "sparqlQuery": "findsTimelineQuery",
+            "filterTarget": "find",
+            "resultMapper": "makeObjectList"
+        },
+        "findsApexChartsTimelineDialog": {
+            "sparqlQuery": "findsApexChartsTimelineDialogQuery",
+            "filterTarget": "id",
+            "resultMapper": "makeObjectList"
+        },
+        "nearbyFinds": {
+            "sparqlQuery": "nearbyFindsQuery",
+            "resultMapper": "makeObjectList"
+        },
+        "similarFinds": {
+            "sparqlQuery": "similarFindsQuery",
+            "resultMapper": "makeObjectList"
+        },
+        "findsByProperty": {
+            "tabID": 5,
+            "component": "ApexCharts",
+            "createChartData": "createApexPieChartData",
+            "doNotRenderOnMount": true,
+            "tabPath": "pie_chart",
+            "tabIcon": "PieChart",
+            "facetClass": "finds",
+            "dropdownForResultClasses": true,
+            "resultClasses": [
+                "findsByProvince",
+                "findsByMaterial",
+                "findsByObjectName"
+            ]
+        },
+        "findsByProvince": {
+            "sparqlQuery": "findsByProvinceQuery",
+            "filterTarget": "find",
+            "resultMapper": "mapPieChart"
+        },
+        "findsByMaterial": {
+            "sparqlQuery": "findsByMaterialQuery",
+            "filterTarget": "find",
+            "resultMapper": "mapPieChart"
+        },
+        "findsByObjectName": {
+            "sparqlQuery": "findsByObjectNameQuery",
+            "filterTarget": "find",
+            "resultMapper": "mapPieChart"
+        },
+        "findsByYear": {
+            "sparqlQuery": "findsByYearQuery",
+            "filterTarget": "find",
+            "resultMapper": "mapLineChart",
+            "resultMapperConfig": {
+                "fillEmptyValues": true
+            }
+        },
+        "findsByLength": {
+            "sparqlQuery": "findsByLengthQuery",
+            "filterTarget": "find",
+            "resultMapper": "mapLineChart",
+            "resultMapperConfig": {
+                "fillEmptyValues": true
+            }
+        },
+        "findsByWidth": {
+            "sparqlQuery": "findsByWidthQuery",
+            "filterTarget": "find",
+            "resultMapper": "mapLineChart",
+            "resultMapperConfig": {
+                "fillEmptyValues": true
+            }
+        },
+        "findsByWeight": {
+            "sparqlQuery": "findsByWeightQuery",
+            "filterTarget": "find",
+            "resultMapper": "mapLineChart",
+            "resultMapperConfig": {
+                "fillEmptyValues": true
+            }
+        },
+        "findsKnowledgeGraphMetadata": {
+            "sparqlQuery": "knowledgeGraphMetadataQuery",
+            "resultMapper": "makeObjectList"
+        },
+        "jenaText": {
+            "propertiesQueryBlock": "fullTextSearchProperties"
+        },
+        "coinsByYear": {
+            "sparqlQuery": "coinsByYearQuery",
+            "filterTarget": "find",
+            "resultMapper": "mapLineChart"
+        },
+        "csvFinds": {
+            "sparqlQuery": "findsCSVQuery",
+            "filterTarget": "id"
+        }
+    },
+    "maps": {
+        "findsPlaces": {
+            "center": [
+                65.184809,
+                27.314050
+            ],
+            "zoom": 5
+        },
+        "findsPlacesHeatmap": {
+            "center": [
+                65.184809,
+                27.314050
+            ],
+            "zoom": 4
+        },
+        "findInstancePageMap": {
+            "center": [
+                65.184809,
+                27.314050
+            ],
+            "zoom": 5
+        },
+        "nearbyFinds": {
+            "center": [
+                65.184809,
+                27.314050
+            ],
+            "zoom": 5
         }
     },
     "properties": [
+        {
+            "id": "image",
+            "valueType": "image",
+            "previewImageHeight": 150,
+            "makeLink": true,
+            "externalLink": true,
+            "sortValues": true,
+            "numberedList": false,
+            "hideHeader": true
+        },
+        {
+            "id": "findName",
+            "valueType": "object",
+            "makeLink": true,
+            "externalLink": false,
+            "sortValues": true,
+            "numberedList": false,
+            "minWidth": 140
+        },
+        {
+            "id": "findNumber",
+            "valueType": "string",
+            "makeLink": true,
+            "externalLink": false,
+            "sortValues": true,
+            "numberedList": false,
+            "minWidth": 180
+        },
+        {
+            "id": "objectType",
+            "valueType": "object",
+            "makeLink": true,
+            "externalLink": false,
+            "sortValues": true,
+            "numberedList": false,
+            "minWidth": 130
+        },
+        {
+            "id": "material",
+            "valueType": "object",
+            "makeLink": false,
+            "externalLink": false,
+            "sortValues": true,
+            "numberedList": false,
+            "minWidth": 130
+        },
+        {
+            "id": "province",
+            "valueType": "object",
+            "makeLink": false,
+            "externalLink": false,
+            "sortValues": true,
+            "numberedList": false,
+            "minWidth": 130
+        },
+        {
+            "id": "municipality",
+            "valueType": "object",
+            "makeLink": false,
+            "externalLink": false,
+            "sortValues": true,
+            "numberedList": false,
+            "minWidth": 130
+        },
+        {
+            "id": "period",
+            "valueType": "object",
+            "makeLink": true,
+            "externalLink": false,
+            "sortValues": true,
+            "numberedList": false,
+            "minWidth": 130
+        },
+        {
+            "id": "earliestStartYear",
+            "valueType": "string",
+            "makeLink": false,
+            "externalLink": false,
+            "sortValues": true,
+            "numberedList": false,
+            "minWidth": 180
+        },
+        {
+            "id": "latestEndYear",
+            "valueType": "string",
+            "makeLink": false,
+            "externalLink": false,
+            "sortValues": true,
+            "numberedList": false,
+            "minWidth": 180
+        },
+        {
+            "id": "length",
+            "valueType": "string",
+            "makeLink": false,
+            "externalLink": false,
+            "sortValues": true,
+            "numberedList": false,
+            "minWidth": 120
+        },
+        {
+            "id": "width",
+            "valueType": "string",
+            "makeLink": false,
+            "externalLink": false,
+            "sortValues": true,
+            "numberedList": false,
+            "minWidth": 120
+        },
+        {
+            "id": "weight",
+            "valueType": "string",
+            "makeLink": false,
+            "externalLink": false,
+            "sortValues": true,
+            "numberedList": false,
+            "minWidth": 120
+        },
+        {
+            "id": "maxThickness",
+            "valueType": "string",
+            "makeLink": false,
+            "externalLink": false,
+            "sortValues": true,
+            "numberedList": false,
+            "minWidth": 180
+        },
+        {
+            "id": "minThickness",
+            "valueType": "string",
+            "makeLink": false,
+            "externalLink": false,
+            "sortValues": true,
+            "numberedList": false,
+            "minWidth": 180
+        },
+        {
+            "id": "diameter",
+            "valueType": "string",
+            "makeLink": false,
+            "externalLink": false,
+            "sortValues": true,
+            "numberedList": false,
+            "minWidth": 120
+        },
+        {
+            "id": "description",
+            "valueType": "string",
+            "makeLink": false,
+            "externalLink": false,
+            "sortValues": true,
+            "numberedList": false,
+            "onlyOnInstancePage": true
+        },
+        {
+            "id": "foundAtHeight",
+            "valueType": "string",
+            "makeLink": false,
+            "externalLink": false,
+            "sortValues": true,
+            "numberedList": false,
+            "onlyOnInstancePage": true
+        },
+        {
+            "id": "archaeologicalSiteUrl",
+            "valueType": "object",
+            "makeLink": true,
+            "externalLink": true,
+            "sortValues": true,
+            "numberedList": false,
+            "onlyOnInstancePage": true
+        },
         {
             "id": "uri",
             "valueType": "object",
@@ -65,148 +399,84 @@
             "sortValues": true,
             "numberedList": false,
             "onlyOnInstancePage": true
-        },
-        {
-            "id": "prefLabel",
-            "valueType": "object",
-            "makeLink": true,
-            "externalLink": false,
-            "sortValues": true,
-            "numberedList": false,
-            "minWidth": 250
-        },
-        {
-            "id": "author",
-            "valueType": "object",
-            "makeLink": true,
-            "externalLink": false,
-            "sortValues": true,
-            "numberedList": false,
-            "minWidth": 250
-        },
-        {
-            "id": "language",
-            "valueType": "object",
-            "makeLink": true,
-            "externalLink": true,
-            "sortValues": true,
-            "numberedList": false,
-            "minWidth": 150
-        },
-        {
-            "id": "expression",
-            "valueType": "object",
-            "makeLink": true,
-            "externalLink": false,
-            "sortValues": true,
-            "numberedList": false,
-            "minWidth": 150,
-            "onlyOnInstancePage": true
-        },
-        {
-            "id": "manuscript",
-            "valueType": "object",
-            "makeLink": true,
-            "externalLink": false,
-            "sortValues": true,
-            "numberedList": false,
-            "minWidth": 250
-        },
-        {
-            "id": "productionTimespan",
-            "valueType": "object",
-            "makeLink": false,
-            "externalLink": false,
-            "sortValues": true,
-            "numberedList": false,
-            "minWidth": 250
-        },
-        {
-            "id": "collection",
-            "valueType": "object",
-            "makeLink": true,
-            "externalLink": false,
-            "sortValues": true,
-            "numberedList": false,
-            "minWidth": 200
-        },
-        {
-            "id": "source",
-            "valueType": "object",
-            "makeLink": true,
-            "externalLink": true,
-            "sortValues": true,
-            "numberedList": false,
-            "minWidth": 200
         }
     ],
     "facets": {
-        "prefLabel": {
+        "findText": {
             "containerClass": "one",
             "facetType": "text",
             "filterType": "textFilter",
-            "sortByPredicate": "skos:prefLabel",
-            "textQueryProperty": "skos:prefLabel"
+            "sortByPredicate": "skos:prefLabel"
         },
-        "author": {
+        "facetObjectType": {
             "containerClass": "ten",
-            "facetType": "list",
+            "facetType": "hierarchical",
             "filterType": "uriFilter",
-            "predicate": "^frbroo:R16_initiated/(mmm-schema:carried_out_by_as_possible_author|mmm-schema:carried_out_by_as_author)",
+            "parentProperty": "skos:broader",
+            "predicate": ":facet_object_type",
             "searchField": true,
-            "sortButton": true,
-            "sortBy": "instanceCount",
-            "sortByPredicate": "^frbroo:R16_initiated/(mmm-schema:carried_out_by_as_possible_author|mmm-schema:carried_out_by_as_author)/skos:prefLabel",
-            "sortDirection": "desc"
+            "sortByPredicate": ":facet_object_type/skos:prefLabel"
         },
-        "language": {
-            "barChartButton": true,
+        "material": {
             "containerClass": "ten",
-            "facetType": "list",
+            "facetType": "hierarchical",
             "filterType": "uriFilter",
-            "pieChartButton": true,
-            "predicate": "^frbroo:R19_created_a_realisation_of/frbroo:R17_created/crm:P72_has_language",
+            "parentProperty": "skos:broader",
+            "predicate": ":material",
             "searchField": true,
-            "sortButton": true,
-            "sortBy": "instanceCount",
-            "sortByPredicate": "^frbroo:R19_created_a_realisation_of/frbroo:R17_created/crm:P72_has_language/skos:prefLabel",
-            "sortDirection": "desc"
+            "sortByPredicate": ":material/skos:prefLabel"
         },
-        "manuscript": {
-            "sortByPredicate": "^mmm-schema:manuscript_work/skos:prefLabel"
+        "place": {
+            "containerClass": "ten",
+            "facetType": "hierarchical",
+            "filterType": "uriFilter",
+            "parentProperty": "skos:broader",
+            "predicate": ":found_in_municipality/skos:exactMatch",
+            "searchField": true,
+            "sortByPredicate": ":found_in_municipality/skos:exactMatch/skos:prefLabel"
         },
-        "productionTimespan": {
+        "dateTimespan": {
             "containerClass": "four",
             "endProperty": "crm:P82b_end_of_the_end",
             "facetType": "timespan",
             "filterType": "timespanFilter",
             "max": null,
             "min": null,
-            "predicate": "^mmm-schema:manuscript_work/^crm:P108_has_produced/crm:P4_has_time-span",
-            "sortByAscPredicate": "^mmm-schema:manuscript_work/^crm:P108_has_produced/crm:P4_has_time-span/crm:P82a_begin_of_the_begin",
-            "sortByDescPredicate": "^mmm-schema:manuscript_work/^crm:P108_has_produced/crm:P4_has_time-span/crm:P82b_end_of_the_end",
+            "predicate": ":has_creation_time_span",
             "startProperty": "crm:P82a_begin_of_the_begin"
         },
-        "collection": {
+        "period": {
             "containerClass": "ten",
-            "facetType": "list",
+            "facetType": "hierarchical",
             "filterType": "uriFilter",
-            "predicate": "^mmm-schema:manuscript_work/crm:P46i_forms_part_of",
+            "parentProperty": "skos:broader",
+            "predicate": ":period",
             "searchField": true,
-            "sortButton": true,
-            "sortBy": "instanceCount",
-            "sortByPredicate": "^mmm-schema:manuscript_work/crm:P46i_forms_part_of/skos:prefLabel",
-            "sortDirection": "desc"
+            "sortByPredicate": ":period/skos:prefLabel"
         },
-        "source": {
-            "containerClass": "three",
-            "facetType": "list",
-            "filterType": "uriFilter",
-            "pieChartButton": true,
-            "predicate": "dct:source",
-            "sortBy": "instanceCount",
-            "sortByPredicate": "dct:source/skos:prefLabel",
-            "sortDirection": "desc"
+        "length": {
+            "containerClass": "five",
+            "facetType": "integer",
+            "filterType": "integerFilterRange",
+            "predicate": ":length",
+            "sortByPredicate": ":length",
+            "typecasting": "BIND(xsd:integer(ROUND(xsd:decimal(?value))) as ?valueAsInteger)"
+        },
+        "width": {
+            "containerClass": "five",
+            "facetType": "integer",
+            "filterType": "integerFilterRange",
+            "predicate": ":width",
+            "sortByPredicate": ":width",
+            "typecasting": "BIND(xsd:integer(ROUND(xsd:decimal(?value))) as ?valueAsInteger)"
+        },
+        "weight": {
+            "containerClass": "five",
+            "facetType": "integer",
+            "filterType": "integerFilterRange",
+            "predicate": ":weight",
+            "sortByPredicate": ":weight",
+            "typecasting": "BIND(xsd:integer(ROUND(xsd:decimal(?value))) as ?valueAsInteger)"
         }
     }
 }

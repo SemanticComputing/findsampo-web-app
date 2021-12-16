@@ -9,7 +9,9 @@ import {
   PieChart,
   CloudDownload,
   BubbleChart,
-  ShowChart
+  ShowChart,
+  FormatAlignJustify,
+  ClearAll
 } from '@material-ui/icons'
 import has from 'lodash'
 
@@ -24,7 +26,9 @@ const MuiIcon = props => {
     PieChart: PieChart,
     CloudDownload: CloudDownload,
     BubbleChart: BubbleChart,
-    ShowChart: ShowChart
+    ShowChart: ShowChart,
+    FormatAlignJustify: FormatAlignJustify,
+    ClearAll: ClearAll
   }
   if (has(MuiIcons, props.iconName)) {
     const MuiIconComponent = MuiIcons[props.iconName]

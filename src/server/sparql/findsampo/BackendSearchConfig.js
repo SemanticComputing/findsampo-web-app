@@ -1,122 +1,87 @@
-import { findsPerspectiveConfig } from './perspective_configs/FindsPerspectiveConfig'
-import { typesPerspectiveConfig } from './perspective_configs/TypesPerspectiveConfig'
-import { periodsPerspectiveConfig } from './perspective_configs/PeriodsPerspectiveConfig'
-import { coinsPerspectiveConfig } from './perspective_configs/CoinsPerspectiveConfig'
 import {
-  findPropertiesInstancePage,
-  findsByProvinceQuery,
-  findsByMaterialQuery,
-  findsByObjectNameQuery,
-  findsByYearQuery,
-  findsByLengthQuery,
-  findsByWidthQuery,
-  findsByWeightQuery,
-  findsPlacesQuery,
-  findsListQuery,
-  findInstancePageMapQuery,
-  findsTimelineQuery,
-  findsApexChartsTimelineQuery,
-  findsApexChartsTimelineDialogQuery,
-  nearbyFindsQuery,
-  similarFindsQuery,
-  knowledgeGraphMetadataQuery,
-  findsCSVQuery
-} from './sparql_queries/SparqlQueriesFinds'
-import {
-  coinsByYearQuery
-  // coinsPlacesQuery,
-  // coinsTimelineQuery
-} from './sparql_queries/SparqlQueriesCoins'
-import { fullTextSearchProperties } from './sparql_queries/SparqlQueriesFullText'
-import { makeObjectList } from '../SparqlObjectMapper'
-import {
+  makeObjectList,
   mapPlaces,
   mapPieChart,
   mapLineChart
 } from '../Mappers'
 
 export const backendSearchConfig = {
-  finds: findsPerspectiveConfig,
-  types: typesPerspectiveConfig,
-  periods: periodsPerspectiveConfig,
-  coins: coinsPerspectiveConfig,
-  readTranslationsFromGoogleSheets: true,
   findsPlaces: {
     perspectiveID: 'finds', // use endpoint config from finds
-    q: findsPlacesQuery,
+    q: 'findsPlacesQuery',
     filterTarget: 'id',
     resultMapper: mapPlaces,
     instance: {
-      properties: findPropertiesInstancePage,
+      properties: 'findPropertiesInstancePage',
       relatedInstances: ''
     }
   },
   findsPlacesHeatmap: {
     perspectiveID: 'finds', // use endpoint config from finds
-    q: findsPlacesQuery,
+    q: 'findsPlacesQuery',
     filterTarget: 'id',
     resultMapper: mapPlaces
   },
   findsList: {
     perspectiveID: 'finds', // use endpoint config from finds
-    q: findsListQuery,
+    q: 'findsListQuery',
     filterTarget: 'id',
     resultMapper: makeObjectList
   },
   findInstancePageMap: {
     perspectiveID: 'finds',
-    q: findInstancePageMapQuery,
+    q: 'findInstancePageMapQuery',
     resultMapper: makeObjectList
   },
   findsTimeline: {
     perspectiveID: 'finds', // use endpoint config from finds
-    q: findsTimelineQuery,
+    q: 'findsTimelineQuery',
     filterTarget: 'find',
     resultMapper: makeObjectList
   },
   findsApexChartsTimeline: {
     perspectiveID: 'finds', // use endpoint config from finds
-    q: findsApexChartsTimelineQuery,
+    q: 'findsApexChartsTimelineQuery',
     filterTarget: 'find',
     resultMapper: makeObjectList
   },
   findsApexChartsTimelineDialog: {
     perspectiveID: 'finds', // use endpoint config from finds
-    q: findsApexChartsTimelineDialogQuery,
+    q: 'findsApexChartsTimelineDialogQuery',
     filterTarget: 'id',
     resultMapper: makeObjectList
   },
   nearbyFinds: {
     perspectiveID: 'finds', // use endpoint config from finds
-    q: nearbyFindsQuery,
+    q: 'nearbyFindsQuery',
     resultMapper: makeObjectList
   },
   similarFinds: {
     perspectiveID: 'finds', // use endpoint config from finds
-    q: similarFindsQuery,
+    q: 'similarFindsQuery',
     resultMapper: makeObjectList
   },
   findsByProvince: {
     perspectiveID: 'finds', // use endpoint config from finds
-    q: findsByProvinceQuery,
+    q: 'findsByProvinceQuery',
     filterTarget: 'find',
     resultMapper: mapPieChart
   },
   findsByMaterial: {
     perspectiveID: 'finds', // use endpoint config from finds
-    q: findsByMaterialQuery,
+    q: 'findsByMaterialQuery',
     filterTarget: 'find',
     resultMapper: mapPieChart
   },
   findsByObjectName: {
     perspectiveID: 'finds', // use endpoint config from finds
-    q: findsByObjectNameQuery,
+    q: 'findsByObjectNameQuery',
     filterTarget: 'find',
     resultMapper: mapPieChart
   },
   findsByYear: {
     perspectiveID: 'finds', // use endpoint config from finds
-    q: findsByYearQuery,
+    q: 'findsByYearQuery',
     filterTarget: 'find',
     resultMapper: mapLineChart,
     resultMapperConfig: {
@@ -128,7 +93,7 @@ export const backendSearchConfig = {
   },
   findsByLength: {
     perspectiveID: 'finds', // use endpoint config from finds
-    q: findsByLengthQuery,
+    q: 'findsByLengthQuery',
     filterTarget: 'find',
     resultMapper: mapLineChart,
     resultMapperConfig: {
@@ -137,7 +102,7 @@ export const backendSearchConfig = {
   },
   findsByWidth: {
     perspectiveID: 'finds', // use endpoint config from finds
-    q: findsByWidthQuery,
+    q: 'findsByWidthQuery',
     filterTarget: 'find',
     resultMapper: mapLineChart,
     resultMapperConfig: {
@@ -146,7 +111,7 @@ export const backendSearchConfig = {
   },
   findsByWeight: {
     perspectiveID: 'finds', // use endpoint config from finds
-    q: findsByWeightQuery,
+    q: 'findsByWeightQuery',
     filterTarget: 'find',
     resultMapper: mapLineChart,
     resultMapperConfig: {
@@ -155,22 +120,22 @@ export const backendSearchConfig = {
   },
   findsKnowledgeGraphMetadata: {
     perspectiveID: 'finds', // use endpoint config from finds
-    q: knowledgeGraphMetadataQuery,
+    q: 'knowledgeGraphMetadataQuery',
     resultMapper: makeObjectList
   },
   jenaText: {
     perspectiveID: 'finds',
-    properties: fullTextSearchProperties
+    properties: 'fullTextSearchProperties'
   },
   coinsByYear: {
     perspectiveID: 'coins',
-    q: coinsByYearQuery,
+    q: 'coinsByYearQuery',
     filterTarget: 'find',
     resultMapper: mapLineChart
   },
   csvFinds: {
     perspectiveID: 'finds', // use endpoint config from finds
-    q: findsCSVQuery,
+    q: 'findsCSVQuery',
     filterTarget: 'id'
   }
 }
