@@ -9,6 +9,7 @@ import Typography from '@material-ui/core/Typography'
 // import Divider from '@material-ui/core/Divider';
 import IconButton from '@material-ui/core/IconButton'
 import InfoIcon from '@material-ui/icons/InfoOutlined'
+import Tooltip from '@material-ui/core/Tooltip'
 import intl from 'react-intl-universal'
 
 const useStyles = makeStyles(theme => ({
@@ -91,11 +92,10 @@ const InfoHeader = props => {
     const data = props.instanceData
     const hasData = data !== null && Object.values(data).length >= 1
     if (hasData && data.prefLabel) {
-      if (props.resultClass === 'finds') {
-        label = data.findName.prefLabel
-      } else {
-        label = data.prefLabel.prefLabel || data.prefLabel
+      if (Array.isArray(data.prefLabel)) {
+        data.prefLabel = data.prefLabel[0]
       }
+      label = data.prefLabel.prefLabel || data.prefLabel
     }
     return label
   }
@@ -132,9 +132,11 @@ const InfoHeader = props => {
               {props.pageType === 'facetResults' && intl.get(`perspectives.${props.resultClass}.label`)}
               {props.pageType === 'instancePage' && intl.get(`perspectives.${props.resultClass}.instancePage.label`)}
             </Typography>
-            <IconButton aria-label='open instructions' className={classes.infoIconButton} onClick={handleExpandButtonOnClick}>
-              <InfoIcon className={classes.infoIcon} />
-            </IconButton>
+            <Tooltip title={intl.get('infoHeader.toggleInstructions')}>
+              <IconButton aria-label='toggle instructions' className={classes.infoIconButton} onClick={handleExpandButtonOnClick}>
+                <InfoIcon className={classes.infoIcon} />
+              </IconButton>
+            </Tooltip>
           </div>
           {props.pageType === 'instancePage' &&
             <Typography className={classes.label} component='h1' variant='h6'>{generateLabel()}</Typography>}
@@ -162,5 +164,7 @@ InfoHeader.propTypes = {
   updateExpanded: PropTypes.func.isRequired,
   layoutConfig: PropTypes.object.isRequired
 }
+
+export const InfoHeaderComponent = InfoHeader
 
 export default InfoHeader
