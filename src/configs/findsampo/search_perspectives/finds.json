@@ -124,6 +124,26 @@
                 "findsByObjectName"
             ]
         },
+        "findsByNumericProperty": {
+            "tabID": 6,
+            "component": "ApexCharts",
+            "createChartData": "createSingleLineChartData",
+            "xaxisType": "numeric",
+            "xaxisTickAmount": 30,
+            "stroke": { 
+                "width": 2 
+            },
+            "doNotRenderOnMount": true,
+            "tabPath": "line_chart",
+            "tabIcon": "ShowChart",
+            "facetClass": "finds",
+            "dropdownForResultClasses": true,
+            "resultClasses": [
+                "findsByWeight",
+                "findsByLength",
+                "findsByWidth"
+            ]
+        },
         "findsByProvince": {
             "sparqlQuery": "findsByProvinceQuery",
             "filterTarget": "find",
