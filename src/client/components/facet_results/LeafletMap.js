@@ -42,7 +42,7 @@ import markerIconYellow from '../../img/markers/marker-icon-yellow.png'
 // const buffer = lazy(() => import('@turf/buffer'))
 import buffer from '@turf/buffer'
 
-import { fhaLegend } from '../../library_configs/findsampo/Leaflet/LeafletConfig'
+import { fhaLegend } from '../../library_configs/Leaflet/LeafletConfig'
 
 const styles = theme => ({
   leafletContainerfacetResults: props => ({
