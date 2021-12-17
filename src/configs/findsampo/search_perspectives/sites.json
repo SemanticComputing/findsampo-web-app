@@ -1,0 +1,20 @@
+{
+    "id": "sites",
+    "frontPageImage": "findsampo/sites2-small.png",
+    "searchMode": "dummy-internal",
+    "internalLink": "/sites/map",
+    "facetedSearchHeaderExpanded": true,
+    "maps": {
+        "sitesMap": {
+            "center": [
+                65.184809,
+                27.314050
+            ],
+            "zoom": 5
+        }
+    },
+    "resultClasses": {
+        "sites": {},
+        "sitesMap": {}
+    }
+}

@@ -5,6 +5,7 @@
         "searchPerspectives": [
             "finds",
             "map",
+            "sites",
             "fullTextSearch"
         ],
         "onlyInstancePages": []

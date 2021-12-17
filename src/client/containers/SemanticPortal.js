@@ -93,6 +93,8 @@ const Main = lazy(() => import(`../components/perspectives/${portalID}/Main`))
 const MainClientFS = lazy(() => import(`../components/perspectives/${portalID}/MainClientFS`))
 const Footer = lazy(() => import(`../components/perspectives/${portalID}/Footer`))
 const KnowledgeGraphMetadataTable = lazy(() => import(`../components/perspectives/${portalID}/KnowledgeGraphMetadataTable`))
+const Sites = lazy(() => import('../components/perspectives/' + portalID + '/Sites'))
+const InfoCards = lazy(() => import('../components/perspectives/' + portalID + '/InfoCards'))
 // ** Portal specific components end **
 
 const useStyles = makeStyles(theme => ({
@@ -620,6 +622,43 @@ const SemanticPortal = props => {
                 />
               </>}
 
+          />
+          <Route
+            path={`${rootUrlWithLang}/sites/map`}
+            render={routeProps => {
+              const perspective = perspectiveConfig.find(p => p.id === 'sites')
+              return (
+                <>
+                  <InfoHeader
+                    portalConfig={portalConfig}
+                    layoutConfig={layoutConfig}
+                    resultClass={perspective.id}
+                    pageType='facetResults'
+                    expanded={props[perspective.id].facetedSearchHeaderExpanded}
+                    updateExpanded={props.updatePerspectiveHeaderExpanded}
+                    screenSize={screenSize}
+                  />
+                  <Sites
+                    portalConfig={portalConfig}
+                    layoutConfig={layoutConfig}
+                    leafletConfig={leafletConfig}
+                    perspectiveState={props[`${perspective.id}`]}
+                    leafletMapState={props.leafletMap}
+                    fetchGeoJSONLayers={props.fetchGeoJSONLayers}
+                    fetchGeoJSONLayersBackend={props.fetchGeoJSONLayersBackend}
+                    clearGeoJSONLayers={props.clearGeoJSONLayers}
+                    showError={props.showError}
+                    updateMapBounds={props.updateMapBounds}
+                    screenSize={screenSize}
+                  />
+
+                </>
+              )
+            }}
+          />
+          <Route
+            path={`${rootUrlWithLang}/guides`}
+            render={() => <InfoCards />}
           />
           {/* create routes for info buttons */}
           <Route

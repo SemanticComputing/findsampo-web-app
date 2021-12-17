@@ -1,19 +1,6 @@
 import React from 'react'
-// import PropTypes from 'prop-types'
 import { makeStyles } from '@material-ui/core/styles'
-// import { Route, Redirect } from 'react-router-dom'
-// import PerspectiveTabs from '../../main_layout/PerspectiveTabs'
-// import ResultTable from '../../facet_results/ResultTable'
 import LeafletMap from '../../facet_results/LeafletMap'
-// import Deck from '../../facet_results/Deck'
-// import Network from '../../facet_results/Network'
-// import Timeline from '../../facet_results/Timeline'
-// import Export from '../../facet_results/Export'
-import {
-  MAPBOX_ACCESS_TOKEN,
-  MAPBOX_STYLE
-} from '../../../configs/findsampo/GeneralConfig'
-import { layerConfigs } from '../../../configs/findsampo/Leaflet/LeafletConfig'
 
 const useStyles = makeStyles(theme => ({
   root: props => ({
@@ -59,8 +46,7 @@ const Sites = props => {
       : classes.root}
     >
       <LeafletMap
-        mapBoxAccessToken={MAPBOX_ACCESS_TOKEN}
-        mapBoxStyle={MAPBOX_STYLE}
+        portalConfig={props.portalConfig}
         center={props.perspectiveState.maps.sitesMap.center}
         zoom={props.perspectiveState.maps.sitesMap.zoom}
         locateUser
@@ -80,7 +66,7 @@ const Sites = props => {
         layerControlExpanded={layerControlExpanded}
         infoHeaderExpanded={props.perspectiveState.facetedSearchHeaderExpanded}
         layoutConfig={props.layoutConfig}
-        layerConfigs={layerConfigs}
+        layerConfigs={props.leafletConfig.layerConfigs}
         activeLayers={[
           // 'WFS_MV_KulttuuriymparistoSuojellut:Muinaisjaannokset_alue',
           // 'WFS_MV_KulttuuriymparistoSuojellut:Muinaisjaannokset_piste',
