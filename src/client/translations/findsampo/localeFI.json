@@ -203,14 +203,6 @@
           "label": "Ajoitus",
           "description": "Etsi esineen ajoituksen perusteella."
         },
-        "startYear": {
-          "label": "Aikaisin tarkka vuosi",
-          "description": "Aikaisin vuosi, jolloin esine on valmistettu asiantuntijan arvion mukaan."
-        },
-        "endYear": {
-          "label": "Myöhäisin tarkka vuosi",
-          "description": "Myöhäisin vuosi jolloin esine on valmistettu asiantuntijan arvion mukaan"
-        },
         "province": {
           "label": "Maakunta",
           "description": "Maakunta, josta löydetty"
@@ -224,12 +216,12 @@
           "description": "Kuvan kuvaus"
         },
         "earliestStartYear": {
-          "label": "Aikaisin valmistusaika",
-          "description": "Aikaisin oletettu esineen valmistusaika, joka on määritelty automaattisesti joko tarkkojen vuosien tai aikakausien perusteella."
+          "label": "Aikaisin ajoitus",
+          "description": "Aikaisin esineen ajoitus, joka on määritelty joko asiantuntijan syöttämien vuosilukujen tai aikakauden perusteella."
         },
         "latestEndYear": {
-          "label": "Myöhäisin valmistusaika",
-          "description": "Myöhäisin oletettu esineen valmistusaika, joka on määritelty automaattisesti joko tarkkojen vuosien tai aikakausien perusteella."
+          "label": "Myöhäisin ajoitus",
+          "description": "Myöhäisin esineen ajoitus, joka on määritelty joko asiantuntijan syöttämien vuosilukujen tai aikakauden perusteella."
         },
         "kmNumber": {
           "label": "KM-numero",

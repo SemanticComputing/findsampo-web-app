@@ -9,6 +9,7 @@
     "baseURI": "http://ldf.fi/findsampo",
     "URITemplate": "<BASE_URI>/finds/<LOCAL_ID>",
     "facetClass": ":Find",
+    "langTag": "fi",
     "frontPageImage": "findsampo/Museovirasto_063_vaaka_compressed.jpg",
     "searchMode": "faceted-search",
     "defaultActiveFacets": [
@@ -132,8 +133,8 @@
             "createChartData": "createSingleLineChartData",
             "xaxisType": "numeric",
             "xaxisTickAmount": 30,
-            "stroke": { 
-                "width": 2 
+            "stroke": {
+                "width": 2
             },
             "doNotRenderOnMount": true,
             "tabPath": "line_chart",
@@ -213,7 +214,6 @@
             "facetClass": "finds",
             "sparqlQuery": "findsCSVQuery",
             "filterTarget": "id"
-
         }
     },
     "maps": {
@@ -436,14 +436,43 @@
             "filterType": "textFilter",
             "sortByPredicate": "skos:prefLabel"
         },
+        "findName": {
+            "sortByPredicate": "ltk-s:find_name"
+        },
+        "findNumber": {
+            "sortByPredicate": ":identifier"
+        },
+        "objectType": {
+            "sortByPredicate": "OPTIONAL { ?id :object_type/skos:prefLabel ?orderBy . FILTER(LANG(?orderBy) = '<LANG>') }"
+        },
+        "province": {
+            "sortByPredicate": ":found_in_province/skos:prefLabel"
+        },
+        "municipality": {
+            "sortByPredicate": ":found_in_municipality/skos:prefLabel"
+        },
+        "earliestStartYear": {
+            "orderByPattern": "OPTIONAL { ?id :has_creation_time_span/crm:P82a_begin_of_the_begin ?orderBy_ . BIND(xsd:date(?orderBy_) as ?orderBy) }"
+        },
+        "latestEndYear": {
+            "orderByPattern": "OPTIONAL { ?id :has_creation_time_span/crm:P82b_end_of_the_end ?orderBy_ . BIND(xsd:date(?orderBy_) as ?orderBy) }"
+        },
+        "minThickness": {
+            "sortByPredicate": ":min_thickness"
+        },
+        "maxThickness": {
+            "sortByPredicate": ":max_thickness"
+        },
+        "diameter": {
+            "sortByPredicate": ":diameter"
+        },
         "facetObjectType": {
             "containerClass": "ten",
             "facetType": "hierarchical",
             "filterType": "uriFilter",
             "parentProperty": "skos:broader",
             "predicate": ":facet_object_type",
-            "searchField": true,
-            "sortByPredicate": ":facet_object_type/skos:prefLabel"
+            "searchField": true
         },
         "material": {
             "containerClass": "ten",
