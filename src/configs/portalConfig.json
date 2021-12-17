@@ -10,7 +10,10 @@
             "ilppari",
             "fullTextSearch"
         ],
-        "onlyInstancePages": []
+        "onlyInstancePages": [
+            "types",
+            "periods"
+        ]
     },
     "localeConfig": {
         "defaultLocale": "fi",

@@ -1,0 +1,109 @@
+{
+  "id": "types",
+  "endpoint": {
+    "url": "http://ldf.fi/findsampo/sparql",
+    "useAuth": false,
+    "prefixesFile": "SparqlQueriesPrefixes.js"
+  },
+  "sparqlQueriesFile": "SparqlQueriesTypes.js",
+  "baseURI": "http://ldf.fi/findsampo",
+  "URITemplate": "<BASE_URI>/object_types/<LOCAL_ID>",
+  "resultClasses": {
+    "types": {
+      "instanceConfig": {
+        "propertiesQueryBlock": "typesPropertiesInstancePage",
+        "instancePageResultClasses": {
+          "instancePageTable": {
+            "tabID": 0,
+            "component": "InstancePageTable",
+            "tabPath": "table",
+            "tabIcon": "CalendarViewDay"
+          }
+        }
+      }
+    }
+  },
+  "properties": [
+    {
+      "id": "uri",
+      "valueType": "object",
+      "makeLink": true,
+      "externalLink": true,
+      "sortValues": true,
+      "numberedList": false,
+      "onlyOnInstancePage": true
+    },
+    {
+      "id": "prefLabel",
+      "valueType": "object",
+      "makeLink": true,
+      "externalLink": false,
+      "sortValues": true,
+      "numberedList": false,
+      "minWidth": 180
+    },
+    {
+      "id": "maoMatch",
+      "valueType": "object",
+      "makeLink": true,
+      "externalLink": true,
+      "sortValues": true,
+      "numberedList": false,
+      "minWidth": 180
+    },
+    {
+      "id": "kokoMatch",
+      "valueType": "object",
+      "makeLink": true,
+      "externalLink": true,
+      "sortValues": true,
+      "numberedList": false,
+      "minWidth": 180
+    },
+    {
+      "id": "definition",
+      "valueType": "object",
+      "makeLink": true,
+      "externalLink": true,
+      "sortValues": true,
+      "numberedList": false,
+      "minWidth": 180
+    },
+    {
+      "id": "ltkName",
+      "valueType": "string",
+      "makeLink": false,
+      "externalLink": true,
+      "sortValues": true,
+      "numberedList": false,
+      "minWidth": 180
+    },
+    {
+      "id": "relatedFind",
+      "valueType": "object",
+      "makeLink": true,
+      "externalLink": false,
+      "sortValues": true,
+      "numberedList": false,
+      "minWidth": 180
+    },
+    {
+      "id": "aatTerm",
+      "valueType": "object",
+      "makeLink": true,
+      "externalLink": true,
+      "sortValues": true,
+      "numberedList": false,
+      "minWidth": 180
+    },
+    {
+      "id": "pasLink",
+      "valueType": "object",
+      "makeLink": true,
+      "externalLink": true,
+      "sortValues": true,
+      "numberedList": false,
+      "minWidth": 180
+    }
+  ]
+}
