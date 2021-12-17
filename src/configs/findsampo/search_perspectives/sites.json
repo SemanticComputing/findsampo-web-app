@@ -3,7 +3,6 @@
     "frontPageImage": "findsampo/sites2-small.png",
     "searchMode": "dummy-internal",
     "internalLink": "/sites/map",
-    "facetedSearchHeaderExpanded": true,
     "maps": {
         "sitesMap": {
             "center": [
