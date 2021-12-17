@@ -218,6 +218,7 @@ const Main = props => {
           </div>
           <div className={classes.carouselContainer}>
             <ImageCarousel
+              perspectiveID='finds'
               resultClass='findsKnowledgeGraphMetadata'
               fetchData={props.fetchKnowledgeGraphMetadata}
               data={props.knowledgeGraphMetadata}

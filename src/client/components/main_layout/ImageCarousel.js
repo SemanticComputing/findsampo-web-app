@@ -34,8 +34,11 @@ const ImageCarousel = props => {
 
   useEffect(() => {
     if (props.fetchData) {
-      const { resultClass } = props
-      props.fetchData({ resultClass })
+      const { perspectiveID, resultClass } = props
+      props.fetchData({
+        perspectiveID,
+        resultClass
+      })
     }
   }, [])
 

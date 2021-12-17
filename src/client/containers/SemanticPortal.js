@@ -300,6 +300,9 @@ const SemanticPortal = props => {
                   screenSize={screenSize}
                   rootUrl={rootUrlWithLang}
                   layoutConfig={layoutConfig}
+                  currentLocale={props.options.currentLocale}
+                  fetchKnowledgeGraphMetadata={props.fetchKnowledgeGraphMetadata}
+                  knowledgeGraphMetadata={props.finds.knowledgeGraphMetadata}
                 />
                 <Footer
                   portalConfig={portalConfig}

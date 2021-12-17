@@ -7,7 +7,7 @@ import { has } from 'lodash'
 // import { coinsPerspectiveConfig } from './perspective_configs/CoinsPerspectiveConfig'
 
 // import { INITIAL_STATE } from '../../client/reducers/findsampo/findsFacets'
-import { INITIAL_STATE } from '../../client/reducers/findsampo/periods'
+// import { INITIAL_STATE } from '../../client/reducers/findsampo/periods'
 
 export const createBackendSearchConfig = async () => {
   const portalConfigJSON = await readFile('src/configs/portalConfig.json')
@@ -314,7 +314,7 @@ export const createExtraResultClassesForJSONConfig = async oldBackendSearchConfi
 
 // createExtraResultClassesForJSONConfig(oldBackendSearchConfig)
 // mergeFacetConfigs(INITIAL_STATE.facets, findsPerspectiveConfig.facets)
-console.log(JSON.stringify(INITIAL_STATE.properties))
+// console.log(JSON.stringify(INITIAL_STATE.properties))
 // "tabID": 0,
 // "tabPath": "",
 // "tabIcon": "",
