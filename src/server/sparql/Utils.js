@@ -18,6 +18,7 @@ export const createBackendSearchConfig = async () => {
   for (const perspectiveID of portalConfig.perspectives.searchPerspectives) {
     const perspectiveConfigJSON = await readFile(`src/configs/${portalID}/search_perspectives/${perspectiveID}.json`)
     const perspectiveConfig = JSON.parse(perspectiveConfigJSON)
+    if (!has(perspectiveConfig, 'sparqlQueriesFile')) { continue } // skip dummy perspectives
     const { sparqlQueriesFile } = perspectiveConfig
     const sparqlQueries = await import(`../sparql/${portalID}/sparql_queries/${sparqlQueriesFile}`)
     if (has(perspectiveConfig, 'endpoint')) {

@@ -5,7 +5,7 @@ import { has } from 'lodash'
 import { connect } from 'react-redux'
 import { makeStyles } from '@material-ui/core/styles'
 import { withRouter, Route, Redirect, Switch } from 'react-router-dom'
-// import classNames from 'classnames'
+import classNames from 'classnames'
 import { compose } from '@shakacode/recompose'
 import useMediaQuery from '@material-ui/core/useMediaQuery'
 import { MuiPickersUtilsProvider } from '@material-ui/pickers'
@@ -79,7 +79,7 @@ const perspectiveConfigOnlyInfoPages = await createPerspectiveConfigOnlyInfoPage
 // ** Import general components **
 const TopBar = lazy(() => import('../components/main_layout/TopBar'))
 const InfoHeader = lazy(() => import('../components/main_layout/InfoHeader'))
-// const TextPage = lazy(() => import('../components/main_layout/TextPage'))
+const TextPage = lazy(() => import('../components/main_layout/TextPage'))
 const Message = lazy(() => import('../components/main_layout/Message'))
 const InstancePage = lazy(() => import('../components/main_layout/InstancePage'))
 const FullTextSearch = lazy(() => import('../components/main_layout/FullTextSearch'))
@@ -96,7 +96,7 @@ const KnowledgeGraphMetadataTable = lazy(() => import(`../components/perspective
 // ** Portal specific components end **
 
 const useStyles = makeStyles(theme => ({
-  root: props => ({
+  root: {
     /* Background color of the app.
        In order to use both 'auto' and '100%' heights, bg-color
        needs to be defined also in index.html (for #app and #root elements)
@@ -106,12 +106,8 @@ const useStyles = makeStyles(theme => ({
     [theme.breakpoints.up(layoutConfig.hundredPercentHeightBreakPoint)]: {
       overflow: 'hidden',
       height: '100%'
-    },
-    ...((props.location.pathname.includes('/sites/map') ||
-     props.location.pathname.includes('/guides') ||
-     props.location.pathname.includes('/full-text-search')) &&
-    { height: '100%' })
-  }),
+    }
+  },
   mainContainerClientFS: {
     marginTop: theme.spacing(0.5),
     marginBottom: theme.spacing(0.5),
@@ -133,10 +129,7 @@ const useStyles = makeStyles(theme => ({
     }
   },
   perspectiveContainer: {
-    marginTop: theme.spacing(0.5),
-    marginRight: theme.spacing(0.5),
-    marginLeft: theme.spacing(0.5),
-    marginBottom: 0,
+    margin: theme.spacing(0.5),
     width: `calc(100% - ${theme.spacing(1)}px)`,
     [theme.breakpoints.up(layoutConfig.hundredPercentHeightBreakPoint)]: {
       height: `calc(100% - ${layoutConfig.topBar.reducedHeight + layoutConfig.infoHeader.reducedHeight.height + theme.spacing(1.5)}px)`
@@ -195,7 +188,7 @@ const useStyles = makeStyles(theme => ({
     paddingRight: '0px !important',
     [theme.breakpoints.down('sm')]: {
       paddingLeft: '0px !important',
-      // marginBottom: theme.spacing(1),
+      marginBottom: theme.spacing(1),
       marginTop: theme.spacing(0.5)
     }
   },
@@ -274,19 +267,6 @@ const SemanticPortal = props => {
     document.querySelector('meta[name="description"]').setAttribute('content', intl.get('html.description'))
   }, [props.options.currentLocale])
 
-  // useEffect(() => {
-  //   const { pathname } = props.location
-  //   if (
-  //     pathname.includes('/sites/map') ||
-  //     pathname.includes('/full-text-search')
-  //   ) {
-  //     document.documentElement.style.height = '100%'
-  //     document.body.style.height = '100%'
-  //     document.getElementById('root').style.height = '100%'
-  //     document.getElementById('app').style.height = '100%'
-  //   }
-  // }, [])
-
   return (
     <MuiPickersUtilsProvider libInstance={moment} utils={MomentUtils} locale={props.options.currentLocale}>
       <div className={classes.root}>
@@ -318,10 +298,6 @@ const SemanticPortal = props => {
                   screenSize={screenSize}
                   rootUrl={rootUrlWithLang}
                   layoutConfig={layoutConfig}
-                  resultClass='finds'
-                  currentLocale={props.options.currentLocale}
-                  // fetchKnowledgeGraphMetadata={props.fetchKnowledgeGraphMetadata}
-                  // knowledgeGraphMetadata={props.finds.knowledgeGraphMetadata}
                 />
                 <Footer
                   portalConfig={portalConfig}
@@ -480,7 +456,6 @@ const SemanticPortal = props => {
                                   leafletMapState={props.leafletMap}
                                   fetchPaginatedResults={props.fetchPaginatedResults}
                                   fetchResults={props.fetchResults}
-                                  clearResults={props.clearResults}
                                   fetchInstanceAnalysis={props.fetchInstanceAnalysis}
                                   fetchFacetConstrainSelf={props.fetchFacetConstrainSelf}
                                   fetchGeoJSONLayers={props.fetchGeoJSONLayers}
@@ -645,7 +620,7 @@ const SemanticPortal = props => {
                 />
               </>}
 
-          /> */}
+          />
           {/* create routes for info buttons */}
           <Route
             path={`${rootUrlWithLang}/about`}
@@ -663,14 +638,14 @@ const SemanticPortal = props => {
                   {intl.getHTML('aboutThePortalPartTwo')}
                 </TextPage>
               </div>}
-          /> */}
-          {/* <Route
+          />
+          <Route
             path={`${rootUrlWithLang}/instructions`}
             render={() =>
               <div className={classNames(classes.mainContainer, classes.textPageContainer)}>
                 <TextPage>{intl.getHTML('instructions')}</TextPage>
               </div>}
-          /> */}
+          />
         </>
       </div>
     </MuiPickersUtilsProvider>

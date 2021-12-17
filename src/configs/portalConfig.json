@@ -3,7 +3,9 @@
     "rootUrl": "",
     "perspectives": {
         "searchPerspectives": [
-            "finds"
+            "finds",
+            "map",
+            "fullTextSearch"
         ],
         "onlyInstancePages": []
     },

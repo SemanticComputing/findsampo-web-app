@@ -128,10 +128,10 @@ const Main = props => {
   const { perspectives, screenSize } = props
   const actualPerspectives = []
   const additionalLinks = []
-  perspectives.map(perspective => {
+  perspectives.forEach(perspective => {
     if (perspective.externalUrl || perspective.id === 'guides') {
       additionalLinks.push(perspective)
-    } else {
+    } else if (perspective.id !== 'fullTextSearch') {
       actualPerspectives.push(perspective)
     }
   })

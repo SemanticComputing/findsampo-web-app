@@ -121,8 +121,19 @@ const TopBar = props => {
   const AdapterLink = React.forwardRef((props, ref) => <Link innerRef={ref} {...props} />)
   const AdapterNavLink = React.forwardRef((props, ref) => <NavLink innerRef={ref} {...props} />)
 
+  const getInternalLink = perspective => {
+    const searchMode = has(perspective, 'searchMode') ? perspective.searchMode : 'faceted-search'
+    let link = null
+    if (searchMode === 'dummy-internal') {
+      link = `${props.rootUrl}${perspective.internalLink}`
+    }
+    if (searchMode !== 'dummy-internal') {
+      link = `${props.rootUrl}/${perspective.id}/${searchMode}`
+    }
+    return link
+  }
+
   const renderMobileMenuItem = perspective => {
-    const { searchMode } = perspective
     if (has(perspective, 'externalUrl')) {
       return (
         <a
@@ -144,7 +155,7 @@ const TopBar = props => {
         <MenuItem
           key={perspective.id}
           component={AdapterLink}
-          to={`${props.rootUrl}/${perspective.id}/${searchMode}`}
+          to={getInternalLink(perspective)}
           onClick={handleMobileMenuClose}
         >
           {intl.get(`perspectives.${perspective.id}.label`).toUpperCase()}
@@ -154,7 +165,6 @@ const TopBar = props => {
   }
 
   const renderDesktopTopMenuItem = perspective => {
-    const { searchMode } = perspective
     if (has(perspective, 'externalUrl')) {
       return (
         <a
@@ -179,7 +189,7 @@ const TopBar = props => {
           key={perspective.id}
           className={classes.appBarButton}
           component={AdapterNavLink}
-          to={`${props.rootUrl}/${perspective.id}/${searchMode}`}
+          to={getInternalLink(perspective)}
           isActive={(match, location) => location.pathname.startsWith(`${props.rootUrl}/${perspective.id}`)}
           activeClassName={classes.appBarButtonActive}
         >
