@@ -71,6 +71,8 @@
             "tabID": 1,
             "tabPath": "list",
             "tabIcon": "FormatAlignJustify",
+            "component": "ReactVirtualizedList",
+            "facetClass": "finds",
             "sparqlQuery": "findsListQuery",
             "filterTarget": "id",
             "resultMapper": "makeObjectList"
@@ -204,8 +206,14 @@
             "resultMapper": "mapLineChart"
         },
         "csvFinds": {
+            "tabID": 7,
+            "tabPath": "csv",
+            "tabIcon": "CloudDownload",
+            "component": "ExportCSV",
+            "facetClass": "finds",
             "sparqlQuery": "findsCSVQuery",
             "filterTarget": "id"
+
         }
     },
     "maps": {
