@@ -1,11 +1,16 @@
 import React from 'react'
 import { MuiThemeProvider, createTheme } from '@material-ui/core/styles'
 import SemanticPortal from '../containers/SemanticPortal'
+import portalConfig from '../../configs/portalConfig.json'
+const { colorPalette } = portalConfig.layoutConfig
 
 const theme = createTheme({
   palette: {
     primary: {
-      main: '#007A93'
+      main: colorPalette.primary.main
+    },
+    secondary: {
+      main: colorPalette.secondary.main
     }
   },
   overrides: {

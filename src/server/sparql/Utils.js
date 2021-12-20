@@ -7,7 +7,7 @@ import { has } from 'lodash'
 // import { coinsPerspectiveConfig } from './perspective_configs/CoinsPerspectiveConfig'
 
 // import { INITIAL_STATE } from '../../client/reducers/findsampo/findsFacets'
-// import { INITIAL_STATE } from '../../client/reducers/findsampo/periods'
+// import { INITIAL_STATE } from '../../client/reducers/findsampo/finds'
 
 export const createBackendSearchConfig = async () => {
   const portalConfigJSON = await readFile('src/configs/portalConfig.json')
