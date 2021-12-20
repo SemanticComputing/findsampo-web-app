@@ -42,6 +42,8 @@
                         "tabID": 1,
                         "component": "LeafletMap",
                         "showInstanceCountInClusters": false,
+                        "showExternalLayers": true,
+                        "customMapControl": true,
                         "pageType": "instancePage",
                         "tabPath": "map",
                         "tabIcon": "AddLocation",
@@ -55,6 +57,8 @@
                         "tabID": 2,
                         "component": "LeafletMap",
                         "showInstanceCountInClusters": false,
+                        "showExternalLayers": true,
+                        "customMapControl": true,
                         "pageType": "instancePage",
                         "tabPath": "nearby_finds",
                         "tabIcon": "AddLocation",
@@ -74,38 +78,38 @@
                         "resultMapper": "makeObjectList",
                         "properties": [
                             {
-                              "id": "similarObjectType",
-                              "valueType": "object",
-                              "makeLink": true,
-                              "externalLink": false,
-                              "sortValues": true,
-                              "numberedList": false
+                                "id": "similarObjectType",
+                                "valueType": "object",
+                                "makeLink": true,
+                                "externalLink": false,
+                                "sortValues": true,
+                                "numberedList": false
                             },
                             {
-                              "id": "similarMaterial",
-                              "valueType": "object",
-                              "makeLink": true,
-                              "externalLink": false,
-                              "sortValues": true,
-                              "numberedList": false
+                                "id": "similarMaterial",
+                                "valueType": "object",
+                                "makeLink": true,
+                                "externalLink": false,
+                                "sortValues": true,
+                                "numberedList": false
                             },
                             {
-                              "id": "similarPeriod",
-                              "valueType": "object",
-                              "makeLink": true,
-                              "externalLink": false,
-                              "sortValues": true,
-                              "numberedList": false
+                                "id": "similarPeriod",
+                                "valueType": "object",
+                                "makeLink": true,
+                                "externalLink": false,
+                                "sortValues": true,
+                                "numberedList": false
                             },
                             {
-                              "id": "similarExternalFind",
-                              "valueType": "object",
-                              "makeLink": true,
-                              "externalLink": true,
-                              "sortValues": true,
-                              "numberedList": false
+                                "id": "similarExternalFind",
+                                "valueType": "object",
+                                "makeLink": true,
+                                "externalLink": true,
+                                "sortValues": true,
+                                "numberedList": false
                             }
-                          ]
+                        ]
                     }
                 }
             }
