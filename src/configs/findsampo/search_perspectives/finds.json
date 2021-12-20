@@ -548,6 +548,7 @@
         "place": {
             "containerClass": "ten",
             "facetType": "hierarchical",
+            "facetLabelFilter": "FILTER(LANG(?prefLabel_) = '<LANG>')",
             "filterType": "uriFilter",
             "parentProperty": "skos:broader",
             "predicate": ":found_in_municipality/skos:exactMatch",
@@ -579,7 +580,8 @@
             "filterType": "integerFilterRange",
             "predicate": ":length",
             "sortByPredicate": ":length",
-            "typecasting": "BIND(xsd:integer(ROUND(xsd:decimal(?value))) as ?valueAsInteger)"
+            "typecasting": "BIND(xsd:integer(ROUND(xsd:decimal(?value))) as ?valueAsInteger)",
+            "unit": "mm"
         },
         "width": {
             "containerClass": "five",
@@ -587,7 +589,8 @@
             "filterType": "integerFilterRange",
             "predicate": ":width",
             "sortByPredicate": ":width",
-            "typecasting": "BIND(xsd:integer(ROUND(xsd:decimal(?value))) as ?valueAsInteger)"
+            "typecasting": "BIND(xsd:integer(ROUND(xsd:decimal(?value))) as ?valueAsInteger)",
+            "unit": "mm"
         },
         "weight": {
             "containerClass": "five",
@@ -595,7 +598,8 @@
             "filterType": "integerFilterRange",
             "predicate": ":weight",
             "sortByPredicate": ":weight",
-            "typecasting": "BIND(xsd:integer(ROUND(xsd:decimal(?value))) as ?valueAsInteger)"
+            "typecasting": "BIND(xsd:integer(ROUND(xsd:decimal(?value))) as ?valueAsInteger)",
+            "unit": "g"
         }
     }
 }
