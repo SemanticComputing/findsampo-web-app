@@ -187,6 +187,17 @@
                 "findsByProvince",
                 "findsByMaterial",
                 "findsByObjectName"
+            ],
+            "dropdownForChartTypes": "true",
+            "chartTypes": [
+                {
+                    "id": "pie",
+                    "createChartData": "createApexPieChartData"
+                },
+                {
+                    "id": "bar",
+                    "createChartData": "createApexBarChartData"
+                }
             ]
         },
         "findsByNumericProperty": {
