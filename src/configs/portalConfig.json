@@ -42,7 +42,7 @@
     "layoutConfig": {
         "colorPalette": {
             "primary": {
-                "main": "#212121"
+                "main": "#007A93"
             },
             "secondary": {
                 "main": "#EB1806"
@@ -54,11 +54,34 @@
         "paginationToolbarHeight": 37,
         "tableFontSize": "0.8rem",
         "topBar": {
+            "logoImage": "findsampo/logo.png",
+            "logoTextTransform": "none",
+            "hideLogoTextOnMobile": true,
             "showLanguageButton": true,
             "feedbackLink": "https://link.webropolsurveys.com/S/4288C417CBF3AAFB",
-            "reducedHeight": 48,
+            "externalInstructions": true,
+            "reducedHeight": 44,
             "defaultHeight": 64,
-            "mobileMenuBreakpoint": 1360
+            "mobileMenuBreakpoint": 1100,
+            "infoDropdown": [
+                {
+                    "id": "about",
+                    "externalLink": true,
+                    "translatedUrl": "aboutFindSampoUrl",
+                    "translatedText": "aboutFindSampo"
+                },
+                {
+                    "id": "blog",
+                    "externalLink": true,
+                    "translatedUrl": "blogUrl",
+                    "translatedText": "blog"
+                },
+                {
+                    "id": "guides",
+                    "internalLink": "/guides",
+                    "translatedText": "guides"
+                }
+            ]
         },
         "mainPage": {
             "bannerImage": "findsampo/ponsi-banner-compressed.jpg",

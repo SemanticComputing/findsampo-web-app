@@ -26,8 +26,8 @@
                 "tabIcon": "CalendarViewDay",
                 "propertiesQueryBlock": "findPropertiesFacetResults",
                 "pagesize": 10,
-                "sortBy": null,
-                "sortDirection": null
+                "sortBy": "findNumber",
+                "sortDirection": "asc"
             },
             "instanceConfig": {
                 "propertiesQueryBlock": "findPropertiesInstancePage",

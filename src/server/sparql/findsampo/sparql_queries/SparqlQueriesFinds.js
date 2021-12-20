@@ -2,12 +2,16 @@ const perspectiveID = 'finds'
 
 export const findPropertiesInstancePage =
 `   {
-      ?id skos:prefLabel ?prefLabel__id .
-      BIND(?prefLabel__id as ?prefLabel__prefLabel)
+      ?id skos:prefLabel [] .
       BIND(?id as ?uri__id)
       BIND(?id as ?uri__dataProviderUrl)
       BIND(?id as ?uri__prefLabel)
       BIND(CONCAT("/${perspectiveID}/page/", REPLACE(STR(?id), "^.*\\\\/(.+)", "$1")) AS ?dataProviderUrl)
+    }
+    UNION
+    {
+      ?id ltk-s:find_name ?prefLabel__id .
+      BIND (?prefLabel__id as ?prefLabel__prefLabel)
     }
     UNION
     {

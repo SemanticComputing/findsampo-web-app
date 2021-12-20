@@ -199,6 +199,10 @@ export const processPortalConfig = async portalConfig => {
     mapboxConfig.mapboxAccessToken = mapboxAccessToken
   }
   layoutConfig.mainPage.bannerBackround = bannerBackround.replace('<BANNER_IMAGE_URL', bannerImageURL)
+  if (layoutConfig.topBar.logoImage) {
+    const { default: image } = await import(/* webpackMode: "eager" */ `../img/${layoutConfig.topBar.logoImage}`)
+    layoutConfig.topBar.logoImage = image
+  }
 }
 
 export const createPerspectiveConfig = async ({ portalID, searchPerspectives }) => {
