@@ -308,7 +308,7 @@ export const nearbyFindsQuery = `
     ?inputID :find_site_coordinates ?inputSite .
     ?inputSite wgs84:lat ?inputLat ;
                wgs84:long ?inputLong .
-    ?site spatial:nearby (?inputLat ?inputLong 30 'km') ;
+    ?site spatial:nearby (?inputLat ?inputLong 10 'km') ;
           wgs84:lat ?lat ;
           wgs84:long ?long .
     ?id :find_site_coordinates ?site .

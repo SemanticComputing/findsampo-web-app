@@ -37,6 +37,75 @@
                         "component": "InstancePageTable",
                         "tabPath": "table",
                         "tabIcon": "CalendarViewDay"
+                    },
+                    "findInstancePageMap": {
+                        "tabID": 1,
+                        "component": "LeafletMap",
+                        "showInstanceCountInClusters": false,
+                        "pageType": "instancePage",
+                        "tabPath": "map",
+                        "tabIcon": "AddLocation",
+                        "sparqlQuery": "findInstancePageMapQuery",
+                        "resultMapper": "makeObjectList",
+                        "instanceConfig": {
+                            "createPopUpContent": "createPopUpContentFindSampo"
+                        }
+                    },
+                    "findInstancePageNearbyFinds": {
+                        "tabID": 2,
+                        "component": "LeafletMap",
+                        "showInstanceCountInClusters": false,
+                        "pageType": "instancePage",
+                        "tabPath": "nearby_finds",
+                        "tabIcon": "AddLocation",
+                        "sparqlQuery": "nearbyFindsQuery",
+                        "resultMapper": "makeObjectList",
+                        "instanceConfig": {
+                            "createPopUpContent": "createPopUpContentFindSampo"
+                        }
+                    },
+                    "findInstancePageRecommendations": {
+                        "tabID": 3,
+                        "component": "InstancePageTable",
+                        "fetchResultsWhenMounted": true,
+                        "tabPath": "recommendation_links",
+                        "tabIcon": "Star",
+                        "sparqlQuery": "similarFindsQuery",
+                        "resultMapper": "makeObjectList",
+                        "properties": [
+                            {
+                              "id": "similarObjectType",
+                              "valueType": "object",
+                              "makeLink": true,
+                              "externalLink": false,
+                              "sortValues": true,
+                              "numberedList": false
+                            },
+                            {
+                              "id": "similarMaterial",
+                              "valueType": "object",
+                              "makeLink": true,
+                              "externalLink": false,
+                              "sortValues": true,
+                              "numberedList": false
+                            },
+                            {
+                              "id": "similarPeriod",
+                              "valueType": "object",
+                              "makeLink": true,
+                              "externalLink": false,
+                              "sortValues": true,
+                              "numberedList": false
+                            },
+                            {
+                              "id": "similarExternalFind",
+                              "valueType": "object",
+                              "makeLink": true,
+                              "externalLink": true,
+                              "sortValues": true,
+                              "numberedList": false
+                            }
+                          ]
                     }
                 }
             }
@@ -78,10 +147,6 @@
             "filterTarget": "id",
             "resultMapper": "makeObjectList"
         },
-        "findInstancePageMap": {
-            "sparqlQuery": "findInstancePageMapQuery",
-            "resultMapper": "makeObjectList"
-        },
         "findsApexChartsTimeline": {
             "tabID": 4,
             "component": "ApexCharts",
@@ -102,14 +167,6 @@
         "findsApexChartsTimelineDialog": {
             "sparqlQuery": "findsApexChartsTimelineDialogQuery",
             "filterTarget": "id",
-            "resultMapper": "makeObjectList"
-        },
-        "nearbyFinds": {
-            "sparqlQuery": "nearbyFindsQuery",
-            "resultMapper": "makeObjectList"
-        },
-        "similarFinds": {
-            "sparqlQuery": "similarFindsQuery",
             "resultMapper": "makeObjectList"
         },
         "findsByProperty": {
@@ -238,7 +295,7 @@
             ],
             "zoom": 5
         },
-        "nearbyFinds": {
+        "findInstancePageNearbyFinds": {
             "center": [
                 65.184809,
                 27.314050
