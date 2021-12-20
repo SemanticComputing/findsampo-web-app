@@ -370,10 +370,10 @@ class LeafletMap extends React.Component {
     // initialize layers from external sources
     if (this.props.showExternalLayers) {
       const basemaps = {
-        [intl.get(`leafletMap.basemaps.mapbox.${mapboxStyle}`)]: mapboxBaseLayer
-        // [intl.get('leafletMap.basemaps.backgroundMapNLS')]: nlsVectortilesBackgroundmap,
-        // [intl.get('leafletMap.basemaps.topographicalMapNLS')]: topographicalMapNLS,
-        // [intl.get('leafletMap.basemaps.airMapNLS')]: airMapNLS
+        [intl.get(`leafletMap.basemaps.mapbox.${mapboxStyle}`)]: mapboxBaseLayer,
+        [intl.get('leafletMap.basemaps.backgroundMapNLS')]: backgroundMapNLS,
+        [intl.get('leafletMap.basemaps.topographicalMapNLS')]: topographicalMapNLS,
+        [intl.get('leafletMap.basemaps.airMapNLS')]: airMapNLS
         // [intl.get('leafletMap.basemaps.googleRoadmap')]: googleRoadmap,
       }
       this.initOverLays(basemaps)

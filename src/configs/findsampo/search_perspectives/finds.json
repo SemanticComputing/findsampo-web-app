@@ -117,6 +117,7 @@
             "component": "LeafletMap",
             "showInstanceCountInClusters": false,
             "showExternalLayers": true,
+            "customMapControl": true,
             "sparqlQuery": "findsPlacesQuery",
             "facetClass": "finds",
             "filterTarget": "id",
