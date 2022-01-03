@@ -38,6 +38,7 @@ import {
   updatePerspectiveHeaderExpanded,
   loadLocales,
   animateMap,
+  updateVideoPlayerTime,
   clientFSToggleDataset,
   clientFSFetchResults,
   clientFSSortResults,
@@ -63,7 +64,8 @@ const {
   portalID,
   rootUrl,
   perspectives,
-  layoutConfig
+  layoutConfig,
+  knowledgeGraphMetadataConfig
 } = portalConfig
 const perspectiveConfig = await createPerspectiveConfig({
   portalID,
@@ -99,12 +101,9 @@ const InfoCards = lazy(() => import('../components/perspectives/' + portalID + '
 
 const useStyles = makeStyles(theme => ({
   root: {
-    /* Background color of the app.
-       In order to use both 'auto' and '100%' heights, bg-color
-       needs to be defined also in index.html (for #app and #root elements)
-    */
     backgroundColor: '#bdbdbd',
     overflowX: 'hidden',
+    minHeight: '100%',
     [theme.breakpoints.up(layoutConfig.hundredPercentHeightBreakPoint)]: {
       overflow: 'hidden',
       height: '100%'
@@ -477,6 +476,8 @@ const SemanticPortal = props => {
                                   perspective={perspective}
                                   animationValue={props.animationValue}
                                   animateMap={props.animateMap}
+                                  videoPlayerState={props.videoPlayer}
+                                  updateVideoPlayerTime={props.updateVideoPlayerTime}
                                   screenSize={screenSize}
                                   rootUrl={rootUrlWithLang}
                                   apexChartsConfig={apexChartsConfig}
@@ -547,6 +548,8 @@ const SemanticPortal = props => {
                             perspective={perspective}
                             animationValue={props.animationValue}
                             animateMap={props.animateMap}
+                            videoPlayerState={props.videoPlayer}
+                            updateVideoPlayerTime={props.updateVideoPlayerTime}
                             screenSize={screenSize}
                             rootUrl={rootUrlWithLang}
                             apexChartsConfig={apexChartsConfig}
@@ -664,31 +667,36 @@ const SemanticPortal = props => {
             render={() => <InfoCards />}
           />
           {/* create routes for info buttons */}
-          <Route
-            path={`${rootUrlWithLang}/about`}
-            render={() =>
-              <div className={classNames(classes.mainContainer, classes.textPageContainer)}>
-                <TextPage>
-                  {intl.getHTML('aboutThePortalPartOne')}
-                  <KnowledgeGraphMetadataTable
-                    portalConfig={portalConfig}
-                    layoutConfig={layoutConfig}
-                    perspectiveID='perspective1'
-                    resultClass='perspective1KnowledgeGraphMetadata'
-                    fetchKnowledgeGraphMetadata={props.fetchKnowledgeGraphMetadata}
-                    knowledgeGraphMetadata={props.perspective1.knowledgeGraphMetadata}
-                  />
-                  {intl.getHTML('aboutThePortalPartTwo')}
-                </TextPage>
-              </div>}
-          />
-          <Route
-            path={`${rootUrlWithLang}/instructions`}
-            render={() =>
-              <div className={classNames(classes.mainContainer, classes.textPageContainer)}>
-                <TextPage>{intl.getHTML('instructions')}</TextPage>
-              </div>}
-          />
+          {!layoutConfig.topBar.externalAboutPage &&
+            <Route
+              path={`${rootUrlWithLang}/about`}
+              render={() =>
+                <div className={classNames(classes.mainContainer, classes.textPageContainer)}>
+                  <TextPage>
+                    {intl.getHTML('aboutThePortalPartOne')}
+                    {knowledgeGraphMetadataConfig.showTable &&
+                      <KnowledgeGraphMetadataTable
+                        portalConfig={portalConfig}
+                        layoutConfig={layoutConfig}
+                        perspectiveID={knowledgeGraphMetadataConfig.perspective}
+                        resultClass='knowledgeGraphMetadata'
+                        fetchKnowledgeGraphMetadata={props.fetchKnowledgeGraphMetadata}
+                        knowledgeGraphMetadata={props[knowledgeGraphMetadataConfig.perspective]
+                          ? props[knowledgeGraphMetadataConfig.perspective].knowledgeGraphMetadata
+                          : null}
+                      />}
+                    {intl.getHTML('aboutThePortalPartTwo')}
+                  </TextPage>
+                </div>}
+            />}
+          {!layoutConfig.topBar.externalInstructions &&
+            <Route
+              path={`${rootUrlWithLang}/instructions`}
+              render={() =>
+                <div className={classNames(classes.mainContainer, classes.textPageContainer)}>
+                  <TextPage>{intl.getHTML('instructions')}</TextPage>
+                </div>}
+            />}
         </>
       </div>
     </MuiPickersUtilsProvider>
@@ -700,8 +708,9 @@ const mapStateToProps = state => {
   perspectiveConfig.forEach(perspective => {
     const { id, searchMode } = perspective
     if (searchMode && searchMode === 'federated-search') {
-      const { clientFSResults, clientFSFacetValues } = filterResults(state[id])
-      stateToProps.clientFSState = state[id]
+      const perspectiveState = state[id]
+      const { clientFSResults, clientFSFacetValues } = filterResults(perspectiveState)
+      stateToProps.clientFSState = perspectiveState
       stateToProps.clientFSResults = clientFSResults
       stateToProps.clientFSFacetValues = clientFSFacetValues
     } else {
@@ -719,6 +728,7 @@ const mapStateToProps = state => {
   stateToProps.leafletMap = state.leafletMap
   stateToProps.fullTextSearch = state.fullTextSearch
   stateToProps.animationValue = state.animation.value
+  stateToProps.videoPlayer = state.videoPlayer
   stateToProps.options = state.options
   stateToProps.error = state.error
   return stateToProps
@@ -749,6 +759,7 @@ const mapDispatchToProps = ({
   updatePerspectiveHeaderExpanded,
   loadLocales,
   animateMap,
+  updateVideoPlayerTime,
   clientFSToggleDataset,
   clientFSFetchResults,
   clientFSClearResults,

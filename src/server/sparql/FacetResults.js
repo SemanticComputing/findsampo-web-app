@@ -107,11 +107,14 @@ export const getAllResults = ({
   period = null,
   province = null
 }) => {
-  let perspectiveConfig
-  if (perspectiveID) {
-    perspectiveConfig = backendSearchConfig[perspectiveID]
-  } else {
-    perspectiveConfig = backendSearchConfig[facetClass]
+  const finalPerspectiveID = perspectiveID || facetClass
+  const perspectiveConfig = backendSearchConfig[finalPerspectiveID]
+  if (perspectiveConfig === undefined) {
+    console.log(`Error: config not found for perspective "${finalPerspectiveID}"`)
+    return Promise.resolve({
+      data: null,
+      sparqlQuery: ''
+    })
   }
   const {
     endpoint,
@@ -120,9 +123,18 @@ export const getAllResults = ({
     langTagSecondary = null
   } = perspectiveConfig
   const resultClassConfig = perspectiveConfig.resultClasses[resultClass]
+  if (resultClassConfig === undefined) {
+    console.log(`Error: result class "${resultClass}" not defined for perspective "${finalPerspectiveID}"`)
+    return Promise.resolve({
+      data: null,
+      sparqlQuery: ''
+    })
+  }
   const {
     sparqlQuery,
     sparqlQueryNodes = null,
+    property = null,
+    rdfType = null,
     filterTarget = 'id',
     resultMapper = makeObjectList,
     resultMapperConfig = null,
@@ -153,6 +165,12 @@ export const getAllResults = ({
   }
   if (toID) {
     q = q.replace(/<TO_ID>/g, `<${toID}>`)
+  }
+  if (property) {
+    q = q.replace(/<PROPERTY>/g, property)
+  }
+  if (rdfType) {
+    q = q.replace(/<RDF_TYPE>/g, rdfType)
   }
   if (resultClassConfig.useNetworkAPI) {
     return runNetworkQuery({

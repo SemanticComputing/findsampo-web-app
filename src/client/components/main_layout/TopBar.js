@@ -118,7 +118,11 @@ const TopBar = props => {
   const classes = useStyles(props)
   const handleMobileMenuOpen = event => setMobileMoreAnchorEl(event.currentTarget)
   const handleMobileMenuClose = () => setMobileMoreAnchorEl(null)
-  const clientFSMode = props.location.pathname.indexOf('clientFS') !== -1
+  const federatedSearchMode = props.location.pathname.indexOf('federated-search') !== -1
+  let showSearchField = true
+  if (has(layoutConfig.topBar, 'showSearchField')) {
+    showSearchField = layoutConfig.topBar.showSearchField
+  }
 
   // https://material-ui.com/components/buttons/#third-party-routing-library
   const AdapterLink = React.forwardRef((props, ref) => <Link innerRef={ref} {...props} />)
@@ -234,7 +238,8 @@ const TopBar = props => {
   }
 
   const renderMobileMenu = perspectives => {
-    const { infoDropdown } = props.layoutConfig.topBar
+    const { topBar } = props.layoutConfig
+    const { infoDropdown } = topBar
     return (
       <Menu
         anchorEl={mobileMoreAnchorEl}
@@ -257,15 +262,14 @@ const TopBar = props => {
           label: intl.get('topBar.instructions')
         })}
         {!topBar.externalInstructions &&
-          <Button
-            className={classes.appBarButton}
-            component={AdapterNavLink}
+          <MenuItem
+            key='instructions'
+            component={AdapterLink}
             to={`${props.rootUrl}/instructions`}
-            isActive={(match, location) => location.pathname.startsWith(`${props.rootUrl}/instructions`)}
-            activeClassName={classes.appBarButtonActive}
+            onClick={handleMobileMenuClose}
           >
-            {intl.get('topBar.instructions')}
-          </Button>}
+            {intl.get('topBar.instructions').toUpperCase()}
+          </MenuItem>}
       </Menu>
     )
   }
@@ -283,7 +287,7 @@ const TopBar = props => {
               root: classes.mainLogoButtonRoot,
               label: classes.mainLogoButtonLabel
             }}
-            onClick={() => clientFSMode ? props.clientFSClearResults() : null}
+            onClick={() => federatedSearchMode ? props.clientFSClearResults() : null}
           >
             {topBar.logoImage &&
               <img
@@ -295,7 +299,7 @@ const TopBar = props => {
               {props.xsScreen ? intl.get('appTitle.mobile') : intl.get('appTitle.short')}
             </Typography>
           </Button>
-          {!clientFSMode &&
+          {showSearchField &&
             <TopBarSearchField
               fetchFullTextResults={props.fetchFullTextResults}
               clearResults={props.clearResults}

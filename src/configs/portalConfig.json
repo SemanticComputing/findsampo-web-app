@@ -39,6 +39,10 @@
         "sitemapUrl": "https://sampo-ui.demo.seco.cs.aalto.fi/sitemap",
         "sitemapInstancePageQuery": "sitemapInstancePageQuery"
     },
+    "knowledgeGraphMetadataConfig": {
+        "showTable": false,
+        "perspective": "perspective1" 
+    },
     "layoutConfig": {
         "colorPalette": {
             "primary": {
@@ -60,6 +64,7 @@
             "showLanguageButton": true,
             "feedbackLink": "https://link.webropolsurveys.com/S/4288C417CBF3AAFB",
             "externalInstructions": true,
+            "externalAboutPage": true,
             "reducedHeight": 44,
             "defaultHeight": 64,
             "mobileMenuBreakpoint": 1100,

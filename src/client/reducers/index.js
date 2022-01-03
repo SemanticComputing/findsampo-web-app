@@ -10,6 +10,7 @@ import { createFullTextSearchReducer } from './general/fullTextSearch'
 import error from './general/error'
 import options from './general/options'
 import animation from './general/animation'
+import videoPlayer from './general/videoPlayer'
 import leafletMap from './general/leafletMap'
 import {
   resultsInitialState,
@@ -21,6 +22,7 @@ import {
 const reducers = {
   leafletMap,
   animation,
+  videoPlayer,
   options,
   error,
   toastr: toastrReducer
@@ -66,7 +68,10 @@ for (const perspective of perspectiveConfig) {
   } else if (perspective.searchMode && perspective.searchMode === 'faceted-search') {
     const { resultClasses, properties, facets, maps } = perspective
     const { paginatedResultsConfig, instanceConfig } = resultClasses[perspectiveID]
-    const { instancePageResultClasses } = instanceConfig
+    let instancePageResultClasses = {}
+    if (instanceConfig && instanceConfig.instancePageResultClasses) {
+      instancePageResultClasses = instanceConfig.instancePageResultClasses
+    }
     const resultsInitialStateFull = {
       ...resultsInitialState,
       ...paginatedResultsConfig,
