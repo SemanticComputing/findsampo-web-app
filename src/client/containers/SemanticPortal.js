@@ -100,13 +100,17 @@ const InfoCards = lazy(() => import('../components/perspectives/' + portalID + '
 // ** Portal specific components end **
 
 const useStyles = makeStyles(theme => ({
-  root: {
-    backgroundColor: '#bdbdbd',
-    overflowX: 'hidden',
-    minHeight: '100%',
-    [theme.breakpoints.up(layoutConfig.hundredPercentHeightBreakPoint)]: {
-      overflow: 'hidden',
-      height: '100%'
+  root: props => {
+    return {
+      backgroundColor: '#bdbdbd',
+      overflowX: 'hidden',
+      minHeight: '100%',
+      ...(props.location.pathname.includes('/sites/map') &&
+        { height: '100%' }),
+      [theme.breakpoints.up(layoutConfig.hundredPercentHeightBreakPoint)]: {
+        overflow: 'hidden',
+        height: '100%'
+      }
     }
   },
   mainContainerClientFS: {

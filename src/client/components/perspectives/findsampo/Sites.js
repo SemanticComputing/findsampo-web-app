@@ -4,11 +4,11 @@ import LeafletMap from '../../facet_results/LeafletMap'
 
 const useStyles = makeStyles(theme => ({
   root: props => ({
-    margin: theme.spacing(0.5),
+    marginLeft: theme.spacing(0.5),
+    marginRight: theme.spacing(0.5),
+    marginTop: theme.spacing(0.5),
     width: `calc(100% - ${theme.spacing(1)}px)`,
-    // [theme.breakpoints.up(props.layoutConfig.hundredPercentHeightBreakPoint)]: {
     height: `calc(100% - ${props.layoutConfig.topBar.reducedHeight + props.layoutConfig.infoHeader.reducedHeight.height + theme.spacing(1.5)}px)`,
-    // },
     [theme.breakpoints.up(props.layoutConfig.reducedHeightBreakpoint)]: {
       height: `calc(100% - ${props.layoutConfig.topBar.defaultHeight + props.layoutConfig.infoHeader.default.height + theme.spacing(1.5)}px)`
     }
