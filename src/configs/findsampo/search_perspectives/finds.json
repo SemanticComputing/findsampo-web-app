@@ -183,11 +183,25 @@
             "tabIcon": "PieChart",
             "facetClass": "finds",
             "dropdownForResultClasses": true,
-            "resultClasses": [
-                "findsByProvince",
-                "findsByMaterial",
-                "findsByObjectName"
-            ],
+            "defaultResultClass": "findsByProvince", 
+            "resultClasses": {
+                "findsByProvince": {
+                    "sparqlQuery": "findsByProvinceQuery",
+                    "filterTarget": "find",
+                    "resultMapper": "mapPieChart"
+                },
+                "findsByMaterial": {
+                    "sparqlQuery": "findsByMaterialQuery",
+                    "filterTarget": "find",
+                    "resultMapper": "mapPieChart"
+                },
+                "findsByObjectName": {
+                    "sparqlQuery": "findsByObjectNameQuery",
+                    "filterTarget": "find",
+                    "resultMapper": "mapPieChart",
+                    "sliceVisibilityThreshold": 0.005
+                }
+            },
             "dropdownForChartTypes": "true",
             "chartTypes": [
                 {
@@ -214,26 +228,33 @@
             "tabIcon": "ShowChart",
             "facetClass": "finds",
             "dropdownForResultClasses": true,
-            "resultClasses": [
-                "findsByWeight",
-                "findsByLength",
-                "findsByWidth"
-            ]
-        },
-        "findsByProvince": {
-            "sparqlQuery": "findsByProvinceQuery",
-            "filterTarget": "find",
-            "resultMapper": "mapPieChart"
-        },
-        "findsByMaterial": {
-            "sparqlQuery": "findsByMaterialQuery",
-            "filterTarget": "find",
-            "resultMapper": "mapPieChart"
-        },
-        "findsByObjectName": {
-            "sparqlQuery": "findsByObjectNameQuery",
-            "filterTarget": "find",
-            "resultMapper": "mapPieChart"
+            "defaultResultClass": "findsByWeight", 
+            "resultClasses": {
+                "findsByWeight": {
+                    "sparqlQuery": "findsByWeightQuery",
+                    "filterTarget": "find",
+                    "resultMapper": "mapLineChart",
+                    "resultMapperConfig": {
+                        "fillEmptyValues": true
+                    }
+                },
+                "findsByLength": {
+                    "sparqlQuery": "findsByLengthQuery",
+                    "filterTarget": "find",
+                    "resultMapper": "mapLineChart",
+                    "resultMapperConfig": {
+                        "fillEmptyValues": true
+                    }
+                },
+                "findsByWidth": {
+                    "sparqlQuery": "findsByWidthQuery",
+                    "filterTarget": "find",
+                    "resultMapper": "mapLineChart",
+                    "resultMapperConfig": {
+                        "fillEmptyValues": true
+                    }
+                }
+            }
         },
         "findsByYear": {
             "sparqlQuery": "findsByYearQuery",
@@ -242,30 +263,11 @@
             "resultMapperConfig": {
                 "fillEmptyValues": true
             }
-        },
-        "findsByLength": {
-            "sparqlQuery": "findsByLengthQuery",
+        }, 
+        "coinsByYear": {
+            "sparqlQuery": "coinsByYearQuery",
             "filterTarget": "find",
-            "resultMapper": "mapLineChart",
-            "resultMapperConfig": {
-                "fillEmptyValues": true
-            }
-        },
-        "findsByWidth": {
-            "sparqlQuery": "findsByWidthQuery",
-            "filterTarget": "find",
-            "resultMapper": "mapLineChart",
-            "resultMapperConfig": {
-                "fillEmptyValues": true
-            }
-        },
-        "findsByWeight": {
-            "sparqlQuery": "findsByWeightQuery",
-            "filterTarget": "find",
-            "resultMapper": "mapLineChart",
-            "resultMapperConfig": {
-                "fillEmptyValues": true
-            }
+            "resultMapper": "mapLineChart"
         },
         "findsKnowledgeGraphMetadata": {
             "sparqlQuery": "knowledgeGraphMetadataQuery",
@@ -273,11 +275,6 @@
         },
         "jenaText": {
             "propertiesQueryBlock": "fullTextSearchProperties"
-        },
-        "coinsByYear": {
-            "sparqlQuery": "coinsByYearQuery",
-            "filterTarget": "find",
-            "resultMapper": "mapLineChart"
         },
         "csvFinds": {
             "tabID": 7,
