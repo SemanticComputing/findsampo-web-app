@@ -161,9 +161,9 @@ export const arrayToObject = ({ array, keyField }) =>
     return obj
   }, {})
 
-export const generateLabelForMissingValue = ({ facetClass, facetID }) => {
+export const generateLabelForMissingValue = ({ perspective, property }) => {
   // Check if there is a translated label for missing value, or use defaults
-  return intl.get(`perspectives.${facetClass}.properties.${facetID}.missingValueLabel`) ||
+  return intl.get(`perspectives.${perspective}.properties.${property}.missingValueLabel`) ||
    intl.get('facetBar.defaultMissingValueLabel') || 'Unknown'
 }
 
@@ -204,6 +204,10 @@ export const processPortalConfig = async portalConfig => {
   if (layoutConfig.topBar.logoImage) {
     const { default: image } = await import(/* webpackMode: "eager" */ `../img/${layoutConfig.topBar.logoImage}`)
     layoutConfig.topBar.logoImage = image
+  }
+  if (layoutConfig.topBar.logoImageSecondary) {
+    const { default: image } = await import(/* webpackMode: "eager" */ `../img/${layoutConfig.topBar.logoImageSecondary}`)
+    layoutConfig.topBar.logoImageSecondary = image
   }
 }
 

@@ -16,7 +16,10 @@ import {
   OndemandVideo,
   KeyboardVoice,
   Autorenew,
-  Add
+  Add,
+  PlayArrow,
+  MailOutline,
+  TrendingDown
 } from '@material-ui/icons'
 import has from 'lodash'
 
@@ -38,7 +41,10 @@ const MuiIcon = props => {
     OndemandVideo: OndemandVideo,
     KeyboardVoice: KeyboardVoice,
     Autorenew: Autorenew,
-    Add: Add
+    Add: Add,
+    PlayArrow: PlayArrow,
+    MailOutline: MailOutline,
+    TrendingDown: TrendingDown
   }
   if (has(MuiIcons, props.iconName)) {
     const MuiIconComponent = MuiIcons[props.iconName]

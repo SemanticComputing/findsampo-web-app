@@ -83,9 +83,18 @@ for (const perspective of perspectiveConfig) {
       ...facetsInitialState,
       facets
     }
+    let extraResultClasses = {}
+    for (const resultClass in resultClasses) {
+      if (resultClasses[resultClass].resultClasses) {
+        extraResultClasses = {
+          ...extraResultClasses,
+          ...resultClasses[resultClass].resultClasses
+        }
+      }
+    }
     const resultsReducer = createResultsReducer(
       resultsInitialStateFull,
-      new Set(Object.keys({ ...resultClasses, ...instancePageResultClasses })))
+      new Set(Object.keys({ ...resultClasses, ...instancePageResultClasses, ...extraResultClasses })))
     const facetsReducer = createFacetsReducer(facetsInitialStateFull, perspectiveID)
     const facetsConstrainSelfReducer = createFacetsConstrainSelfReducer(facetsInitialStateFull, perspectiveID)
     reducers[perspectiveID] = resultsReducer
@@ -105,11 +114,16 @@ for (const perspective of perspectiveConfig) {
 for (const perspective of perspectiveConfigOnlyInfoPages) {
   const perspectiveID = perspective.id
   const { resultClasses, properties } = perspective
+  const { instanceConfig } = resultClasses[perspectiveID]
+  let instancePageResultClasses = {}
+  if (instanceConfig && instanceConfig.instancePageResultClasses) {
+    instancePageResultClasses = instanceConfig.instancePageResultClasses
+  }
   const resultsInitialStateFull = {
     ...resultsInitialState,
     properties
   }
-  const resultsReducer = createResultsReducer(resultsInitialStateFull, new Set(Object.keys(resultClasses)))
+  const resultsReducer = createResultsReducer(resultsInitialStateFull, new Set(Object.keys({ ...resultClasses, ...instancePageResultClasses })))
   reducers[perspectiveID] = resultsReducer
 }
 
