@@ -156,84 +156,104 @@
             "tabID": 4,
             "component": "ApexCharts",
             "createChartData": "createApexTimelineChartData",
+            "xaxisTitle": "Vuosi",
+            "yaxisTitle": "Maakunta",
             "doNotRenderOnMount": true,
             "tabPath": "timeline",
             "tabIcon": "ClearAll",
             "sparqlQuery": "findsApexChartsTimelineQuery",
             "facetClass": "finds",
-            "filterTarget": "find",
-            "resultMapper": "makeObjectList"
-        },
-        "findsTimeline": {
-            "sparqlQuery": "findsTimelineQuery",
-            "filterTarget": "find",
-            "resultMapper": "makeObjectList"
+            "filterTarget": "find"
         },
         "findsApexChartsTimelineDialog": {
             "sparqlQuery": "findsApexChartsTimelineDialogQuery",
-            "filterTarget": "id",
-            "resultMapper": "makeObjectList"
+            "filterTarget": "id"
         },
         "findsByProperty": {
             "tabID": 5,
             "component": "ApexCharts",
-            "createChartData": "createApexPieChartData",
             "doNotRenderOnMount": true,
             "tabPath": "pie_chart",
             "tabIcon": "PieChart",
             "facetClass": "finds",
             "dropdownForResultClasses": true,
-            "defaultResultClass": "findsByProvince", 
+            "defaultResultClass": "findsByProvince",
             "resultClasses": {
                 "findsByProvince": {
                     "sparqlQuery": "findsByProvinceQuery",
                     "filterTarget": "find",
-                    "resultMapper": "mapPieChart"
+                    "resultMapper": "mapPieChart",
+                    "sliceVisibilityThreshold": null,
+                    "dropdownForChartTypes": "true",
+                    "chartTypes": [
+                        {
+                            "id": "pie",
+                            "createChartData": "createApexPieChartData"
+                        },
+                        {
+                            "id": "bar",
+                            "createChartData": "createApexBarChartData"
+                        }
+                    ]
                 },
                 "findsByMaterial": {
                     "sparqlQuery": "findsByMaterialQuery",
                     "filterTarget": "find",
-                    "resultMapper": "mapPieChart"
+                    "resultMapper": "mapPieChart",
+                    "sliceVisibilityThreshold": null,
+                    "dropdownForChartTypes": "true",
+                    "chartTypes": [
+                        {
+                            "id": "pie",
+                            "createChartData": "createApexPieChartData"
+                        },
+                        {
+                            "id": "bar",
+                            "createChartData": "createApexBarChartData"
+                        }
+                    ]
                 },
                 "findsByObjectName": {
                     "sparqlQuery": "findsByObjectNameQuery",
                     "filterTarget": "find",
                     "resultMapper": "mapPieChart",
-                    "sliceVisibilityThreshold": 0.005
+                    "dropdownForChartTypes": "true",
+                    "chartTypes": [
+                        {
+                            "id": "pie",
+                            "createChartData": "createApexPieChartData"
+                        },
+                        {
+                            "id": "bar",
+                            "createChartData": "createApexBarChartData"
+                        }
+                    ]
                 }
-            },
-            "dropdownForChartTypes": "true",
-            "chartTypes": [
-                {
-                    "id": "pie",
-                    "createChartData": "createApexPieChartData"
-                },
-                {
-                    "id": "bar",
-                    "createChartData": "createApexBarChartData"
-                }
-            ]
+            }
         },
         "findsByNumericProperty": {
             "tabID": 6,
             "component": "ApexCharts",
-            "createChartData": "createSingleLineChartData",
-            "xaxisType": "numeric",
-            "xaxisTickAmount": 30,
-            "stroke": {
-                "width": 2
-            },
             "doNotRenderOnMount": true,
             "tabPath": "line_chart",
             "tabIcon": "ShowChart",
             "facetClass": "finds",
             "dropdownForResultClasses": true,
-            "defaultResultClass": "findsByWeight", 
+            "defaultResultClass": "findsByWeight",
             "resultClasses": {
                 "findsByWeight": {
                     "sparqlQuery": "findsByWeightQuery",
                     "filterTarget": "find",
                     "resultMapper": "mapLineChart",
+                    "createChartData": "createSingleLineChartData",
+                    "xaxisType": "numeric",
+                    "xaxisTitle": "Paino (g)",
+                    "xaxisTickAmount": 30,
+                    "yaxisTitle": "Löytöjen lukumääärä",
+                    "seriesTitle": "Löytöjen lukumääärä",
+                    "stroke": {
+                        "width": 2
+                    },
                     "resultMapperConfig": {
                         "fillEmptyValues": true
                     }
@@ -242,6 +262,15 @@
                     "sparqlQuery": "findsByLengthQuery",
                     "filterTarget": "find",
                     "resultMapper": "mapLineChart",
+                    "createChartData": "createSingleLineChartData",
+                    "xaxisType": "numeric",
+                    "xaxisTitle": "Pituus (mm)",
+                    "xaxisTickAmount": 30,
+                    "yaxisTitle": "Löytöjen lukumääärä",
+                    "seriesTitle": "Löytöjen lukumääärä",
+                    "stroke": {
+                        "width": 2
+                    },
                     "resultMapperConfig": {
                         "fillEmptyValues": true
                     }
@@ -250,24 +279,20 @@
                     "sparqlQuery": "findsByWidthQuery",
                     "filterTarget": "find",
                     "resultMapper": "mapLineChart",
+                    "createChartData": "createSingleLineChartData",
+                    "xaxisType": "numeric",
+                    "xaxisTitle": "Leveys (mm)",
+                    "xaxisTickAmount": 30,
+                    "yaxisTitle": "Löytöjen lukumääärä",
+                    "seriesTitle": "Löytöjen lukumääärä",
+                    "stroke": {
+                        "width": 2
+                    },
                     "resultMapperConfig": {
                         "fillEmptyValues": true
                     }
                 }
             }
-        },
-        "findsByYear": {
-            "sparqlQuery": "findsByYearQuery",
-            "filterTarget": "find",
-            "resultMapper": "mapLineChart",
-            "resultMapperConfig": {
-                "fillEmptyValues": true
-            }
-        }, 
-        "coinsByYear": {
-            "sparqlQuery": "coinsByYearQuery",
-            "filterTarget": "find",
-            "resultMapper": "mapLineChart"
         },
         "findsKnowledgeGraphMetadata": {
             "sparqlQuery": "knowledgeGraphMetadataQuery",
