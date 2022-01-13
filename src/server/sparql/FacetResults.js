@@ -166,6 +166,12 @@ export const getAllResults = ({
   if (toID) {
     q = q.replace(/<TO_ID>/g, `<${toID}>`)
   }
+  if (period) {
+    q = q.replace(/<PERIOD>/g, `<${period}>`)
+  }
+  if (province) {
+    q = q.replace(/<PROVINCE>/g, `<${province}>`)
+  }
   if (property) {
     q = q.replace(/<PROPERTY>/g, property)
   }
