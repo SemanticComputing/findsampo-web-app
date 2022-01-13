@@ -331,26 +331,24 @@ const apexBarChartOptions = {
 }
 
 export const createApexTimelineChartData = ({
-  rawData,
-  title,
-  xaxisTitle,
-  xaxisType,
-  xaxisTickAmount,
-  xaxisLabels,
-  yaxisTitle,
-  seriesTitle,
-  stroke,
-  tooltip,
-  fetchInstanceAnalysis,
   resultClass,
-  facetClass
+  facetClass,
+  perspectiveState,
+  results,
+  resultClassConfig,
+  screenSize,
+  fetchInstanceAnalysis
 }) => {
+  const {
+    xaxisTitle,
+    yaxisTitle
+  } = resultClassConfig
   let min
   let max
-  if (rawData && rawData.length > 0) {
-    preprocessTimelineData(rawData)
-    min = new Date(rawData[0].beginDate).getTime()
-    max = new Date(rawData[rawData.length - 1].endDate).getTime()
+  if (results && results.length > 0) {
+    preprocessTimelineData(results)
+    min = new Date(results[0].beginDate).getTime()
+    max = new Date(results[results.length - 1].endDate).getTime()
   }
   const apexChartOptionsWithData = {
     ...timelineOptions,
@@ -384,7 +382,7 @@ export const createApexTimelineChartData = ({
       max
     },
     yaxis: { title: { text: yaxisTitle } },
-    series: rawData
+    series: results
   }
   return apexChartOptionsWithData
 }
