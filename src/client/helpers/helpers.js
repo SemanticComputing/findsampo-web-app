@@ -1,7 +1,10 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+import { useLocation } from 'react-router-dom'
 import querystring from 'querystring'
 import { has, sortBy } from 'lodash'
 import intl from 'react-intl-universal'
+import { useTheme } from '@mui/material/styles'
+import useMediaQuery from '@mui/material/useMediaQuery'
 import MuiIcon from '../components/main_layout/MuiIcon'
 
 export const stateToUrl = ({
@@ -75,6 +78,13 @@ export const stateToUrl = ({
           filterType: value.filterType,
           priority: value.priority,
           values: value.timespanFilter
+        })
+      } else if (has(value, 'dateNoTimespanFilter') && value.dateNoTimespanFilter !== null) {
+        constraints.push({
+          facetID: key,
+          filterType: value.filterType,
+          priority: value.priority,
+          values: value.dateNoTimespanFilter
         })
       } else if (has(value, 'integerFilter') && value.integerFilter !== null) {
         constraints.push({
@@ -233,18 +243,20 @@ export const createPerspectiveConfig = async ({ portalID, searchPerspectives }) 
           if (has(resultClassConfig.instanceConfig, 'instancePageResultClasses')) {
             for (const instancePageResultClassID in resultClassConfig.instanceConfig.instancePageResultClasses) {
               const instancePageResultClassConfig = resultClassConfig.instanceConfig.instancePageResultClasses[instancePageResultClassID]
-              const { tabID, tabPath, tabIcon } = instancePageResultClassConfig
-              instancePageTabs.push({
-                id: tabPath,
-                value: tabID,
-                icon: <MuiIcon iconName={tabIcon} />
-              })
+              if (!instancePageResultClassConfig.hideTab && has(instancePageResultClassConfig, 'tabID') && has(instancePageResultClassConfig, 'tabPath')) {
+                const { tabID, tabPath, tabIcon } = instancePageResultClassConfig
+                instancePageTabs.push({
+                  id: tabPath,
+                  value: tabID,
+                  icon: <MuiIcon iconName={tabIcon} />
+                })
+              }
             }
           }
           // paginated results
           resultClassConfig = resultClassConfig.paginatedResultsConfig
         }
-        if (has(resultClassConfig, 'tabID') && has(resultClassConfig, 'tabPath')) {
+        if (!resultClassConfig.hideTab && has(resultClassConfig, 'tabID') && has(resultClassConfig, 'tabPath')) {
           const { tabID, tabPath, tabIcon } = resultClassConfig
           tabs.push({
             id: tabPath,
@@ -275,15 +287,48 @@ export const createPerspectiveConfigOnlyInfoPages = async ({ portalID, onlyInsta
     if (has(defaultResultClassConfig.instanceConfig, 'instancePageResultClasses')) {
       for (const instancePageResultClassID in defaultResultClassConfig.instanceConfig.instancePageResultClasses) {
         const instancePageResultClassConfig = defaultResultClassConfig.instanceConfig.instancePageResultClasses[instancePageResultClassID]
-        const { tabID, tabPath, tabIcon } = instancePageResultClassConfig
-        instancePageTabs.push({
-          id: tabPath,
-          value: tabID,
-          icon: <MuiIcon iconName={tabIcon} />
-        })
+        if (!instancePageResultClassConfig.hideTab && has(instancePageResultClassConfig, 'tabID') && has(instancePageResultClassConfig, 'tabPath')) {
+          const { tabID, tabPath, tabIcon } = instancePageResultClassConfig
+          instancePageTabs.push({
+            id: tabPath,
+            value: tabID,
+            icon: <MuiIcon iconName={tabIcon} />
+          })
+        }
       }
     }
     perspective.instancePageTabs = sortBy(instancePageTabs, 'value')
   }
   return perspectiveConfigOnlyInfoPages
+}
+
+export const getSpacing = (theme, value) => Number(theme.spacing(value).slice(0, -2))
+
+export const getScreenSize = () => {
+  const theme = useTheme()
+  const xsScreen = useMediaQuery(theme.breakpoints.down('sm'))
+  const smScreen = useMediaQuery(theme.breakpoints.between('sm', 'md'))
+  const mdScreen = useMediaQuery(theme.breakpoints.between('md', 'lg'))
+  const lgScreen = useMediaQuery(theme.breakpoints.between('lg', 'xl'))
+  const xlScreen = useMediaQuery(theme.breakpoints.up('xl'))
+  let screenSize = ''
+  if (xsScreen) { screenSize = 'xs' }
+  if (smScreen) { screenSize = 'sm' }
+  if (mdScreen) { screenSize = 'md' }
+  if (lgScreen) { screenSize = 'lg' }
+  if (xlScreen) { screenSize = 'xl' }
+  return screenSize
+}
+
+// https://v5.reactrouter.com/web/api/Hooks/uselocation
+export const usePageViews = () => {
+  const location = useLocation()
+  useEffect(() => {
+    if (typeof window.ga === 'function') {
+      // https://developers.google.com/analytics/devguides/collection/analyticsjs/single-page-applications#tracking_virtual_pageviews
+      // note: the ga function has been initialized in index.html
+      window.ga('set', 'page', location.pathname)
+      window.ga('send', 'pageview')
+    }
+  }, [location])
 }
