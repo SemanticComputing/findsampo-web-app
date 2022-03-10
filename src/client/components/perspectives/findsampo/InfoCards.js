@@ -8,8 +8,8 @@ import {
   Typography,
   Button,
   CardActions
-} from '@material-ui/core'
-import { makeStyles } from '@material-ui/core/styles'
+} from '@mui/material'
+import makeStyles from '@mui/styles/makeStyles'
 import FHA043 from '../../../img/findsampo/Museovirasto_043-vaaka-compressed.jpg'
 import FHA054 from '../../../img/findsampo/Museovirasto_054-vaaka-compressed.jpg'
 import FHA056 from '../../../img/findsampo/Museovirasto_056_vaaka-compressed.jpg'

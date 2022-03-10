@@ -1,15 +1,15 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import Typography from '@material-ui/core/Typography'
-import Paper from '@material-ui/core/Paper'
-import Grid from '@material-ui/core/Grid'
+import Typography from '@mui/material/Typography'
+import Paper from '@mui/material/Paper'
+import Grid from '@mui/material/Grid'
 import intl from 'react-intl-universal'
-import Card from '@material-ui/core/Card'
-import CardActionArea from '@material-ui/core/CardActionArea'
-import CardContent from '@material-ui/core/CardContent'
-import CardMedia from '@material-ui/core/CardMedia'
-import { makeStyles } from '@material-ui/core/styles'
-import useMediaQuery from '@material-ui/core/useMediaQuery'
+import Card from '@mui/material/Card'
+import CardActionArea from '@mui/material/CardActionArea'
+import CardContent from '@mui/material/CardContent'
+import CardMedia from '@mui/material/CardMedia'
+import makeStyles from '@mui/styles/makeStyles'
+import useMediaQuery from '@mui/material/useMediaQuery'
 import { Link } from 'react-router-dom'
 import { has } from 'lodash'
 import defaultImage from '../../../img/main_page/thumb.png'
@@ -17,19 +17,18 @@ import defaultImage from '../../../img/main_page/thumb.png'
 const useStyles = makeStyles(theme => ({
   gridItem: props => ({
     textDecoration: 'none',
-    [theme.breakpoints.down('xs')]: {
+    [theme.breakpoints.down('sm')]: {
       justifyContent: 'center'
     },
-    maxWidth: 370,
     height: props.perspective.frontPageImage ? 200 : 150,
-    [theme.breakpoints.down('xs')]: {
-      height: 160
+    [theme.breakpoints.down('md')]: {
+      height: 170,
+      maxWidth: 300
     },
     [props.perspective.frontPageElement === 'card']: {
-      // height: 'inherit',
-      // width: 200,
-      // // maxWidth: 269,
-      // // minWidth: 269
+      height: 'inherit',
+      maxWidth: 269,
+      minWidth: 269
     }
   }),
   perspectiveCardPaper: props => ({
@@ -74,7 +73,7 @@ const useStyles = makeStyles(theme => ({
 const MainCard = props => {
   const classes = useStyles(props)
   const { perspective, cardHeadingVariant } = props
-  const xsScreen = useMediaQuery(theme => theme.breakpoints.down('xs'))
+  const xsScreen = useMediaQuery(theme => theme.breakpoints.down('sm'))
   // const smScreen = useMediaQuery(theme => theme.breakpoints.between('sm', 'md'))
   const externalPerspective = has(perspective, 'externalUrl')
   let card = has(perspective, 'frontPageElement') && perspective.frontPageElement === 'card' && perspective.frontPageImage
@@ -102,14 +101,21 @@ const MainCard = props => {
       container={xsScreen}
       href={externalPerspective ? perspective.externalUrl : null}
       target={externalPerspective ? '_blank' : null}
-      rel={externalPerspective ? 'noreferrer' : null}
     >
       {!card && !simple &&
         <Paper className={classes.perspectiveCardPaper}>
-          <Typography gutterBottom variant={cardHeadingVariant} component='h2'>
+          <Typography
+            gutterBottom
+            variant={cardHeadingVariant}
+            component='h2'
+            sx={{ color: '#fff' }}
+          >
             {intl.get(`perspectives.${perspective.id}.label`)}
           </Typography>
-          <Typography component='p'>
+          <Typography
+            component='p'
+            sx={{ color: '#fff' }}
+          >
             {intl.get(`perspectives.${perspective.id}.shortDescription`)}
           </Typography>
         </Paper>}

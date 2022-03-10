@@ -78,6 +78,7 @@ const networkConfig = {
 
 // ** Import general components **
 const TopBar = lazy(() => import('../components/main_layout/TopBar'))
+const InfoHeader = lazy(() => import('../components/main_layout/InfoHeader'))
 const TextPage = lazy(() => import('../components/main_layout/TextPage'))
 const Message = lazy(() => import('../components/main_layout/Message'))
 const FullTextSearch = lazy(() => import('../components/main_layout/FullTextSearch'))
@@ -129,6 +130,8 @@ const SemanticPortal = props => {
         backgroundColor: '#bdbdbd',
         overflowX: 'hidden',
         minHeight: '100%',
+        ...(location.pathname.includes('/sites/map') &&
+        { height: '100%' }),
         [theme.breakpoints.up(layoutConfig.hundredPercentHeightBreakPoint)]: {
           overflow: 'hidden',
           height: '100%'
@@ -165,6 +168,9 @@ const SemanticPortal = props => {
               screenSize={screenSize}
               rootUrl={rootUrlWithLang}
               layoutConfig={layoutConfig}
+              currentLocale={props.options.currentLocale}
+              fetchKnowledgeGraphMetadata={props.fetchKnowledgeGraphMetadata}
+              knowledgeGraphMetadata={props.finds.knowledgeGraphMetadata}
             />
             <Footer
               portalConfig={portalConfig}
@@ -363,6 +369,43 @@ const SemanticPortal = props => {
               />
             </Route>
           )}
+        <Route
+          path={`${rootUrlWithLang}/sites/map`}
+          render={routeProps => {
+            const perspective = perspectiveConfig.find(p => p.id === 'sites')
+            return (
+              <>
+                <InfoHeader
+                  portalConfig={portalConfig}
+                  layoutConfig={layoutConfig}
+                  resultClass={perspective.id}
+                  pageType='facetResults'
+                  expanded={props[perspective.id].facetedSearchHeaderExpanded}
+                  updateExpanded={props.updatePerspectiveHeaderExpanded}
+                  screenSize={screenSize}
+                />
+                <Sites
+                  portalConfig={portalConfig}
+                  layoutConfig={layoutConfig}
+                  leafletConfig={leafletConfig}
+                  perspectiveState={props[`${perspective.id}`]}
+                  leafletMapState={props.leafletMap}
+                  fetchGeoJSONLayers={props.fetchGeoJSONLayers}
+                  fetchGeoJSONLayersBackend={props.fetchGeoJSONLayersBackend}
+                  clearGeoJSONLayers={props.clearGeoJSONLayers}
+                  showError={props.showError}
+                  updateMapBounds={props.updateMapBounds}
+                  screenSize={screenSize}
+                />
+
+              </>
+            )
+          }}
+        />
+        <Route
+          path={`${rootUrlWithLang}/guides`}
+          render={() => <InfoCards />}
+        />
         {/* create routes for top bar info buttons */}
         {!layoutConfig.topBar.externalAboutPage &&
           <Route path={`${rootUrlWithLang}/about`}>

@@ -26,15 +26,25 @@ const useStyles = makeStyles(theme => ({
       maxWidth: 300
     },
     [props.perspective.frontPageElement === 'card']: {
-      // height: 'inherit',
-      // width: 200,
-      // // maxWidth: 269,
-      // // minWidth: 269
+      height: 'inherit',
+      maxWidth: 269,
+      minWidth: 269
     }
   }),
   perspectiveCardPaper: props => ({
     padding: theme.spacing(1.5),
     boxSizing: 'border-box',
+    color: '#fff',
+    background: `linear-gradient( rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4) ), url(${props.perspective.frontPageImage})`,
+    backgroundRepeat: 'no-repeat',
+    backgroundSize: 'cover',
+    backgroundPosition: 'center',
+    '&:hover': {
+      background: `linear-gradient( rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8) ), url(${props.perspective.frontPageImage})`,
+      backgroundRepeat: 'no-repeat',
+      backgroundSize: 'cover',
+      backgroundPosition: 'center'
+    },
     height: '100%',
     width: '100%'
   }),
@@ -58,34 +68,21 @@ const MainCard = props => {
   const xsScreen = useMediaQuery(theme => theme.breakpoints.down('sm'))
   // const smScreen = useMediaQuery(theme => theme.breakpoints.between('sm', 'md'))
   const externalPerspective = has(perspective, 'externalUrl')
-  let card = has(perspective, 'frontPageElement') && perspective.frontPageElement === 'card' && perspective.frontPageImage
-  let simple = false
-  if (perspective.frontPageImage == null) {
-    simple = true
-    card = false
-  }
+  const card = has(perspective, 'frontPageElement') && perspective.frontPageElement === 'card'
   const searchMode = has(perspective, 'searchMode') ? perspective.searchMode : 'faceted-search'
-  let link = null
-  if (!externalPerspective && searchMode === 'dummy-internal') {
-    link = `${props.rootUrl}${perspective.internalLink}`
-  }
-  if (!externalPerspective && searchMode !== 'dummy-internal') {
-    link = `${props.rootUrl}/${perspective.id}/${searchMode}`
-  }
 
   return (
     <Grid
       className={classes.gridItem}
       key={perspective.id}
-      item xs={12} sm={6} md={4}
+      item xs={12} sm={6} // optimized for four perspectives
       component={externalPerspective ? 'a' : Link}
-      to={link}
+      to={externalPerspective ? null : `${props.rootUrl}/${perspective.id}/${searchMode}`}
       container={xsScreen}
       href={externalPerspective ? perspective.externalUrl : null}
       target={externalPerspective ? '_blank' : null}
-      rel={externalPerspective ? 'noreferrer' : null}
     >
-      {!card && !simple &&
+      {!card &&
         <Paper className={classes.perspectiveCardPaper}>
           <Typography
             gutterBottom
@@ -102,15 +99,6 @@ const MainCard = props => {
             {intl.get(`perspectives.${perspective.id}.shortDescription`)}
           </Typography>
         </Paper>}
-      {simple &&
-        <div className={classes.perspectiveCardPaper}>
-          <Typography align='center' gutterBottom variant={cardHeadingVariant} component='h2'>
-            {intl.get(`perspectives.${perspective.id}.label`)}
-          </Typography>
-          <Typography align='center' component='p'>
-            {intl.get(`perspectives.${perspective.id}.shortDescription`)}
-          </Typography>
-        </div>}
       {card &&
         <Card className={classes.card}>
           <CardActionArea>

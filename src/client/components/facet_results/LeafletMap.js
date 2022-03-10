@@ -40,6 +40,8 @@ import markerIconYellow from '../../img/markers/marker-icon-yellow.png'
 // const buffer = lazy(() => import('@turf/buffer'))
 import buffer from '@turf/buffer'
 
+import { fhaLegend } from '../../library_configs/Leaflet/LeafletConfig'
+
 // https://github.com/pointhi/leaflet-color-markers
 const ColorIcon = L.Icon.extend({
   options: {
@@ -274,18 +276,24 @@ class LeafletMap extends React.Component {
       Base layers from https://www.maanmittauslaitos.fi/karttakuvapalvelu/tekninen-kuvaus-wmts
       Routed via backend.
     */
-    const backgroundMapNLS = L.tileLayer(`${process.env.API_URL}/nls-wmts?z={z}&x={x}&y={y}&layerID=taustakartta`, {
-      attribution: 'National Land Survey of Finland',
-      maxZoom: 18
-    })
-    const topographicalMapNLS = L.tileLayer(`${process.env.API_URL}/nls-wmts?z={z}&x={x}&y={y}&layerID=maastokartta`, {
-      attribution: 'National Land Survey of Finland',
-      maxZoom: 18
-    })
-    const airMapNLS = L.tileLayer(`${process.env.API_URL}/nls-wmts?z={z}&x={x}&y={y}&layerID=ortokuva`, {
-      attribution: 'National Land Survey of Finland',
-      maxZoom: 18
-    })
+    // const backgroundMapNLS = L.tileLayer(`${process.env.API_URL}/nls-wmts?z={z}&x={x}&y={y}&layerID=taustakartta`, {
+    //   attribution: 'National Land Survey of Finland',
+    //   maxZoom: 18
+    // })
+    // https://github.com/mapbox/mapbox-gl-leaflet
+    // const nlsVectortilesBackgroundmap = L.mapboxGL({
+    //   accessToken: this.props.mapBoxAccessToken,
+    //   style: `${process.env.API_URL}/nls-vectortiles-open`
+    // })
+    // const topographicalMapNLS = L.tileLayer(`${process.env.API_URL}/nls-wmts-open?z={z}&x={x}&y={y}&layerID=maastokartta`, {
+    //   attribution: 'National Land Survey of Finland',
+    //   maxZoom: 18
+    // })
+    // const airMapNLS = L.tileLayer(`${process.env.API_URL}/nls-wmts-open?z={z}&x={x}&y={y}&layerID=ortokuva`, {
+    //   attribution: 'National Land Survey of Finland',
+    //   maxZoom: 18
+    // })
+
     // const googleRoadmap = L.gridLayer.googleMutant({
     //   type: 'roadmap'
     // })
@@ -333,10 +341,10 @@ class LeafletMap extends React.Component {
     // initialize layers from external sources
     if (this.props.showExternalLayers) {
       const basemaps = {
-        [intl.get(`leafletMap.basemaps.mapbox.${mapboxStyle}`)]: mapboxBaseLayer,
-        [intl.get('leafletMap.basemaps.backgroundMapNLS')]: backgroundMapNLS,
-        [intl.get('leafletMap.basemaps.topographicalMapNLS')]: topographicalMapNLS,
-        [intl.get('leafletMap.basemaps.airMapNLS')]: airMapNLS
+        [intl.get(`leafletMap.basemaps.mapbox.${mapboxStyle}`)]: mapboxBaseLayer
+        // [intl.get('leafletMap.basemaps.backgroundMapNLS')]: nlsVectortilesBackgroundmap,
+        // [intl.get('leafletMap.basemaps.topographicalMapNLS')]: topographicalMapNLS,
+        // [intl.get('leafletMap.basemaps.airMapNLS')]: airMapNLS
         // [intl.get('leafletMap.basemaps.googleRoadmap')]: googleRoadmap,
       }
       this.initOverLays(basemaps)
@@ -1003,7 +1011,8 @@ class LeafletMap extends React.Component {
                 : '100%'
             },
             position: 'relative',
-            ...(pageType !== 'mobileMapPage' && { height: 400 })
+            ...(pageType !== 'mobileMapPage' && { height: 400 }),
+            ...(pageType === 'mobileMapPage' && { height: '100%' })
           })}
         >
           <Box

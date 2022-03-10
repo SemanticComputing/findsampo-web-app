@@ -1,6 +1,7 @@
 import React from 'react'
-import { makeStyles } from '@material-ui/core/styles'
+import makeStyles from '@mui/styles/makeStyles'
 import LeafletMap from '../../facet_results/LeafletMap'
+import { getSpacing } from '../../../helpers/helpers'
 
 const useStyles = makeStyles(theme => ({
   root: props => ({
@@ -8,9 +9,13 @@ const useStyles = makeStyles(theme => ({
     marginRight: theme.spacing(0.5),
     marginTop: theme.spacing(0.5),
     width: `calc(100% - ${theme.spacing(1)}px)`,
-    height: `calc(100% - ${props.layoutConfig.topBar.reducedHeight + props.layoutConfig.infoHeader.reducedHeight.height + theme.spacing(1.5)}px)`,
+    height: `calc(100% - ${props.layoutConfig.topBar.reducedHeight +
+      props.layoutConfig.infoHeader.reducedHeight.height +
+      getSpacing(theme, 1.5)}px)`,
     [theme.breakpoints.up(props.layoutConfig.reducedHeightBreakpoint)]: {
-      height: `calc(100% - ${props.layoutConfig.topBar.defaultHeight + props.layoutConfig.infoHeader.default.height + theme.spacing(1.5)}px)`
+      height: `calc(100% - ${props.layoutConfig.topBar.defaultHeight +
+        props.layoutConfig.infoHeader.default.height +
+        getSpacing(theme, 1.5)}px)`
     }
   }),
   rootHeaderExpanded: props => ({
@@ -21,15 +26,14 @@ const useStyles = makeStyles(theme => ({
         props.layoutConfig.topBar.reducedHeight +
         props.layoutConfig.infoHeader.reducedHeight.height +
         props.layoutConfig.infoHeader.reducedHeight.expandedContentHeight +
-        theme.spacing(4)}px)`,
+        getSpacing(theme, 5.5)}px)`,
     // },
     [theme.breakpoints.up(props.layoutConfig.reducedHeightBreakpoint)]: {
       height: `calc(100% - ${
         props.layoutConfig.topBar.defaultHeight +
         props.layoutConfig.infoHeader.default.height +
         props.layoutConfig.infoHeader.default.expandedContentHeight +
-        theme.spacing(4)
-      }px)`
+        getSpacing(theme, 4.5)}px)`
     }
   })
 }))
