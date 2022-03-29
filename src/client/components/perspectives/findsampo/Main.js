@@ -112,9 +112,12 @@ const Main = props => {
               src={props.currentLocale === 'en' ? bannerLogoEN : bannerLogoFI}
               alt={`${intl.get('appTitle.short')} logo`}
               sx={theme => ({
-                height: '60%',
-                [theme.breakpoints.down('lg')]: {
-                  height: '40%'
+                height: '90px',
+                [theme.breakpoints.up('md')]: {
+                  height: '150px'
+                },
+                [theme.breakpoints.up('xl')]: {
+                  height: '240px'
                 },
                 marginBottom: theme.spacing(1)
               })}
