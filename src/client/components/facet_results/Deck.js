@@ -166,10 +166,11 @@ class Deck extends React.Component {
     new HeatmapLayer({
       id: 'heatmapLayer',
       data,
-      // radiusPixels: 40,
-      // threshold: 0.025,
-      getPosition: d => [+d.long, +d.lat]
-      // getWeight: d => +d.instanceCount
+      ...(this.props.perspectiveConfig.resultClasses[this.props.resultClass].heatmapRadiusPixels && { radiusPixels: this.props.perspectiveConfig.resultClasses[this.props.resultClass].heatmapRadiusPixels }),
+      ...(this.props.perspectiveConfig.resultClasses[this.props.resultClass].heatmapThreshold && { threshold: this.props.perspectiveConfig.resultClasses[this.props.resultClass].heatmapThreshold }),
+      ...(this.props.perspectiveConfig.resultClasses[this.props.resultClass].heatmapIntensity && { intensity: this.props.perspectiveConfig.resultClasses[this.props.resultClass].heatmapIntensity }),
+      getPosition: d => [+d.long, +d.lat],
+      getWeight: d => +d.instanceCount
     })
 
   createHexagonLayer = data =>
