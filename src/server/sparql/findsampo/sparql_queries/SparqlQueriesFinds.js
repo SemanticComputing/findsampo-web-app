@@ -256,10 +256,11 @@ export const findPropertiesFacetResults = `
 
 export const findsPlacesQuery = `
   SELECT DISTINCT ?id ?lat ?long
+  (1 as ?instanceCount) # for heatmap
   WHERE {
     <FILTER>
     ?id :find_site_coordinates/wgs84:lat ?lat ;
-        :find_site_coordinates/wgs84:long ?long .
+        :find_site_coordinates/wgs84:long ?long .   
   }
 `
 
