@@ -354,48 +354,48 @@ export const fhaLegend = [
     https://www.museovirasto.fi/uploads/Tietotuotemaarittely_kulttuuriymparisto_kaikki.pdf
   */
 export const layerConfigs = [
-  {
-    // id: 'WFS_MV_KulttuuriymparistoSuojellut:Muinaisjaannokset_alue',
-    id: 'WFS_MV_Kulttuuriymparisto:Arkeologiset_kohteet_alue',
-    type: 'GeoJSON',
-    attribution: 'Museovirasto',
-    minZoom: 13,
-    buffer: {
-      distance: 200,
-      units: 'metres',
-      style: bufferStyle
-    },
-    createGeoJSONPolygonStyle: feature => {
-      return {
-        color: createArchealogicalSiteColor(feature),
-        cursor: 'pointer'
-      }
-    },
-    createPopup: createArchealogicalSitePopUp
-  },
-  {
-    // id: 'WFS_MV_KulttuuriymparistoSuojellut:Muinaisjaannokset_piste',
-    id: 'WFS_MV_Kulttuuriymparisto:Arkeologiset_kohteet_piste',
-    type: 'GeoJSON',
-    attribution: 'Museovirasto',
-    minZoom: 13,
-    buffer: {
-      distance: 200,
-      units: 'metres',
-      style: bufferStyle
-    },
-    createGeoJSONPointStyle: feature => {
-      return {
-        radius: 8,
-        fillColor: createArchealogicalSiteColor(feature),
-        color: '#000',
-        weight: 1,
-        opacity: 1,
-        fillOpacity: 0.8
-      }
-    },
-    createPopup: createArchealogicalSitePopUp
-  },
+  // {
+  //   // id: 'WFS_MV_KulttuuriymparistoSuojellut:Muinaisjaannokset_alue',
+  //   id: 'WFS_MV_Kulttuuriymparisto:Arkeologiset_kohteet_alue',
+  //   type: 'GeoJSON',
+  //   attribution: 'Museovirasto',
+  //   minZoom: 13,
+  //   buffer: {
+  //     distance: 200,
+  //     units: 'metres',
+  //     style: bufferStyle
+  //   },
+  //   createGeoJSONPolygonStyle: feature => {
+  //     return {
+  //       color: createArchealogicalSiteColor(feature),
+  //       cursor: 'pointer'
+  //     }
+  //   },
+  //   createPopup: createArchealogicalSitePopUp
+  // },
+  // {
+  //   // id: 'WFS_MV_KulttuuriymparistoSuojellut:Muinaisjaannokset_piste',
+  //   id: 'WFS_MV_Kulttuuriymparisto:Arkeologiset_kohteet_piste',
+  //   type: 'GeoJSON',
+  //   attribution: 'Museovirasto',
+  //   minZoom: 13,
+  //   buffer: {
+  //     distance: 200,
+  //     units: 'metres',
+  //     style: bufferStyle
+  //   },
+  //   createGeoJSONPointStyle: feature => {
+  //     return {
+  //       radius: 8,
+  //       fillColor: createArchealogicalSiteColor(feature),
+  //       color: '#000',
+  //       weight: 1,
+  //       opacity: 1,
+  //       fillOpacity: 0.8
+  //     }
+  //   },
+  //   createPopup: createArchealogicalSitePopUp
+  // },
   {
     id: 'fhaLidar',
     type: 'WMS',
