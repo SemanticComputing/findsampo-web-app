@@ -7,14 +7,13 @@
   "appTitle": {
     "short": "Löytösampo",
     "long": "Löytösampo",
-    "subheading": "HUOM! Sähkökatkon vuoksi tietokannan palvelimet eivät toimi oikein. Katkoksen odotetaan kestävän ainakin 2.5. asti.",
-    "subheadingTemp": "Suomen arkeologiset löydöt semanttisessa webissä"
+    "subheading": "Suomen arkeologiset löydöt semanttisessa webissä"
   },
   "selectPerspective": "Valitse näkymä aineiston hakua ja tutkimista varten:",
   "selectPerspectiveExternal": "Linkkejä:",
   "mainPageImageLicenceTitle": "Kuvien lisenssi",
   "mainPageImageLicence": "Otsikon taustakuva: Alkuperäinen <a href=\"https://museovirasto.finna.fi/arkeologia/Record/museovirasto.131CE7C3BCBB48135B08F411230D8460\" target=\"_blank\" rel=\"noreferrer\">kuva</a> (muokattu rajaamalla) Ilari Järvinen <a href=\"https://creativecommons.org/licenses/by/4.0/deed.fi\" target=\"_blank\" rel=\"noreferrer\">CC BY 4.0</a>. ",
-  "backendErrorText": "Sähkökatkon vuoksi tietokannan palvelimet eivät toimi oikein. Katkos kestää luultavasti ainakin 2.5. asti. Palvelin ei ole käytettävissä juuri nyt. Kokeile myöhemmin uudestaan.",
+  "backendErrorText": "Palvelin ei ole käytettävissä juuri nyt. Kokeile myöhemmin uudestaan.",
   "mainPage": {
     "carouselHeading": "ESITTELYSSÄ OLEVAT LÖYDÖT",
     "cardLearnMore": "lue lisää"
