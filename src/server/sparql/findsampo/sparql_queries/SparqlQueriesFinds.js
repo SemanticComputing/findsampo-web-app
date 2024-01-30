@@ -89,7 +89,8 @@ export const findPropertiesInstancePage =
       ?image__id a :Image .
       ?image__id :documents ?id .
       ?image__id ltk-s:image_url ?image__url_ .
-      BIND(REPLACE(?image__url_, "https", "http") as ?image__url)
+      BIND(REPLACE(?image__url_, "https://", "https://ldf.fi/corsproxy/") as ?image__url)
+      # Using proxy because the certificates at FHA can be mixed sometimes...
       OPTIONAL {
         ?image__id skos:prefLabel ?image__title .
         BIND(CONCAT(STR(?image__title), ' (kuvan oikeudet: Museovirasto)') AS ?image__description)
@@ -218,7 +219,7 @@ export const findPropertiesFacetResults = `
     ?image__id a :Image .
     ?image__id :documents ?id .
     ?image__id ltk-s:image_url ?image__url_ .
-    BIND(REPLACE(?image__url_, "https", "http") as ?image__url)
+    BIND(REPLACE(?image__url_, "https://", "https://ldf.fi/corsproxy/") as ?image__url)
     OPTIONAL {
       ?image__id skos:prefLabel ?image__title .
       BIND(CONCAT(STR(?image__title), ' (kuvan oikeudet: Museovirasto)') AS ?image__description)
@@ -280,7 +281,7 @@ export const findsListQuery = `
     OPTIONAL { ?id :material/skos:prefLabel ?materials }
     OPTIONAL {
       ?id ^:documents/ltk-s:image_url ?imageURLs_
-      BIND(REPLACE(?imageURLs_, "https", "http") as ?imageURLs)
+      BIND(REPLACE(?imageURLs_, "https://", "https://ldf.fi/corsproxy/") as ?imageURLs)
     }
     OPTIONAL {
       ?id :found_in_municipality/skos:prefLabel ?municipality
@@ -450,7 +451,7 @@ export const knowledgeGraphMetadataQuery = `
     ?featuredFind__id ltk-s:find_name ?featuredFind__prefLabel .
     ?picture :documents ?featuredFind__id .
     ?picture ltk-s:image_url ?featuredFind__imageURL_ .
-    BIND(REPLACE(?featuredFind__imageURL_, "https", "http") as ?featuredFind__imageURL)
+    BIND(REPLACE(?featuredFind__imageURL_, "https://", "https://ldf.fi/corsproxy/") as ?featuredFind__imageURL)
     BIND(CONCAT("/${perspectiveID}/page/", REPLACE(STR(?featuredFind__id), "^.*\\\\/(.+)", "$1")) AS ?featuredFind__dataProviderUrl)
   }
 `
