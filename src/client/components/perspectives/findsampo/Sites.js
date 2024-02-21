@@ -2,7 +2,6 @@ import React from 'react'
 import makeStyles from '@mui/styles/makeStyles'
 import LeafletMap from '../../facet_results/LeafletMap'
 import { getSpacing } from '../../../helpers/helpers'
-import Paper from '@mui/material/Paper'
 
 const useStyles = makeStyles(theme => ({
   root: props => ({
@@ -46,50 +45,43 @@ const Sites = props => {
     screenSize === 'lg' ||
     screenSize === 'xl'
   return (
-    <Paper square className={classes.root}>
-     <center>
-      <h1>Arkeologisten kohteiden haku ei tällä hetkellä ole käytössä rajapinnan ongelmien vuoksi. Yritämme korjata asiaa.</h1>
-      <p></p>
-      <h1>Sites perspective is not currently available.</h1>
-    </center>
-  </Paper>
+    <div className={props.perspectiveState.facetedSearchHeaderExpanded
+      ? classes.rootHeaderExpanded
+      : classes.root}
+    >
+      <LeafletMap
+        portalConfig={props.portalConfig}
+        center={props.perspectiveState.maps.sitesMap.center}
+        zoom={props.perspectiveState.maps.sitesMap.zoom}
+        locateUser
+        // results={this.props.results}
+        leafletMapState={props.leafletMapState}
+        pageType='mobileMapPage'
+        resultClass='sitesMap'
+        fetchGeoJSONLayers={props.fetchGeoJSONLayers}
+        clearGeoJSONLayers={props.clearGeoJSONLayers}
+        fetching={false}
+        // fetchData={this.props.fetchResults}
+        showInstanceCountInClusters={false}
+        showError={props.showError}
+        updateMapBounds={props.updateMapBounds}
+        showExternalLayers
+        customMapControl
+        layerControlExpanded={layerControlExpanded}
+        infoHeaderExpanded={props.perspectiveState.facetedSearchHeaderExpanded}
+        layoutConfig={props.layoutConfig}
+        layerConfigs={props.leafletConfig.layerConfigs}
+        activeLayers={[
+          // 'WFS_MV_KulttuuriymparistoSuojellut:Muinaisjaannokset_alue',
+          // 'WFS_MV_KulttuuriymparistoSuojellut:Muinaisjaannokset_piste',
+          // 'WFS_MV_Kulttuuriymparisto:Arkeologiset_kohteet_alue',
+          // 'WFS_MV_Kulttuuriymparisto:Arkeologiset_kohteet_piste'
+          'rajapinta_suojellut:muinaisjaannos_alue',
+          'rajapinta_suojellut:muinaisjaannos_piste'
+        ]}
+      />
+    </div>
   )
-  // return (
-  //   <div className={props.perspectiveState.facetedSearchHeaderExpanded
-  //     ? classes.rootHeaderExpanded
-  //     : classes.root}
-  //   >
-  //     <LeafletMap
-  //       portalConfig={props.portalConfig}
-  //       center={props.perspectiveState.maps.sitesMap.center}
-  //       zoom={props.perspectiveState.maps.sitesMap.zoom}
-  //       locateUser
-  //       // results={this.props.results}
-  //       leafletMapState={props.leafletMapState}
-  //       pageType='mobileMapPage'
-  //       resultClass='sitesMap'
-  //       fetchGeoJSONLayers={props.fetchGeoJSONLayers}
-  //       clearGeoJSONLayers={props.clearGeoJSONLayers}
-  //       fetching={false}
-  //       // fetchData={this.props.fetchResults}
-  //       showInstanceCountInClusters={false}
-  //       showError={props.showError}
-  //       updateMapBounds={props.updateMapBounds}
-  //       showExternalLayers
-  //       customMapControl
-  //       layerControlExpanded={layerControlExpanded}
-  //       infoHeaderExpanded={props.perspectiveState.facetedSearchHeaderExpanded}
-  //       layoutConfig={props.layoutConfig}
-  //       layerConfigs={props.leafletConfig.layerConfigs}
-  //       activeLayers={[
-  //         // 'WFS_MV_KulttuuriymparistoSuojellut:Muinaisjaannokset_alue',
-  //         // 'WFS_MV_KulttuuriymparistoSuojellut:Muinaisjaannokset_piste',
-  //         'WFS_MV_Kulttuuriymparisto:Arkeologiset_kohteet_alue',
-  //         'WFS_MV_Kulttuuriymparisto:Arkeologiset_kohteet_piste'
-  //       ]}
-  //     />
-  //   </div>
-  // )
 }
 
 export default Sites

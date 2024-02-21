@@ -396,7 +396,9 @@ class LeafletMap extends React.Component {
       if (layerID === 'WFS_MV_KulttuuriymparistoSuojellut:Muinaisjaannokset_alue' ||
       layerID === 'WFS_MV_KulttuuriymparistoSuojellut:Muinaisjaannokset_piste' ||
       layerID === 'WFS_MV_Kulttuuriymparisto:Arkeologiset_kohteet_alue' ||
-      layerID === 'WFS_MV_Kulttuuriymparisto:Arkeologiset_kohteet_piste'
+      layerID === 'WFS_MV_Kulttuuriymparisto:Arkeologiset_kohteet_piste' ||
+      layerID === 'rajapinta_suojellut:muinaisjaannos_alue' ||
+      layerID === 'rajapinta_suojellut:muinaisjaannos_piste'
       ) {
         hideCustomControl = false
       }
@@ -1023,17 +1025,17 @@ class LeafletMap extends React.Component {
               height: '100%'
             }}
           >
-          {<Box
-                component='img'
-                src={mapboxLogo}
-                sx={{
-                  height: 20,
-                  ml: 6,
-                  mt: 1,
-                  position: 'absolute',
-                  zIndex:1000
-                }}
-            ></Box>}
+            <Box
+              component='img'
+              src={mapboxLogo}
+              sx={{
+                height: 20,
+                ml: 6,
+                mt: 1,
+                position: 'absolute',
+                zIndex: 1000
+              }}
+            />
             {(this.props.fetching ||
             (this.props.showExternalLayers && this.props.leafletMapState.fetching)) &&
               <Box

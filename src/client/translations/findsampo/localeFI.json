@@ -112,6 +112,8 @@
       "airMapNLS": "Ilmakuva (Maanmittauslaitos)"
     },
     "externalLayers": {
+      "rajapinta_suojellut:muinaisjaannos_alue": "Kiinteät muinaisjäännökset, alueet (Museovirasto, Muinaisjäännösrekisteri)",
+      "rajapinta_suojellut:muinaisjaannos_piste": "Kiinteät muinaisjäännökset, pisteet (Museovirasto, Muinaisjäännösrekisteri)",
       "WFS_MV_Kulttuuriymparisto:Arkeologiset_kohteet_alue": "Arkeologiset kohteet, alueet (Museovirasto, Muinaisjäännösrekisteri)",
       "WFS_MV_Kulttuuriymparisto:Arkeologiset_kohteet_piste": "Arkeologiset kohteet, pisteet (Museovirasto, Muinaisjäännösrekisteri)",
       "WFS_MV_KulttuuriymparistoSuojellut:Muinaisjaannokset_alue": "Muinaisjäännökset ja muut kulttuuriperintökohteet, alue (Museovirasto, Muinaisjäännösrekisteri)",
@@ -391,7 +393,7 @@
     "sites": {
       "label": "Kohteet",
       "mainPageLabel": "kohteet",
-      "shortDescription": "Etsi ja tarkastele arkeologisia kohteita ja suojeltuja alueita. HUOM! Kohteiden ja suojeltujen alueiden näyttäminen ei toimi tällä hetkellä. ",
+      "shortDescription": "Etsi ja tarkastele arkeologisia kohteita ja suojeltuja alueita.",
       "longDescription": "<p class=\"MuiTypography-root MuiTypography-body1 MuiTypography-paragraph\">Tämä näkymä pyytää lupaa paikantaa käyttäjän. Paikannuksen tarkkuus vaihtelee ja riippuu sijainnista ja käytetystä laitteesta. Kartalla näytetään oletuksena käyttäjän lähellä olevia arkeologisia kohteita Museoviraston ylläpitämästä Muinaisjäännösrekisteristä. Osa kohteista sisältää pistemäisen paikkatiedon, ja osa aluerajauksen. Muinaisjäännösrekisterin rajapinta saattaa latautua hitaasti, joten kartan zoomaustason täytyy olla vähintään 13, jotta kohteita näytetään. Kohteiden latautuessa kartan zoomaus- ja siirtelytoiminnot ovat poissa käytöstä. Pistemäisten arkeologisten kohteiden ympärille on merkitty varoalueeksi ympyrä, jonka säde on 200 metriä. Aluerajauksen sisältävien kohdeiden ympärille puolestaan on merkitty varoalue, jonka leveys on 200 metriä aluerajauksen ulkoreunasta. Museovirasto ei suosittele rauhoitetun muinaisjäännöksen lähettyvillä, alle 200 metrin etäisyydellä kaivamista, sillä muinaisjäännöksen rajat tiedetään harvoin aivan tarkasti. Suosituksella pyritään minimoimaan riski vahingoittaa rauhoitettuja muinaisjäännöksiä. Lisätietoa: <a href=\"https://www.museovirasto.fi/uploads/Palvelut_ja_ohjeet/Muinaisjaannokset_ja_metallinetsin_opas_2020.pdf\" target=\"_blank\" rel=\"noreferrer\">Muinaisjäännökset ja metallinetsin: harrastajan opas</a></p>"
     },
     "guides": {
