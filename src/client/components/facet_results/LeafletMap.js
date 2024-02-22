@@ -398,7 +398,16 @@ class LeafletMap extends React.Component {
       layerID === 'WFS_MV_Kulttuuriymparisto:Arkeologiset_kohteet_alue' ||
       layerID === 'WFS_MV_Kulttuuriymparisto:Arkeologiset_kohteet_piste' ||
       layerID === 'rajapinta_suojellut:muinaisjaannos_alue' ||
-      layerID === 'rajapinta_suojellut:muinaisjaannos_piste'
+      layerID === 'rajapinta_suojellut:muinaisjaannos_piste' ||
+      layerID === 'rajapinta_suojellut:maailmanperinto_alue' ||
+      layerID === 'rajapinta_suojellut:maailmanperinto_piste' ||
+      layerID === 'rajapinta_suojellut:rky_alue' ||
+      layerID === 'rajapinta_suojellut:rky_piste' ||
+      layerID === 'rajapinta_suojellut:rky_viiva' ||
+      layerID === 'rajapinta_suojellut:suojellut_rakennukset_alue' ||
+      layerID === 'rajapinta_suojellut:suojellut_rakennukset_piste' ||
+      layerID === 'rajapinta_suojellut:muu_kulttuuriperintokohde_alue' ||
+      layerID === 'rajapinta_suojellut:muu_kulttuuriperintokohde_piste'
       ) {
         hideCustomControl = false
       }

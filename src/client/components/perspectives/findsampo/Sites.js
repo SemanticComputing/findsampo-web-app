@@ -77,7 +77,16 @@ const Sites = props => {
           // 'WFS_MV_Kulttuuriymparisto:Arkeologiset_kohteet_alue',
           // 'WFS_MV_Kulttuuriymparisto:Arkeologiset_kohteet_piste'
           'rajapinta_suojellut:muinaisjaannos_alue',
-          'rajapinta_suojellut:muinaisjaannos_piste'
+          'rajapinta_suojellut:muinaisjaannos_piste',
+          'rajapinta_suojellut:maailmanperinto_alue',
+          'rajapinta_suojellut:maailmanperinto_piste',
+          'rajapinta_suojellut:rky_alue',
+          'rajapinta_suojellut:rky_piste',
+          'rajapinta_suojellut:rky_viiva',
+          'rajapinta_suojellut:suojellut_rakennukset_alue',
+          'rajapinta_suojellut:suojellut_rakennukset_piste',
+          'rajapinta_suojellut:muu_kulttuuriperintokohde_alue',
+          'rajapinta_suojellut:muu_kulttuuriperintokohde_piste'
         ]}
       />
     </div>
